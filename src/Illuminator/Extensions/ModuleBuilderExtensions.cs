@@ -9,7 +9,8 @@ namespace Illuminator.Extensions
         public static TypeBuilder DefineType(
             this ModuleBuilder moduleBuilder,
             string name,
-            params Type[] interfaceTypes) {
+            params Type[] interfaceTypes)
+        {
             var type = moduleBuilder.DefineType(name, TypeAttributes.Sealed | TypeAttributes.Public);
             if (interfaceTypes == null) {
                 return type;

@@ -9,7 +9,8 @@ namespace Illuminator.Extensions
     {
         public static MethodBuilder DefineInterfaceMethod(
             this TypeBuilder typeBuilder,
-            MethodInfo interfaceMethod) {
+            MethodInfo interfaceMethod)
+        {
             var method = typeBuilder.DefineMethod(
                 interfaceMethod.Name,
                 MethodAttributes.Public | MethodAttributes.Virtual,

@@ -16,52 +16,60 @@ namespace Illuminator
         private readonly Dictionary<Type, List<LocalBuilder>> _locals = new Dictionary<Type, List<LocalBuilder>>();
         private readonly Stack<Scope> _scopes = new Stack<Scope>();
 
-        public ILEmitter(ILGenerator il) {
+        public ILEmitter(ILGenerator il)
+        {
             _il = il;
             LocalsScope();
         }
 
-        public void Dispose() {
+        public void Dispose()
+        {
             _scopes.Pop();
             DebugOutput();
         }
 
-        public ILEmitter DefineLabel(out Label label) {
+        public ILEmitter DefineLabel(out Label label)
+        {
             label = _il.DefineLabel();
             AddDebugLabel(label);
 
             return this;
         }
 
-        public ILEmitter MarkLabel(Label label) {
+        public ILEmitter MarkLabel(Label label)
+        {
             DebugMarkLabel(label);
             _il.MarkLabel(label);
 
             return this;
         }
 
-        public ILEmitter BeginFinallyBlock() {
+        public ILEmitter BeginFinallyBlock()
+        {
             DebugLine("\t.finally");
             _il.BeginFinallyBlock();
 
             return this;
         }
 
-        public ILEmitter BeginExceptionBlock() {
+        public ILEmitter BeginExceptionBlock()
+        {
             DebugLine("\t.try {");
             _il.BeginExceptionBlock();
 
             return this;
         }
 
-        public ILEmitter EndExceptionBlock() {
+        public ILEmitter EndExceptionBlock()
+        {
             DebugLine("\t} // .try");
             _il.EndExceptionBlock();
 
             return this;
         }
 
-        public ILEmitter Call(MethodInfo methodInfo) {
+        public ILEmitter Call(MethodInfo methodInfo)
+        {
             var owner = methodInfo.DeclaringType;
             if (owner == null) {
                 throw new InvalidOperationException(
@@ -79,7 +87,8 @@ namespace Illuminator
 
         public ILEmitter Return(int value) => LoadConstant(value).Return();
 
-        public ILEmitter Cast(Type objectType) {
+        public ILEmitter Cast(Type objectType)
+        {
             var castOp = objectType.IsValueType
                              ? OpCodes.Unbox_Any
                              : OpCodes.Castclass;
@@ -90,7 +99,8 @@ namespace Illuminator
             return this;
         }
 
-        public ILEmitter LoadArgument(ushort argumentIndex) {
+        public ILEmitter LoadArgument(ushort argumentIndex)
+        {
             switch (argumentIndex) {
                 case 0: return Emit(OpCodes.Ldarg_0);
                 case 1: return Emit(OpCodes.Ldarg_1);
@@ -102,12 +112,14 @@ namespace Illuminator
             }
         }
 
-        public ILEmitter LoadArgumentAddress(ushort argumentIndex) {
+        public ILEmitter LoadArgumentAddress(ushort argumentIndex)
+        {
             var opCode = argumentIndex <= ShortFormLimit ? OpCodes.Ldarga_S : OpCodes.Ldarga;
             return Emit(opCode, argumentIndex);
         }
 
-        public ILEmitter LoadConstant(int value) {
+        public ILEmitter LoadConstant(int value)
+        {
             switch (value) {
                 case -1: return Emit(OpCodes.Ldc_I4_M1);
                 case 0: return Emit(OpCodes.Ldc_I4_0);
@@ -127,7 +139,8 @@ namespace Illuminator
 
         public ILEmitter LoadLocal(LocalVariableInfo local) => LoadLocal(local.LocalIndex);
 
-        public ILEmitter LoadLocal(int localIndex) {
+        public ILEmitter LoadLocal(int localIndex)
+        {
             switch (localIndex) {
                 case 0: return Emit(OpCodes.Ldloc_0);
                 case 1: return Emit(OpCodes.Ldloc_1);
@@ -139,14 +152,16 @@ namespace Illuminator
             }
         }
 
-        public ILEmitter LoadString(string value) {
+        public ILEmitter LoadString(string value)
+        {
             DebugLine($"\t\t{OpCodes.Ldstr} \"{value}\"");
             _il.Emit(OpCodes.Ldstr, value);
 
             return this;
         }
 
-        public ILEmitter LoadAddress(LocalVariableInfo local) {
+        public ILEmitter LoadAddress(LocalVariableInfo local)
+        {
             var localIndex = local.LocalIndex;
             var opCode = localIndex <= ShortFormLimit ? OpCodes.Ldloca_S : OpCodes.Ldloca;
 
@@ -156,7 +171,8 @@ namespace Illuminator
             return this;
         }
 
-        public ILEmitter Store(LocalBuilder local) {
+        public ILEmitter Store(LocalBuilder local)
+        {
             switch (local.LocalIndex) {
                 case 0: return Emit(OpCodes.Stloc_0);
                 case 1: return Emit(OpCodes.Stloc_1);
@@ -171,14 +187,16 @@ namespace Illuminator
             }
         }
 
-        public ILEmitter Store(Type localType, out LocalBuilder local) {
+        public ILEmitter Store(Type localType, out LocalBuilder local)
+        {
             var scope = _scopes.Peek();
             local = scope.ResolveLocal(localType);
 
             return Store(local);
         }
 
-        public IDisposable LocalsScope() {
+        public IDisposable LocalsScope()
+        {
             var scope = new Scope(this);
             _scopes.Push(scope);
 
@@ -187,49 +205,56 @@ namespace Illuminator
 
         public ILEmitter SetField(FieldInfo field) => Emit(OpCodes.Stfld, field);
 
-        private ILEmitter Emit(OpCode opCode) {
+        private ILEmitter Emit(OpCode opCode)
+        {
             DebugLine($"\t\t{opCode}");
             _il.Emit(opCode);
 
             return this;
         }
 
-        private ILEmitter Emit(OpCode opCode, int arg) {
+        private ILEmitter Emit(OpCode opCode, int arg)
+        {
             DebugLine($"\t\t{opCode} {arg}");
             _il.Emit(opCode, arg);
 
             return this;
         }
 
-        private ILEmitter Emit(OpCode opCode, Label label) {
+        private ILEmitter Emit(OpCode opCode, Label label)
+        {
             DebugEmitLabel(opCode, label);
             _il.Emit(opCode, label);
 
             return this;
         }
 
-        private ILEmitter Emit(OpCode opCode, MethodInfo methodInfo) {
+        private ILEmitter Emit(OpCode opCode, MethodInfo methodInfo)
+        {
             DebugLine($"\t\t{opCode} {methodInfo.DisplayName()}");
             _il.Emit(opCode, methodInfo);
 
             return this;
         }
 
-        private ILEmitter Emit(OpCode opCode, FieldInfo field) {
+        private ILEmitter Emit(OpCode opCode, FieldInfo field)
+        {
             DebugLine($"\t\t{opCode} {field.DisplayName()}");
             _il.Emit(opCode, field);
 
             return this;
         }
 
-        private ILEmitter Emit(OpCode opCode, ConstructorInfo constructorInfo) {
+        private ILEmitter Emit(OpCode opCode, ConstructorInfo constructorInfo)
+        {
             DebugLine($"\t\t{opCode} {constructorInfo.DisplayName()}");
             _il.Emit(opCode, constructorInfo);
 
             return this;
         }
 
-        private ILEmitter Branch(OpCode opCode, Label label) {
+        private ILEmitter Branch(OpCode opCode, Label label)
+        {
             if (opCode.FlowControl != FlowControl.Branch
                 && opCode.FlowControl != FlowControl.Cond_Branch) {
                 throw new ArgumentOutOfRangeException(nameof(opCode),
@@ -239,7 +264,8 @@ namespace Illuminator
             return Emit(opCode, label);
         }
 
-        private ILEmitter Branch(OpCode opCode, out Label label) {
+        private ILEmitter Branch(OpCode opCode, out Label label)
+        {
             if (opCode.FlowControl != FlowControl.Branch
                 && opCode.FlowControl != FlowControl.Cond_Branch) {
                 throw new ArgumentOutOfRangeException(nameof(opCode),
@@ -254,12 +280,14 @@ namespace Illuminator
             private readonly ILEmitter _owner;
             private readonly Dictionary<Type, int> _state;
 
-            public Scope(ILEmitter owner) {
+            public Scope(ILEmitter owner)
+            {
                 _owner = owner;
                 _state = _owner._counter.ToDictionary(x => x.Key, x => x.Value);
             }
 
-            public void Dispose() {
+            public void Dispose()
+            {
                 foreach (var type in new List<Type>(_owner._counter.Keys)) {
                     _owner._counter[type] = _state.TryGetValue(type, out var count) ? count : 0;
                 }
@@ -267,7 +295,8 @@ namespace Illuminator
                 _owner._scopes.Pop();
             }
 
-            public LocalBuilder ResolveLocal(Type type) {
+            public LocalBuilder ResolveLocal(Type type)
+            {
                 if (!_owner._locals.TryGetValue(type, out var list)) {
                     _owner._locals[type] = list = new List<LocalBuilder>();
                 }
@@ -299,7 +328,8 @@ namespace Illuminator
 
         #if DEBUG
 
-        public ILEmitter DebugWriteLine(LocalBuilder local) {
+        public ILEmitter DebugWriteLine(LocalBuilder local)
+        {
             DebugLine($"\t\tWrite local: {local.LocalIndex}");
             _il.Emit(OpCodes.Ldloca, local);
             if (local.LocalType != null && local.LocalType != typeof(string)) {
@@ -311,7 +341,8 @@ namespace Illuminator
             return this;
         }
 
-        public ILEmitter DebugWriteLine(string message) {
+        public ILEmitter DebugWriteLine(string message)
+        {
             DebugLine($"\t\tWrite: {message}");
             _il.Emit(OpCodes.Ldstr, message);
             _il.Emit(OpCodes.Call, typeof(Debug).GetMethod(nameof(Debug.WriteLine), new[] { typeof(string) }));

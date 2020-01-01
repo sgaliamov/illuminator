@@ -24,7 +24,8 @@ namespace Illuminator
 
         partial void AddDebugLabel(Label label) => _debugLabels.Add(label);
 
-        partial void DebugOutput() {
+        partial void DebugOutput()
+        {
             Debug.WriteLine(_name);
 
             var locals = _locals

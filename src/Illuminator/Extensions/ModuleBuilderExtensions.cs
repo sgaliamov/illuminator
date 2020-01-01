@@ -4,7 +4,7 @@ using System.Reflection.Emit;
 
 namespace Illuminator.Extensions
 {
-    internal static class ModuleBuilderExtensions
+    public static class ModuleBuilderExtensions
     {
         public static TypeBuilder DefineType(
             this ModuleBuilder moduleBuilder,

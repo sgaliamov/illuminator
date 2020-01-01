@@ -2,7 +2,7 @@
 
 namespace Illuminator.Extensions
 {
-    internal static class MethodBuilderExtensions
+    public static class MethodBuilderExtensions
     {
         public static ILEmitter CreateILEmitter(this MethodBuilder methodBuilder) {
 #if DEBUG

@@ -5,7 +5,7 @@ using System.Reflection.Emit;
 
 namespace Illuminator.Extensions
 {
-    internal static class TypeBuilderExtensions
+    public static class TypeBuilderExtensions
     {
         public static MethodBuilder DefineInterfaceMethod(
             this TypeBuilder typeBuilder,

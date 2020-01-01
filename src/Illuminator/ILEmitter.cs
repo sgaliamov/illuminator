@@ -11,7 +11,6 @@ namespace Illuminator
     public sealed partial class ILEmitter : IDisposable
     {
         private const byte ShortFormLimit = byte.MaxValue; // 255
-
         private readonly Dictionary<Type, int> _counter = new Dictionary<Type, int>();
         private readonly ILGenerator _il;
         private readonly Dictionary<Type, List<LocalBuilder>> _locals = new Dictionary<Type, List<LocalBuilder>>();
@@ -25,20 +24,6 @@ namespace Illuminator
         public void Dispose() {
             _scopes.Pop();
             DebugOutput();
-        }
-
-        public ILEmitter Emit(OpCode opCode) {
-            DebugLine($"\t\t{opCode}");
-            _il.Emit(opCode);
-
-            return this;
-        }
-
-        public ILEmitter Emit(OpCode opCode, int arg) {
-            DebugLine($"\t\t{opCode} {arg}");
-            _il.Emit(opCode, arg);
-
-            return this;
         }
 
         public ILEmitter DefineLabel(out Label label) {
@@ -55,57 +40,26 @@ namespace Illuminator
             return this;
         }
 
-        public ILEmitter Emit(OpCode opCode, Label label) {
-            DebugEmitLabel(opCode, label);
-            _il.Emit(opCode, label);
+        public ILEmitter BeginFinallyBlock() {
+            DebugLine("\t.finally");
+            _il.BeginFinallyBlock();
 
             return this;
         }
 
-        public ILEmitter Emit(OpCode opCode, MethodInfo methodInfo) {
-            DebugLine($"\t\t{opCode} {methodInfo.DisplayName()}");
-            _il.Emit(opCode, methodInfo);
+        public ILEmitter BeginExceptionBlock() {
+            DebugLine("\t.try {");
+            _il.BeginExceptionBlock();
 
             return this;
         }
 
-        public ILEmitter Emit(OpCode opCode, FieldInfo field) {
-            DebugLine($"\t\t{opCode} {field.DisplayName()}");
-            _il.Emit(opCode, field);
+        public ILEmitter EndExceptionBlock() {
+            DebugLine("\t} // .try");
+            _il.EndExceptionBlock();
 
             return this;
         }
-
-        public ILEmitter Emit(OpCode opCode, ConstructorInfo constructorInfo) {
-            DebugLine($"\t\t{opCode} {constructorInfo.DisplayName()}");
-            _il.Emit(opCode, constructorInfo);
-
-            return this;
-        }
-
-        //public ILEmitter BeginFinallyBlock()
-        //{
-        //    DebugLine("\t.finally");
-        //    _il.BeginFinallyBlock();
-
-        //    return this;
-        //}
-
-        //public ILEmitter BeginExceptionBlock()
-        //{
-        //    DebugLine("\t.try {");
-        //    _il.BeginExceptionBlock();
-
-        //    return this;
-        //}
-
-        //public ILEmitter EndExceptionBlock()
-        //{
-        //    DebugLine("\t} // .try");
-        //    _il.EndExceptionBlock();
-
-        //    return this;
-        //}
 
         public ILEmitter Call(MethodInfo methodInfo) {
             var owner = methodInfo.DeclaringType;
@@ -125,7 +79,7 @@ namespace Illuminator
 
         public ILEmitter Return(int value) => LoadConstant(value).Return();
 
-        public ILEmitter EmitCast(Type objectType) {
+        public ILEmitter Cast(Type objectType) {
             var castOp = objectType.IsValueType
                              ? OpCodes.Unbox_Any
                              : OpCodes.Castclass;
@@ -134,26 +88,6 @@ namespace Illuminator
             _il.Emit(castOp, objectType);
 
             return this;
-        }
-
-        public ILEmitter Branch(OpCode opCode, Label label) {
-            if (opCode.FlowControl != FlowControl.Branch
-                && opCode.FlowControl != FlowControl.Cond_Branch) {
-                throw new ArgumentOutOfRangeException(nameof(opCode),
-                    $"Only a branch instruction is allowed. OpCode: {opCode}.");
-            }
-
-            return Emit(opCode, label);
-        }
-
-        public ILEmitter Branch(OpCode opCode, out Label label) {
-            if (opCode.FlowControl != FlowControl.Branch
-                && opCode.FlowControl != FlowControl.Cond_Branch) {
-                throw new ArgumentOutOfRangeException(nameof(opCode),
-                    $"Only a branch instruction is allowed. OpCode: {opCode}.");
-            }
-
-            return DefineLabel(out label).Emit(opCode, label);
         }
 
         public ILEmitter LoadArgument(ushort argumentIndex) {
@@ -251,7 +185,71 @@ namespace Illuminator
             return scope;
         }
 
-        private class Scope : IDisposable
+        public ILEmitter SetField(FieldInfo field) => Emit(OpCodes.Stfld, field);
+
+        private ILEmitter Emit(OpCode opCode) {
+            DebugLine($"\t\t{opCode}");
+            _il.Emit(opCode);
+
+            return this;
+        }
+
+        private ILEmitter Emit(OpCode opCode, int arg) {
+            DebugLine($"\t\t{opCode} {arg}");
+            _il.Emit(opCode, arg);
+
+            return this;
+        }
+
+        private ILEmitter Emit(OpCode opCode, Label label) {
+            DebugEmitLabel(opCode, label);
+            _il.Emit(opCode, label);
+
+            return this;
+        }
+
+        private ILEmitter Emit(OpCode opCode, MethodInfo methodInfo) {
+            DebugLine($"\t\t{opCode} {methodInfo.DisplayName()}");
+            _il.Emit(opCode, methodInfo);
+
+            return this;
+        }
+
+        private ILEmitter Emit(OpCode opCode, FieldInfo field) {
+            DebugLine($"\t\t{opCode} {field.DisplayName()}");
+            _il.Emit(opCode, field);
+
+            return this;
+        }
+
+        private ILEmitter Emit(OpCode opCode, ConstructorInfo constructorInfo) {
+            DebugLine($"\t\t{opCode} {constructorInfo.DisplayName()}");
+            _il.Emit(opCode, constructorInfo);
+
+            return this;
+        }
+
+        private ILEmitter Branch(OpCode opCode, Label label) {
+            if (opCode.FlowControl != FlowControl.Branch
+                && opCode.FlowControl != FlowControl.Cond_Branch) {
+                throw new ArgumentOutOfRangeException(nameof(opCode),
+                    $"Only a branch instruction is allowed. OpCode: {opCode}.");
+            }
+
+            return Emit(opCode, label);
+        }
+
+        private ILEmitter Branch(OpCode opCode, out Label label) {
+            if (opCode.FlowControl != FlowControl.Branch
+                && opCode.FlowControl != FlowControl.Cond_Branch) {
+                throw new ArgumentOutOfRangeException(nameof(opCode),
+                    $"Only a branch instruction is allowed. OpCode: {opCode}.");
+            }
+
+            return DefineLabel(out label).Emit(opCode, label);
+        }
+
+        private sealed class Scope : IDisposable
         {
             private readonly ILEmitter _owner;
             private readonly Dictionary<Type, int> _state;
@@ -293,17 +291,13 @@ namespace Illuminator
 
         #region DEBUG
 
-        // ReSharper disable PartialMethodWithSinglePart
-
         partial void DebugOutput();
         partial void DebugEmitLabel(OpCode opCode, Label label);
         partial void DebugMarkLabel(Label label);
         partial void DebugLine(string message);
         partial void AddDebugLabel(Label label);
 
-        // ReSharper restore PartialMethodWithSinglePart
-
-#if DEBUG
+        #if DEBUG
 
         public ILEmitter DebugWriteLine(LocalBuilder local) {
             DebugLine($"\t\tWrite local: {local.LocalIndex}");
@@ -325,7 +319,7 @@ namespace Illuminator
             return this;
         }
 
-#endif
+        #endif
 
         #endregion
     }

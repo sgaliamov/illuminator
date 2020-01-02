@@ -205,6 +205,10 @@ namespace Illuminator
 
         public ILEmitter SetField(FieldInfo field) => Emit(OpCodes.Stfld, field);
 
+        public ILEmitter LoadField(FieldInfo field) => Emit(OpCodes.Ldfld, field);
+
+        public ILEmitter New(ConstructorInfo constructor) => Emit(OpCodes.Newobj, constructor);
+
         private ILEmitter Emit(OpCode opCode)
         {
             DebugLine($"\t\t{opCode}");
@@ -229,10 +233,10 @@ namespace Illuminator
             return this;
         }
 
-        private ILEmitter Emit(OpCode opCode, MethodInfo methodInfo)
+        private ILEmitter Emit(OpCode opCode, MethodInfo method)
         {
-            DebugLine($"\t\t{opCode} {methodInfo.DisplayName()}");
-            _il.Emit(opCode, methodInfo);
+            DebugLine($"\t\t{opCode} {method.DisplayName()}");
+            _il.Emit(opCode, method);
 
             return this;
         }
@@ -245,10 +249,10 @@ namespace Illuminator
             return this;
         }
 
-        private ILEmitter Emit(OpCode opCode, ConstructorInfo constructorInfo)
+        private ILEmitter Emit(OpCode opCode, ConstructorInfo constructor)
         {
-            DebugLine($"\t\t{opCode} {constructorInfo.DisplayName()}");
-            _il.Emit(opCode, constructorInfo);
+            DebugLine($"\t\t{opCode} {constructor.DisplayName()}");
+            _il.Emit(opCode, constructor);
 
             return this;
         }

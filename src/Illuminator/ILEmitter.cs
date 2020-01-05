@@ -209,6 +209,8 @@ namespace Illuminator
 
         public ILEmitter New(ConstructorInfo constructor) => Emit(OpCodes.Newobj, constructor);
 
+        public ILEmitter LoadNull() => Emit(OpCodes.Ldnull);
+
         private ILEmitter Emit(OpCode opCode)
         {
             DebugLine($"\t\t{opCode}");

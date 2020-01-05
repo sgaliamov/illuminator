@@ -76,6 +76,11 @@ namespace Illuminator
                     $"It's not expected that {methodInfo.DisplayName()} doesn't have a declaring type.");
             }
 
+            if (methodInfo.IsGenericMethodDefinition) {
+                throw new InvalidOperationException(
+                    $"Generic method {methodInfo.DisplayName()} is not initialized.");
+            }
+
             var opCode = methodInfo.IsStatic || owner.IsValueType || owner.IsSealed
                              ? OpCodes.Call
                              : OpCodes.Callvirt;

@@ -25,10 +25,6 @@ namespace Illuminator
         {
             _scopes.Pop();
             DebugFinish();
-
-            if (_stackSize != 0) {
-                throw new InvalidOperationException($"Stack is not empty: {_stackSize}.");
-            }
         }
 
         public ILEmitter DefineLabel(out Label label)
@@ -207,7 +203,6 @@ namespace Illuminator
 
         private ILEmitter Emit(OpCode opCode, LocalBuilder local)
         {
-            TrackStack(opCode);
             DebugLine($"\t\t{opCode} {local.LocalIndex}");
             _il.Emit(opCode, local);
 
@@ -216,7 +211,6 @@ namespace Illuminator
 
         private ILEmitter Emit(OpCode opCode, string str)
         {
-            TrackStack(opCode);
             DebugLine($"\t\t{opCode} \"{str}\"");
             _il.Emit(opCode, str);
 
@@ -225,7 +219,6 @@ namespace Illuminator
 
         private ILEmitter Emit(OpCode opCode, Type type)
         {
-            TrackStack(opCode);
             DebugLine($"\t\t{opCode} {type.DisplayName()}");
             _il.Emit(opCode, type);
 
@@ -234,7 +227,6 @@ namespace Illuminator
 
         private ILEmitter Emit(OpCode opCode)
         {
-            TrackStack(opCode);
             DebugLine($"\t\t{opCode}");
             _il.Emit(opCode);
 
@@ -243,7 +235,6 @@ namespace Illuminator
 
         private ILEmitter Emit(OpCode opCode, int arg)
         {
-            TrackStack(opCode);
             DebugLine($"\t\t{opCode} {arg}");
             _il.Emit(opCode, arg);
 
@@ -252,7 +243,6 @@ namespace Illuminator
 
         private ILEmitter Emit(OpCode opCode, Label label)
         {
-            TrackStack(opCode);
             DebugEmitLabel(opCode, label);
             _il.Emit(opCode, label);
 
@@ -265,11 +255,6 @@ namespace Illuminator
                 throw new InvalidOperationException($"Expected a call operation but {opCode} is used.");
             }
 
-            TrackStack(opCode, -methodInfo.GetParameters().Length);
-            if (methodInfo.ReturnType != typeof(void)) {
-                TrackStack(opCode, 1);
-            }
-
             DebugLine($"\t\t{opCode} {methodInfo.Name}({string.Join(", ", methodInfo.GetParameters().Select(x => x.ParameterType.Name))}): {methodInfo.ReturnType.Name}");
 
             _il.Emit(opCode, methodInfo);
@@ -279,7 +264,6 @@ namespace Illuminator
 
         private ILEmitter Emit(OpCode opCode, FieldInfo field)
         {
-            TrackStack(opCode);
             DebugLine($"\t\t{opCode} {field.DisplayName()}");
             _il.Emit(opCode, field);
 
@@ -288,7 +272,6 @@ namespace Illuminator
 
         private ILEmitter Emit(OpCode opCode, ConstructorInfo constructor)
         {
-            TrackStack(opCode);
             DebugLine($"\t\t{opCode} {constructor.DisplayName()}");
             _il.Emit(opCode, constructor);
 
@@ -369,8 +352,6 @@ namespace Illuminator
         partial void AddDebugLabel(Label label);
         partial void DebugWriteLine(LocalBuilder local);
         partial void DebugWriteLine(string message);
-        partial void TrackStack(OpCode opCode);
-        partial void TrackStack(OpCode opCode, int change);
 
         #endregion
     }

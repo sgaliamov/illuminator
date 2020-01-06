@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -25,7 +24,11 @@ namespace Illuminator
         public void Dispose()
         {
             _scopes.Pop();
-            DebugOutput();
+            DebugFinish();
+
+            if (_stackSize != 0) {
+                throw new InvalidOperationException($"Stack is not empty: {_stackSize}.");
+            }
         }
 
         public ILEmitter DefineLabel(out Label label)
@@ -98,10 +101,7 @@ namespace Illuminator
                              ? OpCodes.Unbox_Any
                              : OpCodes.Castclass;
 
-            DebugLine($"\t\t{castOp} {objectType.DisplayName()}");
-            _il.Emit(castOp, objectType);
-
-            return this;
+            return Emit(castOp, objectType);
         }
 
         public ILEmitter LoadArgument(ushort argumentIndex)
@@ -157,23 +157,14 @@ namespace Illuminator
             }
         }
 
-        public ILEmitter LoadString(string value)
-        {
-            DebugLine($"\t\t{OpCodes.Ldstr} \"{value}\"");
-            _il.Emit(OpCodes.Ldstr, value);
-
-            return this;
-        }
+        public ILEmitter LoadString(string value) => Emit(OpCodes.Ldstr, value);
 
         public ILEmitter LoadAddress(LocalVariableInfo local)
         {
             var localIndex = local.LocalIndex;
             var opCode = localIndex <= ShortFormLimit ? OpCodes.Ldloca_S : OpCodes.Ldloca;
 
-            DebugLine($"\t\t{opCode} {localIndex}");
-            _il.Emit(opCode, localIndex);
-
-            return this;
+            return Emit(opCode, localIndex);
         }
 
         public ILEmitter Store(LocalBuilder local)
@@ -186,9 +177,7 @@ namespace Illuminator
 
                 default:
                     var opCode = local.LocalIndex <= ShortFormLimit ? OpCodes.Stloc_S : OpCodes.Stloc;
-                    DebugLine($"\t\t{opCode} {local.LocalIndex}");
-                    _il.Emit(opCode, local);
-                    return this;
+                    return Emit(opCode, local);
             }
         }
 
@@ -216,8 +205,36 @@ namespace Illuminator
 
         public ILEmitter LoadNull() => Emit(OpCodes.Ldnull);
 
+        private ILEmitter Emit(OpCode opCode, LocalBuilder local)
+        {
+            TrackStack(opCode);
+            DebugLine($"\t\t{opCode} {local.LocalIndex}");
+            _il.Emit(opCode, local);
+
+            return this;
+        }
+
+        private ILEmitter Emit(OpCode opCode, string str)
+        {
+            TrackStack(opCode);
+            DebugLine($"\t\t{opCode} \"{str}\"");
+            _il.Emit(opCode, str);
+
+            return this;
+        }
+
+        private ILEmitter Emit(OpCode opCode, Type type)
+        {
+            TrackStack(opCode);
+            DebugLine($"\t\t{opCode} {type.DisplayName()}");
+            _il.Emit(opCode, type);
+
+            return this;
+        }
+
         private ILEmitter Emit(OpCode opCode)
         {
+            TrackStack(opCode);
             DebugLine($"\t\t{opCode}");
             _il.Emit(opCode);
 
@@ -226,6 +243,7 @@ namespace Illuminator
 
         private ILEmitter Emit(OpCode opCode, int arg)
         {
+            TrackStack(opCode);
             DebugLine($"\t\t{opCode} {arg}");
             _il.Emit(opCode, arg);
 
@@ -234,22 +252,34 @@ namespace Illuminator
 
         private ILEmitter Emit(OpCode opCode, Label label)
         {
+            TrackStack(opCode);
             DebugEmitLabel(opCode, label);
             _il.Emit(opCode, label);
 
             return this;
         }
 
-        private ILEmitter Emit(OpCode opCode, MethodInfo method)
+        private ILEmitter Emit(OpCode opCode, MethodInfo methodInfo)
         {
-            DebugLine($"\t\t{opCode} {method.DisplayName()}");
-            _il.Emit(opCode, method);
+            if (!new[] { OpCodes.Call, OpCodes.Calli, OpCodes.Callvirt }.Contains(opCode)) {
+                throw new InvalidOperationException($"Expected a call operation but {opCode} is used.");
+            }
+
+            TrackStack(opCode, -methodInfo.GetParameters().Length);
+            if (methodInfo.ReturnType != typeof(void)) {
+                TrackStack(opCode, 1);
+            }
+
+            DebugLine($"\t\t{opCode} {methodInfo.Name}({string.Join(", ", methodInfo.GetParameters().Select(x => x.ParameterType.Name))}): {methodInfo.ReturnType.Name}");
+
+            _il.Emit(opCode, methodInfo);
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode, FieldInfo field)
         {
+            TrackStack(opCode);
             DebugLine($"\t\t{opCode} {field.DisplayName()}");
             _il.Emit(opCode, field);
 
@@ -258,6 +288,7 @@ namespace Illuminator
 
         private ILEmitter Emit(OpCode opCode, ConstructorInfo constructor)
         {
+            TrackStack(opCode);
             DebugLine($"\t\t{opCode} {constructor.DisplayName()}");
             _il.Emit(opCode, constructor);
 
@@ -268,7 +299,7 @@ namespace Illuminator
         {
             if (opCode.FlowControl != FlowControl.Branch
                 && opCode.FlowControl != FlowControl.Cond_Branch) {
-                throw new ArgumentOutOfRangeException(nameof(opCode),
+                throw new InvalidOperationException(
                     $"Only a branch instruction is allowed. OpCode: {opCode}.");
             }
 
@@ -279,14 +310,14 @@ namespace Illuminator
         {
             if (opCode.FlowControl != FlowControl.Branch
                 && opCode.FlowControl != FlowControl.Cond_Branch) {
-                throw new ArgumentOutOfRangeException(nameof(opCode),
+                throw new InvalidOperationException(
                     $"Only a branch instruction is allowed. OpCode: {opCode}.");
             }
 
             return DefineLabel(out label).Emit(opCode, label);
         }
 
-        private sealed class Scope : IDisposable
+        internal sealed class Scope : IDisposable
         {
             private readonly ILEmitter _owner;
             private readonly Dictionary<Type, int> _state;
@@ -331,37 +362,15 @@ namespace Illuminator
 
         #region DEBUG
 
-        partial void DebugOutput();
+        partial void DebugFinish();
         partial void DebugEmitLabel(OpCode opCode, Label label);
         partial void DebugMarkLabel(Label label);
         partial void DebugLine(string message);
         partial void AddDebugLabel(Label label);
-
-        #if DEBUG
-
-        public ILEmitter DebugWriteLine(LocalBuilder local)
-        {
-            DebugLine($"\t\tWrite local: {local.LocalIndex}");
-            _il.Emit(OpCodes.Ldloca, local);
-            if (local.LocalType != null && local.LocalType != typeof(string)) {
-                _il.Emit(OpCodes.Callvirt, local.LocalType.GetMethod(nameof(ToString), Type.EmptyTypes));
-            }
-
-            _il.Emit(OpCodes.Call, typeof(Debug).GetMethod(nameof(Debug.WriteLine), new[] { typeof(string) }));
-
-            return this;
-        }
-
-        public ILEmitter DebugWriteLine(string message)
-        {
-            DebugLine($"\t\tWrite: {message}");
-            _il.Emit(OpCodes.Ldstr, message);
-            _il.Emit(OpCodes.Call, typeof(Debug).GetMethod(nameof(Debug.WriteLine), new[] { typeof(string) }));
-
-            return this;
-        }
-
-        #endif
+        partial void DebugWriteLine(LocalBuilder local);
+        partial void DebugWriteLine(string message);
+        partial void TrackStack(OpCode opCode);
+        partial void TrackStack(OpCode opCode, int change);
 
         #endregion
     }

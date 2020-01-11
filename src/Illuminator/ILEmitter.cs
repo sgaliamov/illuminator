@@ -260,7 +260,7 @@ namespace Illuminator
                 throw new InvalidOperationException($"Expected a call operation but {opCode} is used.");
             }
 
-            DebugLine($"\t\t{opCode} {methodInfo.DeclaringType?.Name}::{methodInfo.Name}({string.Join(", ", methodInfo.GetParameters().Select(x => x.ParameterType.Name))}) -> {methodInfo.ReturnType.Name}");
+            DebugLine($"\t\t{opCode} {methodInfo.GetMethodInfoName()}");
 
             _il.Emit(opCode, methodInfo);
 
@@ -367,8 +367,7 @@ namespace Illuminator
             DebugLine($"\t\tWrite local: {local.LocalIndex}");
             LoadAddress(local);
 
-            if (local.LocalType != null && local.LocalType != typeof(string))
-            {
+            if (local.LocalType != null && local.LocalType != typeof(string)) {
                 Call(local.LocalType.GetMethod(nameof(ToString), Type.EmptyTypes));
             }
 

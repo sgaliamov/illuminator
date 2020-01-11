@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -70,6 +71,10 @@ namespace Illuminator
         public ILEmitter Call(MethodInfo methodInfo)
         {
             var owner = methodInfo.DeclaringType;
+            if (owner == typeof(ValueType)) {
+                owner = methodInfo.ReflectedType; // todo: test
+            }
+
             if (owner == null) {
                 throw new InvalidOperationException(
                     $"It's not expected that {methodInfo.DisplayName()} doesn't have a declaring type.");
@@ -255,7 +260,7 @@ namespace Illuminator
                 throw new InvalidOperationException($"Expected a call operation but {opCode} is used.");
             }
 
-            DebugLine($"\t\t{opCode} {methodInfo.Name}({string.Join(", ", methodInfo.GetParameters().Select(x => x.ParameterType.Name))}): {methodInfo.ReturnType.Name}");
+            DebugLine($"\t\t{opCode} {methodInfo.DeclaringType?.Name}::{methodInfo.Name}({string.Join(", ", methodInfo.GetParameters().Select(x => x.ParameterType.Name))}) -> {methodInfo.ReturnType.Name}");
 
             _il.Emit(opCode, methodInfo);
 
@@ -350,8 +355,42 @@ namespace Illuminator
         partial void DebugMarkLabel(Label label);
         partial void DebugLine(string message);
         partial void AddDebugLabel(Label label);
-        partial void DebugWriteLine(LocalBuilder local);
-        partial void DebugWriteLine(string message);
+
+        #if DEBUG
+
+        /// <summary>
+        ///     Emit <see cref="Debug.WriteLine(object)" />.
+        /// </summary>
+        /// <param name="local">Value to write.</param>
+        public ILEmitter DebugWriteLine(LocalBuilder local)
+        {
+            DebugLine($"\t\tWrite local: {local.LocalIndex}");
+            LoadAddress(local);
+
+            if (local.LocalType != null && local.LocalType != typeof(string))
+            {
+                Call(local.LocalType.GetMethod(nameof(ToString), Type.EmptyTypes));
+            }
+
+            var methodInfo = typeof(Debug).GetMethod(nameof(Debug.WriteLine), new[] { typeof(string) });
+
+            return Call(methodInfo);
+        }
+
+        /// <summary>
+        ///     Emit <see cref="Debug.WriteLine(string)" />.
+        /// </summary>
+        /// <param name="message">String to write.</param>
+        public ILEmitter DebugWriteLine(string message)
+        {
+            DebugLine($"\t\tWrite: {message}");
+            _il.Emit(OpCodes.Ldstr, message);
+            _il.Emit(OpCodes.Call, typeof(Debug).GetMethod(nameof(Debug.WriteLine), new[] { typeof(string) }));
+
+            return this;
+        }
+
+        #endif
 
         #endregion
     }

@@ -67,31 +67,5 @@ namespace Illuminator
                     $"Stack should be empty, but it has {Math.Abs(stackSize.Value)} element.");
             }
         }
-
-        /// <summary>
-        ///     Emit <see cref="Debug.WriteLine(object)" />.
-        /// </summary>
-        /// <param name="local">Value to write.</param>
-        partial void DebugWriteLine(LocalBuilder local)
-        {
-            DebugLine($"\t\tWrite local: {local.LocalIndex}");
-            _il.Emit(OpCodes.Ldloca, local);
-            if (local.LocalType != null && local.LocalType != typeof(string)) {
-                _il.Emit(OpCodes.Callvirt, local.LocalType.GetMethod(nameof(ToString), Type.EmptyTypes));
-            }
-
-            _il.Emit(OpCodes.Call, typeof(Debug).GetMethod(nameof(Debug.WriteLine), new[] { typeof(string) }));
-        }
-
-        /// <summary>
-        ///     Emit <see cref="Debug.WriteLine(string)" />.
-        /// </summary>
-        /// <param name="message">String to write.</param>
-        partial void DebugWriteLine(string message)
-        {
-            DebugLine($"\t\tWrite: {message}");
-            _il.Emit(OpCodes.Ldstr, message);
-            _il.Emit(OpCodes.Call, typeof(Debug).GetMethod(nameof(Debug.WriteLine), new[] { typeof(string) }));
-        }
     }
 }

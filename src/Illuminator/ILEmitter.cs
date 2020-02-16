@@ -356,7 +356,7 @@ namespace Illuminator
         partial void DebugLine(string message);
         partial void AddDebugLabel(Label label);
 
-        #if DEBUG
+#if DEBUG
 
         /// <summary>
         ///     Emit <see cref="Debug.WriteLine(object)" />.
@@ -389,7 +389,7 @@ namespace Illuminator
             return this;
         }
 
-        #endif
+#endif
 
         #endregion
     }

@@ -6,20 +6,20 @@ namespace Illuminator.Extensions
     {
         public static ILEmitter CreateILEmitter(this MethodBuilder methodBuilder)
         {
-            #if DEBUG
+#if DEBUG
             return new ILEmitter($"\n{methodBuilder.DisplayName()}", methodBuilder.GetILGenerator());
-            #else
+#else
             return new ILEmitter(methodBuilder.GetILGenerator());
-            #endif
+#endif
         }
 
         public static ILEmitter CreateILEmitter(this ConstructorBuilder constructorBuilder)
         {
-            #if DEBUG
+#if DEBUG
             return new ILEmitter($"\n{constructorBuilder.DisplayName()}", constructorBuilder.GetILGenerator());
-            #else
+#else
             return new ILEmitter(constructorBuilder.GetILGenerator());
-            #endif
+#endif
         }
     }
 }

@@ -36,6 +36,17 @@ namespace Illuminator
             return this;
         }
 
+        public ILEmitter Block(Action<ILEmitter, Label> between)
+        {
+            var blockEnd = _il.DefineLabel();
+
+            AddDebugLabel(blockEnd);
+
+            between(this, blockEnd);
+
+            return MarkLabel(blockEnd);
+        }
+
         public ILEmitter MarkLabel(Label label)
         {
             DebugMarkLabel(label);

@@ -26,4 +26,4 @@ Basically, it's yet another wrapper around [`ILGenerator`](https://docs.microsof
 git submodule add git@github.com:sgaliamov/illuminator.git external/illuminator
 ```
 
-Not package for now because it's not production ready.
+No package for now because it's not production ready.

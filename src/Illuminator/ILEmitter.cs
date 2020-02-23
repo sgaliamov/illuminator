@@ -85,7 +85,7 @@ namespace Illuminator
                     $"Generic method {methodInfo.DisplayName()} is not initialized.");
             }
 
-            var opCode = methodInfo.IsStatic || owner.IsValueType || owner.IsSealed
+            var opCode = methodInfo.IsStatic || owner.IsValueType || owner.IsSealed || !methodInfo.IsVirtual // todo: test
                 ? OpCodes.Call
                 : OpCodes.Callvirt;
 

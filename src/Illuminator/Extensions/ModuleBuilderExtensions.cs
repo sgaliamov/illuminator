@@ -4,12 +4,13 @@ using System.Reflection.Emit;
 
 namespace Illuminator.Extensions
 {
-    internal static class ModuleBuilderExtensions
+    public static class ModuleBuilderExtensions
     {
         public static TypeBuilder DefineType(
             this ModuleBuilder moduleBuilder,
             string name,
-            params Type[] interfaceTypes) {
+            params Type[] interfaceTypes)
+        {
             var type = moduleBuilder.DefineType(name, TypeAttributes.Sealed | TypeAttributes.Public);
             if (interfaceTypes == null) {
                 return type;

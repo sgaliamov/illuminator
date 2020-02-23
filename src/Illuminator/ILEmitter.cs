@@ -86,8 +86,8 @@ namespace Illuminator
             }
 
             var opCode = methodInfo.IsStatic || owner.IsValueType || owner.IsSealed
-                             ? OpCodes.Call
-                             : OpCodes.Callvirt;
+                ? OpCodes.Call
+                : OpCodes.Callvirt;
 
             return Emit(opCode, methodInfo);
         }
@@ -211,6 +211,9 @@ namespace Illuminator
         public ILEmitter LoadFieldAddress(FieldInfo field) => Emit(OpCodes.Ldflda, field);
 
         public ILEmitter New(ConstructorInfo constructor) => Emit(OpCodes.Newobj, constructor);
+
+        // todo: helper to generate constructors
+        public ILEmitter Call(ConstructorInfo constructor) => Emit(OpCodes.Call, constructor);
 
         public ILEmitter LoadNull() => Emit(OpCodes.Ldnull);
 

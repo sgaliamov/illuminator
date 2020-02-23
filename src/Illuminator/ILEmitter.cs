@@ -223,6 +223,9 @@ namespace Illuminator
             return Emit(OpCodes.Ceq);
         }
 
+        public ILEmitter AreSame(Action<ILEmitter> a, Action<ILEmitter> b, out LocalBuilder local) =>
+            AreSame(a, b).Store(typeof(int), out local);
+
         public ILEmitter Or(Action<ILEmitter> a, Action<ILEmitter> b)
         {
             // todo: verify stack and types of variables

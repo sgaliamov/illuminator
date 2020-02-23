@@ -198,13 +198,61 @@ namespace Illuminator
             return scope;
         }
 
-        public ILEmitter SetField(FieldInfo field) => Emit(OpCodes.Stfld, field);
+        public ILEmitter SetField(Action<ILEmitter> loadObject, Action<ILEmitter> loadValue, FieldInfo field)
+        {
+            loadObject(this);
+            loadValue(this);
+
+            return Emit(OpCodes.Stfld, field);
+        }
 
         public ILEmitter LoadField(FieldInfo field) => Emit(OpCodes.Ldfld, field);
+
+        public ILEmitter LoadFieldAddress(FieldInfo field) => Emit(OpCodes.Ldflda, field);
 
         public ILEmitter New(ConstructorInfo constructor) => Emit(OpCodes.Newobj, constructor);
 
         public ILEmitter LoadNull() => Emit(OpCodes.Ldnull);
+
+        public ILEmitter AreSame(Action<ILEmitter> a, Action<ILEmitter> b)
+        {
+            // todo: verify stack and types of variables
+            a(this);
+            b(this);
+
+            return Emit(OpCodes.Ceq);
+        }
+
+        public ILEmitter Or(Action<ILEmitter> a, Action<ILEmitter> b)
+        {
+            // todo: verify stack and types of variables
+            a(this);
+            b(this);
+
+            return Emit(OpCodes.Or);
+        }
+
+        public ILEmitter Sub(Action<ILEmitter> a, Action<ILEmitter> b)
+        {
+            // todo: verify stack and types of variables
+            a(this);
+            b(this);
+
+            return Emit(OpCodes.Sub);
+        }
+
+        public ILEmitter Add(Action<ILEmitter> a, Action<ILEmitter> b)
+        {
+            // todo: verify stack and types of variables
+            a(this);
+            b(this);
+
+            return Emit(OpCodes.Add);
+        }
+
+        public ILEmitter Throw() => Emit(OpCodes.Throw);
+
+        public ILEmitter GoTo(Label label) => Branch(OpCodes.Br, label);
 
         private ILEmitter Emit(OpCode opCode, LocalBuilder local)
         {
@@ -283,7 +331,8 @@ namespace Illuminator
             return this;
         }
 
-        private ILEmitter Branch(OpCode opCode, Label label)
+        // todo: smart branching, make private
+        public ILEmitter Branch(OpCode opCode, Label label)
         {
             if (opCode.FlowControl != FlowControl.Branch
                 && opCode.FlowControl != FlowControl.Cond_Branch) {
@@ -294,7 +343,8 @@ namespace Illuminator
             return Emit(opCode, label);
         }
 
-        private ILEmitter Branch(OpCode opCode, out Label label)
+        // todo: smart branching, make private
+        public ILEmitter Branch(OpCode opCode, out Label label)
         {
             if (opCode.FlowControl != FlowControl.Branch
                 && opCode.FlowControl != FlowControl.Cond_Branch) {

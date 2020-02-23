@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 
 namespace Illuminator.Extensions
 {
@@ -12,7 +13,9 @@ namespace Illuminator.Extensions
 
         public static string GetMethodInfoName(this MethodInfo methodInfo)
         {
-            var parameters = string.Join(", ", methodInfo.GetParameters().Select(x => x.ParameterType.Name));
+            var parameters = methodInfo is MethodBuilder
+                ? "..."
+                : string.Join(", ", methodInfo.GetParameters().Select(x => x.ParameterType.Name));
 
             return $"{methodInfo.DeclaringType?.Name}::{methodInfo.Name}({parameters}): {methodInfo.ReturnType.Name}";
         }

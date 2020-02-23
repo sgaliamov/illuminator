@@ -337,6 +337,22 @@ namespace Illuminator
             return this;
         }
 
+        public ILEmitter Greater(Action<ILEmitter> a, Action<ILEmitter> b, Label label)
+        {
+            a(this);
+            b(this);
+
+            return Branch(OpCodes.Bgt_S, label);
+        }
+
+        public ILEmitter LessOrEqual(Action<ILEmitter> a, Action<ILEmitter> b, Label label)
+        {
+            a(this);
+            b(this);
+
+            return Branch(OpCodes.Ble_S, label);
+        }
+
         // todo: smart branching, make private
         public ILEmitter Branch(OpCode opCode, Label label)
         {

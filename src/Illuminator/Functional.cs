@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Illuminator.Functional
+namespace Illuminator
 {
     // todo: generate all methods
-    public static class ILEmitterExtensions
+    public static class Functional
     {
         public static ILEmitterAction Or(Action<ILEmitter> a, Action<ILEmitter> b) => new ILEmitterAction((ILEmitter il) => il.Or(a, b));
 

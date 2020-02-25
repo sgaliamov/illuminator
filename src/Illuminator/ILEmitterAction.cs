@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Illuminator.Functional
+namespace Illuminator
 {
     /// <summary>
     /// Wrapper around <see cref="Action{ILEmitter}"/> to enable Pipe operator.

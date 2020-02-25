@@ -105,7 +105,7 @@ namespace Illuminator
 
         public ILEmitter Return() => Emit(OpCodes.Ret);
 
-        public ILEmitter Return(int value) => LoadConstant(value).Return();
+        public ILEmitter Return(int value) => LoadInteger(value).Return();
 
         public ILEmitter Cast(Type objectType)
         {
@@ -135,7 +135,7 @@ namespace Illuminator
             return Emit(opCode, argumentIndex);
         }
 
-        public ILEmitter LoadConstant(int value)
+        public ILEmitter LoadInteger(int value)
         {
             switch (value) {
                 case -1: return Emit(OpCodes.Ldc_I4_M1);

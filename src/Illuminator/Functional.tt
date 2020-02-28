@@ -1,0 +1,39 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" compilerOptions="optimize+" #>
+<#@ output extension=".generated.cs" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+/*
+   ___ ___ _  _ ___ ___    _ _____ ___ ___     ___ ___  ___  ___
+  / __| __| \| | __| _ \  /_\_   _| __|   \   / __/ _ \|   \| __|
+ | (_ | _|| .` | _||   / / _ \| | | _|| |) | | (_| (_) | |) | _|
+  \___|___|_|\_|___|_|_\/_/ \_\_| |___|___/   \___\___/|___/|___|
+
+*/
+
+using System;
+using System.Reflection;
+using System.Reflection.Emit;
+
+namespace Illuminator
+{
+    public static class Functional
+    {
+<#
+    var text = File.ReadAllText(Host.ResolvePath("ILEmitter.cs"));
+    var matches= new Regex("public ILEmitter (.*)\\((.*)\\)").Matches(text);
+
+    foreach(System.Text.RegularExpressions.Match match in matches) { 
+        var name = match.Groups[1].Value;
+        var parameters = match.Groups[2].Value;
+        var args = string.Join(", ", parameters.Split(',').Select(x=>x.Split(' ')[1]));
+    #>
+
+        public static ILEmitterAction <#= name #>(<#= parameters #>) => new ILEmitterAction((ILEmitter il) => il.<#= name #>(<#= parameters #>));
+<#
+    }
+#>
+    }
+}
+

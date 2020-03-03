@@ -14,7 +14,6 @@ namespace Illuminator
 {
     public static class Functional
     {
-        public static ILEmitterAction Block(Action<ILEmitter, Label> between) => new ILEmitterAction((ILEmitter il) => il.Block(between));
         public static ILEmitterAction MarkLabel(Label label) => new ILEmitterAction((ILEmitter il) => il.MarkLabel(label));
         public static ILEmitterAction BeginFinallyBlock() => new ILEmitterAction((ILEmitter il) => il.BeginFinallyBlock());
         public static ILEmitterAction BeginExceptionBlock() => new ILEmitterAction((ILEmitter il) => il.BeginExceptionBlock());
@@ -46,7 +45,5 @@ namespace Illuminator
         public static ILEmitterAction Greater(Action<ILEmitter> a, Action<ILEmitter> b, Label label) => new ILEmitterAction((ILEmitter il) => il.Greater(a, b, label));
         public static ILEmitterAction LessOrEqual(Action<ILEmitter> a, Action<ILEmitter> b, Label label) => new ILEmitterAction((ILEmitter il) => il.LessOrEqual(a, b, label));
         public static ILEmitterAction Branch(OpCode opCode, Label label) => new ILEmitterAction((ILEmitter il) => il.Branch(opCode, label));
-        public static ILEmitterAction DebugWriteLine(LocalBuilder local) => new ILEmitterAction((ILEmitter il) => il.DebugWriteLine(local));
-        public static ILEmitterAction DebugWriteLine(string message) => new ILEmitterAction((ILEmitter il) => il.DebugWriteLine(message));
     }
 }

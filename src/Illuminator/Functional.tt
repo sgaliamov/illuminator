@@ -29,6 +29,10 @@ namespace Illuminator
 
     foreach (System.Text.RegularExpressions.Match match in matches) {
         var name = match.Groups[1].Value;
+        if (name.StartsWith("Debug")) {
+            continue;
+        }
+
         var parameters = match.Groups[2].Value;
         if (parameters.Contains("out ")) {
             continue;

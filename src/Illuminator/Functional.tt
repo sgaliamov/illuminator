@@ -22,18 +22,29 @@ namespace Illuminator
     {
 <#
     var text = File.ReadAllText(Host.ResolvePath("ILEmitter.cs"));
-    var matches= new Regex("public ILEmitter (.*)\\((.*)\\)").Matches(text);
+    var matches= new Regex("public ILEmitter ([^\\(]*)\\(([^\\(]*)\\)").Matches(text);
+    var genericParameters = new Regex("<.*?>");
+    var argumentsSeparator = new [] { ',' };
+    var spaceSeparator = new [] { ' ' };
 
-    foreach(System.Text.RegularExpressions.Match match in matches) { 
+    foreach (System.Text.RegularExpressions.Match match in matches) {
         var name = match.Groups[1].Value;
         var parameters = match.Groups[2].Value;
-        var args = string.Join(", ", parameters.Split(',').Select(x=>x.Split(' ')[1]));
-    #>
+        if (parameters.Contains("out ")) {
+            continue;
+        }
 
-        public static ILEmitterAction <#= name #>(<#= parameters #>) => new ILEmitterAction((ILEmitter il) => il.<#= name #>(<#= parameters #>));
+        var items = genericParameters
+            .Replace(parameters, "")
+            .Split(argumentsSeparator, StringSplitOptions.RemoveEmptyEntries)
+            .Select(x => x.Split(spaceSeparator, StringSplitOptions.RemoveEmptyEntries)[1])
+            .ToArray();
+
+        var args = string.Join(", ", items);
+#>
+        public static ILEmitterAction <#= name #>(<#= parameters #>) => new ILEmitterAction((ILEmitter il) => il.<#= name #>(<#= args #>));
 <#
     }
 #>
     }
 }
-

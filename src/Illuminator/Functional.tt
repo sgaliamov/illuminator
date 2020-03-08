@@ -22,7 +22,7 @@ namespace Illuminator
     {
 <#
     var text = File.ReadAllText(Host.ResolvePath("ILEmitter.cs"));
-    var matches= new Regex("public ILEmitter ([^\\(]*)\\(([^\\(]*)\\)").Matches(text);
+    var matches= new Regex("[^/{2}]public ILEmitter ([^\\(]*)\\(([^\\(]*)\\)").Matches(text);
     var genericParameters = new Regex("<.*?>");
     var argumentsSeparator = new [] { ',' };
     var spaceSeparator = new [] { ' ' };

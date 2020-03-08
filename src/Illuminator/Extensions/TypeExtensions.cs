@@ -53,8 +53,7 @@ namespace Illuminator.Extensions
 
                 if (type.IsNullable()) {
                     type = type.GetGenericArguments()[0];
-                }
-                else {
+                } else {
                     return type;
                 }
             }

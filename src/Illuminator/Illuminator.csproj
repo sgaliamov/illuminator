@@ -12,4 +12,16 @@
     <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Functional.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Functional.generated.cs</LastGenOutput>
+    </None>
+    <Compile Update="Functional.generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Functional.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>

@@ -22,8 +22,8 @@ Basically, it's yet another wrapper around [`ILGenerator`](https://docs.microsof
 
 ## How to use?
 
-``` bash
-git submodule add git@github.com:sgaliamov/illuminator.git external/illuminator
+``` sh
+git submodule add https://github.com/sgaliamov/illuminator.git external/illuminator
 ```
 
 No package for now because it's not production ready.

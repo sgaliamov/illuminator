@@ -36,6 +36,17 @@ namespace Illuminator
             return this;
         }
 
+        //public ILEmitter Block(Action<ILEmitter, Label> between)
+        //{
+        //    var blockEnd = _il.DefineLabel();
+
+        //    AddDebugLabel(blockEnd);
+
+        //    between(this, blockEnd);
+
+        //    return MarkLabel(blockEnd);
+        //}
+
         public ILEmitter MarkLabel(Label label)
         {
             DebugMarkLabel(label);
@@ -94,7 +105,7 @@ namespace Illuminator
 
         public ILEmitter Return() => Emit(OpCodes.Ret);
 
-        public ILEmitter Return(int value) => LoadConstant(value).Return();
+        public ILEmitter Return(int value) => LoadInteger(value).Return();
 
         public ILEmitter Cast(Type objectType)
         {
@@ -124,7 +135,7 @@ namespace Illuminator
             return Emit(opCode, argumentIndex);
         }
 
-        public ILEmitter LoadConstant(int value)
+        public ILEmitter LoadInteger(int value)
         {
             switch (value) {
                 case -1: return Emit(OpCodes.Ldc_I4_M1);
@@ -335,6 +346,22 @@ namespace Illuminator
             _il.Emit(opCode, constructor);
 
             return this;
+        }
+
+        public ILEmitter Greater(Action<ILEmitter> a, Action<ILEmitter> b, Label label)
+        {
+            a(this);
+            b(this);
+
+            return Branch(OpCodes.Bgt_S, label);
+        }
+
+        public ILEmitter LessOrEqual(Action<ILEmitter> a, Action<ILEmitter> b, Label label)
+        {
+            a(this);
+            b(this);
+
+            return Branch(OpCodes.Ble_S, label);
         }
 
         // todo: smart branching, make private

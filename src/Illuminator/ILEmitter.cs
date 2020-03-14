@@ -78,6 +78,15 @@ namespace Illuminator
             return this;
         }
 
+        public ILEmitter Call(MethodInfo methodInfo, params Action<ILEmitter>[] parameters)
+        {
+            foreach (var parameter in parameters) {
+                parameter(this);
+            }
+
+            return Call(methodInfo);
+        }
+
         public ILEmitter Call(MethodInfo methodInfo)
         {
             var owner = methodInfo.DeclaringType;

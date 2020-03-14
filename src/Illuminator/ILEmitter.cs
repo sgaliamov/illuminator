@@ -228,6 +228,8 @@ namespace Illuminator
 
         public ILEmitter LoadNull() => Emit(OpCodes.Ldnull);
 
+        public ILEmitter Not() => Emit(OpCodes.Not);
+
         public ILEmitter AreSame(Action<ILEmitter> a, Action<ILEmitter> b)
         {
             // todo: 3. verify stack and types of variables

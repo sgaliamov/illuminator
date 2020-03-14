@@ -83,7 +83,7 @@ namespace Illuminator
         {
             var owner = methodInfo.DeclaringType;
             if (owner == typeof(ValueType)) {
-                owner = methodInfo.ReflectedType; // todo: test
+                owner = methodInfo.ReflectedType; // todo: 0. test
             }
 
             if (owner == null) {
@@ -96,7 +96,7 @@ namespace Illuminator
                     $"Generic method {methodInfo.DisplayName()} is not initialized.");
             }
 
-            var opCode = methodInfo.IsStatic || owner.IsValueType || owner.IsSealed || !methodInfo.IsVirtual // todo: test
+            var opCode = methodInfo.IsStatic || owner.IsValueType || owner.IsSealed || !methodInfo.IsVirtual // todo: 0. test
                 ? OpCodes.Call
                 : OpCodes.Callvirt;
 
@@ -223,14 +223,14 @@ namespace Illuminator
 
         public ILEmitter New(ConstructorInfo constructor) => Emit(OpCodes.Newobj, constructor);
 
-        // todo: helper to generate constructors
+        // todo: 3. helper to generate constructors
         public ILEmitter Call(ConstructorInfo constructor) => Emit(OpCodes.Call, constructor);
 
         public ILEmitter LoadNull() => Emit(OpCodes.Ldnull);
 
         public ILEmitter AreSame(Action<ILEmitter> a, Action<ILEmitter> b)
         {
-            // todo: verify stack and types of variables
+            // todo: 3. verify stack and types of variables
             a(this);
             b(this);
 
@@ -242,7 +242,7 @@ namespace Illuminator
 
         public ILEmitter Or(Action<ILEmitter> a, Action<ILEmitter> b)
         {
-            // todo: verify stack and types of variables
+            // todo: 3. verify stack and types of variables
             a(this);
             b(this);
 
@@ -251,7 +251,7 @@ namespace Illuminator
 
         public ILEmitter Sub(Action<ILEmitter> a, Action<ILEmitter> b)
         {
-            // todo: verify stack and types of variables
+            // todo: 3. verify stack and types of variables
             a(this);
             b(this);
 
@@ -260,7 +260,7 @@ namespace Illuminator
 
         public ILEmitter Add(Action<ILEmitter> a, Action<ILEmitter> b)
         {
-            // todo: verify stack and types of variables
+            // todo: 3. verify stack and types of variables
             a(this);
             b(this);
 
@@ -364,7 +364,7 @@ namespace Illuminator
             return Branch(OpCodes.Ble_S, label);
         }
 
-        // todo: smart branching, make private
+        // todo: 1. smart branching, make private
         public ILEmitter Branch(OpCode opCode, Label label)
         {
             if (opCode.FlowControl != FlowControl.Branch
@@ -376,7 +376,7 @@ namespace Illuminator
             return Emit(opCode, label);
         }
 
-        // todo: smart branching, make private
+        // todo: 1. smart branching, make private
         public ILEmitter Branch(OpCode opCode, out Label label)
         {
             if (opCode.FlowControl != FlowControl.Branch

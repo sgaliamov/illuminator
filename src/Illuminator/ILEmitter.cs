@@ -125,6 +125,12 @@ namespace Illuminator
 
         public ILEmitter Return() => Emit(OpCodes.Ret);
 
+        public ILEmitter Return(Action<ILEmitter> action)
+        {
+            action(this);
+            return Emit(OpCodes.Ret);
+        }
+
         public ILEmitter Return(int value) => LoadInteger(value).Return();
 
         public ILEmitter Cast(Type objectType)
@@ -293,6 +299,57 @@ namespace Illuminator
 
         public ILEmitter GoTo(Label label) => Branch(OpCodes.Br, label);
 
+        public ILEmitter Greater(Action<ILEmitter> a, Action<ILEmitter> b, Label label)
+        {
+            a(this);
+            b(this);
+
+            return Branch(OpCodes.Bgt_S, label);
+        }
+
+        public ILEmitter LessOrEqual(Action<ILEmitter> a, Action<ILEmitter> b, Label label)
+        {
+            a(this);
+            b(this);
+
+            return Branch(OpCodes.Ble_S, label);
+        }
+
+        // todo: 1. smart branching?
+        public ILEmitter IfFalse_S(out Label label) => Branch(OpCodes.Brfalse_S, out label);
+
+        public ILEmitter IfFalse_S(Label label) => Branch(OpCodes.Brfalse_S, label);
+
+        public ILEmitter IfTrue_S(out Label label) => Branch(OpCodes.Brtrue_S, out label);
+
+        public ILEmitter IfFalse(out Label label) => Branch(OpCodes.Brfalse, out label);
+
+        public ILEmitter IfFalse(Label label) => Branch(OpCodes.Brfalse, label);
+
+        public ILEmitter IfNotEqual_Un_S(out Label label) => Branch(OpCodes.Bne_Un_S, out label);
+
+        private ILEmitter Branch(OpCode opCode, Label label)
+        {
+            if (opCode.FlowControl != FlowControl.Branch
+                && opCode.FlowControl != FlowControl.Cond_Branch) {
+                throw new InvalidOperationException(
+                    $"Only a branch instruction is allowed. OpCode: {opCode}.");
+            }
+
+            return Emit(opCode, label);
+        }
+
+        private ILEmitter Branch(OpCode opCode, out Label label)
+        {
+            if (opCode.FlowControl != FlowControl.Branch
+                && opCode.FlowControl != FlowControl.Cond_Branch) {
+                throw new InvalidOperationException(
+                    $"Only a branch instruction is allowed. OpCode: {opCode}.");
+            }
+
+            return DefineLabel(out label).Emit(opCode, label);
+        }
+
         private ILEmitter Emit(OpCode opCode, LocalBuilder local)
         {
             DebugLine($"\t\t{opCode} {local.LocalIndex}");
@@ -368,46 +425,6 @@ namespace Illuminator
             _il.Emit(opCode, constructor);
 
             return this;
-        }
-
-        public ILEmitter Greater(Action<ILEmitter> a, Action<ILEmitter> b, Label label)
-        {
-            a(this);
-            b(this);
-
-            return Branch(OpCodes.Bgt_S, label);
-        }
-
-        public ILEmitter LessOrEqual(Action<ILEmitter> a, Action<ILEmitter> b, Label label)
-        {
-            a(this);
-            b(this);
-
-            return Branch(OpCodes.Ble_S, label);
-        }
-
-        // todo: 1. smart branching, make private
-        public ILEmitter Branch(OpCode opCode, Label label)
-        {
-            if (opCode.FlowControl != FlowControl.Branch
-                && opCode.FlowControl != FlowControl.Cond_Branch) {
-                throw new InvalidOperationException(
-                    $"Only a branch instruction is allowed. OpCode: {opCode}.");
-            }
-
-            return Emit(opCode, label);
-        }
-
-        // todo: 1. smart branching, make private
-        public ILEmitter Branch(OpCode opCode, out Label label)
-        {
-            if (opCode.FlowControl != FlowControl.Branch
-                && opCode.FlowControl != FlowControl.Cond_Branch) {
-                throw new InvalidOperationException(
-                    $"Only a branch instruction is allowed. OpCode: {opCode}.");
-            }
-
-            return DefineLabel(out label).Emit(opCode, label);
         }
 
         internal sealed class Scope : IDisposable

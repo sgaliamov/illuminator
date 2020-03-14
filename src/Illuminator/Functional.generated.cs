@@ -21,6 +21,7 @@ namespace Illuminator
         public static ILEmitterAction Call(MethodInfo methodInfo, params Action<ILEmitter>[] parameters) => new ILEmitterAction((ILEmitter il) => il.Call(methodInfo, parameters));
         public static ILEmitterAction Call(MethodInfo methodInfo) => new ILEmitterAction((ILEmitter il) => il.Call(methodInfo));
         public static ILEmitterAction Return() => new ILEmitterAction((ILEmitter il) => il.Return());
+        public static ILEmitterAction Return(Action<ILEmitter> action) => new ILEmitterAction((ILEmitter il) => il.Return(action));
         public static ILEmitterAction Return(int value) => new ILEmitterAction((ILEmitter il) => il.Return(value));
         public static ILEmitterAction Cast(Type objectType) => new ILEmitterAction((ILEmitter il) => il.Cast(objectType));
         public static ILEmitterAction LoadArgument(ushort argumentIndex) => new ILEmitterAction((ILEmitter il) => il.LoadArgument(argumentIndex));
@@ -46,6 +47,7 @@ namespace Illuminator
         public static ILEmitterAction GoTo(Label label) => new ILEmitterAction((ILEmitter il) => il.GoTo(label));
         public static ILEmitterAction Greater(Action<ILEmitter> a, Action<ILEmitter> b, Label label) => new ILEmitterAction((ILEmitter il) => il.Greater(a, b, label));
         public static ILEmitterAction LessOrEqual(Action<ILEmitter> a, Action<ILEmitter> b, Label label) => new ILEmitterAction((ILEmitter il) => il.LessOrEqual(a, b, label));
-        public static ILEmitterAction Branch(OpCode opCode, Label label) => new ILEmitterAction((ILEmitter il) => il.Branch(opCode, label));
+        public static ILEmitterAction IfFalse_S(Label label) => new ILEmitterAction((ILEmitter il) => il.IfFalse_S(label));
+        public static ILEmitterAction IfFalse(Label label) => new ILEmitterAction((ILEmitter il) => il.IfFalse(label));
     }
 }

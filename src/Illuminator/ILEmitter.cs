@@ -316,12 +316,24 @@ namespace Illuminator
             return Branch(OpCodes.Ble_S, label);
         }
 
+        public ILEmitter IfTrue_S(Action<ILEmitter> action, out Label label)
+        {
+            action(this);
+            return IfTrue_S(out label);
+        }
+
+        public ILEmitter IfTrue_S(out Label label) => Branch(OpCodes.Brtrue_S, out label);
+
         // todo: 1. smart branching?
+        public ILEmitter IfFalse_S(Action<ILEmitter> action, out Label label)
+        {
+            action(this);
+            return IfFalse_S(out label);
+        }
+
         public ILEmitter IfFalse_S(out Label label) => Branch(OpCodes.Brfalse_S, out label);
 
         public ILEmitter IfFalse_S(Label label) => Branch(OpCodes.Brfalse_S, label);
-
-        public ILEmitter IfTrue_S(out Label label) => Branch(OpCodes.Brtrue_S, out label);
 
         public ILEmitter IfFalse(out Label label) => Branch(OpCodes.Brfalse, out label);
 

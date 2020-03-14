@@ -4,6 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using Illuminator.Extensions;
+#if DEBUG
+using System.Diagnostics;
+#endif
 
 namespace Illuminator
 {
@@ -80,6 +83,15 @@ namespace Illuminator
 
         public ILEmitter Call(MethodInfo methodInfo, params Action<ILEmitter>[] parameters)
         {
+            var methodParametesLenght = methodInfo.GetParameters().Length;
+            // todo: 3. do check for MethodBuilder
+            if (!(methodInfo is MethodBuilder)
+                && ((methodInfo.IsStatic && methodParametesLenght != parameters.Length)
+                || (!methodInfo.IsStatic && methodParametesLenght != parameters.Length - 1))) {
+
+                throw new ArgumentException($"Amount of parameters does not match method {methodInfo} signature.");
+            }
+
             foreach (var parameter in parameters) {
                 parameter(this);
             }

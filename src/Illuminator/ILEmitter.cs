@@ -18,6 +18,7 @@ namespace Illuminator
         private readonly Dictionary<Type, List<LocalBuilder>> _locals = new Dictionary<Type, List<LocalBuilder>>();
         private readonly Stack<Scope> _scopes = new Stack<Scope>();
 
+        // todo: 3. pass method definition to checks on loading arguments
         public ILEmitter(ILGenerator il)
         {
             _il = il;

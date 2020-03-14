@@ -41,7 +41,7 @@ namespace Illuminator
         var items = genericParameters
             .Replace(parameters, "")
             .Split(argumentsSeparator, StringSplitOptions.RemoveEmptyEntries)
-            .Select(x => x.Split(spaceSeparator, StringSplitOptions.RemoveEmptyEntries)[1])
+            .Select(x => x.Split(spaceSeparator, StringSplitOptions.RemoveEmptyEntries).Last())
             .ToArray();
 
         var args = string.Join(", ", items);

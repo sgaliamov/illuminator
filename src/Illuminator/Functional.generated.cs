@@ -18,6 +18,7 @@ namespace Illuminator
         public static ILEmitterAction BeginFinallyBlock() => new ILEmitterAction((ILEmitter il) => il.BeginFinallyBlock());
         public static ILEmitterAction BeginExceptionBlock() => new ILEmitterAction((ILEmitter il) => il.BeginExceptionBlock());
         public static ILEmitterAction EndExceptionBlock() => new ILEmitterAction((ILEmitter il) => il.EndExceptionBlock());
+        public static ILEmitterAction Call(MethodInfo methodInfo, params Action<ILEmitter>[] parameters) => new ILEmitterAction((ILEmitter il) => il.Call(methodInfo, parameters));
         public static ILEmitterAction Call(MethodInfo methodInfo) => new ILEmitterAction((ILEmitter il) => il.Call(methodInfo));
         public static ILEmitterAction Return() => new ILEmitterAction((ILEmitter il) => il.Return());
         public static ILEmitterAction Return(int value) => new ILEmitterAction((ILEmitter il) => il.Return(value));
@@ -36,6 +37,7 @@ namespace Illuminator
         public static ILEmitterAction New(ConstructorInfo constructor) => new ILEmitterAction((ILEmitter il) => il.New(constructor));
         public static ILEmitterAction Call(ConstructorInfo constructor) => new ILEmitterAction((ILEmitter il) => il.Call(constructor));
         public static ILEmitterAction LoadNull() => new ILEmitterAction((ILEmitter il) => il.LoadNull());
+        public static ILEmitterAction Not() => new ILEmitterAction((ILEmitter il) => il.Not());
         public static ILEmitterAction AreSame(Action<ILEmitter> a, Action<ILEmitter> b) => new ILEmitterAction((ILEmitter il) => il.AreSame(a, b));
         public static ILEmitterAction Or(Action<ILEmitter> a, Action<ILEmitter> b) => new ILEmitterAction((ILEmitter il) => il.Or(a, b));
         public static ILEmitterAction Sub(Action<ILEmitter> a, Action<ILEmitter> b) => new ILEmitterAction((ILEmitter il) => il.Sub(a, b));

@@ -324,6 +324,8 @@ namespace Illuminator
 
         public ILEmitter IfTrue_S(out Label label) => Branch(OpCodes.Brtrue_S, out label);
 
+        public ILEmitter IfTrue(Label label) => Branch(OpCodes.Brtrue, label);
+
         // todo: 1. smart branching?
         public ILEmitter IfFalse_S(Action<ILEmitter> action, out Label label)
         {

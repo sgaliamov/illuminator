@@ -300,6 +300,8 @@ namespace Illuminator
 
         public ILEmitter GoTo(Label label) => Branch(OpCodes.Br, label);
 
+        public ILEmitter GoTo(out Label label) => DefineLabel(out label).Branch(OpCodes.Br, label);
+
         public ILEmitter Greater(Action<ILEmitter> a, Action<ILEmitter> b, Label label)
         {
             a(this);

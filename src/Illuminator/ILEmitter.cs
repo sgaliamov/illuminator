@@ -533,7 +533,11 @@ namespace Illuminator
         public ILEmitter DebugWriteLine(LocalBuilder local)
         {
             DebugLine($"\t\tWrite local: {local.LocalIndex}");
-            LoadAddress(local);
+            if (local.LocalType.IsValueType) {
+                LoadAddress(local);
+            } else {
+                LoadLocal(local);
+            }
 
             if (local.LocalType != null && local.LocalType != typeof(string)) {
                 Call(local.LocalType.GetMethod(nameof(ToString), Type.EmptyTypes));

@@ -14,6 +14,7 @@ namespace Illuminator
 {
     public static class Functional
     {
+        public static ILEmitterAction Execute(Func<ILEmitter, ILEmitter> action) => new ILEmitterAction(il => action(il));
         public static ILEmitterAction MarkLabel(Label label) => new ILEmitterAction((ILEmitter il) => il.MarkLabel(label));
         public static ILEmitterAction BeginFinallyBlock() => new ILEmitterAction((ILEmitter il) => il.BeginFinallyBlock());
         public static ILEmitterAction BeginExceptionBlock() => new ILEmitterAction((ILEmitter il) => il.BeginExceptionBlock());
@@ -26,6 +27,7 @@ namespace Illuminator
         public static ILEmitterAction Cast(Type objectType) => new ILEmitterAction((ILEmitter il) => il.Cast(objectType));
         public static ILEmitterAction LoadArgument(ushort argumentIndex) => new ILEmitterAction((ILEmitter il) => il.LoadArgument(argumentIndex));
         public static ILEmitterAction LoadArgumentAddress(ushort argumentIndex) => new ILEmitterAction((ILEmitter il) => il.LoadArgumentAddress(argumentIndex));
+        public static ILEmitterAction LoadLong(long value) => new ILEmitterAction((ILEmitter il) => il.LoadLong(value));
         public static ILEmitterAction LoadInteger(int value) => new ILEmitterAction((ILEmitter il) => il.LoadInteger(value));
         public static ILEmitterAction LoadLocal(LocalVariableInfo local) => new ILEmitterAction((ILEmitter il) => il.LoadLocal(local));
         public static ILEmitterAction LoadLocal(int localIndex) => new ILEmitterAction((ILEmitter il) => il.LoadLocal(localIndex));
@@ -40,13 +42,16 @@ namespace Illuminator
         public static ILEmitterAction LoadNull() => new ILEmitterAction((ILEmitter il) => il.LoadNull());
         public static ILEmitterAction Not() => new ILEmitterAction((ILEmitter il) => il.Not());
         public static ILEmitterAction AreSame(Action<ILEmitter> a, Action<ILEmitter> b) => new ILEmitterAction((ILEmitter il) => il.AreSame(a, b));
+        public static ILEmitterAction ShiftLeft(Action<ILEmitter> value, Action<ILEmitter> numberOfBits) => new ILEmitterAction((ILEmitter il) => il.ShiftLeft(value, numberOfBits));
         public static ILEmitterAction Or(Action<ILEmitter> a, Action<ILEmitter> b) => new ILEmitterAction((ILEmitter il) => il.Or(a, b));
+        public static ILEmitterAction Xor(Action<ILEmitter> a, Action<ILEmitter> b) => new ILEmitterAction((ILEmitter il) => il.Xor(a, b));
         public static ILEmitterAction Sub(Action<ILEmitter> a, Action<ILEmitter> b) => new ILEmitterAction((ILEmitter il) => il.Sub(a, b));
         public static ILEmitterAction Add(Action<ILEmitter> a, Action<ILEmitter> b) => new ILEmitterAction((ILEmitter il) => il.Add(a, b));
         public static ILEmitterAction Throw() => new ILEmitterAction((ILEmitter il) => il.Throw());
         public static ILEmitterAction GoTo(Label label) => new ILEmitterAction((ILEmitter il) => il.GoTo(label));
         public static ILEmitterAction Greater(Action<ILEmitter> a, Action<ILEmitter> b, Label label) => new ILEmitterAction((ILEmitter il) => il.Greater(a, b, label));
         public static ILEmitterAction LessOrEqual(Action<ILEmitter> a, Action<ILEmitter> b, Label label) => new ILEmitterAction((ILEmitter il) => il.LessOrEqual(a, b, label));
+        public static ILEmitterAction IfTrue(Label label) => new ILEmitterAction((ILEmitter il) => il.IfTrue(label));
         public static ILEmitterAction IfFalse_S(Label label) => new ILEmitterAction((ILEmitter il) => il.IfFalse_S(label));
         public static ILEmitterAction IfFalse(Label label) => new ILEmitterAction((ILEmitter il) => il.IfFalse(label));
     }

@@ -20,6 +20,7 @@ namespace Illuminator
 {
     public static class Functional
     {
+        public static ILEmitterAction Execute(Func<ILEmitter, ILEmitter> action) => new ILEmitterAction(il => action(il));
 <#
     var text = File.ReadAllText(Host.ResolvePath("ILEmitter.cs"));
     var matches= new Regex("[^/{2}]public ILEmitter ([^\\(]*)\\(([^\\(]*)\\)").Matches(text);

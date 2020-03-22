@@ -134,14 +134,15 @@ namespace Illuminator
 
         public ILEmitter Return(int value) => LoadInteger(value).Return();
 
-        public ILEmitter Cast(Type objectType)
+        // todo: 3. test
+        public ILEmitter Cast(Type objectType) => objectType switch
         {
-            var castOp = objectType.IsValueType
-                             ? OpCodes.Unbox_Any
-                             : OpCodes.Castclass;
-
-            return Emit(castOp, objectType);
-        }
+            _ when objectType == typeof(long) => Emit(OpCodes.Conv_I8),
+            _ when objectType == typeof(int) => Emit(OpCodes.Conv_I4),
+            _ => Emit(objectType.IsValueType
+                ? OpCodes.Unbox_Any
+                : OpCodes.Castclass, objectType)
+        };
 
         public ILEmitter LoadArgument(ushort argumentIndex)
         {
@@ -161,6 +162,8 @@ namespace Illuminator
             var opCode = argumentIndex <= ShortFormLimit ? OpCodes.Ldarga_S : OpCodes.Ldarga;
             return Emit(opCode, argumentIndex);
         }
+
+        public ILEmitter LoadLong(long value) => Emit(OpCodes.Ldc_I8, value);
 
         public ILEmitter LoadInteger(int value)
         {
@@ -269,6 +272,15 @@ namespace Illuminator
         public ILEmitter AreSame(Action<ILEmitter> a, Action<ILEmitter> b, out LocalBuilder local) =>
             AreSame(a, b).Store(typeof(int), out local);
 
+        public ILEmitter ShiftLeft(Action<ILEmitter> value, Action<ILEmitter> numberOfBits)
+        {
+            // todo: 3. verify stack and types of variables
+            value(this);
+            numberOfBits(this);
+
+            return Emit(OpCodes.Shl);
+        }
+
         public ILEmitter Or(Action<ILEmitter> a, Action<ILEmitter> b)
         {
             // todo: 3. verify stack and types of variables
@@ -276,6 +288,15 @@ namespace Illuminator
             b(this);
 
             return Emit(OpCodes.Or);
+        }
+
+        public ILEmitter Xor(Action<ILEmitter> a, Action<ILEmitter> b)
+        {
+            // todo: 3. verify stack and types of variables
+            a(this);
+            b(this);
+
+            return Emit(OpCodes.Xor);
         }
 
         public ILEmitter Sub(Action<ILEmitter> a, Action<ILEmitter> b)
@@ -400,6 +421,14 @@ namespace Illuminator
         }
 
         private ILEmitter Emit(OpCode opCode, int arg)
+        {
+            DebugLine($"\t\t{opCode} {arg}");
+            _il.Emit(opCode, arg);
+
+            return this;
+        }
+
+        private ILEmitter Emit(OpCode opCode, long arg)
         {
             DebugLine($"\t\t{opCode} {arg}");
             _il.Emit(opCode, arg);

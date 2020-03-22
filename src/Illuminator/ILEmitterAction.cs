@@ -23,6 +23,13 @@ namespace Illuminator
         /// </summary>
         public static ILEmitterAction operator |(ILEmitterAction a, ILEmitterAction b) => a._action + b._action;
 
+        public static ILEmitter operator |(ILEmitterAction a, ILEmitter il)
+        {
+            a._action(il);
+
+            return il;
+        }
+
         public bool Equals(ILEmitterAction other) => _action.Equals(other);
 
         public override bool Equals(object obj) => obj is ILEmitterAction action && Equals(action);

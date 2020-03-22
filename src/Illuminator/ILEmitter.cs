@@ -84,13 +84,13 @@ namespace Illuminator
 
         public ILEmitter Call(MethodInfo methodInfo, params Action<ILEmitter>[] parameters)
         {
-            var methodParametesLenght = methodInfo.GetParameters().Length;
-            // todo: 3. do check for MethodBuilder
-            if (!(methodInfo is MethodBuilder)
-                && ((methodInfo.IsStatic && methodParametesLenght != parameters.Length)
-                || (!methodInfo.IsStatic && methodParametesLenght != parameters.Length - 1))) {
+            if (!(methodInfo is MethodBuilder)) {
+                var methodParametesLenght = methodInfo.GetParameters().Length;
 
-                throw new ArgumentException($"Amount of parameters does not match method {methodInfo} signature.");
+                if ((methodInfo.IsStatic && methodParametesLenght != parameters.Length)
+                    || (!methodInfo.IsStatic && methodParametesLenght != parameters.Length - 1)) {
+                    throw new ArgumentException($"Amount of parameters does not match method {methodInfo} signature.");
+                }
             }
 
             foreach (var parameter in parameters) {

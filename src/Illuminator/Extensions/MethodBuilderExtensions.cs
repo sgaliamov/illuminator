@@ -21,5 +21,7 @@ namespace Illuminator.Extensions
             return new ILEmitter(constructorBuilder.GetILGenerator());
 #endif
         }
+
+        public static ILEmitter CreateILEmitter(this ILGenerator generator) => new ILEmitter(generator);
     }
 }

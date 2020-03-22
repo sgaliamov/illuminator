@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using Illuminator.Extensions;
+#if DEBUG
+using System.Diagnostics;
+#endif
 
 namespace Illuminator
 {
@@ -16,6 +18,7 @@ namespace Illuminator
         private readonly Dictionary<Type, List<LocalBuilder>> _locals = new Dictionary<Type, List<LocalBuilder>>();
         private readonly Stack<Scope> _scopes = new Stack<Scope>();
 
+        // todo: 3. pass method definition to checks on loading arguments
         public ILEmitter(ILGenerator il)
         {
             _il = il;
@@ -79,11 +82,29 @@ namespace Illuminator
             return this;
         }
 
+        public ILEmitter Call(MethodInfo methodInfo, params Action<ILEmitter>[] parameters)
+        {
+            if (!(methodInfo is MethodBuilder)) {
+                var methodParametesLenght = methodInfo.GetParameters().Length;
+
+                if ((methodInfo.IsStatic && methodParametesLenght != parameters.Length)
+                    || (!methodInfo.IsStatic && methodParametesLenght != parameters.Length - 1)) {
+                    throw new ArgumentException($"Amount of parameters does not match method {methodInfo} signature.");
+                }
+            }
+
+            foreach (var parameter in parameters) {
+                parameter(this);
+            }
+
+            return Call(methodInfo);
+        }
+
         public ILEmitter Call(MethodInfo methodInfo)
         {
             var owner = methodInfo.DeclaringType;
             if (owner == typeof(ValueType)) {
-                owner = methodInfo.ReflectedType; // todo: test
+                owner = methodInfo.ReflectedType; // todo: 0. test
             }
 
             if (owner == null) {
@@ -96,7 +117,7 @@ namespace Illuminator
                     $"Generic method {methodInfo.DisplayName()} is not initialized.");
             }
 
-            var opCode = methodInfo.IsStatic || owner.IsValueType || owner.IsSealed || !methodInfo.IsVirtual // todo: test
+            var opCode = methodInfo.IsStatic || owner.IsValueType || owner.IsSealed || !methodInfo.IsVirtual // todo: 0. test
                 ? OpCodes.Call
                 : OpCodes.Callvirt;
 
@@ -105,16 +126,23 @@ namespace Illuminator
 
         public ILEmitter Return() => Emit(OpCodes.Ret);
 
+        public ILEmitter Return(Action<ILEmitter> action)
+        {
+            action(this);
+            return Emit(OpCodes.Ret);
+        }
+
         public ILEmitter Return(int value) => LoadInteger(value).Return();
 
-        public ILEmitter Cast(Type objectType)
+        // todo: 3. test
+        public ILEmitter Cast(Type objectType) => objectType switch
         {
-            var castOp = objectType.IsValueType
-                             ? OpCodes.Unbox_Any
-                             : OpCodes.Castclass;
-
-            return Emit(castOp, objectType);
-        }
+            _ when objectType == typeof(long) => Emit(OpCodes.Conv_I8),
+            _ when objectType == typeof(int) => Emit(OpCodes.Conv_I4),
+            _ => Emit(objectType.IsValueType
+                ? OpCodes.Unbox_Any
+                : OpCodes.Castclass, objectType)
+        };
 
         public ILEmitter LoadArgument(ushort argumentIndex)
         {
@@ -134,6 +162,8 @@ namespace Illuminator
             var opCode = argumentIndex <= ShortFormLimit ? OpCodes.Ldarga_S : OpCodes.Ldarga;
             return Emit(opCode, argumentIndex);
         }
+
+        public ILEmitter LoadLong(long value) => Emit(OpCodes.Ldc_I8, value);
 
         public ILEmitter LoadInteger(int value)
         {
@@ -223,14 +253,16 @@ namespace Illuminator
 
         public ILEmitter New(ConstructorInfo constructor) => Emit(OpCodes.Newobj, constructor);
 
-        // todo: helper to generate constructors
+        // todo: 3. helper to generate constructors
         public ILEmitter Call(ConstructorInfo constructor) => Emit(OpCodes.Call, constructor);
 
         public ILEmitter LoadNull() => Emit(OpCodes.Ldnull);
 
+        public ILEmitter Not() => Emit(OpCodes.Not);
+
         public ILEmitter AreSame(Action<ILEmitter> a, Action<ILEmitter> b)
         {
-            // todo: verify stack and types of variables
+            // todo: 3. verify stack and types of variables
             a(this);
             b(this);
 
@@ -240,18 +272,36 @@ namespace Illuminator
         public ILEmitter AreSame(Action<ILEmitter> a, Action<ILEmitter> b, out LocalBuilder local) =>
             AreSame(a, b).Store(typeof(int), out local);
 
+        public ILEmitter ShiftLeft(Action<ILEmitter> value, Action<ILEmitter> numberOfBits)
+        {
+            // todo: 3. verify stack and types of variables
+            value(this);
+            numberOfBits(this);
+
+            return Emit(OpCodes.Shl);
+        }
+
         public ILEmitter Or(Action<ILEmitter> a, Action<ILEmitter> b)
         {
-            // todo: verify stack and types of variables
+            // todo: 3. verify stack and types of variables
             a(this);
             b(this);
 
             return Emit(OpCodes.Or);
         }
 
+        public ILEmitter Xor(Action<ILEmitter> a, Action<ILEmitter> b)
+        {
+            // todo: 3. verify stack and types of variables
+            a(this);
+            b(this);
+
+            return Emit(OpCodes.Xor);
+        }
+
         public ILEmitter Sub(Action<ILEmitter> a, Action<ILEmitter> b)
         {
-            // todo: verify stack and types of variables
+            // todo: 3. verify stack and types of variables
             a(this);
             b(this);
 
@@ -260,7 +310,7 @@ namespace Illuminator
 
         public ILEmitter Add(Action<ILEmitter> a, Action<ILEmitter> b)
         {
-            // todo: verify stack and types of variables
+            // todo: 3. verify stack and types of variables
             a(this);
             b(this);
 
@@ -270,6 +320,73 @@ namespace Illuminator
         public ILEmitter Throw() => Emit(OpCodes.Throw);
 
         public ILEmitter GoTo(Label label) => Branch(OpCodes.Br, label);
+
+        public ILEmitter GoTo(out Label label) => DefineLabel(out label).Branch(OpCodes.Br_S, label);
+
+        public ILEmitter Greater(Action<ILEmitter> a, Action<ILEmitter> b, Label label)
+        {
+            a(this);
+            b(this);
+
+            return Branch(OpCodes.Bgt_S, label);
+        }
+
+        public ILEmitter LessOrEqual(Action<ILEmitter> a, Action<ILEmitter> b, Label label)
+        {
+            a(this);
+            b(this);
+
+            return Branch(OpCodes.Ble_S, label);
+        }
+
+        public ILEmitter IfTrue_S(Action<ILEmitter> action, out Label label)
+        {
+            action(this);
+            return IfTrue_S(out label);
+        }
+
+        public ILEmitter IfTrue_S(out Label label) => Branch(OpCodes.Brtrue_S, out label);
+
+        public ILEmitter IfTrue(Label label) => Branch(OpCodes.Brtrue, label);
+
+        // todo: 1. smart branching?
+        public ILEmitter IfFalse_S(Action<ILEmitter> action, out Label label)
+        {
+            action(this);
+            return IfFalse_S(out label);
+        }
+
+        public ILEmitter IfFalse_S(out Label label) => Branch(OpCodes.Brfalse_S, out label);
+
+        public ILEmitter IfFalse_S(Label label) => Branch(OpCodes.Brfalse_S, label);
+
+        public ILEmitter IfFalse(out Label label) => Branch(OpCodes.Brfalse, out label);
+
+        public ILEmitter IfFalse(Label label) => Branch(OpCodes.Brfalse, label);
+
+        public ILEmitter IfNotEqual_Un_S(out Label label) => Branch(OpCodes.Bne_Un_S, out label);
+
+        private ILEmitter Branch(OpCode opCode, Label label)
+        {
+            if (opCode.FlowControl != FlowControl.Branch
+                && opCode.FlowControl != FlowControl.Cond_Branch) {
+                throw new InvalidOperationException(
+                    $"Only a branch instruction is allowed. OpCode: {opCode}.");
+            }
+
+            return Emit(opCode, label);
+        }
+
+        private ILEmitter Branch(OpCode opCode, out Label label)
+        {
+            if (opCode.FlowControl != FlowControl.Branch
+                && opCode.FlowControl != FlowControl.Cond_Branch) {
+                throw new InvalidOperationException(
+                    $"Only a branch instruction is allowed. OpCode: {opCode}.");
+            }
+
+            return DefineLabel(out label).Emit(opCode, label);
+        }
 
         private ILEmitter Emit(OpCode opCode, LocalBuilder local)
         {
@@ -304,6 +421,14 @@ namespace Illuminator
         }
 
         private ILEmitter Emit(OpCode opCode, int arg)
+        {
+            DebugLine($"\t\t{opCode} {arg}");
+            _il.Emit(opCode, arg);
+
+            return this;
+        }
+
+        private ILEmitter Emit(OpCode opCode, long arg)
         {
             DebugLine($"\t\t{opCode} {arg}");
             _il.Emit(opCode, arg);
@@ -346,46 +471,6 @@ namespace Illuminator
             _il.Emit(opCode, constructor);
 
             return this;
-        }
-
-        public ILEmitter Greater(Action<ILEmitter> a, Action<ILEmitter> b, Label label)
-        {
-            a(this);
-            b(this);
-
-            return Branch(OpCodes.Bgt_S, label);
-        }
-
-        public ILEmitter LessOrEqual(Action<ILEmitter> a, Action<ILEmitter> b, Label label)
-        {
-            a(this);
-            b(this);
-
-            return Branch(OpCodes.Ble_S, label);
-        }
-
-        // todo: smart branching, make private
-        public ILEmitter Branch(OpCode opCode, Label label)
-        {
-            if (opCode.FlowControl != FlowControl.Branch
-                && opCode.FlowControl != FlowControl.Cond_Branch) {
-                throw new InvalidOperationException(
-                    $"Only a branch instruction is allowed. OpCode: {opCode}.");
-            }
-
-            return Emit(opCode, label);
-        }
-
-        // todo: smart branching, make private
-        public ILEmitter Branch(OpCode opCode, out Label label)
-        {
-            if (opCode.FlowControl != FlowControl.Branch
-                && opCode.FlowControl != FlowControl.Cond_Branch) {
-                throw new InvalidOperationException(
-                    $"Only a branch instruction is allowed. OpCode: {opCode}.");
-            }
-
-            return DefineLabel(out label).Emit(opCode, label);
         }
 
         internal sealed class Scope : IDisposable
@@ -448,7 +533,11 @@ namespace Illuminator
         public ILEmitter DebugWriteLine(LocalBuilder local)
         {
             DebugLine($"\t\tWrite local: {local.LocalIndex}");
-            LoadAddress(local);
+            if (local.LocalType.IsValueType) {
+                LoadAddress(local);
+            } else {
+                LoadLocal(local);
+            }
 
             if (local.LocalType != null && local.LocalType != typeof(string)) {
                 Call(local.LocalType.GetMethod(nameof(ToString), Type.EmptyTypes));

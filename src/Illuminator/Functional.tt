@@ -20,9 +20,10 @@ namespace Illuminator
 {
     public static class Functional
     {
+        public static Action<ILEmitter> Execute(Func<ILEmitter, ILEmitter> action) => il => action(il);
 <#
     var text = File.ReadAllText(Host.ResolvePath("ILEmitter.cs"));
-    var matches= new Regex("public ILEmitter ([^\\(]*)\\(([^\\(]*)\\)").Matches(text);
+    var matches= new Regex("[^/{2}]public ILEmitter ([^\\(]*)\\(([^\\(]*)\\)").Matches(text);
     var genericParameters = new Regex("<.*?>");
     var argumentsSeparator = new [] { ',' };
     var spaceSeparator = new [] { ' ' };
@@ -38,15 +39,19 @@ namespace Illuminator
             continue;
         }
 
+        if (string.IsNullOrWhiteSpace(parameters)) {
+            continue;
+        }
+
         var items = genericParameters
             .Replace(parameters, "")
             .Split(argumentsSeparator, StringSplitOptions.RemoveEmptyEntries)
-            .Select(x => x.Split(spaceSeparator, StringSplitOptions.RemoveEmptyEntries)[1])
+            .Select(x => x.Split(spaceSeparator, StringSplitOptions.RemoveEmptyEntries).Last())
             .ToArray();
 
         var args = string.Join(", ", items);
 #>
-        public static ILEmitterAction <#= name #>(<#= parameters #>) => new ILEmitterAction((ILEmitter il) => il.<#= name #>(<#= args #>));
+        public static Action<ILEmitter> <#= name #>(<#= parameters #>) => il => il.<#= name #>(<#= args #>);
 <#
     }
 #>

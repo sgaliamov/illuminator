@@ -135,10 +135,10 @@ namespace Illuminator
         public ILEmitter Return(int value) => LoadInteger(value).Return();
 
         // todo: 3. test
-        public ILEmitter Cast(Type objectType) => objectType switch
+        public ILEmitter Cast(Type objectType) => Type.GetTypeCode(objectType) switch
         {
-            _ when objectType == typeof(long) => Emit(OpCodes.Conv_I8),
-            _ when objectType == typeof(int) => Emit(OpCodes.Conv_I4),
+            TypeCode.Int64 => Emit(OpCodes.Conv_I8),
+            TypeCode.Int32 => Emit(OpCodes.Conv_I4),
             _ => Emit(objectType.IsValueType
                 ? OpCodes.Unbox_Any
                 : OpCodes.Castclass, objectType)

@@ -130,6 +130,8 @@ namespace Illuminator
 
         public ILEmitter Return(int value) => LoadInteger(value).Return();
 
+        public ILEmitter Return(LocalBuilder local) => LoadLocal(local).Return();
+
         // todo: 3. test
         public ILEmitter Cast(Type objectType) => Type.GetTypeCode(objectType) switch
         {
@@ -360,6 +362,14 @@ namespace Illuminator
         public ILEmitter IfFalse(Label label) => Branch(OpCodes.Brfalse, label);
 
         public ILEmitter IfNotEqual_Un_S(out Label label) => Branch(OpCodes.Bne_Un_S, out label);
+
+        public ILEmitter IfNotEqual_Un_S(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b, out Label label)
+        {
+            a(this);
+            b(this);
+
+            return IfNotEqual_Un_S(out label);
+        }
 
         public ILEmitter Execute(params Func<ILEmitter, ILEmitter>[] actions)
         {

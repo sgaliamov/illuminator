@@ -20,7 +20,6 @@ namespace Illuminator
 {
     public static class Functional
     {
-        public static Action<ILEmitter> Execute(Func<ILEmitter, ILEmitter> action) => il => action(il);
 <#
     var text = File.ReadAllText(Host.ResolvePath("ILEmitter.cs"));
     var matches= new Regex("[^/{2}]public ILEmitter ([^\\(]*)\\(([^\\(]*)\\)").Matches(text);
@@ -51,7 +50,7 @@ namespace Illuminator
 
         var args = string.Join(", ", items);
 #>
-        public static Action<ILEmitter> <#= name #>(<#= parameters #>) => il => il.<#= name #>(<#= args #>);
+        public static Func<ILEmitter, ILEmitter> <#= name #>(<#= parameters #>) => il => il.<#= name #>(<#= args #>);
 <#
     }
 #>

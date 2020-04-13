@@ -46,6 +46,6 @@ namespace Illuminator
         public static Func<ILEmitter, ILEmitter> IfTrue(Label label) => il => il.IfTrue(label);
         public static Func<ILEmitter, ILEmitter> IfFalse_S(Label label) => il => il.IfFalse_S(label);
         public static Func<ILEmitter, ILEmitter> IfFalse(Label label) => il => il.IfFalse(label);
-        public static Func<ILEmitter, ILEmitter> Execute(Func<ILEmitter, ILEmitter> action) => il => il.Execute(action);
+        public static Func<ILEmitter, ILEmitter> Execute(params Func<ILEmitter, ILEmitter>[] actions) => il => il.Execute(actions);
     }
 }

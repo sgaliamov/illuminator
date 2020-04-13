@@ -361,7 +361,14 @@ namespace Illuminator
 
         public ILEmitter IfNotEqual_Un_S(out Label label) => Branch(OpCodes.Bne_Un_S, out label);
 
-        public ILEmitter Execute(Func<ILEmitter, ILEmitter> action) => action(this);
+        public ILEmitter Execute(params Func<ILEmitter, ILEmitter>[] actions)
+        {
+            foreach (var action in actions) {
+                action(this);
+            }
+
+            return this;
+        }
 
         private ILEmitter Branch(OpCode opCode, Label label)
         {

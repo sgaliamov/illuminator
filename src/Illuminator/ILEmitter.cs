@@ -60,24 +60,24 @@ namespace Illuminator
 
         public ILEmitter BeginFinallyBlock()
         {
-            DebugLine("\t.finally");
             _il.BeginFinallyBlock();
+            DebugLine("\t.finally");
 
             return this;
         }
 
         public ILEmitter BeginExceptionBlock()
         {
-            DebugLine("\t.try {");
             _il.BeginExceptionBlock();
+            DebugLine("\t.try {");
 
             return this;
         }
 
         public ILEmitter EndExceptionBlock()
         {
-            DebugLine("\t} // .try");
             _il.EndExceptionBlock();
+            DebugLine("\t} // .try");
 
             return this;
         }
@@ -404,56 +404,56 @@ namespace Illuminator
 
         private ILEmitter Emit(OpCode opCode, LocalBuilder local)
         {
-            DebugLine($"\t\t{opCode} {local.LocalIndex}");
             _il.Emit(opCode, local);
+            DebugLine($"\t\t{opCode} {local.LocalIndex}");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode, string str)
         {
-            DebugLine($"\t\t{opCode} \"{str}\"");
             _il.Emit(opCode, str);
+            DebugLine($"\t\t{opCode} \"{str}\"");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode, Type type)
         {
-            DebugLine($"\t\t{opCode} {type.DisplayName()}");
             _il.Emit(opCode, type);
+            DebugLine($"\t\t{opCode} {type.DisplayName()}");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode)
         {
-            DebugLine($"\t\t{opCode}");
             _il.Emit(opCode);
+            DebugLine($"\t\t{opCode}");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode, int arg)
         {
-            DebugLine($"\t\t{opCode} {arg}");
             _il.Emit(opCode, arg);
+            DebugLine($"\t\t{opCode} {arg}");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode, long arg)
         {
-            DebugLine($"\t\t{opCode} {arg}");
             _il.Emit(opCode, arg);
+            DebugLine($"\t\t{opCode} {arg}");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode, Label label)
         {
-            DebugEmitLabel(opCode, label);
             _il.Emit(opCode, label);
+            DebugEmitLabel(opCode, label);
 
             return this;
         }
@@ -464,25 +464,24 @@ namespace Illuminator
                 throw new InvalidOperationException($"Expected a call operation but {opCode} is used.");
             }
 
-            DebugLine($"\t\t{opCode} {methodInfo.GetMethodInfoName()}");
-
             _il.Emit(opCode, methodInfo);
+            DebugLine($"\t\t{opCode} {methodInfo.GetMethodInfoName()}");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode, FieldInfo field)
         {
-            DebugLine($"\t\t{opCode} {field.DisplayName()}");
             _il.Emit(opCode, field);
+            DebugLine($"\t\t{opCode} {field.DisplayName()}");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode, ConstructorInfo constructor)
         {
-            DebugLine($"\t\t{opCode} {constructor.DisplayName()}");
             _il.Emit(opCode, constructor);
+            DebugLine($"\t\t{opCode} {constructor.DisplayName()}");
 
             return this;
         }
@@ -546,7 +545,6 @@ namespace Illuminator
         /// <param name="local">Value to write.</param>
         public ILEmitter DebugWriteLine(LocalBuilder local)
         {
-            DebugLine($"\t\tWrite local: {local.LocalIndex}");
             if (local.LocalType.IsValueType) {
                 LoadAddress(local);
             } else {
@@ -558,8 +556,10 @@ namespace Illuminator
             }
 
             var methodInfo = typeof(Debug).GetMethod(nameof(Debug.WriteLine), new[] { typeof(string) });
+            Call(methodInfo);
 
-            return Call(methodInfo);
+            DebugLine($"\t\tWrite local: {local.LocalIndex}");
+            return this;
         }
 
         /// <summary>
@@ -568,10 +568,10 @@ namespace Illuminator
         /// <param name="message">String to write.</param>
         public ILEmitter DebugWriteLine(string message)
         {
-            DebugLine($"\t\tWrite: {message}");
             _il.Emit(OpCodes.Ldstr, message);
             _il.Emit(OpCodes.Call, typeof(Debug).GetMethod(nameof(Debug.WriteLine), new[] { typeof(string) }));
 
+            DebugLine($"\t\tWrite: {message}");
             return this;
         }
 

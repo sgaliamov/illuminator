@@ -13,17 +13,17 @@ namespace Illuminator
         private readonly StringBuilder _debugger = new StringBuilder();
         private readonly List<Label> _debugLabels = new List<Label>();
         private readonly string _name;
+        private readonly FieldInfo _maxMidStackCur = typeof(ILGenerator).GetField("m_maxMidStackCur", BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance);
 
         public ILEmitter(string name, ILGenerator il) : this(il) => _name = name;
 
         public ILEmitter Break() => Emit(OpCodes.Break);
 
-        partial void DebugLine(string message) => _debugger.AppendLine(message);
+        partial void DebugLine(string message) => _debugger.AppendFormat("{0,-30} | {1}\n", message, GetStackSize());
 
-        partial void DebugMarkLabel(Label label) => DebugLine($"\tLabel_{_debugLabels.IndexOf(label)}:");
+        partial void DebugMarkLabel(Label label) => DebugLine($"\tLabel_{_debugLabels.IndexOf(label)}:\t");
 
-        partial void DebugEmitLabel(OpCode opCode, Label label) =>
-            DebugLine($"\t\t{opCode} Label_{_debugLabels.IndexOf(label)}");
+        partial void DebugEmitLabel(OpCode opCode, Label label) => DebugLine($"\t\t{opCode} Label_{_debugLabels.IndexOf(label)}");
 
         partial void AddDebugLabel(Label label) => _debugLabels.Add(label);
 
@@ -32,9 +32,9 @@ namespace Illuminator
             Debug.WriteLine(_name);
 
             var locals = _locals
-                         .SelectMany(x => x.Value)
-                         .OrderBy(x => x.LocalIndex)
-                         .ToArray();
+                .SelectMany(x => x.Value)
+                .OrderBy(x => x.LocalIndex)
+                .ToArray();
 
             if (locals.Length != 0) {
                 Debug.WriteLine("\t.locals init (");
@@ -56,16 +56,14 @@ namespace Illuminator
 
         private void ValidateStackSize()
         {
-            var stackSize = (int?)typeof(ILGenerator)
-                                  .GetField(
-                                      "m_maxMidStackCur",
-                                      BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance)
-                                  ?.GetValue(_il);
+            var stackSize = GetStackSize();
 
-            if (stackSize.HasValue && stackSize.Value != 0) {
+            if (stackSize != 0) {
                 throw new InvalidOperationException(
-                    $"Stack should be empty, but it has {Math.Abs(stackSize.Value)} element.");
+                    $"Stack should be empty, but it has {Math.Abs(stackSize)} element.");
             }
         }
+
+        private int GetStackSize() => (int?)_maxMidStackCur?.GetValue(_il) ?? 0;
     }
 }

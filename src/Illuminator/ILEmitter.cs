@@ -60,29 +60,33 @@ namespace Illuminator
 
         public ILEmitter BeginFinallyBlock()
         {
-            DebugLine("\t.finally");
             _il.BeginFinallyBlock();
+            DebugLine("\t.finally");
 
             return this;
         }
 
         public ILEmitter BeginExceptionBlock()
         {
-            DebugLine("\t.try {");
             _il.BeginExceptionBlock();
+            DebugLine("\t.try {");
 
             return this;
         }
 
         public ILEmitter EndExceptionBlock()
         {
-            DebugLine("\t} // .try");
             _il.EndExceptionBlock();
+            DebugLine("\t} // .try");
 
             return this;
         }
 
-        public ILEmitter Call(MethodInfo methodInfo, params Action<ILEmitter>[] parameters)
+        public ILEmitter Break() => Emit(OpCodes.Break);
+
+        public ILEmitter Constrained(Type type) => Emit(OpCodes.Constrained, type);
+
+        public ILEmitter Call(MethodInfo methodInfo, params Func<ILEmitter, ILEmitter>[] parameters)
         {
             if (!(methodInfo is MethodBuilder)) {
                 var methodParametesLenght = methodInfo.GetParameters().Length;
@@ -117,28 +121,33 @@ namespace Illuminator
                     $"Generic method {methodInfo.DisplayName()} is not initialized.");
             }
 
+            // if the method belongs to Enum type, them it should be called as virtual and with constrained prefix
+            // https://docs.microsoft.com/en-us/dotnet/api/system.reflection.emit.opcodes.constrained
+            //var isEnum = owner.IsAssignableFrom(typeof(Enum));
             var opCode = methodInfo.IsStatic || owner.IsValueType || owner.IsSealed || !methodInfo.IsVirtual // todo: 0. test
                 ? OpCodes.Call
                 : OpCodes.Callvirt;
+
+            //if (isEnum) {
+            //    Constrained(owner); // todo: 0. test
+            //}
 
             return Emit(opCode, methodInfo);
         }
 
         public ILEmitter Return() => Emit(OpCodes.Ret);
 
-        public ILEmitter Return(Action<ILEmitter> action)
-        {
-            action(this);
-            return Emit(OpCodes.Ret);
-        }
+        public ILEmitter Return(Func<ILEmitter, ILEmitter> action) => action(this).Emit(OpCodes.Ret);
 
         public ILEmitter Return(int value) => LoadInteger(value).Return();
 
+        public ILEmitter Return(LocalBuilder local) => LoadLocal(local).Return();
+
         // todo: 3. test
-        public ILEmitter Cast(Type objectType) => objectType switch
+        public ILEmitter Cast(Type objectType) => Type.GetTypeCode(objectType) switch
         {
-            _ when objectType == typeof(long) => Emit(OpCodes.Conv_I8),
-            _ when objectType == typeof(int) => Emit(OpCodes.Conv_I4),
+            TypeCode.Int64 => Emit(OpCodes.Conv_I8),
+            TypeCode.Int32 => Emit(OpCodes.Conv_I4),
             _ => Emit(objectType.IsValueType
                 ? OpCodes.Unbox_Any
                 : OpCodes.Castclass, objectType)
@@ -239,7 +248,7 @@ namespace Illuminator
             return scope;
         }
 
-        public ILEmitter SetField(Action<ILEmitter> loadObject, Action<ILEmitter> loadValue, FieldInfo field)
+        public ILEmitter SetField(Func<ILEmitter, ILEmitter> loadObject, Func<ILEmitter, ILEmitter> loadValue, FieldInfo field)
         {
             loadObject(this);
             loadValue(this);
@@ -260,7 +269,7 @@ namespace Illuminator
 
         public ILEmitter Not() => Emit(OpCodes.Not);
 
-        public ILEmitter AreSame(Action<ILEmitter> a, Action<ILEmitter> b)
+        public ILEmitter AreSame(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b)
         {
             // todo: 3. verify stack and types of variables
             a(this);
@@ -269,10 +278,9 @@ namespace Illuminator
             return Emit(OpCodes.Ceq);
         }
 
-        public ILEmitter AreSame(Action<ILEmitter> a, Action<ILEmitter> b, out LocalBuilder local) =>
-            AreSame(a, b).Store(typeof(int), out local);
+        public ILEmitter AreSame(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b, out LocalBuilder local) => AreSame(a, b).Store(typeof(int), out local);
 
-        public ILEmitter ShiftLeft(Action<ILEmitter> value, Action<ILEmitter> numberOfBits)
+        public ILEmitter ShiftLeft(Func<ILEmitter, ILEmitter> value, Func<ILEmitter, ILEmitter> numberOfBits)
         {
             // todo: 3. verify stack and types of variables
             value(this);
@@ -281,7 +289,7 @@ namespace Illuminator
             return Emit(OpCodes.Shl);
         }
 
-        public ILEmitter Or(Action<ILEmitter> a, Action<ILEmitter> b)
+        public ILEmitter Or(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b)
         {
             // todo: 3. verify stack and types of variables
             a(this);
@@ -290,7 +298,7 @@ namespace Illuminator
             return Emit(OpCodes.Or);
         }
 
-        public ILEmitter Xor(Action<ILEmitter> a, Action<ILEmitter> b)
+        public ILEmitter Xor(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b)
         {
             // todo: 3. verify stack and types of variables
             a(this);
@@ -299,7 +307,7 @@ namespace Illuminator
             return Emit(OpCodes.Xor);
         }
 
-        public ILEmitter Sub(Action<ILEmitter> a, Action<ILEmitter> b)
+        public ILEmitter Sub(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b)
         {
             // todo: 3. verify stack and types of variables
             a(this);
@@ -308,7 +316,7 @@ namespace Illuminator
             return Emit(OpCodes.Sub);
         }
 
-        public ILEmitter Add(Action<ILEmitter> a, Action<ILEmitter> b)
+        public ILEmitter Add(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b)
         {
             // todo: 3. verify stack and types of variables
             a(this);
@@ -323,7 +331,7 @@ namespace Illuminator
 
         public ILEmitter GoTo(out Label label) => DefineLabel(out label).Branch(OpCodes.Br_S, label);
 
-        public ILEmitter Greater(Action<ILEmitter> a, Action<ILEmitter> b, Label label)
+        public ILEmitter Greater(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b, Label label)
         {
             a(this);
             b(this);
@@ -331,7 +339,7 @@ namespace Illuminator
             return Branch(OpCodes.Bgt_S, label);
         }
 
-        public ILEmitter LessOrEqual(Action<ILEmitter> a, Action<ILEmitter> b, Label label)
+        public ILEmitter LessOrEqual(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b, Label label)
         {
             a(this);
             b(this);
@@ -339,7 +347,7 @@ namespace Illuminator
             return Branch(OpCodes.Ble_S, label);
         }
 
-        public ILEmitter IfTrue_S(Action<ILEmitter> action, out Label label)
+        public ILEmitter IfTrue_S(Func<ILEmitter, ILEmitter> action, out Label label)
         {
             action(this);
             return IfTrue_S(out label);
@@ -350,7 +358,7 @@ namespace Illuminator
         public ILEmitter IfTrue(Label label) => Branch(OpCodes.Brtrue, label);
 
         // todo: 1. smart branching?
-        public ILEmitter IfFalse_S(Action<ILEmitter> action, out Label label)
+        public ILEmitter IfFalse_S(Func<ILEmitter, ILEmitter> action, out Label label)
         {
             action(this);
             return IfFalse_S(out label);
@@ -365,6 +373,23 @@ namespace Illuminator
         public ILEmitter IfFalse(Label label) => Branch(OpCodes.Brfalse, label);
 
         public ILEmitter IfNotEqual_Un_S(out Label label) => Branch(OpCodes.Bne_Un_S, out label);
+
+        public ILEmitter IfNotEqual_Un_S(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b, out Label label)
+        {
+            a(this);
+            b(this);
+
+            return IfNotEqual_Un_S(out label);
+        }
+
+        public ILEmitter Execute(params Func<ILEmitter, ILEmitter>[] actions)
+        {
+            foreach (var action in actions) {
+                action(this);
+            }
+
+            return this;
+        }
 
         private ILEmitter Branch(OpCode opCode, Label label)
         {
@@ -390,56 +415,56 @@ namespace Illuminator
 
         private ILEmitter Emit(OpCode opCode, LocalBuilder local)
         {
-            DebugLine($"\t\t{opCode} {local.LocalIndex}");
             _il.Emit(opCode, local);
+            DebugLine($"\t\t{opCode} {local.LocalIndex}");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode, string str)
         {
-            DebugLine($"\t\t{opCode} \"{str}\"");
             _il.Emit(opCode, str);
+            DebugLine($"\t\t{opCode} \"{str}\"");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode, Type type)
         {
-            DebugLine($"\t\t{opCode} {type.DisplayName()}");
             _il.Emit(opCode, type);
+            DebugLine($"\t\t{opCode} {type.DisplayName()}");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode)
         {
-            DebugLine($"\t\t{opCode}");
             _il.Emit(opCode);
+            DebugLine($"\t\t{opCode}");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode, int arg)
         {
-            DebugLine($"\t\t{opCode} {arg}");
             _il.Emit(opCode, arg);
+            DebugLine($"\t\t{opCode} {arg}");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode, long arg)
         {
-            DebugLine($"\t\t{opCode} {arg}");
             _il.Emit(opCode, arg);
+            DebugLine($"\t\t{opCode} {arg}");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode, Label label)
         {
-            DebugEmitLabel(opCode, label);
             _il.Emit(opCode, label);
+            DebugEmitLabel(opCode, label);
 
             return this;
         }
@@ -450,25 +475,24 @@ namespace Illuminator
                 throw new InvalidOperationException($"Expected a call operation but {opCode} is used.");
             }
 
-            DebugLine($"\t\t{opCode} {methodInfo.GetMethodInfoName()}");
-
             _il.Emit(opCode, methodInfo);
+            DebugLine($"\t\t{opCode} {methodInfo.GetMethodInfoName()}");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode, FieldInfo field)
         {
-            DebugLine($"\t\t{opCode} {field.DisplayName()}");
             _il.Emit(opCode, field);
+            DebugLine($"\t\t{opCode} {field.DisplayName()}");
 
             return this;
         }
 
         private ILEmitter Emit(OpCode opCode, ConstructorInfo constructor)
         {
-            DebugLine($"\t\t{opCode} {constructor.DisplayName()}");
             _il.Emit(opCode, constructor);
+            DebugLine($"\t\t{opCode} {constructor.DisplayName()}");
 
             return this;
         }
@@ -532,7 +556,6 @@ namespace Illuminator
         /// <param name="local">Value to write.</param>
         public ILEmitter DebugWriteLine(LocalBuilder local)
         {
-            DebugLine($"\t\tWrite local: {local.LocalIndex}");
             if (local.LocalType.IsValueType) {
                 LoadAddress(local);
             } else {
@@ -544,8 +567,10 @@ namespace Illuminator
             }
 
             var methodInfo = typeof(Debug).GetMethod(nameof(Debug.WriteLine), new[] { typeof(string) });
+            Call(methodInfo);
 
-            return Call(methodInfo);
+            DebugLine($"\t\tWrite local: {local.LocalIndex}");
+            return this;
         }
 
         /// <summary>
@@ -554,10 +579,10 @@ namespace Illuminator
         /// <param name="message">String to write.</param>
         public ILEmitter DebugWriteLine(string message)
         {
-            DebugLine($"\t\tWrite: {message}");
             _il.Emit(OpCodes.Ldstr, message);
             _il.Emit(OpCodes.Call, typeof(Debug).GetMethod(nameof(Debug.WriteLine), new[] { typeof(string) }));
 
+            DebugLine($"\t\tWrite: {message}");
             return this;
         }
 

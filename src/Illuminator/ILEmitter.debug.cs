@@ -17,8 +17,6 @@ namespace Illuminator
 
         public ILEmitter(string name, ILGenerator il) : this(il) => _name = name;
 
-        public ILEmitter Break() => Emit(OpCodes.Break);
-
         partial void DebugLine(string message) => _debugger.AppendFormat("{0,-50} | {1}\n", message, GetStackSize());
 
         partial void DebugMarkLabel(Label label) => DebugLine($"\tLabel_{_debugLabels.IndexOf(label)}:\t");

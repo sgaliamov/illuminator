@@ -82,6 +82,10 @@ namespace Illuminator
             return this;
         }
 
+        public ILEmitter Break() => Emit(OpCodes.Break);
+
+        public ILEmitter Constrained(Type type) => Emit(OpCodes.Constrained, type);
+
         public ILEmitter Call(MethodInfo methodInfo, params Func<ILEmitter, ILEmitter>[] parameters)
         {
             if (!(methodInfo is MethodBuilder)) {
@@ -117,9 +121,16 @@ namespace Illuminator
                     $"Generic method {methodInfo.DisplayName()} is not initialized.");
             }
 
+            // if the method belongs to Enum type, them it should be called as virtual and with constrained prefix
+            // https://docs.microsoft.com/en-us/dotnet/api/system.reflection.emit.opcodes.constrained
+            //var isEnum = owner.IsAssignableFrom(typeof(Enum));
             var opCode = methodInfo.IsStatic || owner.IsValueType || owner.IsSealed || !methodInfo.IsVirtual // todo: 0. test
                 ? OpCodes.Call
                 : OpCodes.Callvirt;
+
+            //if (isEnum) {
+            //    Constrained(owner); // todo: 0. test
+            //}
 
             return Emit(opCode, methodInfo);
         }

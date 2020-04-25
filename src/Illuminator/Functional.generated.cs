@@ -30,6 +30,7 @@ namespace Illuminator
         public static Func<ILEmitter, ILEmitter> LoadLocal(int localIndex) => il => il.LoadLocal(localIndex);
         public static Func<ILEmitter, ILEmitter> LoadString(string value) => il => il.LoadString(value);
         public static Func<ILEmitter, ILEmitter> LoadAddress(LocalVariableInfo local) => il => il.LoadAddress(local);
+        public static Func<ILEmitter, ILEmitter> LoadCaller(LocalVariableInfo local) => il => il.LoadCaller(local);
         public static Func<ILEmitter, ILEmitter> Store(LocalBuilder local) => il => il.Store(local);
         public static Func<ILEmitter, ILEmitter> SetField(Func<ILEmitter, ILEmitter> loadObject, Func<ILEmitter, ILEmitter> loadValue, FieldInfo field) => il => il.SetField(loadObject, loadValue, field);
         public static Func<ILEmitter, ILEmitter> LoadField(FieldInfo field) => il => il.LoadField(field);

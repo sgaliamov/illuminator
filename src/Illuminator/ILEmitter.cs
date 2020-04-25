@@ -218,6 +218,8 @@ namespace Illuminator
             return Emit(opCode, localIndex);
         }
 
+        public ILEmitter LoadCaller(LocalVariableInfo local) => local.LocalType.IsValueType ? LoadAddress(local) : LoadLocal(local);
+
         public ILEmitter Store(LocalBuilder local)
         {
             switch (local.LocalIndex) {

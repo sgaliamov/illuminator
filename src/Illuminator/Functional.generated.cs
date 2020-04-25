@@ -15,10 +15,12 @@ namespace Illuminator
     public static class Functional
     {
         public static Func<ILEmitter, ILEmitter> MarkLabel(Label label) => il => il.MarkLabel(label);
+        public static Func<ILEmitter, ILEmitter> Constrained(Type type) => il => il.Constrained(type);
         public static Func<ILEmitter, ILEmitter> Call(MethodInfo methodInfo, params Func<ILEmitter, ILEmitter>[] parameters) => il => il.Call(methodInfo, parameters);
         public static Func<ILEmitter, ILEmitter> Call(MethodInfo methodInfo) => il => il.Call(methodInfo);
         public static Func<ILEmitter, ILEmitter> Return(Func<ILEmitter, ILEmitter> action) => il => il.Return(action);
         public static Func<ILEmitter, ILEmitter> Return(int value) => il => il.Return(value);
+        public static Func<ILEmitter, ILEmitter> Return(LocalBuilder local) => il => il.Return(local);
         public static Func<ILEmitter, ILEmitter> Cast(Type objectType) => il => il.Cast(objectType);
         public static Func<ILEmitter, ILEmitter> LoadArgument(ushort argumentIndex) => il => il.LoadArgument(argumentIndex);
         public static Func<ILEmitter, ILEmitter> LoadArgumentAddress(ushort argumentIndex) => il => il.LoadArgumentAddress(argumentIndex);

@@ -15,10 +15,12 @@ namespace Illuminator
     public static class Functional
     {
         public static Func<ILEmitter, ILEmitter> MarkLabel(Label label) => il => il.MarkLabel(label);
+        public static Func<ILEmitter, ILEmitter> Constrained(Type type) => il => il.Constrained(type);
         public static Func<ILEmitter, ILEmitter> Call(MethodInfo methodInfo, params Func<ILEmitter, ILEmitter>[] parameters) => il => il.Call(methodInfo, parameters);
         public static Func<ILEmitter, ILEmitter> Call(MethodInfo methodInfo) => il => il.Call(methodInfo);
         public static Func<ILEmitter, ILEmitter> Return(Func<ILEmitter, ILEmitter> action) => il => il.Return(action);
         public static Func<ILEmitter, ILEmitter> Return(int value) => il => il.Return(value);
+        public static Func<ILEmitter, ILEmitter> Return(LocalBuilder local) => il => il.Return(local);
         public static Func<ILEmitter, ILEmitter> Cast(Type objectType) => il => il.Cast(objectType);
         public static Func<ILEmitter, ILEmitter> LoadArgument(ushort argumentIndex) => il => il.LoadArgument(argumentIndex);
         public static Func<ILEmitter, ILEmitter> LoadArgumentAddress(ushort argumentIndex) => il => il.LoadArgumentAddress(argumentIndex);
@@ -28,6 +30,7 @@ namespace Illuminator
         public static Func<ILEmitter, ILEmitter> LoadLocal(int localIndex) => il => il.LoadLocal(localIndex);
         public static Func<ILEmitter, ILEmitter> LoadString(string value) => il => il.LoadString(value);
         public static Func<ILEmitter, ILEmitter> LoadAddress(LocalVariableInfo local) => il => il.LoadAddress(local);
+        public static Func<ILEmitter, ILEmitter> LoadCaller(LocalVariableInfo local) => il => il.LoadCaller(local);
         public static Func<ILEmitter, ILEmitter> Store(LocalBuilder local) => il => il.Store(local);
         public static Func<ILEmitter, ILEmitter> SetField(Func<ILEmitter, ILEmitter> loadObject, Func<ILEmitter, ILEmitter> loadValue, FieldInfo field) => il => il.SetField(loadObject, loadValue, field);
         public static Func<ILEmitter, ILEmitter> LoadField(FieldInfo field) => il => il.LoadField(field);

@@ -393,6 +393,8 @@ namespace Illuminator
             return this;
         }
 
+        public ILEmitter Pop() => Emit(OpCodes.Pop);
+
         private ILEmitter Branch(OpCode opCode, Label label)
         {
             if (opCode.FlowControl != FlowControl.Branch

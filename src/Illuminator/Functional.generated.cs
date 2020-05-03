@@ -45,7 +45,7 @@ namespace Illuminator
         public static Func<ILEmitter, ILEmitter> LoadNull() => il => il.LoadNull();
         public static Func<ILEmitter, ILEmitter> LoadString(string value) => il => il.LoadString(value);
         public static Func<ILEmitter, ILEmitter> MarkLabel(Label label) => il => il.MarkLabel(label);
-        public static Func<ILEmitter, ILEmitter> New(ConstructorInfo constructor) => il => il.New(constructor);
+        public static Func<ILEmitter, ILEmitter> New(ConstructorInfo constructor, params Func<ILEmitter, ILEmitter>[] parameters) => il => il.New(constructor, parameters);
         public static Func<ILEmitter, ILEmitter> Not() => il => il.Not();
         public static Func<ILEmitter, ILEmitter> Or(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b) => il => il.Or(a, b);
         public static Func<ILEmitter, ILEmitter> Pop() => il => il.Pop();
@@ -57,7 +57,7 @@ namespace Illuminator
         public static Func<ILEmitter, ILEmitter> ShiftLeft(Func<ILEmitter, ILEmitter> value, Func<ILEmitter, ILEmitter> numberOfBits) => il => il.ShiftLeft(value, numberOfBits);
         public static Func<ILEmitter, ILEmitter> Store(LocalBuilder local) => il => il.Store(local);
         public static Func<ILEmitter, ILEmitter> Sub(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b) => il => il.Sub(a, b);
-        public static Func<ILEmitter, ILEmitter> Throw() => il => il.Throw();
+        public static Func<ILEmitter, ILEmitter> Throw(Func<ILEmitter, ILEmitter> value) => il => il.Throw(value);
         public static Func<ILEmitter, ILEmitter> Xor(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b) => il => il.Xor(a, b);
     }
 }

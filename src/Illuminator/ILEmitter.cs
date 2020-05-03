@@ -262,7 +262,14 @@ namespace Illuminator
 
         public ILEmitter LoadFieldAddress(FieldInfo field) => Emit(OpCodes.Ldflda, field);
 
-        public ILEmitter New(ConstructorInfo constructor) => Emit(OpCodes.Newobj, constructor);
+        public ILEmitter New(ConstructorInfo constructor, params Func<ILEmitter, ILEmitter>[] parameters)
+        {
+            foreach (var parameter in parameters) {
+                parameter(this);
+            }
+
+            return Emit(OpCodes.Newobj, constructor);
+        }
 
         // todo: 3. helper to generate constructors
         public ILEmitter Call(ConstructorInfo constructor) => Emit(OpCodes.Call, constructor);
@@ -327,7 +334,7 @@ namespace Illuminator
             return Emit(OpCodes.Add);
         }
 
-        public ILEmitter Throw() => Emit(OpCodes.Throw);
+        public ILEmitter Throw(Func<ILEmitter, ILEmitter> value) => value(this).Emit(OpCodes.Throw);
 
         public ILEmitter GoTo(Label label) => Branch(OpCodes.Br, label);
 

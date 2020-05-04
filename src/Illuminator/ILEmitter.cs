@@ -82,7 +82,7 @@ namespace Illuminator
             return this;
         }
 
-        public ILEmitter Break() => Emit(OpCodes.Break);      
+        public ILEmitter Break() => Emit(OpCodes.Break);
 
         public ILEmitter Return() => Emit(OpCodes.Ret);
 
@@ -339,9 +339,11 @@ namespace Illuminator
 
         public ILEmitter GoTo(Label label) => Branch(OpCodes.Br, label);
 
-        public ILEmitter GoTo(out Label label) => DefineLabel(out label).Branch(OpCodes.Br_S, label);
+        public ILEmitter GoTo(out Label label) => DefineLabel(out label).Branch(OpCodes.Br, label);
 
-        public ILEmitter Greater(ILEmitterFunc a, ILEmitterFunc b, Label label)
+        public ILEmitter GoTo_S(out Label label) => DefineLabel(out label).Branch(OpCodes.Br_S, label);
+
+        public ILEmitter Greater_S(ILEmitterFunc a, ILEmitterFunc b, Label label)
         {
             a(this);
             b(this);
@@ -349,7 +351,7 @@ namespace Illuminator
             return Branch(OpCodes.Bgt_S, label);
         }
 
-        public ILEmitter LessOrEqual(ILEmitterFunc a, ILEmitterFunc b, Label label)
+        public ILEmitter LessOrEqual_S(ILEmitterFunc a, ILEmitterFunc b, Label label)
         {
             a(this);
             b(this);
@@ -374,6 +376,8 @@ namespace Illuminator
         public ILEmitter IfTrue_S(Label label) => Branch(OpCodes.Brtrue_S, label);
 
         public ILEmitter IfTrue(Label label) => Branch(OpCodes.Brtrue, label);
+
+        public ILEmitter IfTrue(out Label label) => Branch(OpCodes.Brtrue, out label);
 
         // todo: 1. smart branching?
         public ILEmitter IfFalse_S(ILEmitterFunc action, out Label label)

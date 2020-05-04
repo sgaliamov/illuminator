@@ -28,13 +28,13 @@ namespace Illuminator
         public static ILEmitterFunc Execute(bool condition, params ILEmitterFunc[] actions) => il => il.Execute(condition, actions);
         public static ILEmitterFunc Execute(params ILEmitterFunc[] actions) => il => il.Execute(actions);
         public static ILEmitterFunc GoTo(Label label) => il => il.GoTo(label);
-        public static ILEmitterFunc Greater(ILEmitterFunc a, ILEmitterFunc b, Label label) => il => il.Greater(a, b, label);
+        public static ILEmitterFunc Greater_S(ILEmitterFunc a, ILEmitterFunc b, Label label) => il => il.Greater_S(a, b, label);
         public static ILEmitterFunc IfFalse(Label label) => il => il.IfFalse(label);
         public static ILEmitterFunc IfFalse_S(Label label) => il => il.IfFalse_S(label);
         public static ILEmitterFunc IfTrue(Label label) => il => il.IfTrue(label);
         public static ILEmitterFunc IfTrue_S(ILEmitterFunc action, Label label) => il => il.IfTrue_S(action, label);
         public static ILEmitterFunc IfTrue_S(Label label) => il => il.IfTrue_S(label);
-        public static ILEmitterFunc LessOrEqual(ILEmitterFunc a, ILEmitterFunc b, Label label) => il => il.LessOrEqual(a, b, label);
+        public static ILEmitterFunc LessOrEqual_S(ILEmitterFunc a, ILEmitterFunc b, Label label) => il => il.LessOrEqual_S(a, b, label);
         public static ILEmitterFunc LoadAddress(LocalVariableInfo local) => il => il.LoadAddress(local);
         public static ILEmitterFunc LoadArgument(ushort argumentIndex) => il => il.LoadArgument(argumentIndex);
         public static ILEmitterFunc LoadArgumentAddress(ushort argumentIndex) => il => il.LoadArgumentAddress(argumentIndex);

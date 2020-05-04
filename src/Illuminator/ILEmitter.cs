@@ -82,58 +82,7 @@ namespace Illuminator
             return this;
         }
 
-        public ILEmitter Break() => Emit(OpCodes.Break);
-
-        public ILEmitter Constrained(Type type) => Emit(OpCodes.Constrained, type);
-
-        public ILEmitter Call(MethodInfo methodInfo, params ILEmitterFunc[] parameters)
-        {
-            if (!(methodInfo is MethodBuilder)) {
-                var methodParametesLenght = methodInfo.GetParameters().Length;
-
-                if ((methodInfo.IsStatic && methodParametesLenght != parameters.Length)
-                    || (!methodInfo.IsStatic && methodParametesLenght != parameters.Length - 1)) {
-                    throw new ArgumentException($"Amount of parameters does not match method {methodInfo} signature.");
-                }
-            }
-
-            foreach (var parameter in parameters) {
-                parameter(this);
-            }
-
-            return Call(methodInfo);
-        }
-
-        public ILEmitter Call(MethodInfo methodInfo)
-        {
-            var owner = methodInfo.DeclaringType;
-            if (owner == typeof(ValueType)) {
-                owner = methodInfo.ReflectedType; // todo: 0. test
-            }
-
-            if (owner == null) {
-                throw new InvalidOperationException(
-                    $"It's not expected that {methodInfo.DisplayName()} doesn't have a declaring type.");
-            }
-
-            if (methodInfo.IsGenericMethodDefinition) {
-                throw new InvalidOperationException(
-                    $"Generic method {methodInfo.DisplayName()} is not initialized.");
-            }
-
-            // if the method belongs to Enum type, them it should be called as virtual and with constrained prefix
-            // https://docs.microsoft.com/en-us/dotnet/api/system.reflection.emit.opcodes.constrained
-            //var isEnum = owner.IsAssignableFrom(typeof(Enum));
-            var opCode = methodInfo.IsStatic || owner.IsValueType || owner.IsSealed || !methodInfo.IsVirtual // todo: 0. test
-                ? OpCodes.Call
-                : OpCodes.Callvirt;
-
-            //if (isEnum) {
-            //    Constrained(owner); // todo: 0. test
-            //}
-
-            return Emit(opCode, methodInfo);
-        }
+        public ILEmitter Break() => Emit(OpCodes.Break);      
 
         public ILEmitter Return() => Emit(OpCodes.Ret);
 
@@ -218,8 +167,6 @@ namespace Illuminator
             return Emit(opCode, localIndex);
         }
 
-        public ILEmitter LoadCaller(LocalVariableInfo local) => local.LocalType.IsValueType ? LoadAddress(local) : LoadLocal(local);
-
         public ILEmitter Store(LocalBuilder local)
         {
             switch (local.LocalIndex) {
@@ -269,6 +216,60 @@ namespace Illuminator
             }
 
             return Emit(OpCodes.Newobj, constructor);
+        }
+
+        // todo: 3. make Constrained when method is virtual and caller is value type
+        public ILEmitter LoadCaller(LocalVariableInfo local) => local.LocalType.IsValueType ? LoadAddress(local) : LoadLocal(local);
+
+        public ILEmitter Constrained(Type type) => Emit(OpCodes.Constrained, type);
+
+        public ILEmitter Call(MethodInfo methodInfo, params ILEmitterFunc[] parameters)
+        {
+            if (!(methodInfo is MethodBuilder)) {
+                var methodParametesLenght = methodInfo.GetParameters().Length;
+
+                if ((methodInfo.IsStatic && methodParametesLenght != parameters.Length)
+                    || (!methodInfo.IsStatic && methodParametesLenght != parameters.Length - 1)) {
+                    throw new ArgumentException($"Amount of parameters does not match method {methodInfo} signature.");
+                }
+            }
+
+            foreach (var parameter in parameters) {
+                parameter(this);
+            }
+
+            return Call(methodInfo);
+        }
+
+        public ILEmitter Call(MethodInfo methodInfo)
+        {
+            var owner = methodInfo.DeclaringType;
+            if (owner == typeof(ValueType)) {
+                owner = methodInfo.ReflectedType; // todo: 0. test
+            }
+
+            if (owner == null) {
+                throw new InvalidOperationException(
+                    $"It's not expected that {methodInfo.DisplayName()} doesn't have a declaring type.");
+            }
+
+            if (methodInfo.IsGenericMethodDefinition) {
+                throw new InvalidOperationException(
+                    $"Generic method {methodInfo.DisplayName()} is not initialized.");
+            }
+
+            // if the method belongs to Enum type, them it should be called as virtual and with constrained prefix
+            // https://docs.microsoft.com/en-us/dotnet/api/system.reflection.emit.opcodes.constrained
+            //var isEnum = owner.IsAssignableFrom(typeof(Enum));
+            var opCode = methodInfo.IsStatic || owner.IsValueType || owner.IsSealed || !methodInfo.IsVirtual // todo: 0. test
+                ? OpCodes.Call
+                : OpCodes.Callvirt;
+
+            //if (isEnum) {
+            //    Constrained(owner); // todo: 0. test
+            //}
+
+            return Emit(opCode, methodInfo);
         }
 
         // todo: 3. helper to generate constructors
@@ -398,6 +399,8 @@ namespace Illuminator
 
             return IfNotEqual_Un_S(out label);
         }
+
+        public ILEmitter Execute(bool condition, params ILEmitterFunc[] actions) => condition ? Execute(actions) : this;
 
         public ILEmitter Execute(params ILEmitterFunc[] actions)
         {

@@ -25,6 +25,7 @@ namespace Illuminator
         public static ILEmitterFunc Cast(Type objectType) => il => il.Cast(objectType);
         public static ILEmitterFunc Constrained(Type type) => il => il.Constrained(type);
         public static ILEmitterFunc EndExceptionBlock() => il => il.EndExceptionBlock();
+        public static ILEmitterFunc Execute(bool condition, params ILEmitterFunc[] actions) => il => il.Execute(condition, actions);
         public static ILEmitterFunc Execute(params ILEmitterFunc[] actions) => il => il.Execute(actions);
         public static ILEmitterFunc GoTo(Label label) => il => il.GoTo(label);
         public static ILEmitterFunc Greater(ILEmitterFunc a, ILEmitterFunc b, Label label) => il => il.Greater(a, b, label);

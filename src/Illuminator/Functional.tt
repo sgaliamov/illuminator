@@ -47,7 +47,7 @@ namespace Illuminator
 
         var args = string.Join(", ", items);
 #>
-        public static Func<ILEmitter, ILEmitter> <#= name #>(<#= parameters #>) => il => il.<#= name #>(<#= args #>);
+        public static ILEmitterFunc <#= name #>(<#= parameters #>) => il => il.<#= name #>(<#= args #>);
 <#
     }
 #>

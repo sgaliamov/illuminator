@@ -362,7 +362,15 @@ namespace Illuminator
             return IfTrue_S(out label);
         }
 
+        public ILEmitter IfTrue_S(ILEmitterFunc action, Label label)
+        {
+            action(this);
+            return IfTrue_S(label);
+        }
+
         public ILEmitter IfTrue_S(out Label label) => Branch(OpCodes.Brtrue_S, out label);
+
+        public ILEmitter IfTrue_S(Label label) => Branch(OpCodes.Brtrue_S, label);
 
         public ILEmitter IfTrue(Label label) => Branch(OpCodes.Brtrue, label);
 

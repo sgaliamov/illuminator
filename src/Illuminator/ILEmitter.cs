@@ -86,7 +86,7 @@ namespace Illuminator
 
         public ILEmitter Constrained(Type type) => Emit(OpCodes.Constrained, type);
 
-        public ILEmitter Call(MethodInfo methodInfo, params Func<ILEmitter, ILEmitter>[] parameters)
+        public ILEmitter Call(MethodInfo methodInfo, params ILEmitterFunc[] parameters)
         {
             if (!(methodInfo is MethodBuilder)) {
                 var methodParametesLenght = methodInfo.GetParameters().Length;
@@ -137,7 +137,7 @@ namespace Illuminator
 
         public ILEmitter Return() => Emit(OpCodes.Ret);
 
-        public ILEmitter Return(Func<ILEmitter, ILEmitter> action) => action(this).Emit(OpCodes.Ret);
+        public ILEmitter Return(ILEmitterFunc action) => action(this).Emit(OpCodes.Ret);
 
         public ILEmitter Return(int value) => LoadInteger(value).Return();
 
@@ -250,7 +250,7 @@ namespace Illuminator
             return scope;
         }
 
-        public ILEmitter SetField(Func<ILEmitter, ILEmitter> loadObject, Func<ILEmitter, ILEmitter> loadValue, FieldInfo field)
+        public ILEmitter SetField(ILEmitterFunc loadObject, ILEmitterFunc loadValue, FieldInfo field)
         {
             loadObject(this);
             loadValue(this);
@@ -262,7 +262,14 @@ namespace Illuminator
 
         public ILEmitter LoadFieldAddress(FieldInfo field) => Emit(OpCodes.Ldflda, field);
 
-        public ILEmitter New(ConstructorInfo constructor) => Emit(OpCodes.Newobj, constructor);
+        public ILEmitter New(ConstructorInfo constructor, params ILEmitterFunc[] parameters)
+        {
+            foreach (var parameter in parameters) {
+                parameter(this);
+            }
+
+            return Emit(OpCodes.Newobj, constructor);
+        }
 
         // todo: 3. helper to generate constructors
         public ILEmitter Call(ConstructorInfo constructor) => Emit(OpCodes.Call, constructor);
@@ -271,7 +278,7 @@ namespace Illuminator
 
         public ILEmitter Not() => Emit(OpCodes.Not);
 
-        public ILEmitter AreSame(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b)
+        public ILEmitter AreSame(ILEmitterFunc a, ILEmitterFunc b)
         {
             // todo: 3. verify stack and types of variables
             a(this);
@@ -280,9 +287,9 @@ namespace Illuminator
             return Emit(OpCodes.Ceq);
         }
 
-        public ILEmitter AreSame(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b, out LocalBuilder local) => AreSame(a, b).Store(typeof(int), out local);
+        public ILEmitter AreSame(ILEmitterFunc a, ILEmitterFunc b, out LocalBuilder local) => AreSame(a, b).Store(typeof(int), out local);
 
-        public ILEmitter ShiftLeft(Func<ILEmitter, ILEmitter> value, Func<ILEmitter, ILEmitter> numberOfBits)
+        public ILEmitter ShiftLeft(ILEmitterFunc value, ILEmitterFunc numberOfBits)
         {
             // todo: 3. verify stack and types of variables
             value(this);
@@ -291,7 +298,7 @@ namespace Illuminator
             return Emit(OpCodes.Shl);
         }
 
-        public ILEmitter Or(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b)
+        public ILEmitter Or(ILEmitterFunc a, ILEmitterFunc b)
         {
             // todo: 3. verify stack and types of variables
             a(this);
@@ -300,7 +307,7 @@ namespace Illuminator
             return Emit(OpCodes.Or);
         }
 
-        public ILEmitter Xor(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b)
+        public ILEmitter Xor(ILEmitterFunc a, ILEmitterFunc b)
         {
             // todo: 3. verify stack and types of variables
             a(this);
@@ -309,7 +316,7 @@ namespace Illuminator
             return Emit(OpCodes.Xor);
         }
 
-        public ILEmitter Sub(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b)
+        public ILEmitter Sub(ILEmitterFunc a, ILEmitterFunc b)
         {
             // todo: 3. verify stack and types of variables
             a(this);
@@ -318,7 +325,7 @@ namespace Illuminator
             return Emit(OpCodes.Sub);
         }
 
-        public ILEmitter Add(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b)
+        public ILEmitter Add(ILEmitterFunc a, ILEmitterFunc b)
         {
             // todo: 3. verify stack and types of variables
             a(this);
@@ -327,13 +334,13 @@ namespace Illuminator
             return Emit(OpCodes.Add);
         }
 
-        public ILEmitter Throw() => Emit(OpCodes.Throw);
+        public ILEmitter Throw(ILEmitterFunc exception) => exception(this).Emit(OpCodes.Throw);
 
         public ILEmitter GoTo(Label label) => Branch(OpCodes.Br, label);
 
         public ILEmitter GoTo(out Label label) => DefineLabel(out label).Branch(OpCodes.Br_S, label);
 
-        public ILEmitter Greater(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b, Label label)
+        public ILEmitter Greater(ILEmitterFunc a, ILEmitterFunc b, Label label)
         {
             a(this);
             b(this);
@@ -341,7 +348,7 @@ namespace Illuminator
             return Branch(OpCodes.Bgt_S, label);
         }
 
-        public ILEmitter LessOrEqual(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b, Label label)
+        public ILEmitter LessOrEqual(ILEmitterFunc a, ILEmitterFunc b, Label label)
         {
             a(this);
             b(this);
@@ -349,7 +356,7 @@ namespace Illuminator
             return Branch(OpCodes.Ble_S, label);
         }
 
-        public ILEmitter IfTrue_S(Func<ILEmitter, ILEmitter> action, out Label label)
+        public ILEmitter IfTrue_S(ILEmitterFunc action, out Label label)
         {
             action(this);
             return IfTrue_S(out label);
@@ -360,7 +367,7 @@ namespace Illuminator
         public ILEmitter IfTrue(Label label) => Branch(OpCodes.Brtrue, label);
 
         // todo: 1. smart branching?
-        public ILEmitter IfFalse_S(Func<ILEmitter, ILEmitter> action, out Label label)
+        public ILEmitter IfFalse_S(ILEmitterFunc action, out Label label)
         {
             action(this);
             return IfFalse_S(out label);
@@ -376,7 +383,7 @@ namespace Illuminator
 
         public ILEmitter IfNotEqual_Un_S(out Label label) => Branch(OpCodes.Bne_Un_S, out label);
 
-        public ILEmitter IfNotEqual_Un_S(Func<ILEmitter, ILEmitter> a, Func<ILEmitter, ILEmitter> b, out Label label)
+        public ILEmitter IfNotEqual_Un_S(ILEmitterFunc a, ILEmitterFunc b, out Label label)
         {
             a(this);
             b(this);
@@ -384,7 +391,7 @@ namespace Illuminator
             return IfNotEqual_Un_S(out label);
         }
 
-        public ILEmitter Execute(params Func<ILEmitter, ILEmitter>[] actions)
+        public ILEmitter Execute(params ILEmitterFunc[] actions)
         {
             foreach (var action in actions) {
                 action(this);
@@ -392,6 +399,8 @@ namespace Illuminator
 
             return this;
         }
+
+        public ILEmitter Pop() => Emit(OpCodes.Pop);
 
         private ILEmitter Branch(OpCode opCode, Label label)
         {

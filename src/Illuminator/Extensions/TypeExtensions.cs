@@ -17,7 +17,7 @@ namespace Illuminator.Extensions
             || ReferenceEquals(type, typeof(object))
             || ReferenceEquals(type, typeof(decimal));
 
-        public static bool ImplementsGeneric(this Type type, Type generic) => type.FindGenericInterface(generic) != null;
+        public static bool ImplementsGenericInterface(this Type type, Type generic) => type.FindGenericInterface(generic) != null;
 
         public static Type FindGenericInterface(this Type type, Type generic)
         {

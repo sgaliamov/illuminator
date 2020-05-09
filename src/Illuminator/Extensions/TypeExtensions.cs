@@ -14,6 +14,7 @@ namespace Illuminator.Extensions
             type.IsPrimitive
             || type.IsEnum
             || ReferenceEquals(type, typeof(string))
+            || ReferenceEquals(type, typeof(object))
             || ReferenceEquals(type, typeof(decimal));
 
         public static bool ImplementsGeneric(this Type type, Type generic) => type.FindGenericInterface(generic) != null;

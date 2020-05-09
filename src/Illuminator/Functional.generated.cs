@@ -49,6 +49,7 @@ namespace Illuminator
         public static ILEmitterFunc LoadString(string value) => il => il.LoadString(value);
         public static ILEmitterFunc MarkLabel(Label label) => il => il.MarkLabel(label);
         public static ILEmitterFunc New(ConstructorInfo constructor, params ILEmitterFunc[] parameters) => il => il.New(constructor, parameters);
+        public static ILEmitterFunc Nop() => il => il.Nop();
         public static ILEmitterFunc Not() => il => il.Not();
         public static ILEmitterFunc Or(ILEmitterFunc a, ILEmitterFunc b) => il => il.Or(a, b);
         public static ILEmitterFunc Pop() => il => il.Pop();

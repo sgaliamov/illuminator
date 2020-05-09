@@ -417,6 +417,8 @@ namespace Illuminator
 
         public ILEmitter Pop() => Emit(OpCodes.Pop);
 
+        public ILEmitter Nop() => Emit(OpCodes.Nop);
+
         private ILEmitter Branch(OpCode opCode, Label label)
         {
             if (opCode.FlowControl != FlowControl.Branch

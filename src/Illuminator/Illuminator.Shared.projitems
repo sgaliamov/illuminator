@@ -9,6 +9,7 @@
     <Import_RootNamespace>Illuminator.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Functional.generated.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ILEmitter.cs" />
     <Compile Condition="'$(Configuration)'=='Debug'" Include="$(MSBuildThisFileDirectory)ILEmitter.debug.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions/MemberInfoExtensions.cs" />
@@ -17,5 +18,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions/ModuleBuilderExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions/TypeBuilderExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions/TypeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ILEmitterFunc.cs" />
   </ItemGroup>
 </Project>

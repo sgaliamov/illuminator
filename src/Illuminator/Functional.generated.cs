@@ -22,7 +22,8 @@ namespace Illuminator
         public static ILEmitterFunc Call(MethodInfo methodInfo, params ILEmitterFunc[] parameters) => il => il.Call(methodInfo, parameters);
         public static ILEmitterFunc Call(MethodInfo methodInfo) => il => il.Call(methodInfo);
         public static ILEmitterFunc Call(ConstructorInfo constructor) => il => il.Call(constructor);
-        public static ILEmitterFunc Cast(Type objectType) => il => il.Cast(objectType);
+        public static ILEmitterFunc Cast(Type type) => il => il.Cast(type);
+        public static ILEmitterFunc Cast<T>(ILEmitterFunc value) => il => il.Cast<T>(value);
         public static ILEmitterFunc Constrained(Type type) => il => il.Constrained(type);
         public static ILEmitterFunc EndExceptionBlock() => il => il.EndExceptionBlock();
         public static ILEmitterFunc Execute(bool condition, params ILEmitterFunc[] actions) => il => il.Execute(condition, actions);

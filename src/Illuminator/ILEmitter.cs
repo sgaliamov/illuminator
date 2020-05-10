@@ -92,14 +92,15 @@ namespace Illuminator
 
         public ILEmitter Return(LocalBuilder local) => LoadLocal(local).Return();
 
+        public ILEmitter Cast<T>(ILEmitterFunc value) => value(this).Cast(typeof(T));
         // todo: 3. test
-        public ILEmitter Cast(Type objectType) => Type.GetTypeCode(objectType) switch
+        public ILEmitter Cast(Type type) => Type.GetTypeCode(type) switch
         {
             TypeCode.Int64 => Emit(OpCodes.Conv_I8),
             TypeCode.Int32 => Emit(OpCodes.Conv_I4),
-            _ => Emit(objectType.IsValueType
+            _ => Emit(type.IsValueType
                 ? OpCodes.Unbox_Any
-                : OpCodes.Castclass, objectType)
+                : OpCodes.Castclass, type)
         };
 
         public ILEmitter LoadArgument(ushort argumentIndex)

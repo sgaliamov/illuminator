@@ -92,9 +92,9 @@ namespace Illuminator
 
         public ILEmitter Return(LocalBuilder local) => LoadLocal(local).Return();
 
-        public ILEmitter Box() => Emit(OpCodes.Box);
+        public ILEmitter Box(Type type) => Emit(OpCodes.Box, type);
 
-        public ILEmitter Box(ILEmitterFunc value) => value(this).Emit(OpCodes.Box);
+        public ILEmitter Box(ILEmitterFunc value, Type type) => value(this).Box(type);
 
         public ILEmitter Cast<T>(ILEmitterFunc value) => value(this).Cast(typeof(T));
         // todo: 3. test

@@ -18,8 +18,8 @@ namespace Illuminator
         public static ILEmitterFunc AreSame(ILEmitterFunc a, ILEmitterFunc b) => il => il.AreSame(a, b);
         public static ILEmitterFunc BeginExceptionBlock() => il => il.BeginExceptionBlock();
         public static ILEmitterFunc BeginFinallyBlock() => il => il.BeginFinallyBlock();
-        public static ILEmitterFunc Box() => il => il.Box();
-        public static ILEmitterFunc Box(ILEmitterFunc value) => il => il.Box(value);
+        public static ILEmitterFunc Box(Type type) => il => il.Box(type);
+        public static ILEmitterFunc Box(ILEmitterFunc value, Type type) => il => il.Box(value, type);
         public static ILEmitterFunc Break() => il => il.Break();
         public static ILEmitterFunc Call(MethodInfo methodInfo, params ILEmitterFunc[] parameters) => il => il.Call(methodInfo, parameters);
         public static ILEmitterFunc Call(MethodInfo methodInfo) => il => il.Call(methodInfo);

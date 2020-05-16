@@ -92,6 +92,10 @@ namespace Illuminator
 
         public ILEmitter Return(LocalBuilder local) => LoadLocal(local).Return();
 
+        public ILEmitter Box() => Emit(OpCodes.Box);
+
+        public ILEmitter Box(ILEmitterFunc value) => value(this).Emit(OpCodes.Box);
+
         public ILEmitter Cast<T>(ILEmitterFunc value) => value(this).Cast(typeof(T));
         // todo: 3. test
         public ILEmitter Cast(Type type) => Type.GetTypeCode(type) switch
@@ -405,7 +409,7 @@ namespace Illuminator
             return IfNotEqual_Un_S(out label);
         }
 
-        public ILEmitter Execute(bool condition, params ILEmitterFunc[] actions) => condition ? Execute(actions) : this;
+        public ILEmitter ExecuteIf(bool condition, params ILEmitterFunc[] actions) => condition ? Execute(actions) : this;
 
         public ILEmitter Execute(params ILEmitterFunc[] actions)
         {

@@ -18,6 +18,8 @@ namespace Illuminator
         public static ILEmitterFunc AreSame(ILEmitterFunc a, ILEmitterFunc b) => il => il.AreSame(a, b);
         public static ILEmitterFunc BeginExceptionBlock() => il => il.BeginExceptionBlock();
         public static ILEmitterFunc BeginFinallyBlock() => il => il.BeginFinallyBlock();
+        public static ILEmitterFunc Box() => il => il.Box();
+        public static ILEmitterFunc Box(ILEmitterFunc value) => il => il.Box(value);
         public static ILEmitterFunc Break() => il => il.Break();
         public static ILEmitterFunc Call(MethodInfo methodInfo, params ILEmitterFunc[] parameters) => il => il.Call(methodInfo, parameters);
         public static ILEmitterFunc Call(MethodInfo methodInfo) => il => il.Call(methodInfo);
@@ -26,8 +28,8 @@ namespace Illuminator
         public static ILEmitterFunc Cast<T>(ILEmitterFunc value) => il => il.Cast<T>(value);
         public static ILEmitterFunc Constrained(Type type) => il => il.Constrained(type);
         public static ILEmitterFunc EndExceptionBlock() => il => il.EndExceptionBlock();
-        public static ILEmitterFunc Execute(bool condition, params ILEmitterFunc[] actions) => il => il.Execute(condition, actions);
         public static ILEmitterFunc Execute(params ILEmitterFunc[] actions) => il => il.Execute(actions);
+        public static ILEmitterFunc ExecuteIf(bool condition, params ILEmitterFunc[] actions) => il => il.ExecuteIf(condition, actions);
         public static ILEmitterFunc GoTo(Label label) => il => il.GoTo(label);
         public static ILEmitterFunc Greater_S(ILEmitterFunc a, ILEmitterFunc b, Label label) => il => il.Greater_S(a, b, label);
         public static ILEmitterFunc IfFalse(Label label) => il => il.IfFalse(label);

@@ -32,6 +32,10 @@ namespace Illuminator
         public static ILEmitterFunc ExecuteIf(bool condition, params ILEmitterFunc[] actions) => il => il.ExecuteIf(condition, actions);
         public static ILEmitterFunc GoTo(Label label) => il => il.GoTo(label);
         public static ILEmitterFunc Greater_S(ILEmitterFunc a, ILEmitterFunc b, Label label) => il => il.Greater_S(a, b, label);
+        public static ILEmitterFunc If(ILEmitterFunc action, ILEmitterFunc whenTrue, ILEmitterFunc elseAction) => il => il.If(action, whenTrue, elseAction);
+        public static ILEmitterFunc If(ILEmitterFunc action, ILEmitterFunc whenTrue) => il => il.If(action, whenTrue);
+        public static ILEmitterFunc If_S(ILEmitterFunc action, ILEmitterFunc whenTrue, ILEmitterFunc elseAction) => il => il.If_S(action, whenTrue, elseAction);
+        public static ILEmitterFunc If_S(ILEmitterFunc action, ILEmitterFunc whenTrue) => il => il.If_S(action, whenTrue);
         public static ILEmitterFunc IfFalse(Label label) => il => il.IfFalse(label);
         public static ILEmitterFunc IfFalse_S(Label label) => il => il.IfFalse_S(label);
         public static ILEmitterFunc IfTrue(Label label) => il => il.IfTrue(label);

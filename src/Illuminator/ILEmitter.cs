@@ -92,6 +92,10 @@ namespace Illuminator
 
         public ILEmitter Return(LocalBuilder local) => LoadLocal(local).Return();
 
+        public ILEmitter Box(Type type) => Emit(OpCodes.Box, type);
+
+        public ILEmitter Box(ILEmitterFunc value, Type type) => value(this).Box(type);
+
         public ILEmitter Cast<T>(ILEmitterFunc value) => value(this).Cast(typeof(T));
         // todo: 3. test
         public ILEmitter Cast(Type type) => Type.GetTypeCode(type) switch
@@ -360,6 +364,32 @@ namespace Illuminator
             return Branch(OpCodes.Ble_S, label);
         }
 
+        public ILEmitter If_S(ILEmitterFunc action, ILEmitterFunc whenTrue, ILEmitterFunc elseAction) => action(this)
+            .IfFalse_S(out var elseBlock)
+            .Execute(whenTrue)
+            .GoTo_S(out var next)
+            .MarkLabel(elseBlock)
+            .Execute(elseAction)
+            .MarkLabel(next);
+
+        public ILEmitter If_S(ILEmitterFunc action, ILEmitterFunc whenTrue) => action(this)
+            .IfFalse_S(out var exit)
+            .Execute(whenTrue)
+            .MarkLabel(exit);
+
+        public ILEmitter If(ILEmitterFunc action, ILEmitterFunc whenTrue, ILEmitterFunc elseAction) => action(this)
+            .IfFalse(out var elseBlock)
+            .Execute(whenTrue)
+            .GoTo(out var next)
+            .MarkLabel(elseBlock)
+            .Execute(elseAction)
+            .MarkLabel(next);
+
+        public ILEmitter If(ILEmitterFunc action, ILEmitterFunc whenTrue) => action(this)
+            .IfFalse(out var exit)
+            .Execute(whenTrue)
+            .MarkLabel(exit);
+
         public ILEmitter IfTrue_S(ILEmitterFunc action, out Label label)
         {
             action(this);
@@ -405,7 +435,7 @@ namespace Illuminator
             return IfNotEqual_Un_S(out label);
         }
 
-        public ILEmitter Execute(bool condition, params ILEmitterFunc[] actions) => condition ? Execute(actions) : this;
+        public ILEmitter ExecuteIf(bool condition, params ILEmitterFunc[] actions) => condition ? Execute(actions) : this;
 
         public ILEmitter Execute(params ILEmitterFunc[] actions)
         {

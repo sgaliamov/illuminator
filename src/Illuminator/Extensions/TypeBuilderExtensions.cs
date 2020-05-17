@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 
@@ -24,17 +23,5 @@ namespace Illuminator.Extensions
 
             return method;
         }
-
-        public static MethodBuilder DefineStaticMethod(
-            this TypeBuilder staticTypeBuilder,
-            string name,
-            Type returnType,
-            Type[] parameterTypes) =>
-            staticTypeBuilder.DefineMethod(
-                name,
-                MethodAttributes.Public | MethodAttributes.Static | MethodAttributes.Final,
-                CallingConventions.Standard,
-                returnType,
-                parameterTypes);
     }
 }

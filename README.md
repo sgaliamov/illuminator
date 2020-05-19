@@ -13,6 +13,7 @@ Basically, it's yet another wrapper around [`ILGenerator`](https://docs.microsof
 5. Automatic usage of short versions of instructions.
 6. Optimization on `Callvirt` and `Call` usage.
 7. Set of useful helpers.
+8. Functional programming style.
 
 ## Why create another wrapper?
 
@@ -26,4 +27,4 @@ Basically, it's yet another wrapper around [`ILGenerator`](https://docs.microsof
 git submodule add https://github.com/sgaliamov/illuminator.git external/illuminator
 ```
 
-No package for now because it's not production ready.
+No package for now because **it's not production ready**.

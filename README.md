@@ -28,3 +28,23 @@ git submodule add https://github.com/sgaliamov/illuminator.git external/illumina
 ```
 
 No package for now because **it's not production ready**.
+
+C:\Users\sgaliamov\projects\github\dotnet-runtime\src\coreclr\jit\utils.cpp
+C:\Users\sgaliamov\projects\github\dotnet-runtime\src\mono\mono\cil\cil-opcodes.xml
+C:\Users\sgaliamov\projects\github\dotnet-runtime\src\coreclr\vm\interpreter.cpp
+C:\Users\sgaliamov\projects\github\dotnet-runtime\src\mono\mono\mini\interp\transform.c
+C:\Users\sgaliamov\projects\github\dotnet-runtime\src\mono\mono\mini\method-to-ir.c
+
+### Plan
+
+1. Basic wrapper over Emit. No semantic info.
+1. Named functions. Get access to operation size and stack.
+1. Counters in named functions. Collect initial data to do verifications.
+1. Stack verifications. Better validiti.
+1. Branch optimizations. Can calculate distance.
+1. Bacis overloads with ILEmitterFunc depending on input parameters.
+1. Fuctional versions on all named functions.
+1. Try/catch.
+1. Partial applications.
+1. Typed ILEmitterFunc?
+1. Verifications for types of arguments.

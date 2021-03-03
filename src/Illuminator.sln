@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Illuminator.Tests", "Illuminator.Tests\Illuminator.Tests.csproj", "{B3D5C764-A5E2-4A31-BEF6-C669B66D78E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Illuminator.Core", "Illuminator.Core\Illuminator.Core.csproj", "{D06C58ED-C5C5-4EF5-88F1-28B6D2BE4845}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{AD3A6361-1A40-41DD-ABCC-91A368BCA497}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD3A6361-1A40-41DD-ABCC-91A368BCA497}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD3A6361-1A40-41DD-ABCC-91A368BCA497}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3D5C764-A5E2-4A31-BEF6-C669B66D78E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D5C764-A5E2-4A31-BEF6-C669B66D78E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D5C764-A5E2-4A31-BEF6-C669B66D78E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D5C764-A5E2-4A31-BEF6-C669B66D78E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D06C58ED-C5C5-4EF5-88F1-28B6D2BE4845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D06C58ED-C5C5-4EF5-88F1-28B6D2BE4845}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D06C58ED-C5C5-4EF5-88F1-28B6D2BE4845}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D06C58ED-C5C5-4EF5-88F1-28B6D2BE4845}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

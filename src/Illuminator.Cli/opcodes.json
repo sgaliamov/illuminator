@@ -1,0 +1,11 @@
+﻿[
+  {
+    "name": "Add",
+    "description": "Adds two values and pushes the result onto the evaluation stack."
+  },
+  {
+    "name": "Beq",
+    "description": "Transfers control to a target instruction if two values are equal.",
+    "args": ["Label"] 
+  }
+]

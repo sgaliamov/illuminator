@@ -6,13 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="opcodes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Program.fs" />
   </ItemGroup>
+
+  <ItemGroup />
 
   <ItemGroup>
     <PackageReference Update="FSharp.Core" Version="5.0.1" />
     <PackageReference Include="Scriban" Version="3.5.0" />
-    <PackageReference Include="System.Reflection.Emit.ILGeneration" Version="4.7.0" />
+    <PackageReference Include="FSharp.Data" Version="3.3.3" />
   </ItemGroup>
 
 </Project>

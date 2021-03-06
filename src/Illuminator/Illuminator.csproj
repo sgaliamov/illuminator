@@ -3,30 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(Configuration)'!='Debug'">
-    <Compile Remove="ILEmitter.debug.cs" />
-  </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Functional.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Functional.generated.cs</LastGenOutput>
-    </None>
-    <Compile Update="Functional.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Functional.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+    <PackageReference Include="System.Reflection.Emit.ILGeneration" Version="4.7.0" />
   </ItemGroup>
 
 </Project>

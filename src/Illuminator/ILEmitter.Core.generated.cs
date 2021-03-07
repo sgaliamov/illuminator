@@ -6,6 +6,7 @@
 
 */
 
+using System.Reflection;
 using System.Reflection.Emit;
 
 namespace Illuminator
@@ -101,7 +102,7 @@ namespace Illuminator
         public ILEmitter Beq(Label label)
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Beq, label);
             
@@ -117,7 +118,7 @@ namespace Illuminator
         public ILEmitter Beq_S()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Beq_S);
             
@@ -133,7 +134,7 @@ namespace Illuminator
         public ILEmitter Bge()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Bge);
             
@@ -149,7 +150,7 @@ namespace Illuminator
         public ILEmitter Bge_S()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Bge_S);
             
@@ -165,7 +166,7 @@ namespace Illuminator
         public ILEmitter Bge_Un()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Bge_Un);
             
@@ -181,7 +182,7 @@ namespace Illuminator
         public ILEmitter Bge_Un_S()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Bge_Un_S);
             
@@ -197,7 +198,7 @@ namespace Illuminator
         public ILEmitter Bgt()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Bgt);
             
@@ -213,7 +214,7 @@ namespace Illuminator
         public ILEmitter Bgt_S()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Bgt_S);
             
@@ -229,7 +230,7 @@ namespace Illuminator
         public ILEmitter Bgt_Un()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Bgt_Un);
             
@@ -245,7 +246,7 @@ namespace Illuminator
         public ILEmitter Bgt_Un_S()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Bgt_Un_S);
             
@@ -261,7 +262,7 @@ namespace Illuminator
         public ILEmitter Ble()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Ble);
             
@@ -277,7 +278,7 @@ namespace Illuminator
         public ILEmitter Ble_S()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Ble_S);
             
@@ -293,7 +294,7 @@ namespace Illuminator
         public ILEmitter Ble_Un()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Ble_Un);
             
@@ -309,7 +310,7 @@ namespace Illuminator
         public ILEmitter Ble_Un_S()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Ble_Un_S);
             
@@ -325,7 +326,7 @@ namespace Illuminator
         public ILEmitter Blt()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Blt);
             
@@ -341,7 +342,7 @@ namespace Illuminator
         public ILEmitter Blt_S()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Blt_S);
             
@@ -357,7 +358,7 @@ namespace Illuminator
         public ILEmitter Blt_Un()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Blt_Un);
             
@@ -373,7 +374,7 @@ namespace Illuminator
         public ILEmitter Blt_Un_S()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Blt_Un_S);
             
@@ -389,7 +390,7 @@ namespace Illuminator
         public ILEmitter Bne_Un()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Bne_Un);
             
@@ -405,7 +406,7 @@ namespace Illuminator
         public ILEmitter Bne_Un_S()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Bne_Un_S);
             
@@ -437,7 +438,7 @@ namespace Illuminator
         public ILEmitter Br()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Br);
             
@@ -453,7 +454,7 @@ namespace Illuminator
         public ILEmitter Br_S()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Br_S);
             
@@ -469,7 +470,7 @@ namespace Illuminator
         public ILEmitter Break()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Break);
             
@@ -485,7 +486,7 @@ namespace Illuminator
         public ILEmitter Brfalse()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Brfalse);
             
@@ -501,7 +502,7 @@ namespace Illuminator
         public ILEmitter Brfalse_S()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Brfalse_S);
             
@@ -517,7 +518,7 @@ namespace Illuminator
         public ILEmitter Brtrue()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Brtrue);
             
@@ -533,57 +534,9 @@ namespace Illuminator
         public ILEmitter Brtrue_S()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Brtrue_S);
-            
-            return this;
-        }
-
-        /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Varpop.
-        ///     StackBehaviourPush: Varpush.
-        /// </summary>
-        public ILEmitter Call()
-        {
-            Pop(-1);
-            Push(-1);
-            
-            _il.Emit(OpCodes.Call);
-            
-            return this;
-        }
-
-        /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Varpop.
-        ///     StackBehaviourPush: Varpush.
-        /// </summary>
-        public ILEmitter Calli()
-        {
-            Pop(-1);
-            Push(-1);
-            
-            _il.Emit(OpCodes.Calli);
-            
-            return this;
-        }
-
-        /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Varpop.
-        ///     StackBehaviourPush: Varpush.
-        /// </summary>
-        public ILEmitter Callvirt()
-        {
-            Pop(-1);
-            Push(-1);
-            
-            _il.Emit(OpCodes.Callvirt);
             
             return this;
         }
@@ -709,7 +662,7 @@ namespace Illuminator
         public ILEmitter Constrained()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Constrained);
             
@@ -1253,7 +1206,7 @@ namespace Illuminator
         public ILEmitter Cpblk()
         {
             Pop(3);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Cpblk);
             
@@ -1269,7 +1222,7 @@ namespace Illuminator
         public ILEmitter Cpobj()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Cpobj);
             
@@ -1333,7 +1286,7 @@ namespace Illuminator
         public ILEmitter Endfilter()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Endfilter);
             
@@ -1349,7 +1302,7 @@ namespace Illuminator
         public ILEmitter Endfinally()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Endfinally);
             
@@ -1365,7 +1318,7 @@ namespace Illuminator
         public ILEmitter Initblk()
         {
             Pop(3);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Initblk);
             
@@ -1381,7 +1334,7 @@ namespace Illuminator
         public ILEmitter Initobj()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Initobj);
             
@@ -1413,7 +1366,7 @@ namespace Illuminator
         public ILEmitter Jmp()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Jmp);
             
@@ -2485,7 +2438,7 @@ namespace Illuminator
         public ILEmitter Leave()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Leave);
             
@@ -2501,7 +2454,7 @@ namespace Illuminator
         public ILEmitter Leave_S()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Leave_S);
             
@@ -2623,29 +2576,13 @@ namespace Illuminator
         /// <summary>
         ///     TBD
         ///     Size: 1.
-        ///     StackBehaviourPop: Varpop.
-        ///     StackBehaviourPush: Pushref.
-        /// </summary>
-        public ILEmitter Newobj()
-        {
-            Pop(-1);
-            Push(1);
-            
-            _il.Emit(OpCodes.Newobj);
-            
-            return this;
-        }
-
-        /// <summary>
-        ///     TBD
-        ///     Size: 1.
         ///     StackBehaviourPop: Pop0.
         ///     StackBehaviourPush: Push0.
         /// </summary>
         public ILEmitter Nop()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Nop);
             
@@ -2693,7 +2630,7 @@ namespace Illuminator
         public ILEmitter Pop()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Pop);
             
@@ -2709,7 +2646,7 @@ namespace Illuminator
         public ILEmitter Prefix1()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Prefix1);
             
@@ -2725,7 +2662,7 @@ namespace Illuminator
         public ILEmitter Prefix2()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Prefix2);
             
@@ -2741,7 +2678,7 @@ namespace Illuminator
         public ILEmitter Prefix3()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Prefix3);
             
@@ -2757,7 +2694,7 @@ namespace Illuminator
         public ILEmitter Prefix4()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Prefix4);
             
@@ -2773,7 +2710,7 @@ namespace Illuminator
         public ILEmitter Prefix5()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Prefix5);
             
@@ -2789,7 +2726,7 @@ namespace Illuminator
         public ILEmitter Prefix6()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Prefix6);
             
@@ -2805,7 +2742,7 @@ namespace Illuminator
         public ILEmitter Prefix7()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Prefix7);
             
@@ -2821,7 +2758,7 @@ namespace Illuminator
         public ILEmitter Prefixref()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Prefixref);
             
@@ -2837,7 +2774,7 @@ namespace Illuminator
         public ILEmitter Readonly()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Readonly);
             
@@ -2910,22 +2847,6 @@ namespace Illuminator
 
         /// <summary>
         ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Varpop.
-        ///     StackBehaviourPush: Push0.
-        /// </summary>
-        public ILEmitter Ret()
-        {
-            Pop(-1);
-            Push(1);
-            
-            _il.Emit(OpCodes.Ret);
-            
-            return this;
-        }
-
-        /// <summary>
-        ///     TBD
         ///     Size: 2.
         ///     StackBehaviourPop: Pop0.
         ///     StackBehaviourPush: Push0.
@@ -2933,7 +2854,7 @@ namespace Illuminator
         public ILEmitter Rethrow()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Rethrow);
             
@@ -3013,7 +2934,7 @@ namespace Illuminator
         public ILEmitter Starg()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Starg);
             
@@ -3029,7 +2950,7 @@ namespace Illuminator
         public ILEmitter Starg_S()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Starg_S);
             
@@ -3045,7 +2966,7 @@ namespace Illuminator
         public ILEmitter Stelem()
         {
             Pop(3);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stelem);
             
@@ -3061,7 +2982,7 @@ namespace Illuminator
         public ILEmitter Stelem_I()
         {
             Pop(3);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stelem_I);
             
@@ -3077,7 +2998,7 @@ namespace Illuminator
         public ILEmitter Stelem_I1()
         {
             Pop(3);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stelem_I1);
             
@@ -3093,7 +3014,7 @@ namespace Illuminator
         public ILEmitter Stelem_I2()
         {
             Pop(3);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stelem_I2);
             
@@ -3109,7 +3030,7 @@ namespace Illuminator
         public ILEmitter Stelem_I4()
         {
             Pop(3);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stelem_I4);
             
@@ -3125,7 +3046,7 @@ namespace Illuminator
         public ILEmitter Stelem_I8()
         {
             Pop(3);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stelem_I8);
             
@@ -3141,7 +3062,7 @@ namespace Illuminator
         public ILEmitter Stelem_R4()
         {
             Pop(3);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stelem_R4);
             
@@ -3157,7 +3078,7 @@ namespace Illuminator
         public ILEmitter Stelem_R8()
         {
             Pop(3);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stelem_R8);
             
@@ -3173,7 +3094,7 @@ namespace Illuminator
         public ILEmitter Stelem_Ref()
         {
             Pop(3);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stelem_Ref);
             
@@ -3189,7 +3110,7 @@ namespace Illuminator
         public ILEmitter Stfld()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stfld);
             
@@ -3205,7 +3126,7 @@ namespace Illuminator
         public ILEmitter Stind_I()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stind_I);
             
@@ -3221,7 +3142,7 @@ namespace Illuminator
         public ILEmitter Stind_I1()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stind_I1);
             
@@ -3237,7 +3158,7 @@ namespace Illuminator
         public ILEmitter Stind_I2()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stind_I2);
             
@@ -3253,7 +3174,7 @@ namespace Illuminator
         public ILEmitter Stind_I4()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stind_I4);
             
@@ -3269,7 +3190,7 @@ namespace Illuminator
         public ILEmitter Stind_I8()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stind_I8);
             
@@ -3285,7 +3206,7 @@ namespace Illuminator
         public ILEmitter Stind_R4()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stind_R4);
             
@@ -3301,7 +3222,7 @@ namespace Illuminator
         public ILEmitter Stind_R8()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stind_R8);
             
@@ -3317,7 +3238,7 @@ namespace Illuminator
         public ILEmitter Stind_Ref()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stind_Ref);
             
@@ -3333,7 +3254,7 @@ namespace Illuminator
         public ILEmitter Stloc()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stloc);
             
@@ -3349,7 +3270,7 @@ namespace Illuminator
         public ILEmitter Stloc_0()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stloc_0);
             
@@ -3365,7 +3286,7 @@ namespace Illuminator
         public ILEmitter Stloc_1()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stloc_1);
             
@@ -3381,7 +3302,7 @@ namespace Illuminator
         public ILEmitter Stloc_2()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stloc_2);
             
@@ -3397,7 +3318,7 @@ namespace Illuminator
         public ILEmitter Stloc_3()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stloc_3);
             
@@ -3413,7 +3334,7 @@ namespace Illuminator
         public ILEmitter Stloc_S()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stloc_S);
             
@@ -3429,7 +3350,7 @@ namespace Illuminator
         public ILEmitter Stobj()
         {
             Pop(2);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stobj);
             
@@ -3445,7 +3366,7 @@ namespace Illuminator
         public ILEmitter Stsfld()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Stsfld);
             
@@ -3509,7 +3430,7 @@ namespace Illuminator
         public ILEmitter Switch()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Switch);
             
@@ -3525,7 +3446,7 @@ namespace Illuminator
         public ILEmitter Tailcall()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Tailcall);
             
@@ -3541,7 +3462,7 @@ namespace Illuminator
         public ILEmitter Throw()
         {
             Pop(1);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Throw);
             
@@ -3557,7 +3478,7 @@ namespace Illuminator
         public ILEmitter Unaligned()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Unaligned);
             
@@ -3605,7 +3526,7 @@ namespace Illuminator
         public ILEmitter Volatile()
         {
             Pop(0);
-            Push(1);
+            Push(0);
             
             _il.Emit(OpCodes.Volatile);
             

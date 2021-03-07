@@ -38,6 +38,7 @@ C:\Users\sgaliamov\projects\github\dotnet-runtime\src\mono\mono\mini\method-to-i
 ### Plan
 
 1. Stack size for methods.
+1. The EmitCall method is provided for varargs calls. Use the Emit method for normal calls.
 1. Branch optimizations. Can calculate distance.
 1. Bacis overloads with ILEmitterFunc depending on input parameters.
 1. Fuctional versions on all named functions.

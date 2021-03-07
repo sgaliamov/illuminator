@@ -4,6 +4,7 @@ open System
 open System.Reflection
 open System.Reflection.Emit;
 open FSharp.Data
+open System.Collections.Generic
 
 // additional information about op codes.
 type OpCodesInfo = JsonProvider<"./opcodes.json">
@@ -32,6 +33,7 @@ let codeToName (code: string) =
     |> Seq.map upperFirst
     |> (fun parts -> String.Join("", parts))
 
+// stack sizes.
 let stackBehaviourMap =
     [ // pop
       (StackBehaviour.Pop0, 0)
@@ -53,7 +55,6 @@ let stackBehaviourMap =
       (StackBehaviour.Popref_popi_popr4, 3)
       (StackBehaviour.Popref_popi_popr8, 3)
       (StackBehaviour.Popref_popi_popref, 3)
-      (StackBehaviour.Varpop, -1)
       // push
       (StackBehaviour.Push0, 0)
       (StackBehaviour.Push1, 1)
@@ -62,14 +63,17 @@ let stackBehaviourMap =
       (StackBehaviour.Pushi8, 1)
       (StackBehaviour.Pushr4, 1)
       (StackBehaviour.Pushr8, 1)
-      (StackBehaviour.Pushref, 1)
-      (StackBehaviour.Varpush, -1) ]
+      (StackBehaviour.Pushref, 1) ]
     |> Map.ofList
+
+// codes with not standart behaviour.
+let manualCodes = Set.ofList [OpCodes.Call.Name; OpCodes.Calli.Name; OpCodes.Callvirt.Name; OpCodes.Newobj.Name; OpCodes.Ret.Name]
 
 // provides metainformation about codes.
 let getMethods () =
     typeof<OpCodes>.GetFields(BindingFlags.Static ||| BindingFlags.Public ||| BindingFlags.GetField)
     |> Seq.map (fun field -> field.Name, field.GetValue null :?> OpCode )
+    |> Seq.filter (fun (_, code) -> not (manualCodes.Contains code.Name))
     |> Seq.sortBy (fun (name, _) -> name)
     |> Seq.map (fun (name, code) ->
         let hasInfo, info = opCodesInfo.TryGetValue name

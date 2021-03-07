@@ -10,6 +10,7 @@ let template = @"
 
 */
 
+using System.Reflection;
 using System.Reflection.Emit;
 
 namespace Illuminator

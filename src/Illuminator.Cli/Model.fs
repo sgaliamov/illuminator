@@ -55,7 +55,7 @@ let stackBehaviourMap =
       (StackBehaviour.Popref_popi_popref, 3)
       (StackBehaviour.Varpop, -1)
       // push
-      (StackBehaviour.Push0, 1)
+      (StackBehaviour.Push0, 0)
       (StackBehaviour.Push1, 1)
       (StackBehaviour.Push1_push1, 2)
       (StackBehaviour.Pushi, 1)
@@ -63,7 +63,7 @@ let stackBehaviourMap =
       (StackBehaviour.Pushr4, 1)
       (StackBehaviour.Pushr8, 1)
       (StackBehaviour.Pushref, 1)
-      (StackBehaviour.Varpush, -1) ] 
+      (StackBehaviour.Varpush, -1) ]
     |> Map.ofList
 
 // provides metainformation about codes.
@@ -80,5 +80,8 @@ let getMethods () =
             parameters = if hasInfo then info.Args |> Seq.map (fun a -> $"{a} {lowerFirst a}") else Seq.empty
             pops = stackBehaviourMap.[code.StackBehaviourPop]
             pushes = stackBehaviourMap.[code.StackBehaviourPush]
+            size = code.Size
+            pop_behaviour = code.StackBehaviourPop.ToString()
+            push_behaviour = code.StackBehaviourPush.ToString()
         |}
     )

@@ -19,6 +19,9 @@ namespace Illuminator
         {{- for method in methods }}
         /// <summary>
         ///     {{ method.description }}
+        ///     Size: {{ method.size }}.
+        ///     StackBehaviourPop: {{ method.pop_behaviour }}.
+        ///     StackBehaviourPush: {{ method.push_behaviour }}.
         /// </summary>
         public ILEmitter {{ method.name }}({{ method.parameters | array.join "", "" }})
         {

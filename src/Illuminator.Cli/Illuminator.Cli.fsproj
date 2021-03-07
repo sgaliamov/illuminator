@@ -9,6 +9,7 @@
     <Content Include="opcodes.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Compile Include="Shared.fs" />
     <Compile Include="CoreGenerator.fs" />
     <Compile Include="NamedGenerator.fs" />
     <Compile Include="Program.fs" />

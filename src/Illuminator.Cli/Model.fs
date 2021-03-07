@@ -1,9 +1,9 @@
 ﻿module Model
 
 open System
+open System.Reflection
 open System.Reflection.Emit;
 open FSharp.Data
-open System.Reflection
 
 // additional information about op codes.
 type OpCodesInfo = JsonProvider<"./opcodes.json">
@@ -32,6 +32,40 @@ let codeToName (code: string) =
     |> Seq.map upperFirst
     |> (fun parts -> String.Join("", parts))
 
+let stackBehaviourMap =
+    [ // pop
+      (StackBehaviour.Pop0, 0)
+      (StackBehaviour.Pop1, 1)
+      (StackBehaviour.Pop1_pop1, 2)
+      (StackBehaviour.Popi, 1)
+      (StackBehaviour.Popi_pop1, 2)
+      (StackBehaviour.Popi_popi, 2)
+      (StackBehaviour.Popi_popi8, 2)
+      (StackBehaviour.Popi_popi_popi, 3)
+      (StackBehaviour.Popi_popr4, 2)
+      (StackBehaviour.Popi_popr8, 2)
+      (StackBehaviour.Popref, 1)
+      (StackBehaviour.Popref_pop1, 2)
+      (StackBehaviour.Popref_popi, 2)
+      (StackBehaviour.Popref_popi_pop1, 3)
+      (StackBehaviour.Popref_popi_popi, 3)
+      (StackBehaviour.Popref_popi_popi8, 3)
+      (StackBehaviour.Popref_popi_popr4, 3)
+      (StackBehaviour.Popref_popi_popr8, 3)
+      (StackBehaviour.Popref_popi_popref, 3)
+      (StackBehaviour.Varpop, -1)
+      // push
+      (StackBehaviour.Push0, 1)
+      (StackBehaviour.Push1, 1)
+      (StackBehaviour.Push1_push1, 2)
+      (StackBehaviour.Pushi, 1)
+      (StackBehaviour.Pushi8, 1)
+      (StackBehaviour.Pushr4, 1)
+      (StackBehaviour.Pushr8, 1)
+      (StackBehaviour.Pushref, 1)
+      (StackBehaviour.Varpush, -1) ] 
+    |> Map.ofList
+
 // provides metainformation about codes.
 let getMethods () =
     typeof<OpCodes>.GetFields(BindingFlags.Static ||| BindingFlags.Public ||| BindingFlags.GetField)
@@ -44,5 +78,7 @@ let getMethods () =
             description = if hasInfo then info.Description else "TBD"
             arguments = if hasInfo then info.Args |> Seq.map lowerFirst else Seq.empty
             parameters = if hasInfo then info.Args |> Seq.map (fun a -> $"{a} {lowerFirst a}") else Seq.empty
+            pops = stackBehaviourMap.[code.StackBehaviourPop]
+            pushes = stackBehaviourMap.[code.StackBehaviourPush]
         |}
     )

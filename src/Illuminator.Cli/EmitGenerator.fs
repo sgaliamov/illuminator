@@ -82,7 +82,6 @@ let generate () =
         (StackBehaviour.Pushr8, 1)
         (StackBehaviour.Pushref, 1) ]
 
-    
     // codes with not standart behaviour
     let manualCodes = Set.ofList [
         OpCodes.Call.Name
@@ -99,17 +98,14 @@ let generate () =
         |> Seq.sortBy (fun (name, _) -> name)
         |> Seq.map (fun (name, code) ->
             let hasInfo, info = opCodesInfo.TryGetValue name
-            {|
-                arguments = if hasInfo then info.Args |> Seq.map getArgumentName else Seq.empty
-                description = if hasInfo then info.Description else "TBD"
-                name = name
-                parameters = if hasInfo then info.Args |> Seq.map (fun a -> $"{a} {getArgumentName a}") else Seq.empty
-                pop_behaviour = code.StackBehaviourPop.ToString()
-                pops = stackBehaviourMap.[code.StackBehaviourPop]
-                push_behaviour = code.StackBehaviourPush.ToString()
-                pushes = stackBehaviourMap.[code.StackBehaviourPush]
-            |}
-        )
+            {| arguments = if hasInfo then info.Args |> Seq.map getArgumentName else Seq.empty
+               description = if hasInfo then info.Description else "TBD"
+               name = name
+               parameters = if hasInfo then info.Args |> Seq.map (fun a -> $"{a} {getArgumentName a}") else Seq.empty
+               pop_behaviour = code.StackBehaviourPop.ToString()
+               pops = stackBehaviourMap.[code.StackBehaviourPop]
+               push_behaviour = code.StackBehaviourPush.ToString()
+               pushes = stackBehaviourMap.[code.StackBehaviourPush] |})
 
     let scriban = Template.Parse template
     let result = scriban.Render {| methods = getNamedMethods() |} // => "Hello World!"

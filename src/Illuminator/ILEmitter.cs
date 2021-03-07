@@ -27,5 +27,32 @@ namespace Illuminator
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void Pop(int count) => _stackSize -= count;
+
+        /// <summary>
+        ///     Calls the method indicated by the passed method descriptor.
+        /// </summary>
+        public ILEmitter Call(MethodInfo methodInfo)
+        {
+            Pop(methodInfo.GetParameters().Count());
+            Push(methodInfo.ReturnType == typeof(void) ? 0 : 1);
+
+            _il.Emit(OpCodes.Call, methodInfo);
+
+            return this;
+        }
+
+        /// <summary>
+        ///     Creates a new object or a new instance of a value type, pushing an object reference (type O) onto the evaluation
+        ///     stack.
+        /// </summary>
+        public ILEmitter Newobj(ConstructorInfo constructorInfo)
+        {
+            Pop(constructorInfo.GetParameters().Count());
+            Push(1);
+
+            _il.Emit(OpCodes.Newobj, constructorInfo);
+
+            return this;
+        }
     }
 }

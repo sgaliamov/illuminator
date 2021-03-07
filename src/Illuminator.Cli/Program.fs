@@ -10,7 +10,7 @@ let template = @"
 
 */
 
-using System.Reflection;
+using System;
 using System.Reflection.Emit;
 
 namespace Illuminator
@@ -19,9 +19,9 @@ namespace Illuminator
     {
         {{- for method in methods }}
         /// <summary>
-        ///     {{ method.description }}
-        ///     StackBehaviourPop: {{ method.pop_behaviour }}.
-        ///     StackBehaviourPush: {{ method.push_behaviour }}.
+        ///     <para>{{ method.description }}</para>
+        ///     <para>StackBehaviourPop: {{ method.pop_behaviour }}.</para>
+        ///     <para>StackBehaviourPush: {{ method.push_behaviour }}.</para>
         /// </summary>
         public ILEmitter {{ method.name }}({{ method.parameters | array.join "", "" }})
         {

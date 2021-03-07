@@ -7,5 +7,10 @@
     "name": "Beq",
     "description": "Transfers control to a target instruction if two values are equal.",
     "args": [ "Label" ]
+  },
+  {
+    "name": "Ldloca_S",
+    "description": "Loads the address of the local variable at a specific index onto the evaluation stack, short form.",
+    "args": [ "Byte" ]
   }
 ]

@@ -6,7 +6,7 @@
 
 */
 
-using System.Reflection;
+using System;
 using System.Reflection.Emit;
 
 namespace Illuminator
@@ -14,10 +14,9 @@ namespace Illuminator
     public sealed partial class ILEmitter
     {
         /// <summary>
-        ///     Adds two values and pushes the result onto the evaluation stack.
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>Adds two values and pushes the result onto the evaluation stack.</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Add()
         {
@@ -30,10 +29,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Add_Ovf()
         {
@@ -46,10 +44,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Add_Ovf_Un()
         {
@@ -62,10 +59,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter And()
         {
@@ -78,10 +74,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Arglist()
         {
@@ -94,10 +89,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     Transfers control to a target instruction if two values are equal.
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>Transfers control to a target instruction if two values are equal.</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Beq(Label label)
         {
@@ -110,10 +104,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Beq_S()
         {
@@ -126,10 +119,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Bge()
         {
@@ -142,10 +134,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Bge_S()
         {
@@ -158,10 +149,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Bge_Un()
         {
@@ -174,10 +164,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Bge_Un_S()
         {
@@ -190,10 +179,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Bgt()
         {
@@ -206,10 +194,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Bgt_S()
         {
@@ -222,10 +209,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Bgt_Un()
         {
@@ -238,10 +224,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Bgt_Un_S()
         {
@@ -254,10 +239,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Ble()
         {
@@ -270,10 +254,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Ble_S()
         {
@@ -286,10 +269,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Ble_Un()
         {
@@ -302,10 +284,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Ble_Un_S()
         {
@@ -318,10 +299,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Blt()
         {
@@ -334,10 +314,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Blt_S()
         {
@@ -350,10 +329,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Blt_Un()
         {
@@ -366,10 +344,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Blt_Un_S()
         {
@@ -382,10 +359,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Bne_Un()
         {
@@ -398,10 +374,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Bne_Un_S()
         {
@@ -414,10 +389,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushref.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushref.</para>
         /// </summary>
         public ILEmitter Box()
         {
@@ -430,10 +404,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Br()
         {
@@ -446,10 +419,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Br_S()
         {
@@ -462,10 +434,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Break()
         {
@@ -478,10 +449,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Brfalse()
         {
@@ -494,10 +464,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Brfalse_S()
         {
@@ -510,10 +479,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Brtrue()
         {
@@ -526,10 +494,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Brtrue_S()
         {
@@ -542,10 +509,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref.
-        ///     StackBehaviourPush: Pushref.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref.</para>
+        ///     <para>StackBehaviourPush: Pushref.</para>
         /// </summary>
         public ILEmitter Castclass()
         {
@@ -558,10 +524,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ceq()
         {
@@ -574,10 +539,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Cgt()
         {
@@ -590,10 +554,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Cgt_Un()
         {
@@ -606,10 +569,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushr8.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushr8.</para>
         /// </summary>
         public ILEmitter Ckfinite()
         {
@@ -622,10 +584,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Clt()
         {
@@ -638,10 +599,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Clt_Un()
         {
@@ -654,10 +614,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Constrained()
         {
@@ -670,10 +629,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_I()
         {
@@ -686,10 +644,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_I1()
         {
@@ -702,10 +659,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_I2()
         {
@@ -718,10 +674,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_I4()
         {
@@ -734,10 +689,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi8.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
         public ILEmitter Conv_I8()
         {
@@ -750,10 +704,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_I()
         {
@@ -766,10 +719,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_I1()
         {
@@ -782,10 +734,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_I1_Un()
         {
@@ -798,10 +749,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_I2()
         {
@@ -814,10 +764,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_I2_Un()
         {
@@ -830,10 +779,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_I4()
         {
@@ -846,10 +794,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_I4_Un()
         {
@@ -862,10 +809,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi8.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_I8()
         {
@@ -878,10 +824,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi8.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_I8_Un()
         {
@@ -894,10 +839,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_I_Un()
         {
@@ -910,10 +854,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_U()
         {
@@ -926,10 +869,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_U1()
         {
@@ -942,10 +884,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_U1_Un()
         {
@@ -958,10 +899,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_U2()
         {
@@ -974,10 +914,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_U2_Un()
         {
@@ -990,10 +929,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_U4()
         {
@@ -1006,10 +944,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_U4_Un()
         {
@@ -1022,10 +959,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi8.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_U8()
         {
@@ -1038,10 +974,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi8.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_U8_Un()
         {
@@ -1054,10 +989,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_Ovf_U_Un()
         {
@@ -1070,10 +1004,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushr4.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushr4.</para>
         /// </summary>
         public ILEmitter Conv_R4()
         {
@@ -1086,10 +1019,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushr8.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushr8.</para>
         /// </summary>
         public ILEmitter Conv_R8()
         {
@@ -1102,10 +1034,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushr8.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushr8.</para>
         /// </summary>
         public ILEmitter Conv_R_Un()
         {
@@ -1118,10 +1049,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_U()
         {
@@ -1134,10 +1064,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_U1()
         {
@@ -1150,10 +1079,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_U2()
         {
@@ -1166,10 +1094,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Conv_U4()
         {
@@ -1182,10 +1109,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi8.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
         public ILEmitter Conv_U8()
         {
@@ -1198,10 +1124,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Popi_popi_popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi_popi_popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Cpblk()
         {
@@ -1214,10 +1139,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi_popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi_popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Cpobj()
         {
@@ -1230,10 +1154,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Div()
         {
@@ -1246,10 +1169,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Div_Un()
         {
@@ -1262,10 +1184,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Push1_push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Push1_push1.</para>
         /// </summary>
         public ILEmitter Dup()
         {
@@ -1278,10 +1199,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Endfilter()
         {
@@ -1294,10 +1214,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Endfinally()
         {
@@ -1310,10 +1229,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Popi_popi_popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi_popi_popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Initblk()
         {
@@ -1326,10 +1244,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Initobj()
         {
@@ -1342,10 +1259,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Isinst()
         {
@@ -1358,10 +1274,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Jmp()
         {
@@ -1374,10 +1289,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldarg()
         {
@@ -1390,10 +1304,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldarg_0()
         {
@@ -1406,10 +1319,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldarg_1()
         {
@@ -1422,10 +1334,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldarg_2()
         {
@@ -1438,10 +1349,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldarg_3()
         {
@@ -1454,10 +1364,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldarg_S()
         {
@@ -1470,10 +1379,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldarga()
         {
@@ -1486,10 +1394,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldarga_S()
         {
@@ -1502,10 +1409,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldc_I4()
         {
@@ -1518,10 +1424,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldc_I4_0()
         {
@@ -1534,10 +1439,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldc_I4_1()
         {
@@ -1550,10 +1454,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldc_I4_2()
         {
@@ -1566,10 +1469,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldc_I4_3()
         {
@@ -1582,10 +1484,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldc_I4_4()
         {
@@ -1598,10 +1499,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldc_I4_5()
         {
@@ -1614,10 +1514,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldc_I4_6()
         {
@@ -1630,10 +1529,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldc_I4_7()
         {
@@ -1646,10 +1544,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldc_I4_8()
         {
@@ -1662,10 +1559,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldc_I4_M1()
         {
@@ -1678,10 +1574,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldc_I4_S()
         {
@@ -1694,10 +1589,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi8.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
         public ILEmitter Ldc_I8()
         {
@@ -1710,10 +1604,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushr4.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushr4.</para>
         /// </summary>
         public ILEmitter Ldc_R4()
         {
@@ -1726,10 +1619,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushr8.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushr8.</para>
         /// </summary>
         public ILEmitter Ldc_R8()
         {
@@ -1742,10 +1634,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldelem()
         {
@@ -1758,10 +1649,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldelem_I()
         {
@@ -1774,10 +1664,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldelem_I1()
         {
@@ -1790,10 +1679,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldelem_I2()
         {
@@ -1806,10 +1694,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldelem_I4()
         {
@@ -1822,10 +1709,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi.
-        ///     StackBehaviourPush: Pushi8.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi.</para>
+        ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
         public ILEmitter Ldelem_I8()
         {
@@ -1838,10 +1724,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi.
-        ///     StackBehaviourPush: Pushr4.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi.</para>
+        ///     <para>StackBehaviourPush: Pushr4.</para>
         /// </summary>
         public ILEmitter Ldelem_R4()
         {
@@ -1854,10 +1739,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi.
-        ///     StackBehaviourPush: Pushr8.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi.</para>
+        ///     <para>StackBehaviourPush: Pushr8.</para>
         /// </summary>
         public ILEmitter Ldelem_R8()
         {
@@ -1870,10 +1754,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi.
-        ///     StackBehaviourPush: Pushref.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi.</para>
+        ///     <para>StackBehaviourPush: Pushref.</para>
         /// </summary>
         public ILEmitter Ldelem_Ref()
         {
@@ -1886,10 +1769,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldelem_U1()
         {
@@ -1902,10 +1784,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldelem_U2()
         {
@@ -1918,10 +1799,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldelem_U4()
         {
@@ -1934,10 +1814,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldelema()
         {
@@ -1950,10 +1829,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldfld()
         {
@@ -1966,10 +1844,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldflda()
         {
@@ -1982,10 +1859,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldftn()
         {
@@ -1998,10 +1874,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldind_I()
         {
@@ -2014,10 +1889,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldind_I1()
         {
@@ -2030,10 +1904,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldind_I2()
         {
@@ -2046,10 +1919,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldind_I4()
         {
@@ -2062,10 +1934,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Pushi8.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
         public ILEmitter Ldind_I8()
         {
@@ -2078,10 +1949,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Pushr4.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Pushr4.</para>
         /// </summary>
         public ILEmitter Ldind_R4()
         {
@@ -2094,10 +1964,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Pushr8.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Pushr8.</para>
         /// </summary>
         public ILEmitter Ldind_R8()
         {
@@ -2110,10 +1979,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Pushref.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Pushref.</para>
         /// </summary>
         public ILEmitter Ldind_Ref()
         {
@@ -2126,10 +1994,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldind_U1()
         {
@@ -2142,10 +2009,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldind_U2()
         {
@@ -2158,10 +2024,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldind_U4()
         {
@@ -2174,10 +2039,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldlen()
         {
@@ -2190,10 +2054,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldloc()
         {
@@ -2206,10 +2069,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldloc_0()
         {
@@ -2222,10 +2084,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldloc_1()
         {
@@ -2238,10 +2099,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldloc_2()
         {
@@ -2254,10 +2114,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldloc_3()
         {
@@ -2270,10 +2129,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldloc_S()
         {
@@ -2286,10 +2144,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldloca()
         {
@@ -2302,26 +2159,24 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>Loads the address of the local variable at a specific index onto the evaluation stack, short form.</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Ldloca_S()
+        public ILEmitter Ldloca_S(Byte @byte)
         {
             Pop(0);
             Push(1);
             
-            _il.Emit(OpCodes.Ldloca_S);
+            _il.Emit(OpCodes.Ldloca_S, @byte);
             
             return this;
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushref.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushref.</para>
         /// </summary>
         public ILEmitter Ldnull()
         {
@@ -2334,10 +2189,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldobj()
         {
@@ -2350,10 +2204,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Ldsfld()
         {
@@ -2366,10 +2219,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldsflda()
         {
@@ -2382,10 +2234,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushref.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushref.</para>
         /// </summary>
         public ILEmitter Ldstr()
         {
@@ -2398,10 +2249,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldtoken()
         {
@@ -2414,10 +2264,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Popref.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Ldvirtftn()
         {
@@ -2430,10 +2279,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Leave()
         {
@@ -2446,10 +2294,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Leave_S()
         {
@@ -2462,10 +2309,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Localloc()
         {
@@ -2478,10 +2324,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Mkrefany()
         {
@@ -2494,10 +2339,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Mul()
         {
@@ -2510,10 +2354,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Mul_Ovf()
         {
@@ -2526,10 +2369,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Mul_Ovf_Un()
         {
@@ -2542,10 +2384,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Neg()
         {
@@ -2558,10 +2399,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Pushref.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Pushref.</para>
         /// </summary>
         public ILEmitter Newarr()
         {
@@ -2574,10 +2414,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Nop()
         {
@@ -2590,10 +2429,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Not()
         {
@@ -2606,10 +2444,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Or()
         {
@@ -2622,10 +2459,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Pop()
         {
@@ -2638,10 +2474,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Prefix1()
         {
@@ -2654,10 +2489,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Prefix2()
         {
@@ -2670,10 +2504,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Prefix3()
         {
@@ -2686,10 +2519,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Prefix4()
         {
@@ -2702,10 +2534,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Prefix5()
         {
@@ -2718,10 +2549,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Prefix6()
         {
@@ -2734,10 +2564,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Prefix7()
         {
@@ -2750,10 +2579,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Prefixref()
         {
@@ -2766,10 +2594,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Readonly()
         {
@@ -2782,10 +2609,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Refanytype()
         {
@@ -2798,10 +2624,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Refanyval()
         {
@@ -2814,10 +2639,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Rem()
         {
@@ -2830,10 +2654,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Rem_Un()
         {
@@ -2846,10 +2669,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Rethrow()
         {
@@ -2862,10 +2684,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Shl()
         {
@@ -2878,10 +2699,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Shr()
         {
@@ -2894,10 +2714,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Shr_Un()
         {
@@ -2910,10 +2729,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Sizeof()
         {
@@ -2926,10 +2744,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Starg()
         {
@@ -2942,10 +2759,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Starg_S()
         {
@@ -2958,10 +2774,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stelem()
         {
@@ -2974,10 +2789,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi_popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi_popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stelem_I()
         {
@@ -2990,10 +2804,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi_popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi_popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stelem_I1()
         {
@@ -3006,10 +2819,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi_popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi_popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stelem_I2()
         {
@@ -3022,10 +2834,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi_popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi_popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stelem_I4()
         {
@@ -3038,10 +2849,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi_popi8.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi_popi8.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stelem_I8()
         {
@@ -3054,10 +2864,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi_popr4.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi_popr4.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stelem_R4()
         {
@@ -3070,10 +2879,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi_popr8.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi_popr8.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stelem_R8()
         {
@@ -3086,10 +2894,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_popi_popref.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_popi_popref.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stelem_Ref()
         {
@@ -3102,10 +2909,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stfld()
         {
@@ -3118,10 +2924,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi_popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi_popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stind_I()
         {
@@ -3134,10 +2939,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi_popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi_popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stind_I1()
         {
@@ -3150,10 +2954,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi_popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi_popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stind_I2()
         {
@@ -3166,10 +2969,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi_popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi_popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stind_I4()
         {
@@ -3182,10 +2984,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi_popi8.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi_popi8.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stind_I8()
         {
@@ -3198,10 +2999,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi_popr4.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi_popr4.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stind_R4()
         {
@@ -3214,10 +3014,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi_popr8.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi_popr8.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stind_R8()
         {
@@ -3230,10 +3029,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi_popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi_popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stind_Ref()
         {
@@ -3246,10 +3044,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stloc()
         {
@@ -3262,10 +3059,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stloc_0()
         {
@@ -3278,10 +3074,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stloc_1()
         {
@@ -3294,10 +3089,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stloc_2()
         {
@@ -3310,10 +3104,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stloc_3()
         {
@@ -3326,10 +3119,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stloc_S()
         {
@@ -3342,10 +3134,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi_pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi_pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stobj()
         {
@@ -3358,10 +3149,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Stsfld()
         {
@@ -3374,10 +3164,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Sub()
         {
@@ -3390,10 +3179,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Sub_Ovf()
         {
@@ -3406,10 +3194,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Sub_Ovf_Un()
         {
@@ -3422,10 +3209,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popi.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popi.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Switch()
         {
@@ -3438,10 +3224,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Tailcall()
         {
@@ -3454,10 +3239,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Throw()
         {
@@ -3470,10 +3254,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Unaligned()
         {
@@ -3486,10 +3269,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref.
-        ///     StackBehaviourPush: Pushi.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
         public ILEmitter Unbox()
         {
@@ -3502,10 +3284,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Popref.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Popref.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Unbox_Any()
         {
@@ -3518,10 +3299,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 2.
-        ///     StackBehaviourPop: Pop0.
-        ///     StackBehaviourPush: Push0.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
         public ILEmitter Volatile()
         {
@@ -3534,10 +3314,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     TBD
-        ///     Size: 1.
-        ///     StackBehaviourPop: Pop1_pop1.
-        ///     StackBehaviourPush: Push1.
+        ///     <para>TBD</para>
+        ///     <para>StackBehaviourPop: Pop1_pop1.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
         public ILEmitter Xor()
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 
 namespace Illuminator
 {
@@ -10,9 +11,10 @@ namespace Illuminator
 
         public ILEmitter(ILGenerator il) => _il = il ?? throw new ArgumentNullException(nameof(il));
 
-        private void Push(int count)
-        {
-            _stackSize += count;
-        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private void Push(int count) => _stackSize += count;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private void Pop(int count) => _stackSize -= count;
     }
 }

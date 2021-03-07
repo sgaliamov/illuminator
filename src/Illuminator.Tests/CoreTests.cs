@@ -24,6 +24,7 @@ namespace Illuminator.Tests
                 .GetILGenerator()
                 .CreateILEmitter()
                 .Stloc_0()
+                .Ldloca_S(0)
                 .Newobj(type.GetConstructors().Single());
 
             var ctor = method.CreateDelegate<Func<TestClass>>();

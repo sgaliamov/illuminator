@@ -1,12 +1,11 @@
-﻿open System
-open FSharp.Data
-open Scriban
+﻿open Scriban
+open Model
 
 let template = @"
 /*
  ___ ___ _  _ ___ ___    _ _____ ___ ___     ___ ___  ___  ___
 / __| __| \| | __| _ \  /_\_   _| __|   \   / __/ _ \|   \| __|
-| (_ | _|| .` | _||   / / _ \| | | _|| |) | | (_| (_) | |) | _|
+| (_| _|| .` | _||   / / _ \| | | _|| |) | | (_| (_) | |) | _|
 \___|___|_|\_|___|_|_\/_/ \_\_| |___|___/   \___\___/|___/|___|
 
 */
@@ -32,29 +31,9 @@ namespace Illuminator
     }
 }"
 
-type OpCodesInfo = JsonProvider<"./opcodes.json">
-let opCodesInfo = OpCodesInfo.GetSamples()
-
-let lowerFirst text =
-    let text = text |> Seq.toList
-    match text with
-    | head :: tail -> Char.ToLower(head) :: tail |> Seq.toArray |> String
-    | _ -> String.Empty
-
 [<EntryPoint>]
-let main argv =
-    let methods =
-        opCodesInfo
-        |> Seq.map (fun o -> 
-        {|
-            name = o.Name
-            description = if String.IsNullOrWhiteSpace(o.Description) then o.Name else o.Description
-            arguments = o.Args |> Seq.map lowerFirst
-            parameters = o.Args |> Seq.map (fun a -> $"{a} {lowerFirst a}")
-        |})
-    
+let main _ =
     let scriban = Template.Parse template
-    let result = scriban.Render {| methods = methods |} // => "Hello World!"
-
+    let result = scriban.Render {| methods = getMethods() |} // => "Hello World!"
     printfn "%s" (result.Trim())
     0

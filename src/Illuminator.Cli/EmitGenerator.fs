@@ -30,10 +30,10 @@ namespace Illuminator
         /// </summary>
         public ILEmitter {{ method.name }}({{ method.parameters | array.join "", "" }})
         {
+            _il.Emit(OpCodes.{{ method.arguments | array.insert_at 0 method.name | array.join "", "" }});
+
             Pop({{ method.pops }});
             Push({{ method.pushes }});
-
-            _il.Emit(OpCodes.{{ method.arguments | array.insert_at 0 method.name | array.join "", "" }});
 
             return this;
         }

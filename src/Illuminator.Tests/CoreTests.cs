@@ -7,30 +7,23 @@ namespace Illuminator.Tests
 {
     public class CoreTests
     {
-        public TestClass test()
-        {
-           return new TestClass(0, out var _);
-        }
-
         [Fact]
         public void Newobj_creates_object()
         {
-            test();
             var type = typeof(TestClass);
-
             var method = new DynamicMethod("test", type, Type.EmptyTypes);
 
             using var il = method
                 .GetILGenerator()
-                .CreateILEmitter()
-                .Stloc_0()
-                .Ldloca_S(0)
-                .Newobj(type.GetConstructors().Single());
+                .UseIlluminator()
+                .DeclareLocal(typeof(int), out var local)
+                .Ldc_I4_0()
+                .Ldloca_S((byte) local.LocalIndex)
+                .Newobj(type.GetConstructors().Single())
+                .Ret();
 
             var ctor = method.CreateDelegate<Func<TestClass>>();
-
             var actual = ctor();
-
             var result = actual.Foo(1, out var b);
 
             Assert.Equal(2, b);

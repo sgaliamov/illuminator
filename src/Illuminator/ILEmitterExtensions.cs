@@ -4,6 +4,6 @@ namespace Illuminator
 {
     public static class ILEmitterExtensions
     {
-        public static ILEmitter CreateILEmitter(this ILGenerator il) => new ILEmitter(il);
+        public static ILEmitter UseIlluminator(this ILGenerator il) => new ILEmitter(il);
     }
 }

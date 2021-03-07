@@ -15,6 +15,7 @@ let private template = @"
 */
 
 using System;
+using System.Reflection;
 using System.Reflection.Emit;
 
 namespace Illuminator
@@ -38,6 +39,7 @@ namespace Illuminator
 let exclude = Set.ofList [
     "Emit"
     "EmitCall"
+    "EmitCalli"
     "Equals"
     "GetHashCode"
     "GetType"
@@ -60,8 +62,7 @@ let generate () =
                 parameters =
                     m.GetParameters()
                     |> Array.map (fun p ->
-                        let prefix = if p.IsOut then "out " else ""
-                        $"{prefix}{p.ParameterType.Name} {getParamName p.Name}")
+                        $"{p.ParameterType.Name} {getParamName p.Name}")
             |})
             |> Array.ofSeq
     let scriban = Template.Parse template

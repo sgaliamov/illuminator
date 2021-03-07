@@ -7,6 +7,7 @@
 */
 
 using System;
+using System.Reflection;
 using System.Reflection.Emit;
 
 namespace Illuminator
@@ -179,26 +180,6 @@ namespace Illuminator
         public ILEmitter EndScope()
         {
             _il.EndScope();
-
-            return this;
-        }
-
-        /// <summary>
-        ///     <para>Wrapper over EmitCalli.</para>
-        /// </summary>
-        public ILEmitter EmitCalli(OpCode opcode, CallingConventions callingConvention, Type returnType, Type[] parameterTypes, Type[] optionalParameterTypes)
-        {
-            _il.EmitCalli(opcode, callingConvention, returnType, parameterTypes, optionalParameterTypes);
-
-            return this;
-        }
-
-        /// <summary>
-        ///     <para>Wrapper over EmitCalli.</para>
-        /// </summary>
-        public ILEmitter EmitCalli(OpCode opcode, CallingConvention unmanagedCallConv, Type returnType, Type[] parameterTypes)
-        {
-            _il.EmitCalli(opcode, unmanagedCallConv, returnType, parameterTypes);
 
             return this;
         }

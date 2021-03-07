@@ -84,7 +84,6 @@ let getMethods () =
             parameters = if hasInfo then info.Args |> Seq.map (fun a -> $"{a} {lowerFirst a}") else Seq.empty
             pops = stackBehaviourMap.[code.StackBehaviourPop]
             pushes = stackBehaviourMap.[code.StackBehaviourPush]
-            size = code.Size
             pop_behaviour = code.StackBehaviourPop.ToString()
             push_behaviour = code.StackBehaviourPush.ToString()
         |}

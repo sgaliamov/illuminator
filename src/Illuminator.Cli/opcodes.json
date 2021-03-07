@@ -7,10 +7,5 @@
     "name": "Beq",
     "description": "Transfers control to a target instruction if two values are equal.",
     "args": [ "Label" ]
-  },
-  {
-    "name": "Newobj",
-    "description": "Creates a new object or a new instance of a value type, pushing an object reference (type O) onto the evaluation stack.",
-    "args": [ "ConstructorInfo" ]
   }
 ]

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 
@@ -9,7 +11,8 @@ namespace Illuminator
         private readonly ILGenerator _il;
         private int _stackSize;
 
-        public ILEmitter(ILGenerator il) => _il = il ?? throw new ArgumentNullException(nameof(il));
+        public ILEmitter(ILGenerator il) => 
+            _il = il ?? throw new ArgumentNullException(nameof(il));
 
         public void Dispose()
         {

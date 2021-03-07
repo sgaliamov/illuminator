@@ -1,8 +1,7 @@
 ﻿[<EntryPoint>]
 let main args =
     match args with
-    | [| "named" |]-> 
-       
-        printfn "%s" (NamedGenerator.generate())
+    | [| "emit" |]-> printfn "%s" (EmitGenerator.generate())
+    | [| "core" |]-> printfn "%s" (CoreGenerator.generate())
     | _ -> ()
     0

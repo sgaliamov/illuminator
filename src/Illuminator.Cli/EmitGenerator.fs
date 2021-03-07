@@ -1,10 +1,11 @@
-﻿module NamedGenerator
+﻿module EmitGenerator
 
 open System
 open System.Reflection
 open System.Reflection.Emit;
 open Scriban
 open FSharp.Data
+open Shared
 
 let private template = @"
 /*
@@ -50,13 +51,6 @@ let generate () =
         |> Seq.map (fun info -> info.Name, info)
         |> Map.ofSeq
 
-    // makes the first letter lower
-    let lowerFirst text =
-        let text = text |> Seq.toList
-        match text with
-        | head :: tail -> Char.ToLowerInvariant head :: tail |> Seq.toArray |> String
-        | _ -> String.Empty
-
     // stack sizes
     let stackBehaviourMap = Map.ofList [
         // pops
@@ -96,13 +90,6 @@ let generate () =
         OpCodes.Callvirt.Name
         OpCodes.Newobj.Name
         OpCodes.Ret.Name ]
-   
-   // safe naming for parameters
-    let excapedName = Set.ofList [nameof Byte]
-    let getParamName name =
-        if excapedName.Contains name
-        then $"@{lowerFirst name}"
-        else lowerFirst name
 
     // provides metainformation about codes
     let getNamedMethods () =

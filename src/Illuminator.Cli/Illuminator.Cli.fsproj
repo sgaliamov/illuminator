@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="opcodes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="Shared.fs" />
+    <Compile Include="CoreGenerator.fs" />
+    <Compile Include="EmitGenerator.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="5.0.1" />
+    <PackageReference Include="Scriban" Version="3.5.0" />
+    <PackageReference Include="FSharp.Data" Version="4.0.1" />
+  </ItemGroup>
+
+</Project>

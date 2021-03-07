@@ -2,3 +2,5 @@ obj/
 bin/
 .vs/
 *.user
+.ionide/
+publish/

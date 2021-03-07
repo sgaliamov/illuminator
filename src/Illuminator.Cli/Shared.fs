@@ -11,7 +11,7 @@ let lowerFirst text =
 
 // safe naming for parameters
 let private excapedName = Set.ofList [nameof Byte]
-let getParamName name =
+let getArgumentName name =
     if excapedName.Contains name
     then $"@{lowerFirst name}"
     else lowerFirst name

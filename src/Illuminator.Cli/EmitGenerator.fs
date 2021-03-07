@@ -1,11 +1,10 @@
 ﻿module EmitGenerator
 
-open System
+open FSharp.Data
+open Scriban
+open Shared
 open System.Reflection
 open System.Reflection.Emit;
-open Scriban
-open FSharp.Data
-open Shared
 
 let private template = @"
 /*
@@ -60,8 +59,8 @@ let generate () =
         (StackBehaviour.Popi, 1)
         (StackBehaviour.Popi_pop1, 2)
         (StackBehaviour.Popi_popi, 2)
-        (StackBehaviour.Popi_popi8, 2)
         (StackBehaviour.Popi_popi_popi, 3)
+        (StackBehaviour.Popi_popi8, 2)
         (StackBehaviour.Popi_popr4, 2)
         (StackBehaviour.Popi_popr8, 2)
         (StackBehaviour.Popref, 1)
@@ -82,6 +81,7 @@ let generate () =
         (StackBehaviour.Pushr4, 1)
         (StackBehaviour.Pushr8, 1)
         (StackBehaviour.Pushref, 1) ]
+
     
     // codes with not standart behaviour
     let manualCodes = Set.ofList [
@@ -100,14 +100,14 @@ let generate () =
         |> Seq.map (fun (name, code) ->
             let hasInfo, info = opCodesInfo.TryGetValue name
             {|
-                name = name
+                arguments = if hasInfo then info.Args |> Seq.map getArgumentName else Seq.empty
                 description = if hasInfo then info.Description else "TBD"
-                arguments = if hasInfo then info.Args |> Seq.map getParamName else Seq.empty
-                parameters = if hasInfo then info.Args |> Seq.map (fun a -> $"{a} {getParamName a}") else Seq.empty
-                pops = stackBehaviourMap.[code.StackBehaviourPop]
-                pushes = stackBehaviourMap.[code.StackBehaviourPush]
+                name = name
+                parameters = if hasInfo then info.Args |> Seq.map (fun a -> $"{a} {getArgumentName a}") else Seq.empty
                 pop_behaviour = code.StackBehaviourPop.ToString()
+                pops = stackBehaviourMap.[code.StackBehaviourPop]
                 push_behaviour = code.StackBehaviourPush.ToString()
+                pushes = stackBehaviourMap.[code.StackBehaviourPush]
             |}
         )
 

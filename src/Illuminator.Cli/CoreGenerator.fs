@@ -1,9 +1,8 @@
 ﻿module CoreGenerator
 
-open System.Linq
-open System.Reflection.Emit;
 open Scriban
 open Shared
+open System.Reflection.Emit;
 
 let private template = @"
 /*
@@ -24,10 +23,13 @@ namespace Illuminator
     {
         {{- for method in methods }}
         /// <summary>
-        ///     <para>{{ method.description }}</para>
+        ///     Wrapper over <see cref=""ILGenerator.{{ method.name }}""/>.
         /// </summary>
         public ILEmitter {{ method.name }}({{ method.parameters | array.join "", "" }})
         {
+            {{ if method.has_output -}}
+            output =
+            {{- end -}}
             _il.{{ method.name }}({{ method.arguments | array.join "", "" }});
 
             return this;
@@ -52,19 +54,19 @@ let generate () =
             |> Seq.filter (fun m -> not (exclude.Contains m.Name))
             |> Seq.filter (fun m -> not m.IsSpecialName)
             |> Seq.map (fun m ->
-            {|
-                name = m.Name
-                description = $"Wrapper over {m.Name}."
-                returnType = m.ReturnType
-                arguments =
+                let parameters =
                     m.GetParameters()
-                    |> Array.map (fun p -> getParamName p.Name)
-                parameters =
-                    m.GetParameters()
-                    |> Array.map (fun p ->
-                        $"{p.ParameterType.Name} {getParamName p.Name}")
-            |})
-            |> Array.ofSeq
+                    |> Seq.map (fun p -> $"{p.ParameterType.Name} {getArgumentName p.Name}")
+                    |> List.ofSeq
+                let hasOutput = m.ReturnType <> typeof<System.Void>
+                let parameters =
+                    match hasOutput with
+                    | false -> parameters
+                    | _ -> $"out {m.ReturnType.Name} output" :: parameters
+                {| name = m.Name
+                   has_output = hasOutput
+                   arguments = m.GetParameters() |> Array.map (fun p -> getArgumentName p.Name)
+                   parameters = parameters |})
     let scriban = Template.Parse template
     let result = scriban.Render {| methods = methods |} // => "Hello World!"
     result.Trim()

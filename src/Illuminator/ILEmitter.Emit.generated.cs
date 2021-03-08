@@ -22,8 +22,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Add);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -37,8 +37,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Add_Ovf);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -52,8 +52,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Add_Ovf_Un);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -67,8 +67,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.And);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -82,8 +82,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Arglist);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -97,8 +97,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Beq, label);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -112,8 +112,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Beq_S);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -127,8 +127,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Bge);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -142,8 +142,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Bge_S);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -157,8 +157,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Bge_Un);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -172,8 +172,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Bge_Un_S);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -187,8 +187,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Bgt);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -202,8 +202,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Bgt_S);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -217,8 +217,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Bgt_Un);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -232,8 +232,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Bgt_Un_S);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -247,8 +247,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ble);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -262,8 +262,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ble_S);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -277,8 +277,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ble_Un);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -292,8 +292,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ble_Un_S);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -307,8 +307,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Blt);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -322,8 +322,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Blt_S);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -337,8 +337,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Blt_Un);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -352,8 +352,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Blt_Un_S);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -367,8 +367,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Bne_Un);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -382,8 +382,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Bne_Un_S);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -397,8 +397,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Box);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -412,8 +412,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Br);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -427,8 +427,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Br_S);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -442,8 +442,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Break);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -457,8 +457,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Brfalse);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -472,8 +472,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Brfalse_S);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -487,8 +487,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Brtrue);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -502,8 +502,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Brtrue_S);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -517,8 +517,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Castclass);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -532,8 +532,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ceq);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -547,8 +547,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Cgt);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -562,8 +562,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Cgt_Un);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -577,8 +577,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ckfinite);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -592,8 +592,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Clt);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -607,8 +607,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Clt_Un);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -622,8 +622,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Constrained);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -637,8 +637,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_I);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -652,8 +652,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_I1);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -667,8 +667,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_I2);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -682,8 +682,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_I4);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -697,8 +697,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_I8);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -712,8 +712,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -727,8 +727,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I1);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -742,8 +742,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I1_Un);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -757,8 +757,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I2);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -772,8 +772,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I2_Un);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -787,8 +787,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I4);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -802,8 +802,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I4_Un);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -817,8 +817,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I8);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -832,8 +832,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I8_Un);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -847,8 +847,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I_Un);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -862,8 +862,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -877,8 +877,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U1);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -892,8 +892,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U1_Un);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -907,8 +907,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U2);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -922,8 +922,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U2_Un);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -937,8 +937,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U4);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -952,8 +952,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U4_Un);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -967,8 +967,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U8);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -982,8 +982,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U8_Un);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -997,8 +997,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U_Un);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1012,8 +1012,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_R4);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1027,8 +1027,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_R8);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1042,8 +1042,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_R_Un);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1057,8 +1057,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_U);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1072,8 +1072,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_U1);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1087,8 +1087,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_U2);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1102,8 +1102,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_U4);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1117,8 +1117,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_U8);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1132,8 +1132,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Cpblk);
 
-            Pop(3);
-            Push(0);
+            PopAny(3);
+            PushAny(0);
 
             return this;
         }
@@ -1147,8 +1147,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Cpobj);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -1162,8 +1162,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Div);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -1177,8 +1177,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Div_Un);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -1192,8 +1192,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Dup);
 
-            Pop(1);
-            Push(2);
+            PopAny(1);
+            PushAny(2);
 
             return this;
         }
@@ -1207,8 +1207,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Endfilter);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -1222,8 +1222,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Endfinally);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -1237,8 +1237,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Initblk);
 
-            Pop(3);
-            Push(0);
+            PopAny(3);
+            PushAny(0);
 
             return this;
         }
@@ -1252,8 +1252,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Initobj);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -1267,8 +1267,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Isinst);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1282,8 +1282,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Jmp);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -1297,8 +1297,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldarg);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1312,8 +1312,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldarg_0);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1327,8 +1327,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldarg_1);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1342,8 +1342,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldarg_2);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1357,8 +1357,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldarg_3);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1372,8 +1372,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldarg_S);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1387,8 +1387,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldarga);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1402,8 +1402,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldarga_S);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1417,8 +1417,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldc_I4);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1432,8 +1432,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldc_I4_0);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1447,8 +1447,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldc_I4_1);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1462,8 +1462,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldc_I4_2);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1477,8 +1477,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldc_I4_3);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1492,8 +1492,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldc_I4_4);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1507,8 +1507,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldc_I4_5);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1522,8 +1522,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldc_I4_6);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1537,8 +1537,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldc_I4_7);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1552,8 +1552,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldc_I4_8);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1567,8 +1567,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldc_I4_M1);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1582,8 +1582,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldc_I4_S);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1597,8 +1597,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldc_I8);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1612,8 +1612,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldc_R4);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1627,8 +1627,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldc_R8);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1642,8 +1642,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldelem);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -1657,8 +1657,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldelem_I);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -1672,8 +1672,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldelem_I1);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -1687,8 +1687,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldelem_I2);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -1702,8 +1702,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldelem_I4);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -1717,8 +1717,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldelem_I8);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -1732,8 +1732,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldelem_R4);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -1747,8 +1747,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldelem_R8);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -1762,8 +1762,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldelem_Ref);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -1777,8 +1777,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldelem_U1);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -1792,8 +1792,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldelem_U2);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -1807,8 +1807,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldelem_U4);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -1822,8 +1822,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldelema);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -1837,8 +1837,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldfld);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1852,8 +1852,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldflda);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1867,8 +1867,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldftn);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -1882,8 +1882,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldind_I);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1897,8 +1897,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldind_I1);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1912,8 +1912,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldind_I2);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1927,8 +1927,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldind_I4);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1942,8 +1942,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldind_I8);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1957,8 +1957,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldind_R4);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1972,8 +1972,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldind_R8);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -1987,8 +1987,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldind_Ref);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -2002,8 +2002,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldind_U1);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -2017,8 +2017,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldind_U2);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -2032,8 +2032,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldind_U4);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -2047,8 +2047,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldlen);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -2062,8 +2062,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldloc);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -2077,8 +2077,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldloc_0);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -2092,8 +2092,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldloc_1);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -2107,8 +2107,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldloc_2);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -2122,8 +2122,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldloc_3);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -2137,8 +2137,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldloc_S);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -2152,8 +2152,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldloca);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -2163,12 +2163,12 @@ namespace Illuminator
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Ldloca_S(Byte @byte)
+        public ILEmitter Ldloca_S(Byte value)
         {
-            _il.Emit(OpCodes.Ldloca_S, @byte);
+            _il.Emit(OpCodes.Ldloca_S, value);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -2182,8 +2182,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldnull);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -2197,8 +2197,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldobj);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -2212,8 +2212,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldsfld);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -2227,23 +2227,23 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldsflda);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes a new object reference to a string literal stored in the metadata.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushref.</para>
         /// </summary>
-        public ILEmitter Ldstr()
+        public ILEmitter Ldstr(string value)
         {
-            _il.Emit(OpCodes.Ldstr);
+            _il.Emit(OpCodes.Ldstr, value);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -2257,8 +2257,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldtoken);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -2272,8 +2272,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldvirtftn);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -2287,8 +2287,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Leave);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -2302,8 +2302,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Leave_S);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -2317,8 +2317,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Localloc);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -2332,8 +2332,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Mkrefany);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -2347,8 +2347,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Mul);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -2362,8 +2362,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Mul_Ovf);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -2377,8 +2377,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Mul_Ovf_Un);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -2392,8 +2392,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Neg);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -2407,8 +2407,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Newarr);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -2422,8 +2422,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Nop);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -2437,8 +2437,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Not);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -2452,8 +2452,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Or);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -2467,8 +2467,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Pop);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -2482,8 +2482,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Prefix1);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -2497,8 +2497,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Prefix2);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -2512,8 +2512,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Prefix3);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -2527,8 +2527,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Prefix4);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -2542,8 +2542,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Prefix5);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -2557,8 +2557,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Prefix6);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -2572,8 +2572,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Prefix7);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -2587,8 +2587,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Prefixref);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -2602,8 +2602,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Readonly);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -2617,8 +2617,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Refanytype);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -2632,8 +2632,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Refanyval);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -2647,8 +2647,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Rem);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -2662,8 +2662,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Rem_Un);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -2677,8 +2677,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Rethrow);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -2692,8 +2692,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Shl);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -2707,8 +2707,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Shr);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -2722,8 +2722,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Shr_Un);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -2737,8 +2737,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Sizeof);
 
-            Pop(0);
-            Push(1);
+            PopAny(0);
+            PushAny(1);
 
             return this;
         }
@@ -2752,8 +2752,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Starg);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -2767,8 +2767,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Starg_S);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -2782,8 +2782,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stelem);
 
-            Pop(3);
-            Push(0);
+            PopAny(3);
+            PushAny(0);
 
             return this;
         }
@@ -2797,8 +2797,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stelem_I);
 
-            Pop(3);
-            Push(0);
+            PopAny(3);
+            PushAny(0);
 
             return this;
         }
@@ -2812,8 +2812,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stelem_I1);
 
-            Pop(3);
-            Push(0);
+            PopAny(3);
+            PushAny(0);
 
             return this;
         }
@@ -2827,8 +2827,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stelem_I2);
 
-            Pop(3);
-            Push(0);
+            PopAny(3);
+            PushAny(0);
 
             return this;
         }
@@ -2842,8 +2842,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stelem_I4);
 
-            Pop(3);
-            Push(0);
+            PopAny(3);
+            PushAny(0);
 
             return this;
         }
@@ -2857,8 +2857,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stelem_I8);
 
-            Pop(3);
-            Push(0);
+            PopAny(3);
+            PushAny(0);
 
             return this;
         }
@@ -2872,8 +2872,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stelem_R4);
 
-            Pop(3);
-            Push(0);
+            PopAny(3);
+            PushAny(0);
 
             return this;
         }
@@ -2887,8 +2887,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stelem_R8);
 
-            Pop(3);
-            Push(0);
+            PopAny(3);
+            PushAny(0);
 
             return this;
         }
@@ -2902,8 +2902,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stelem_Ref);
 
-            Pop(3);
-            Push(0);
+            PopAny(3);
+            PushAny(0);
 
             return this;
         }
@@ -2917,8 +2917,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stfld);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -2932,8 +2932,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stind_I);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -2947,8 +2947,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stind_I1);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -2962,8 +2962,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stind_I2);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -2977,8 +2977,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stind_I4);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -2992,8 +2992,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stind_I8);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -3007,8 +3007,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stind_R4);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -3022,8 +3022,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stind_R8);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -3037,8 +3037,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stind_Ref);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -3052,8 +3052,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stloc);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -3067,8 +3067,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stloc_0);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -3082,8 +3082,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stloc_1);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -3097,8 +3097,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stloc_2);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -3112,8 +3112,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stloc_3);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -3127,8 +3127,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stloc_S);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -3142,8 +3142,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stobj);
 
-            Pop(2);
-            Push(0);
+            PopAny(2);
+            PushAny(0);
 
             return this;
         }
@@ -3157,8 +3157,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Stsfld);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -3172,8 +3172,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Sub);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -3187,8 +3187,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Sub_Ovf);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -3202,8 +3202,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Sub_Ovf_Un);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }
@@ -3217,8 +3217,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Switch);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -3232,8 +3232,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Tailcall);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -3247,8 +3247,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Throw);
 
-            Pop(1);
-            Push(0);
+            PopAny(1);
+            PushAny(0);
 
             return this;
         }
@@ -3262,8 +3262,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Unaligned);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -3277,8 +3277,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Unbox);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -3292,8 +3292,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Unbox_Any);
 
-            Pop(1);
-            Push(1);
+            PopAny(1);
+            PushAny(1);
 
             return this;
         }
@@ -3307,8 +3307,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Volatile);
 
-            Pop(0);
-            Push(0);
+            PopAny(0);
+            PushAny(0);
 
             return this;
         }
@@ -3322,8 +3322,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Xor);
 
-            Pop(2);
-            Push(1);
+            PopAny(2);
+            PushAny(1);
 
             return this;
         }

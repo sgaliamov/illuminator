@@ -32,8 +32,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.{{ method.arguments | array.insert_at 0 method.name | array.join "", "" }});
 
-            Pop({{ method.pops }});
-            Push({{ method.pushes }});
+            PopAny({{ method.pops }});
+            PushAny({{ method.pushes }});
 
             return this;
         }

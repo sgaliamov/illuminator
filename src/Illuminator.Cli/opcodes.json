@@ -12,5 +12,10 @@
     "name": "Ldloca_S",
     "description": "Loads the address of the local variable at a specific index onto the evaluation stack, short form.",
     "args": [ "Byte" ]
+  },
+  {
+    "name": "Ldstr",
+    "description":"Pushes a new object reference to a string literal stored in the metadata.",
+    "args": [ "string" ]
   }
 ]

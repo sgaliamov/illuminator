@@ -10,8 +10,11 @@ let lowerFirst text =
     | _ -> String.Empty
 
 // safe naming for parameters
-let private excapedName = Set.ofList [nameof Byte]
-let getArgumentName name =
-    if excapedName.Contains name
-    then $"@{lowerFirst name}"
+let private excapedName = Set.ofList [
+    nameof byte
+    nameof string ]
+
+let getArgumentName (name: string) =
+    if excapedName.Contains(name.ToLowerInvariant())
+    then "value"
     else lowerFirst name

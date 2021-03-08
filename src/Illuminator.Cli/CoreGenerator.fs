@@ -77,9 +77,9 @@ let generate () =
 
     let methods =
         typeof<ILGenerator>.GetMethods()
-            |> Seq.filter (fun m -> not (exclude.Contains m.Name))
-            |> Seq.filter (fun m -> not m.IsSpecialName)
-            |> Seq.map toModel
+        |> Seq.filter (fun m -> not (exclude.Contains m.Name))
+        |> Seq.filter (fun m -> not m.IsSpecialName)
+        |> Seq.map toModel
 
     let scriban = Template.Parse template
     let result = scriban.Render {| methods = methods |} // => "Hello World!"

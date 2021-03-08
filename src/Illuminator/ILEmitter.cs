@@ -49,7 +49,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ret);
 
-            Pop(1);
+            Pop(1); // todo: use methods builders to check how much to pop
 
             return this;
         }

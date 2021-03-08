@@ -41,6 +41,14 @@ namespace Illuminator
     }
 }"
 
+// codes with not standart behaviour
+let manualCodes = Set.ofList [
+    OpCodes.Call.Name
+    OpCodes.Calli.Name
+    OpCodes.Callvirt.Name
+    OpCodes.Newobj.Name
+    OpCodes.Ret.Name ]
+
 type private OpCodesInfo = JsonProvider<"./opcodes.json">
 
 let generate () =
@@ -81,14 +89,6 @@ let generate () =
         (StackBehaviour.Pushr4, 1)
         (StackBehaviour.Pushr8, 1)
         (StackBehaviour.Pushref, 1) ]
-
-    // codes with not standart behaviour
-    let manualCodes = Set.ofList [
-        OpCodes.Call.Name
-        OpCodes.Calli.Name
-        OpCodes.Callvirt.Name
-        OpCodes.Newobj.Name
-        OpCodes.Ret.Name ]
 
     // provides metainformation about codes
     let getNamedMethods () =

@@ -31,9 +31,12 @@ namespace Illuminator
         public ILEmitter {{ method.name }}({{ method.parameters | array.join "", "" }})
         {
             _il.Emit(OpCodes.{{ method.arguments | array.insert_at 0 method.name | array.join "", "" }});
-
-            PopAny({{ method.pops }});
-            PushAny({{ method.pushes }});
+            {{~ if method.pops | !string.empty ~}}
+            Pop({{ method.pops }});
+            {{~ end ~}}
+            {{~ if method.pushes | !string.empty ~}}
+            Push({{ method.pushes }});
+            {{~ end ~}}
 
             return this;
         }
@@ -58,40 +61,47 @@ let generate () =
         |> Seq.map (fun info -> info.Name, info)
         |> Map.ofSeq
 
+    let IntType = typeof<int>.FullName
+
     // stack sizes
     let stackBehaviourMap = Map.ofList [
         // pops
-        (StackBehaviour.Pop0, 0)
-        (StackBehaviour.Pop1, 1)
-        (StackBehaviour.Pop1_pop1, 2)
-        (StackBehaviour.Popi, 1)
-        (StackBehaviour.Popi_pop1, 2)
-        (StackBehaviour.Popi_popi, 2)
-        (StackBehaviour.Popi_popi_popi, 3)
-        (StackBehaviour.Popi_popi8, 2)
-        (StackBehaviour.Popi_popr4, 2)
-        (StackBehaviour.Popi_popr8, 2)
-        (StackBehaviour.Popref, 1)
-        (StackBehaviour.Popref_pop1, 2)
-        (StackBehaviour.Popref_popi, 2)
-        (StackBehaviour.Popref_popi_pop1, 3)
-        (StackBehaviour.Popref_popi_popi, 3)
-        (StackBehaviour.Popref_popi_popi8, 3)
-        (StackBehaviour.Popref_popi_popr4, 3)
-        (StackBehaviour.Popref_popi_popr8, 3)
-        (StackBehaviour.Popref_popi_popref, 3)
+        (StackBehaviour.Pop0, [])
+        (StackBehaviour.Pop1, ["any"])
+        (StackBehaviour.Pop1_pop1, ["any"; "any"])
+        (StackBehaviour.Popi, [IntType])
+        (StackBehaviour.Popi_pop1, [IntType; "any"])
+        (StackBehaviour.Popi_popi, [IntType; IntType])
+        (StackBehaviour.Popi_popi_popi, [IntType; IntType; IntType])
+        (StackBehaviour.Popi_popi8, [IntType; "long"])
+        (StackBehaviour.Popi_popr4, [IntType; "float"])
+        (StackBehaviour.Popi_popr8, [IntType; "double"])
+        (StackBehaviour.Popref, ["ref"])
+        (StackBehaviour.Popref_pop1, ["ref"; "any"])
+        (StackBehaviour.Popref_popi, ["ref"; IntType])
+        (StackBehaviour.Popref_popi_pop1, ["ref"; IntType; "any"])
+        (StackBehaviour.Popref_popi_popi, ["ref"; IntType; IntType])
+        (StackBehaviour.Popref_popi_popi8, ["ref"; IntType; "long"])
+        (StackBehaviour.Popref_popi_popr4, ["ref"; IntType; "float"])
+        (StackBehaviour.Popref_popi_popr8, ["ref"; IntType; "double"])
+        (StackBehaviour.Popref_popi_popref, ["ref"; IntType; "ref"])
         // pushes
-        (StackBehaviour.Push0, 0)
-        (StackBehaviour.Push1, 1)
-        (StackBehaviour.Push1_push1, 2)
-        (StackBehaviour.Pushi, 1)
-        (StackBehaviour.Pushi8, 1)
-        (StackBehaviour.Pushr4, 1)
-        (StackBehaviour.Pushr8, 1)
-        (StackBehaviour.Pushref, 1) ]
+        (StackBehaviour.Push0, [])
+        (StackBehaviour.Push1, ["any"])
+        (StackBehaviour.Push1_push1, ["any"; "any"])
+        (StackBehaviour.Pushi, [IntType])
+        (StackBehaviour.Pushi8, ["long"])
+        (StackBehaviour.Pushr4, ["float"])
+        (StackBehaviour.Pushr8, ["double"])
+        (StackBehaviour.Pushref, ["ref"]) ]
 
     // provides metainformation about codes
     let getNamedMethods () =
+        let join (values: seq<string>) =
+            values
+            |> Seq.map (fun x -> $"\"{x}\"")
+            |> join ", "
+
         typeof<OpCodes>.GetFields(BindingFlags.Static ||| BindingFlags.Public ||| BindingFlags.GetField)
         |> Seq.map (fun field -> field.Name, field.GetValue null :?> OpCode )
         |> Seq.filter (fun (_, code) -> not (manualCodes.Contains code.Name))
@@ -103,9 +113,9 @@ let generate () =
                name = name
                parameters = if hasInfo then info.Args |> Seq.map (fun a -> $"{a} {getArgumentName a}") else Seq.empty
                pop_behaviour = code.StackBehaviourPop.ToString()
-               pops = stackBehaviourMap.[code.StackBehaviourPop]
+               pops = stackBehaviourMap.[code.StackBehaviourPop] |> join
                push_behaviour = code.StackBehaviourPush.ToString()
-               pushes = stackBehaviourMap.[code.StackBehaviourPush] |})
+               pushes = stackBehaviourMap.[code.StackBehaviourPush] |> join |})
 
     let scriban = Template.Parse template
     let result = scriban.Render {| methods = getNamedMethods() |} // => "Hello World!"

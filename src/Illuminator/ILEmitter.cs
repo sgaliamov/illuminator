@@ -13,7 +13,7 @@ namespace Illuminator
         private const BindingFlags PrivateFieldBindingFlags = BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance;
         private readonly ILGenerator _il;
         private readonly MethodInfo _methodBuilder;
-        private readonly Stack<Type?> _stack = new Stack<Type?>();
+        private readonly Stack<string> _stack = new Stack<string>();
 
         public ILEmitter(ILGenerator il)
         {
@@ -24,10 +24,14 @@ namespace Illuminator
         public void Dispose()
         {
             VerifyStackSize();
+            VerifyStackIsEmpty();
+        }
 
+        private void VerifyStackIsEmpty()
+        {
             if (_stack.Count != 0)
             {
-                throw new ILEmitterException($"Stack is invalid: {_stack}");
+                throw new ILEmitterException($"Stack should be empty: [{string.Join(", ", _stack)}]");
             }
         }
 
@@ -40,31 +44,36 @@ namespace Illuminator
 
             if (_stack.Count != maxMidStackCur)
             {
-                throw new ILEmitterException("Stack size does not match to ILGenerator stack.");
+                throw new ILEmitterException($"Stack size does not match to ILGenerator stack. [{string.Join(", ", _stack)}].");
             }
         }
 
         /// <summary>
-        ///     Push unknown type parameters in the stack.
+        ///     test
         /// </summary>
+        /// <param name="types"></param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void PushAny(int count)
+        private void Push(params string[] types)
         {
-            for (var i = 0; i < count; i++)
+            foreach (var item in types)
             {
-                _stack.Push(null);
+                _stack.Push(item);
             }
         }
 
         /// <summary>
-        ///     Pop any type parameters from the stack.
+        ///     test
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void PopAny(int count)
+        private void Pop(params string[] types)
         {
-            for (var i = 0; i < count; i++)
+            foreach (var item in types)
             {
-                _stack.Pop();
+                var pop = _stack.Pop();
+                if (pop != item)
+                {
+                    throw new ILEmitterException($"Unexpected type {item} in stack {pop}.");
+                }
             }
         }
 
@@ -73,8 +82,8 @@ namespace Illuminator
         ///// </summary>
         //public ILEmitter Call(MethodInfo methodInfo)
         //{
-        //    PopAny(methodInfo.GetParameters().Count());
-        //    PushAny(methodInfo.ReturnType == typeof(void) ? 0 : 1);
+        //    Pop(methodInfo.GetParameters().Count());
+        //    Push(methodInfo.ReturnType == typeof(void) ? 0 : 1);
 
         //    _il.Emit(OpCodes.Call, methodInfo);
 
@@ -91,11 +100,12 @@ namespace Illuminator
 
             if (_methodBuilder.ReturnType == typeof(void))
             {
+                VerifyStackIsEmpty();
                 return this;
             }
 
             var expected = _stack.Pop();
-            if (expected != _methodBuilder.ReturnType)
+            if (expected != _methodBuilder.ReturnType.FullName)
             {
                 throw new ILEmitterException(
                     $"Invalid return type. Expected {expected}; actual: {_methodBuilder.ReturnType}.");
@@ -112,8 +122,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Newobj, constructorInfo);
 
-            PopAny(constructorInfo.GetParameters().Count());
-            _stack.Push(constructorInfo.DeclaringType); // todo: test
+            Pop(constructorInfo.GetParameters().Select(x => x.ParameterType.FullName).ToArray());
+            _stack.Push(constructorInfo.DeclaringType.FullName); // todo: test
 
             return this;
         }

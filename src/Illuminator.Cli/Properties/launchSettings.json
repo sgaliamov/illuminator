@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Illuminator.Cli": {
+      "commandName": "Project",
+      "commandLineArgs": "emit"
+    }
+  }
+}

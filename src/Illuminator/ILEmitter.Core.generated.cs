@@ -145,7 +145,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.DeclareLocal(Type,Boolean)"/>.
+        ///     Wrapper over <see cref="ILGenerator.DeclareLocal(Type, Boolean)"/>.
         /// </summary>
         public ILEmitter DeclareLocal(Type localType, Boolean pinned, out LocalBuilder output)
         {

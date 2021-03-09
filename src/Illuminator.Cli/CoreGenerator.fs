@@ -67,7 +67,7 @@ let generate () =
         let parameterTypes =
             m.GetParameters()
             |> Seq.map (fun p -> p.ParameterType.Name)
-            |> (fun names -> String.Join(',', names))
+            |> join ", "
 
         {| name = m.Name
            has_output = hasOutput

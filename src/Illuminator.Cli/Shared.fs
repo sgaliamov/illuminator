@@ -18,3 +18,6 @@ let getArgumentName (name: string) =
     if excapedName.Contains(name.ToLowerInvariant())
     then "value"
     else lowerFirst name
+
+// join strings with separator
+let join (separator: string) (values: seq<string>) = String.Join(separator, values)

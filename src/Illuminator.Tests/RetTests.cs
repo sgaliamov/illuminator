@@ -24,7 +24,7 @@ namespace Illuminator.Tests
         {
             var method = new DynamicMethod("test", typeof(int), null);
 
-            Assert.Throws<InvalidOperationException>(
+            Assert.Throws<ILEmitterException>(
                 () => method
                     .GetILGenerator()
                     .UseIlluminator()

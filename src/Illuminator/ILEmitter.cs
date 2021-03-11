@@ -53,6 +53,8 @@ namespace Illuminator
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void Push(params string[] types)
         {
+            Debug.Assert(types.Length != 0);
+
             foreach (var item in types)
             {
                 _stack.Push(item);
@@ -65,11 +67,19 @@ namespace Illuminator
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void Pop(params string[] types)
         {
+            Debug.Assert(types.Length != 0);
+
+            if (_stack.Count == 0)
+            {
+                throw new ILEmitterException("Stack is empty to return a value.");
+            }
+
             foreach (var item in types)
             {
                 var pop = _stack.Pop();
                 if (pop != item && pop != "any" && item != "any")
                 {
+                    // todo: test
                     throw new ILEmitterException($"Unexpected type {item} in stack {pop}.");
                 }
             }
@@ -98,16 +108,11 @@ namespace Illuminator
 
             if (_methodBuilder.ReturnType == typeof(void))
             {
-                VerifyStackIsEmpty();
+                VerifyStackIsEmpty(); // todo: test fail
                 return this;
             }
 
-            var expected = _stack.Pop();
-            if (expected != _methodBuilder.ReturnType.FullName)
-            {
-                throw new ILEmitterException(
-                    $"Invalid return type. Expected {expected}; actual: {_methodBuilder.ReturnType}.");
-            }
+            Pop(ToSimpleType(_methodBuilder.ReturnType));
 
             return this;
         }
@@ -120,10 +125,39 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Newobj, constructorInfo);
 
-            Pop(constructorInfo.GetParameters().Select(_ => "any").ToArray());
-            _stack.Push(constructorInfo.DeclaringType.FullName);
+            Pop(constructorInfo.GetParameters().Select(x => ToSimpleType(x.ParameterType)).ToArray());
+            Push(ToSimpleType(constructorInfo.DeclaringType));
 
             return this;
+        }
+
+        private static string ToSimpleType(Type type)
+        {
+            // todo: smart types check
+            if (type == typeof(int))
+            {
+                return "int";
+            }
+
+            if (type == typeof(long))
+            {
+                // todo: test
+                return "long";
+            }
+
+            if (type == typeof(double))
+            {
+                // todo: test
+                return "double";
+            }
+
+            if (type == typeof(float))
+            {
+                // todo: test
+                return "float";
+            }
+
+            return "any";
         }
     }
 }

@@ -77,7 +77,7 @@ namespace Illuminator
         public ILEmitter Arglist()
         {
             _il.Emit(OpCodes.Arglist);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -400,7 +400,7 @@ namespace Illuminator
         public ILEmitter Brfalse()
         {
             _il.Emit(OpCodes.Brfalse);
-            Pop("System.Int32");
+            Pop("int");
 
             return this;
         }
@@ -413,7 +413,7 @@ namespace Illuminator
         public ILEmitter Brfalse_S()
         {
             _il.Emit(OpCodes.Brfalse_S);
-            Pop("System.Int32");
+            Pop("int");
 
             return this;
         }
@@ -426,7 +426,7 @@ namespace Illuminator
         public ILEmitter Brtrue()
         {
             _il.Emit(OpCodes.Brtrue);
-            Pop("System.Int32");
+            Pop("int");
 
             return this;
         }
@@ -439,7 +439,7 @@ namespace Illuminator
         public ILEmitter Brtrue_S()
         {
             _il.Emit(OpCodes.Brtrue_S);
-            Pop("System.Int32");
+            Pop("int");
 
             return this;
         }
@@ -467,7 +467,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ceq);
             Pop("any", "any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -481,7 +481,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Cgt);
             Pop("any", "any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -495,7 +495,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Cgt_Un);
             Pop("any", "any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -523,7 +523,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Clt);
             Pop("any", "any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -537,7 +537,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Clt_Un);
             Pop("any", "any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -563,7 +563,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_I);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -577,7 +577,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_I1);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -591,7 +591,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_I2);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -605,7 +605,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_I4);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -633,7 +633,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -647,7 +647,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I1);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -661,7 +661,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I1_Un);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -675,7 +675,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I2);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -689,7 +689,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I2_Un);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -703,7 +703,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I4);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -717,7 +717,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I4_Un);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -759,7 +759,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_I_Un);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -773,7 +773,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -787,7 +787,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U1);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -801,7 +801,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U1_Un);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -815,7 +815,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U2);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -829,7 +829,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U2_Un);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -843,7 +843,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U4);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -857,7 +857,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U4_Un);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -899,7 +899,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_Ovf_U_Un);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -955,7 +955,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_U);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -969,7 +969,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_U1);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -983,7 +983,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_U2);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -997,7 +997,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Conv_U4);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1024,7 +1024,7 @@ namespace Illuminator
         public ILEmitter Cpblk()
         {
             _il.Emit(OpCodes.Cpblk);
-            Pop("System.Int32", "System.Int32", "System.Int32");
+            Pop("int", "int", "int");
 
             return this;
         }
@@ -1037,7 +1037,7 @@ namespace Illuminator
         public ILEmitter Cpobj()
         {
             _il.Emit(OpCodes.Cpobj);
-            Pop("System.Int32", "System.Int32");
+            Pop("int", "int");
 
             return this;
         }
@@ -1092,7 +1092,7 @@ namespace Illuminator
         public ILEmitter Endfilter()
         {
             _il.Emit(OpCodes.Endfilter);
-            Pop("System.Int32");
+            Pop("int");
 
             return this;
         }
@@ -1117,7 +1117,7 @@ namespace Illuminator
         public ILEmitter Initblk()
         {
             _il.Emit(OpCodes.Initblk);
-            Pop("System.Int32", "System.Int32", "System.Int32");
+            Pop("int", "int", "int");
 
             return this;
         }
@@ -1130,7 +1130,7 @@ namespace Illuminator
         public ILEmitter Initobj()
         {
             _il.Emit(OpCodes.Initobj);
-            Pop("System.Int32");
+            Pop("int");
 
             return this;
         }
@@ -1144,7 +1144,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Isinst);
             Pop("ref");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1247,7 +1247,7 @@ namespace Illuminator
         public ILEmitter Ldarga()
         {
             _il.Emit(OpCodes.Ldarga);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1260,7 +1260,7 @@ namespace Illuminator
         public ILEmitter Ldarga_S()
         {
             _il.Emit(OpCodes.Ldarga_S);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1273,7 +1273,7 @@ namespace Illuminator
         public ILEmitter Ldc_I4()
         {
             _il.Emit(OpCodes.Ldc_I4);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1286,7 +1286,7 @@ namespace Illuminator
         public ILEmitter Ldc_I4_0()
         {
             _il.Emit(OpCodes.Ldc_I4_0);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1299,7 +1299,7 @@ namespace Illuminator
         public ILEmitter Ldc_I4_1()
         {
             _il.Emit(OpCodes.Ldc_I4_1);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1312,7 +1312,7 @@ namespace Illuminator
         public ILEmitter Ldc_I4_2()
         {
             _il.Emit(OpCodes.Ldc_I4_2);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1325,7 +1325,7 @@ namespace Illuminator
         public ILEmitter Ldc_I4_3()
         {
             _il.Emit(OpCodes.Ldc_I4_3);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1338,7 +1338,7 @@ namespace Illuminator
         public ILEmitter Ldc_I4_4()
         {
             _il.Emit(OpCodes.Ldc_I4_4);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1351,7 +1351,7 @@ namespace Illuminator
         public ILEmitter Ldc_I4_5()
         {
             _il.Emit(OpCodes.Ldc_I4_5);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1364,7 +1364,7 @@ namespace Illuminator
         public ILEmitter Ldc_I4_6()
         {
             _il.Emit(OpCodes.Ldc_I4_6);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1377,7 +1377,7 @@ namespace Illuminator
         public ILEmitter Ldc_I4_7()
         {
             _il.Emit(OpCodes.Ldc_I4_7);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1390,7 +1390,7 @@ namespace Illuminator
         public ILEmitter Ldc_I4_8()
         {
             _il.Emit(OpCodes.Ldc_I4_8);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1403,7 +1403,7 @@ namespace Illuminator
         public ILEmitter Ldc_I4_M1()
         {
             _il.Emit(OpCodes.Ldc_I4_M1);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1416,7 +1416,7 @@ namespace Illuminator
         public ILEmitter Ldc_I4_S()
         {
             _il.Emit(OpCodes.Ldc_I4_S);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1468,7 +1468,7 @@ namespace Illuminator
         public ILEmitter Ldelem()
         {
             _il.Emit(OpCodes.Ldelem);
-            Pop("ref", "System.Int32");
+            Pop("ref", "int");
             Push("any");
 
             return this;
@@ -1482,8 +1482,8 @@ namespace Illuminator
         public ILEmitter Ldelem_I()
         {
             _il.Emit(OpCodes.Ldelem_I);
-            Pop("ref", "System.Int32");
-            Push("System.Int32");
+            Pop("ref", "int");
+            Push("int");
 
             return this;
         }
@@ -1496,8 +1496,8 @@ namespace Illuminator
         public ILEmitter Ldelem_I1()
         {
             _il.Emit(OpCodes.Ldelem_I1);
-            Pop("ref", "System.Int32");
-            Push("System.Int32");
+            Pop("ref", "int");
+            Push("int");
 
             return this;
         }
@@ -1510,8 +1510,8 @@ namespace Illuminator
         public ILEmitter Ldelem_I2()
         {
             _il.Emit(OpCodes.Ldelem_I2);
-            Pop("ref", "System.Int32");
-            Push("System.Int32");
+            Pop("ref", "int");
+            Push("int");
 
             return this;
         }
@@ -1524,8 +1524,8 @@ namespace Illuminator
         public ILEmitter Ldelem_I4()
         {
             _il.Emit(OpCodes.Ldelem_I4);
-            Pop("ref", "System.Int32");
-            Push("System.Int32");
+            Pop("ref", "int");
+            Push("int");
 
             return this;
         }
@@ -1538,7 +1538,7 @@ namespace Illuminator
         public ILEmitter Ldelem_I8()
         {
             _il.Emit(OpCodes.Ldelem_I8);
-            Pop("ref", "System.Int32");
+            Pop("ref", "int");
             Push("long");
 
             return this;
@@ -1552,7 +1552,7 @@ namespace Illuminator
         public ILEmitter Ldelem_R4()
         {
             _il.Emit(OpCodes.Ldelem_R4);
-            Pop("ref", "System.Int32");
+            Pop("ref", "int");
             Push("float");
 
             return this;
@@ -1566,7 +1566,7 @@ namespace Illuminator
         public ILEmitter Ldelem_R8()
         {
             _il.Emit(OpCodes.Ldelem_R8);
-            Pop("ref", "System.Int32");
+            Pop("ref", "int");
             Push("double");
 
             return this;
@@ -1580,7 +1580,7 @@ namespace Illuminator
         public ILEmitter Ldelem_Ref()
         {
             _il.Emit(OpCodes.Ldelem_Ref);
-            Pop("ref", "System.Int32");
+            Pop("ref", "int");
             Push("ref");
 
             return this;
@@ -1594,8 +1594,8 @@ namespace Illuminator
         public ILEmitter Ldelem_U1()
         {
             _il.Emit(OpCodes.Ldelem_U1);
-            Pop("ref", "System.Int32");
-            Push("System.Int32");
+            Pop("ref", "int");
+            Push("int");
 
             return this;
         }
@@ -1608,8 +1608,8 @@ namespace Illuminator
         public ILEmitter Ldelem_U2()
         {
             _il.Emit(OpCodes.Ldelem_U2);
-            Pop("ref", "System.Int32");
-            Push("System.Int32");
+            Pop("ref", "int");
+            Push("int");
 
             return this;
         }
@@ -1622,8 +1622,8 @@ namespace Illuminator
         public ILEmitter Ldelem_U4()
         {
             _il.Emit(OpCodes.Ldelem_U4);
-            Pop("ref", "System.Int32");
-            Push("System.Int32");
+            Pop("ref", "int");
+            Push("int");
 
             return this;
         }
@@ -1636,8 +1636,8 @@ namespace Illuminator
         public ILEmitter Ldelema()
         {
             _il.Emit(OpCodes.Ldelema);
-            Pop("ref", "System.Int32");
-            Push("System.Int32");
+            Pop("ref", "int");
+            Push("int");
 
             return this;
         }
@@ -1665,7 +1665,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldflda);
             Pop("ref");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1678,7 +1678,7 @@ namespace Illuminator
         public ILEmitter Ldftn()
         {
             _il.Emit(OpCodes.Ldftn);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1691,8 +1691,8 @@ namespace Illuminator
         public ILEmitter Ldind_I()
         {
             _il.Emit(OpCodes.Ldind_I);
-            Pop("System.Int32");
-            Push("System.Int32");
+            Pop("int");
+            Push("int");
 
             return this;
         }
@@ -1705,8 +1705,8 @@ namespace Illuminator
         public ILEmitter Ldind_I1()
         {
             _il.Emit(OpCodes.Ldind_I1);
-            Pop("System.Int32");
-            Push("System.Int32");
+            Pop("int");
+            Push("int");
 
             return this;
         }
@@ -1719,8 +1719,8 @@ namespace Illuminator
         public ILEmitter Ldind_I2()
         {
             _il.Emit(OpCodes.Ldind_I2);
-            Pop("System.Int32");
-            Push("System.Int32");
+            Pop("int");
+            Push("int");
 
             return this;
         }
@@ -1733,8 +1733,8 @@ namespace Illuminator
         public ILEmitter Ldind_I4()
         {
             _il.Emit(OpCodes.Ldind_I4);
-            Pop("System.Int32");
-            Push("System.Int32");
+            Pop("int");
+            Push("int");
 
             return this;
         }
@@ -1747,7 +1747,7 @@ namespace Illuminator
         public ILEmitter Ldind_I8()
         {
             _il.Emit(OpCodes.Ldind_I8);
-            Pop("System.Int32");
+            Pop("int");
             Push("long");
 
             return this;
@@ -1761,7 +1761,7 @@ namespace Illuminator
         public ILEmitter Ldind_R4()
         {
             _il.Emit(OpCodes.Ldind_R4);
-            Pop("System.Int32");
+            Pop("int");
             Push("float");
 
             return this;
@@ -1775,7 +1775,7 @@ namespace Illuminator
         public ILEmitter Ldind_R8()
         {
             _il.Emit(OpCodes.Ldind_R8);
-            Pop("System.Int32");
+            Pop("int");
             Push("double");
 
             return this;
@@ -1789,7 +1789,7 @@ namespace Illuminator
         public ILEmitter Ldind_Ref()
         {
             _il.Emit(OpCodes.Ldind_Ref);
-            Pop("System.Int32");
+            Pop("int");
             Push("ref");
 
             return this;
@@ -1803,8 +1803,8 @@ namespace Illuminator
         public ILEmitter Ldind_U1()
         {
             _il.Emit(OpCodes.Ldind_U1);
-            Pop("System.Int32");
-            Push("System.Int32");
+            Pop("int");
+            Push("int");
 
             return this;
         }
@@ -1817,8 +1817,8 @@ namespace Illuminator
         public ILEmitter Ldind_U2()
         {
             _il.Emit(OpCodes.Ldind_U2);
-            Pop("System.Int32");
-            Push("System.Int32");
+            Pop("int");
+            Push("int");
 
             return this;
         }
@@ -1831,8 +1831,8 @@ namespace Illuminator
         public ILEmitter Ldind_U4()
         {
             _il.Emit(OpCodes.Ldind_U4);
-            Pop("System.Int32");
-            Push("System.Int32");
+            Pop("int");
+            Push("int");
 
             return this;
         }
@@ -1846,7 +1846,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldlen);
             Pop("ref");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1937,7 +1937,7 @@ namespace Illuminator
         public ILEmitter Ldloca()
         {
             _il.Emit(OpCodes.Ldloca);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1950,7 +1950,7 @@ namespace Illuminator
         public ILEmitter Ldloca_S(Byte value)
         {
             _il.Emit(OpCodes.Ldloca_S, value);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -1976,7 +1976,7 @@ namespace Illuminator
         public ILEmitter Ldobj()
         {
             _il.Emit(OpCodes.Ldobj);
-            Pop("System.Int32");
+            Pop("int");
             Push("any");
 
             return this;
@@ -2003,7 +2003,7 @@ namespace Illuminator
         public ILEmitter Ldsflda()
         {
             _il.Emit(OpCodes.Ldsflda);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -2029,7 +2029,7 @@ namespace Illuminator
         public ILEmitter Ldtoken()
         {
             _il.Emit(OpCodes.Ldtoken);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -2043,7 +2043,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ldvirtftn);
             Pop("ref");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -2080,8 +2080,8 @@ namespace Illuminator
         public ILEmitter Localloc()
         {
             _il.Emit(OpCodes.Localloc);
-            Pop("System.Int32");
-            Push("System.Int32");
+            Pop("int");
+            Push("int");
 
             return this;
         }
@@ -2094,7 +2094,7 @@ namespace Illuminator
         public ILEmitter Mkrefany()
         {
             _il.Emit(OpCodes.Mkrefany);
-            Pop("System.Int32");
+            Pop("int");
             Push("any");
 
             return this;
@@ -2164,7 +2164,7 @@ namespace Illuminator
         public ILEmitter Newarr()
         {
             _il.Emit(OpCodes.Newarr);
-            Pop("System.Int32");
+            Pop("int");
             Push("ref");
 
             return this;
@@ -2340,7 +2340,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Refanytype);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -2354,7 +2354,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Refanyval);
             Pop("any");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -2449,7 +2449,7 @@ namespace Illuminator
         public ILEmitter Sizeof()
         {
             _il.Emit(OpCodes.Sizeof);
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }
@@ -2488,7 +2488,7 @@ namespace Illuminator
         public ILEmitter Stelem()
         {
             _il.Emit(OpCodes.Stelem);
-            Pop("ref", "System.Int32", "any");
+            Pop("ref", "int", "any");
 
             return this;
         }
@@ -2501,7 +2501,7 @@ namespace Illuminator
         public ILEmitter Stelem_I()
         {
             _il.Emit(OpCodes.Stelem_I);
-            Pop("ref", "System.Int32", "System.Int32");
+            Pop("ref", "int", "int");
 
             return this;
         }
@@ -2514,7 +2514,7 @@ namespace Illuminator
         public ILEmitter Stelem_I1()
         {
             _il.Emit(OpCodes.Stelem_I1);
-            Pop("ref", "System.Int32", "System.Int32");
+            Pop("ref", "int", "int");
 
             return this;
         }
@@ -2527,7 +2527,7 @@ namespace Illuminator
         public ILEmitter Stelem_I2()
         {
             _il.Emit(OpCodes.Stelem_I2);
-            Pop("ref", "System.Int32", "System.Int32");
+            Pop("ref", "int", "int");
 
             return this;
         }
@@ -2540,7 +2540,7 @@ namespace Illuminator
         public ILEmitter Stelem_I4()
         {
             _il.Emit(OpCodes.Stelem_I4);
-            Pop("ref", "System.Int32", "System.Int32");
+            Pop("ref", "int", "int");
 
             return this;
         }
@@ -2553,7 +2553,7 @@ namespace Illuminator
         public ILEmitter Stelem_I8()
         {
             _il.Emit(OpCodes.Stelem_I8);
-            Pop("ref", "System.Int32", "long");
+            Pop("ref", "int", "long");
 
             return this;
         }
@@ -2566,7 +2566,7 @@ namespace Illuminator
         public ILEmitter Stelem_R4()
         {
             _il.Emit(OpCodes.Stelem_R4);
-            Pop("ref", "System.Int32", "float");
+            Pop("ref", "int", "float");
 
             return this;
         }
@@ -2579,7 +2579,7 @@ namespace Illuminator
         public ILEmitter Stelem_R8()
         {
             _il.Emit(OpCodes.Stelem_R8);
-            Pop("ref", "System.Int32", "double");
+            Pop("ref", "int", "double");
 
             return this;
         }
@@ -2592,7 +2592,7 @@ namespace Illuminator
         public ILEmitter Stelem_Ref()
         {
             _il.Emit(OpCodes.Stelem_Ref);
-            Pop("ref", "System.Int32", "ref");
+            Pop("ref", "int", "ref");
 
             return this;
         }
@@ -2618,7 +2618,7 @@ namespace Illuminator
         public ILEmitter Stind_I()
         {
             _il.Emit(OpCodes.Stind_I);
-            Pop("System.Int32", "System.Int32");
+            Pop("int", "int");
 
             return this;
         }
@@ -2631,7 +2631,7 @@ namespace Illuminator
         public ILEmitter Stind_I1()
         {
             _il.Emit(OpCodes.Stind_I1);
-            Pop("System.Int32", "System.Int32");
+            Pop("int", "int");
 
             return this;
         }
@@ -2644,7 +2644,7 @@ namespace Illuminator
         public ILEmitter Stind_I2()
         {
             _il.Emit(OpCodes.Stind_I2);
-            Pop("System.Int32", "System.Int32");
+            Pop("int", "int");
 
             return this;
         }
@@ -2657,7 +2657,7 @@ namespace Illuminator
         public ILEmitter Stind_I4()
         {
             _il.Emit(OpCodes.Stind_I4);
-            Pop("System.Int32", "System.Int32");
+            Pop("int", "int");
 
             return this;
         }
@@ -2670,7 +2670,7 @@ namespace Illuminator
         public ILEmitter Stind_I8()
         {
             _il.Emit(OpCodes.Stind_I8);
-            Pop("System.Int32", "long");
+            Pop("int", "long");
 
             return this;
         }
@@ -2683,7 +2683,7 @@ namespace Illuminator
         public ILEmitter Stind_R4()
         {
             _il.Emit(OpCodes.Stind_R4);
-            Pop("System.Int32", "float");
+            Pop("int", "float");
 
             return this;
         }
@@ -2696,7 +2696,7 @@ namespace Illuminator
         public ILEmitter Stind_R8()
         {
             _il.Emit(OpCodes.Stind_R8);
-            Pop("System.Int32", "double");
+            Pop("int", "double");
 
             return this;
         }
@@ -2709,7 +2709,7 @@ namespace Illuminator
         public ILEmitter Stind_Ref()
         {
             _il.Emit(OpCodes.Stind_Ref);
-            Pop("System.Int32", "System.Int32");
+            Pop("int", "int");
 
             return this;
         }
@@ -2800,7 +2800,7 @@ namespace Illuminator
         public ILEmitter Stobj()
         {
             _il.Emit(OpCodes.Stobj);
-            Pop("System.Int32", "any");
+            Pop("int", "any");
 
             return this;
         }
@@ -2868,7 +2868,7 @@ namespace Illuminator
         public ILEmitter Switch()
         {
             _il.Emit(OpCodes.Switch);
-            Pop("System.Int32");
+            Pop("int");
 
             return this;
         }
@@ -2919,7 +2919,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Unbox);
             Pop("ref");
-            Push("System.Int32");
+            Push("int");
 
             return this;
         }

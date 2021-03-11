@@ -18,7 +18,9 @@ namespace Illuminator
         public ILEmitter(ILGenerator il)
         {
             _il = il ?? throw new ArgumentNullException(nameof(il));
-            _methodBuilder = (MethodInfo) typeof(ILGenerator).GetField("m_methodBuilder", PrivateFieldBindingFlags).GetValue(_il);
+            _methodBuilder = (MethodInfo)typeof(ILGenerator)
+                .GetField("m_methodBuilder", PrivateFieldBindingFlags)
+                .GetValue(_il);
         }
 
         public void Dispose()
@@ -38,7 +40,7 @@ namespace Illuminator
         [Conditional("DEBUG")]
         private void VerifyStackSize()
         {
-            var maxMidStackCur = (int) typeof(ILGenerator)
+            var maxMidStackCur = (int)typeof(ILGenerator)
                 .GetField("m_maxMidStackCur", PrivateFieldBindingFlags)
                 .GetValue(_il);
 
@@ -48,10 +50,6 @@ namespace Illuminator
             }
         }
 
-        /// <summary>
-        ///     test
-        /// </summary>
-        /// <param name="types"></param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void Push(params string[] types)
         {
@@ -70,7 +68,7 @@ namespace Illuminator
             foreach (var item in types)
             {
                 var pop = _stack.Pop();
-                if (pop != item)
+                if (pop != item && pop != "any" && item != "any")
                 {
                     throw new ILEmitterException($"Unexpected type {item} in stack {pop}.");
                 }
@@ -122,8 +120,8 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Newobj, constructorInfo);
 
-            Pop(constructorInfo.GetParameters().Select(x => x.ParameterType.FullName).ToArray());
-            _stack.Push(constructorInfo.DeclaringType.FullName); // todo: test
+            Pop(constructorInfo.GetParameters().Select(_ => "any").ToArray());
+            _stack.Push(constructorInfo.DeclaringType.FullName);
 
             return this;
         }

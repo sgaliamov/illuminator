@@ -20,11 +20,11 @@ namespace Illuminator.Tests
         }
 
         [Fact]
-        public void Try_to_return_no_type_when_a_method_has_result()
+        public void Should_fail_with_Stack_empty_exception_when_tries_to_return_no_type_when_a_method_that_has_result()
         {
             var method = new DynamicMethod("test", typeof(int), null);
 
-            Assert.Throws<ILEmitterException>(
+            Assert.Throws<InvalidOperationException>(
                 () => method
                     .GetILGenerator()
                     .UseIlluminator()

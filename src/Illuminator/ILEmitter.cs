@@ -29,18 +29,18 @@ namespace Illuminator
             VerifyStackIsEmpty();
         }
 
-        ///// <summary>
-        /////     Calls the method indicated by the passed method descriptor.
-        ///// </summary>
-        //public ILEmitter Call(MethodInfo methodInfo)
-        //{
-        //    Pop(methodInfo.GetParameters().Count());
-        //    Push(methodInfo.ReturnType == typeof(void) ? 0 : 1);
+        /// <summary>
+        ///     Calls the method indicated by the passed method descriptor.
+        /// </summary>
+        public ILEmitter Call(MethodInfo methodInfo)
+        {
+            _il.Emit(OpCodes.Call, methodInfo);
 
-        //    _il.Emit(OpCodes.Call, methodInfo);
+            Pop(methodInfo.GetParameters());
+            Push(methodInfo.ReturnType);
 
-        //    return this;
-        //}
+            return this;
+        }
 
         /// <summary>
         ///     Returns from the current method, pushing a return value (if present) from the callee's evaluation stack onto the
@@ -69,7 +69,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Newobj, constructorInfo);
 
-            Pop(constructorInfo.GetParameters().Select(x => x.ParameterType).ToArray());
+            Pop(constructorInfo.GetParameters());
             Push(constructorInfo.DeclaringType);
 
             return this;
@@ -111,11 +111,11 @@ namespace Illuminator
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private void Pop(params ParameterInfo[] types) => Pop(types.Select(x => x.ParameterType).ToArray());
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void Pop(params Type[] types) => Pop(types.Select(ToSimpleType).ToArray());
 
-        /// <summary>
-        ///     test
-        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void Pop(params string[] types)
         {

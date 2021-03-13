@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace Illuminator.Tests
 {
     public sealed class TestClass
@@ -17,5 +19,14 @@ namespace Illuminator.Tests
 
             return _a + b;
         }
+
+        public static float Foo(float v) => v;
+
+        public static double Foo(double v) => v;
+
+        public static long Foo(long v) => v;
+
+        public static MethodInfo FloatFooMethodInfo =>
+            typeof(TestClass).GetMethod("Foo", new[] { typeof(float) })!;
     }
 }

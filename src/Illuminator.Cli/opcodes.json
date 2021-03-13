@@ -721,7 +721,7 @@
   },
   {
     "name": "Ldnull",
-    "description": "TBD",
+    "description": "Pushes a null reference (type O) onto the evaluation stack.",
     "args": []
   },
   {

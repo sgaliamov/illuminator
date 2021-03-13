@@ -15,7 +15,8 @@ let lowerFirst text =
 let private excapedName = Set.ofList [
     nameof byte
     nameof string
-    nameof float ]
+    nameof float
+    nameof double ]
 
 let getArgumentName (name: string) =
     if excapedName.Contains(name.ToLowerInvariant())

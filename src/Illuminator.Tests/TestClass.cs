@@ -22,8 +22,14 @@ namespace Illuminator.Tests
         public static MethodInfo FloatFooMethodInfo =>
             typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(float) })!;
 
+        public static MethodInfo DoubleFooMethodInfo =>
+            typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(double) })!;
+
         public static MethodInfo VoidFooMethodInfo =>
             typeof(TestClass).GetMethod(nameof(Foo), Type.EmptyTypes)!;
+
+        public static MethodInfo WooMethodInfo =>
+            typeof(TestClass).GetMethod(nameof(Woo), Type.EmptyTypes)!;
 
         public int A { get; private set; }
 

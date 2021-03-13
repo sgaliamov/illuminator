@@ -535,8 +535,8 @@
   },
   {
     "name": "Ldc_R8",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes a supplied value of type float64 onto the evaluation stack as type F (float).",
+    "args": ["double"]
   },
   {
     "name": "Ldelem",

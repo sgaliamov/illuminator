@@ -1175,7 +1175,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the argument at index 0 onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -1448,13 +1448,13 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes a supplied value of type float64 onto the evaluation stack as type F (float).</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushr8.</para>
         /// </summary>
-        public ILEmitter Ldc_R8()
+        public ILEmitter Ldc_R8(double value)
         {
-            _il.Emit(OpCodes.Ldc_R8);
+            _il.Emit(OpCodes.Ldc_R8, value);
             Push("double");
 
             return this;

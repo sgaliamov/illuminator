@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 
@@ -25,11 +26,29 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Call, methodInfo);
 
+            if (!methodInfo.IsStatic)
+            {
+                Pop(methodInfo.DeclaringType);
+            }
+
             Pop(methodInfo.GetParameters());
             Push(methodInfo.ReturnType);
 
             return this;
         }
+
+        ///// <summary>
+        /////     Calls a late-bound method on an object, pushing the return value onto the evaluation stack.
+        ///// </summary>
+        //public ILEmitter Callvirt(MethodInfo methodInfo)
+        //{
+        //    _il.Emit(OpCodes.Callvirt, methodInfo);
+
+        //    Pop(methodInfo.GetParameters());
+        //    Push(methodInfo.ReturnType);
+
+        //    return this;
+        //}
 
         /// <summary>
         ///     Returns from the current method, pushing a return value (if present) from the callee's evaluation stack onto the
@@ -45,7 +64,8 @@ namespace Illuminator
                 return this;
             }
 
-            Pop(_methodBuilder.ReturnType);
+            Type[] types = { _methodBuilder.ReturnType };
+            Pop(types.Select(ToSimpleType).ToArray());
 
             return this;
         }

@@ -39,8 +39,15 @@ namespace Illuminator
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void Push(params Type[] types) => Push(types.Select(ToSimpleType).ToArray());
+        private void Push(Type type)
+        {
+            if (type == typeof(void))
+            {
+                return;
+            }
+
+            Push(ToSimpleType(type));
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void Push(params string[] types)
@@ -53,10 +60,16 @@ namespace Illuminator
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void Pop(params ParameterInfo[] types) => Pop(types.Select(x => x.ParameterType).ToArray());
+        private void Pop(params ParameterInfo[] types)
+        {
+            if (types.Length == 0)
+            {
+                return;
+            }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            Pop(types.Select(x => x.ParameterType).ToArray());
+        }
+
         private void Pop(params Type[] types) => Pop(types.Select(ToSimpleType).ToArray());
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -82,6 +95,8 @@ namespace Illuminator
 
         private static string ToSimpleType(Type type)
         {
+            Debug.Assert(type != typeof(void));
+
             // todo: smart types check
             if (type == typeof(int))
             {
@@ -102,7 +117,6 @@ namespace Illuminator
 
             if (type == typeof(float))
             {
-                // todo: test
                 return "float";
             }
 

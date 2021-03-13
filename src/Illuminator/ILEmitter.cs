@@ -44,13 +44,53 @@ namespace Illuminator
 
             if (methodInfo.IsStatic)
             {
-                // todo: more informative method names
                 throw new IlluminatorException(
                     $"Can't make virtual call on the static method {methodInfo.DeclaringType.FullName}.{methodInfo.Name}");
             }
 
             Pop(methodInfo.DeclaringType);
             Pop(methodInfo.GetParameters());
+            Push(methodInfo.ReturnType);
+
+            return this;
+        }
+
+        /// <summary>
+        ///     Calls the method indicated on the evaluation stack (as a pointer to an entry point) with arguments described by a
+        ///     calling convention.
+        /// </summary>
+        private ILEmitter EmitCalli(
+            CallingConventions callingConvention,
+            Type? returnType,
+            Type[]? parameterTypes,
+            Type[]? optionalParameterTypes)
+        {
+            // todo: test
+            _il.EmitCalli(OpCodes.Calli, callingConvention, returnType, parameterTypes, optionalParameterTypes);
+
+            return this;
+        }
+
+        /// <summary>
+        ///     Puts a call or callvirt instruction onto the Microsoft intermediate language
+        ///     (MSIL) stream to call a varargs method.
+        /// </summary>
+        private ILEmitter EmitCall(OpCode opcode, MethodInfo methodInfo, Type[]? optionalParameterTypes)
+        {
+            // todo: test with var args
+            _il.EmitCall(opcode, methodInfo, optionalParameterTypes);
+
+            if (!methodInfo.IsStatic)
+            {
+                Pop(methodInfo.DeclaringType);
+            }
+
+            Pop(methodInfo.GetParameters());
+            if (optionalParameterTypes != null)
+            {
+                Pop(optionalParameterTypes);
+            }
+
             Push(methodInfo.ReturnType);
 
             return this;

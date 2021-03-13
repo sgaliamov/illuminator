@@ -112,7 +112,6 @@ namespace Illuminator
 
             if (type == typeof(double))
             {
-                // todo: test
                 return "double";
             }
 

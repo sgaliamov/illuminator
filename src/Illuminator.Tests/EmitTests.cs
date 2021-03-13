@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Illuminator.Tests
 {
-    public class CoreTests
+    public class EmitTests
     {
         [Fact]
         public void Newobj_creates_object()
@@ -19,7 +19,7 @@ namespace Illuminator.Tests
                 .DeclareLocal(typeof(int), out var local)
                 .Ldc_I4_0()
                 .Ldloca_S((byte) local.LocalIndex)
-                .Newobj(type.GetConstructors().Single())
+                .Newobj(TestClass.ParameterizedCtor)
                 .Ret();
 
             var ctor = method.CreateDelegate<Func<TestClass>>();

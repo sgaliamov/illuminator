@@ -26,7 +26,7 @@
   {
     "name": "Beq",
     "description": "Transfers control to a target instruction if two values are equal.",
-    "args": [ "Label" ]
+    "args": ["Label"]
   },
   {
     "name": "Beq_S",
@@ -430,8 +430,7 @@
   },
   {
     "name": "Ldarg_0",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the argument at index 0 onto the evaluation stack."
   },
   {
     "name": "Ldarg_1",
@@ -532,7 +531,7 @@
   {
     "name": "Ldc_R4",
     "description": "Pushes a supplied value of type float32 onto the evaluation stack as type F (float).",
-    "args": [ "float" ]
+    "args": ["float"]
   },
   {
     "name": "Ldc_R8",
@@ -717,7 +716,7 @@
   {
     "name": "Ldloca_S",
     "description": "Loads the address of the local variable at a specific index onto the evaluation stack, short form.",
-    "args": [ "byte" ]
+    "args": ["byte"]
   },
   {
     "name": "Ldnull",
@@ -742,7 +741,7 @@
   {
     "name": "Ldstr",
     "description": "Pushes a new object reference to a string literal stored in the metadata.",
-    "args": [ "string" ]
+    "args": ["string"]
   },
   {
     "name": "Ldtoken",

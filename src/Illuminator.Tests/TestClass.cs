@@ -1,23 +1,38 @@
+using System;
 using System.Reflection;
 
 namespace Illuminator.Tests
 {
-    public sealed class TestClass
+    public sealed class TestClass : BaseClass
     {
-        private int _a;
+        public TestClass() { }
 
         public TestClass(int a, out int b)
         {
-            _a = a;
-            b = _a + 1;
+            A = a;
+            b = A + 1;
         }
+
+        public static ConstructorInfo DefaultCtor =>
+            typeof(TestClass).GetConstructor(Type.EmptyTypes)!;
+
+        public static ConstructorInfo ParameterizedCtor =>
+            typeof(TestClass).GetConstructor(new[] { typeof(int), typeof(int).MakeByRefType() })!;
+
+        public static MethodInfo FloatFooMethodInfo =>
+            typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(float) })!;
+
+        public static MethodInfo VoidFooMethodInfo =>
+            typeof(TestClass).GetMethod(nameof(Foo), Type.EmptyTypes)!;
+
+        public int A { get; private set; }
 
         public int Foo(int a, out int b)
         {
-            _a += a;
-            b = _a + 1;
+            A += a;
+            b = A + 1;
 
-            return _a + b;
+            return A + b;
         }
 
         public static float Foo(float v) => v;
@@ -26,7 +41,13 @@ namespace Illuminator.Tests
 
         public static long Foo(long v) => v;
 
-        public static MethodInfo FloatFooMethodInfo =>
-            typeof(TestClass).GetMethod("Foo", new[] { typeof(float) })!;
+        public override bool Woo() => true;
+
+        public void Foo() => A = 1;
+    }
+
+    public abstract class BaseClass
+    {
+        public virtual bool Woo() => false;
     }
 }

@@ -12,6 +12,7 @@
     <Compile Include="Shared.fs" />
     <Compile Include="CoreGenerator.fs" />
     <Compile Include="EmitGenerator.fs" />
+    <Compile Include="JsonGenerator.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

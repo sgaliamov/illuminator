@@ -4,18 +4,1104 @@
     "description": "Adds two values and pushes the result onto the evaluation stack."
   },
   {
+    "name": "Add_Ovf",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Add_Ovf_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "And",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Arglist",
+    "description": "TBD",
+    "args": []
+  },
+  {
     "name": "Beq",
     "description": "Transfers control to a target instruction if two values are equal.",
     "args": [ "Label" ]
   },
   {
+    "name": "Beq_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Bge",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Bge_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Bge_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Bge_Un_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Bgt",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Bgt_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Bgt_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Bgt_Un_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ble",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ble_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ble_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ble_Un_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Blt",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Blt_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Blt_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Blt_Un_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Bne_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Bne_Un_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Box",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Br",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Br_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Break",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Brfalse",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Brfalse_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Brtrue",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Brtrue_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Castclass",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ceq",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Cgt",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Cgt_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ckfinite",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Clt",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Clt_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Constrained",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_I",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_I1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_I2",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_I4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_I8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_I",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_I1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_I1_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_I2",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_I2_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_I4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_I4_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_I8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_I8_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_I_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_U",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_U1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_U1_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_U2",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_U2_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_U4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_U4_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_U8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_U8_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_Ovf_U_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_R4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_R8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_R_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_U",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_U1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_U2",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_U4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Conv_U8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Cpblk",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Cpobj",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Div",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Div_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Dup",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Endfilter",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Endfinally",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Initblk",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Initobj",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Isinst",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Jmp",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldarg",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldarg_0",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldarg_1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldarg_2",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldarg_3",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldarg_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldarga",
+    "description": "TBD",
+    "args": []
+  },
+
+  {
+    "name": "Ldarga_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldc_I4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldc_I4_0",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldc_I4_1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldc_I4_2",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldc_I4_3",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldc_I4_4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldc_I4_5",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldc_I4_6",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldc_I4_7",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldc_I4_8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldc_I4_M1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldc_I4_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldc_I8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldc_R4",
+    "description": "Pushes a supplied value of type float32 onto the evaluation stack as type F (float).",
+    "args": [ "float" ]
+  },
+  {
+    "name": "Ldc_R8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldelem",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldelem_I",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldelem_I1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldelem_I2",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldelem_I4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldelem_I8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldelem_R4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldelem_R8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldelem_Ref",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldelem_U1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldelem_U2",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldelem_U4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldelema",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldfld",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldflda",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldftn",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldind_I",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldind_I1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldind_I2",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldind_I4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldind_I8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldind_R4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldind_R8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldind_Ref",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldind_U1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldind_U2",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldind_U4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldlen",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldloc",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldloc_0",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldloc_1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldloc_2",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldloc_3",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldloc_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldloca",
+    "description": "TBD",
+    "args": []
+  },
+  {
     "name": "Ldloca_S",
     "description": "Loads the address of the local variable at a specific index onto the evaluation stack, short form.",
-    "args": [ "Byte" ]
+    "args": [ "byte" ]
+  },
+  {
+    "name": "Ldnull",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldobj",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldsfld",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldsflda",
+    "description": "TBD",
+    "args": []
   },
   {
     "name": "Ldstr",
-    "description":"Pushes a new object reference to a string literal stored in the metadata.",
+    "description": "Pushes a new object reference to a string literal stored in the metadata.",
     "args": [ "string" ]
+  },
+  {
+    "name": "Ldtoken",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Ldvirtftn",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Leave",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Leave_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Localloc",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Mkrefany",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Mul",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Mul_Ovf",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Mul_Ovf_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Neg",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Newarr",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Nop",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Not",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Or",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Pop",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Prefix1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Prefix2",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Prefix3",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Prefix4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Prefix5",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Prefix6",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Prefix7",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Prefixref",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Readonly",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Refanytype",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Refanyval",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Rem",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Rem_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Rethrow",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Shl",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Shr",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Shr_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Sizeof",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Starg",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Starg_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stelem",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stelem_I",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stelem_I1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stelem_I2",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stelem_I4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stelem_I8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stelem_R4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stelem_R8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stelem_Ref",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stfld",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stind_I",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stind_I1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stind_I2",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stind_I4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stind_I8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stind_R4",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stind_R8",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stind_Ref",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stloc",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stloc_0",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stloc_1",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stloc_2",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stloc_3",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stloc_S",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stobj",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Stsfld",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Sub",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Sub_Ovf",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Sub_Ovf_Un",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Switch",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Tailcall",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Throw",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Unaligned",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Unbox",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Unbox_Any",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Volatile",
+    "description": "TBD",
+    "args": []
+  },
+  {
+    "name": "Xor",
+    "description": "TBD",
+    "args": []
   }
 ]

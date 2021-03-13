@@ -5,6 +5,7 @@ open Scriban
 open Shared
 open System.Reflection
 open System.Reflection.Emit;
+open System.IO
 
 let private template = @"
 /*
@@ -43,14 +44,6 @@ namespace Illuminator
         {{~ end ~}}
     }
 }"
-
-// codes with not standart behaviour
-let manualCodes = Set.ofList [
-    OpCodes.Call.Name
-    OpCodes.Calli.Name
-    OpCodes.Callvirt.Name
-    OpCodes.Newobj.Name
-    OpCodes.Ret.Name ]
 
 type private OpCodesInfo = JsonProvider<"./opcodes.json">
 
@@ -100,16 +93,14 @@ let generate () =
             |> Seq.map (fun x -> $"\"{x}\"")
             |> join ", "
 
-        typeof<OpCodes>.GetFields(BindingFlags.Static ||| BindingFlags.Public ||| BindingFlags.GetField)
-        |> Seq.map (fun field -> field.Name, field.GetValue null :?> OpCode )
-        |> Seq.filter (fun (_, code) -> not (manualCodes.Contains code.Name))
-        |> Seq.sortBy (fun (name, _) -> name)
+        allCodes
         |> Seq.map (fun (name, code) ->
-            let hasInfo, info = opCodesInfo.TryGetValue name
-            {| arguments = if hasInfo then info.Args |> Seq.map getArgumentName else Seq.empty
-               description = if hasInfo then info.Description else "TBD"
+            let info = opCodesInfo.[name]
+
+            {| arguments = info.Args |> Seq.map getArgumentName
+               description = info.Description 
                name = name
-               parameters = if hasInfo then info.Args |> Seq.map (fun a -> $"{a} {getArgumentName a}") else Seq.empty
+               parameters = info.Args |> Seq.map (fun a -> $"{a} {getArgumentName a}")
                pop_behaviour = code.StackBehaviourPop.ToString()
                pops = stackBehaviourMap.[code.StackBehaviourPop] |> join
                push_behaviour = code.StackBehaviourPush.ToString()

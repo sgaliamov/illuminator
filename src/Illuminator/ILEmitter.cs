@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using Illuminator.Exceptions;
 
 namespace Illuminator
 {
@@ -37,9 +37,7 @@ namespace Illuminator
             return this;
         }
 
-        /// <summary>
-        ///     Calls a late-bound method on an object, pushing the return value onto the evaluation stack.
-        /// </summary>
+        /// <summary>Calls a late-bound method on an object, pushing the return value onto the evaluation stack.</summary>
         public ILEmitter Callvirt(MethodInfo methodInfo)
         {
             _il.Emit(OpCodes.Callvirt, methodInfo);
@@ -47,7 +45,7 @@ namespace Illuminator
             if (methodInfo.IsStatic)
             {
                 // todo: more informative method names
-                throw new ILEmitterException(
+                throw new IlluminatorException(
                     $"Can't make virtual call on the static method {methodInfo.DeclaringType.FullName}.{methodInfo.Name}");
             }
 
@@ -68,19 +66,18 @@ namespace Illuminator
 
             if (_methodBuilder.ReturnType == typeof(void))
             {
-                VerifyStackIsEmpty(); // todo: test fail
+                VerifyStackIsEmpty();
                 return this;
             }
 
-            Type[] types = { _methodBuilder.ReturnType };
-            Pop(types.Select(ToSimpleType).ToArray());
+            Pop(_methodBuilder.ReturnType);
 
             return this;
         }
 
         /// <summary>
-        ///     Creates a new object or a new instance of a value type, pushing an object reference (type O) onto the evaluation
-        ///     stack.
+        ///     Creates a new object or a new instance of a value type, pushing an object reference (type O) onto the
+        ///     evaluation stack.
         /// </summary>
         public ILEmitter Newobj(ConstructorInfo constructorInfo)
         {
@@ -92,6 +89,14 @@ namespace Illuminator
             return this;
         }
 
-        public T CreateDelegate<T>() where T : Delegate => (T)_methodBuilder.CreateDelegate(typeof(T));
+        /// <summary>Creates a delegate of type <typeparamref name="T" /> from this method.</summary>
+        /// <typeparam name="T">The type of the delegate to create.</typeparam>
+        /// <returns>The delegate for this method.</returns>
+        public T CreateDelegate<T>() where T : Delegate
+        {
+            VerifyStackIsEmpty();
+
+            return (T)_methodBuilder.CreateDelegate(typeof(T));
+        }
     }
 }

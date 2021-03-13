@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection.Emit;
+using Illuminator.Exceptions;
 using Xunit;
 
 namespace Illuminator.Tests
@@ -61,7 +62,7 @@ namespace Illuminator.Tests
         [Fact]
         public void Callvirt_on_static_method_should_not_work()
         {
-            Assert.Throws<ILEmitterException>(() => new DynamicMethod("test", typeof(double), null)
+            Assert.Throws<IlluminatorException>(() => new DynamicMethod("test", typeof(double), null)
                 .GetILGenerator()
                 .UseIlluminator()
                 .Ldc_R8(1.0)

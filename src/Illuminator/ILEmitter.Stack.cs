@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
+using Illuminator.Exceptions;
 
 namespace Illuminator
 {
@@ -14,7 +15,7 @@ namespace Illuminator
 
         public void Dispose()
         {
-            VerifyStackSize();
+            DebugVerifyStackSize();
             VerifyStackIsEmpty();
         }
 
@@ -22,12 +23,12 @@ namespace Illuminator
         {
             if (_stack.Count != 0)
             {
-                throw new ILEmitterException($"Stack should be empty: [{string.Join(", ", _stack)}]");
+                throw new IlluminatorStackException($"Stack should be empty: [{string.Join(", ", _stack)}]");
             }
         }
 
         [Conditional("DEBUG")]
-        private void VerifyStackSize()
+        private void DebugVerifyStackSize()
         {
             var maxMidStackCur = (int)typeof(ILGenerator)
                 .GetField("m_maxMidStackCur", PrivateFieldBindingFlags)
@@ -35,7 +36,7 @@ namespace Illuminator
 
             if (_stack.Count != maxMidStackCur)
             {
-                throw new ILEmitterException($"Stack size does not match to ILGenerator stack. [{string.Join(", ", _stack)}].");
+                throw new IlluminatorStackException($"Stack size does not match to ILGenerator stack. [{string.Join(", ", _stack)}].");
             }
         }
 
@@ -79,7 +80,7 @@ namespace Illuminator
 
             if (_stack.Count == 0)
             {
-                throw new ILEmitterException("Stack is empty to return a value.");
+                throw new IlluminatorStackException("Stack is empty to return a value.");
             }
 
             foreach (var item in types)
@@ -88,7 +89,7 @@ namespace Illuminator
                 if (pop != item && pop != "any" && item != "any")
                 {
                     // todo: test
-                    throw new ILEmitterException($"Unexpected type {item} in stack {pop}.");
+                    throw new IlluminatorStackException($"Unexpected type {item} in stack {pop}.");
                 }
             }
         }

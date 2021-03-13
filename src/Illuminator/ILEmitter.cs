@@ -37,18 +37,26 @@ namespace Illuminator
             return this;
         }
 
-        ///// <summary>
-        /////     Calls a late-bound method on an object, pushing the return value onto the evaluation stack.
-        ///// </summary>
-        //public ILEmitter Callvirt(MethodInfo methodInfo)
-        //{
-        //    _il.Emit(OpCodes.Callvirt, methodInfo);
+        /// <summary>
+        ///     Calls a late-bound method on an object, pushing the return value onto the evaluation stack.
+        /// </summary>
+        public ILEmitter Callvirt(MethodInfo methodInfo)
+        {
+            _il.Emit(OpCodes.Callvirt, methodInfo);
 
-        //    Pop(methodInfo.GetParameters());
-        //    Push(methodInfo.ReturnType);
+            if (methodInfo.IsStatic)
+            {
+                // todo: more informative method names
+                throw new ILEmitterException(
+                    $"Can't make virtual call on the static method {methodInfo.DeclaringType.FullName}.{methodInfo.Name}");
+            }
 
-        //    return this;
-        //}
+            Pop(methodInfo.DeclaringType);
+            Pop(methodInfo.GetParameters());
+            Push(methodInfo.ReturnType);
+
+            return this;
+        }
 
         /// <summary>
         ///     Returns from the current method, pushing a return value (if present) from the callee's evaluation stack onto the

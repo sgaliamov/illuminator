@@ -28,9 +28,6 @@ namespace Illuminator.Tests
         public static MethodInfo VoidFooMethodInfo =>
             typeof(TestClass).GetMethod(nameof(Foo), Type.EmptyTypes)!;
 
-        public static MethodInfo WooMethodInfo =>
-            typeof(TestClass).GetMethod(nameof(Woo), Type.EmptyTypes)!;
-
         public int A { get; private set; }
 
         public int Foo(int a, out int b)
@@ -54,6 +51,9 @@ namespace Illuminator.Tests
 
     public abstract class BaseClass
     {
+        public static MethodInfo WooMethodInfo =>
+            typeof(BaseClass).GetMethod(nameof(Woo), Type.EmptyTypes)!;
+
         public virtual bool Woo() => false;
     }
 }

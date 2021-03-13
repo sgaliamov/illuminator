@@ -7,6 +7,22 @@ namespace Illuminator.Tests
     public class CallTests
     {
         [Fact]
+        public void Call_base_virtual_method_uses_base_implementation()
+        {
+            var target = new DynamicMethod("test", typeof(bool), new[] { typeof(BaseClass) })
+                .GetILGenerator()
+                .UseIlluminator()
+                .Ldarg_0()
+                .Call(BaseClass.WooMethodInfo)
+                .Ret()
+                .CreateDelegate<Func<BaseClass, bool>>();
+
+            var actual = target(new TestClass());
+
+            Assert.False(actual);
+        }
+
+        [Fact]
         public void Call_static_float_method()
         {
             var method = new DynamicMethod("test", typeof(float), null);
@@ -55,21 +71,19 @@ namespace Illuminator.Tests
         }
 
         [Fact]
-        public void Callvirt_instance_method()
+        public void Callvirt_uses_overridden_method()
         {
-            var target = new DynamicMethod("test", null, new[] { typeof(TestClass) })
+            var target = new DynamicMethod("test", typeof(bool), new[] { typeof(BaseClass) })
                 .GetILGenerator()
                 .UseIlluminator()
                 .Ldarg_0()
-                .Call(TestClass.VoidFooMethodInfo)
+                .Callvirt(BaseClass.WooMethodInfo)
                 .Ret()
-                .CreateDelegate<Action<TestClass>>();
+                .CreateDelegate<Func<BaseClass, bool>>();
 
-            var arg = new TestClass();
+            var actual = target(new TestClass());
 
-            target(arg);
-
-            Assert.Equal(1, arg.A);
+            Assert.True(actual);
         }
     }
 }

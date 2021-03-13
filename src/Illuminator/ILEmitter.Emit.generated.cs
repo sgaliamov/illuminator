@@ -1435,13 +1435,13 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes a supplied value of type float32 onto the evaluation stack as type F (float).</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushr4.</para>
         /// </summary>
-        public ILEmitter Ldc_R4()
+        public ILEmitter Ldc_R4(float value)
         {
-            _il.Emit(OpCodes.Ldc_R4);
+            _il.Emit(OpCodes.Ldc_R4, value);
             Push("float");
 
             return this;
@@ -1947,7 +1947,7 @@ namespace Illuminator
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Ldloca_S(Byte value)
+        public ILEmitter Ldloca_S(byte value)
         {
             _il.Emit(OpCodes.Ldloca_S, value);
             Push("int");

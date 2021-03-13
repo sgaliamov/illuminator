@@ -3,9 +3,7 @@
 open FSharp.Data
 open Scriban
 open Shared
-open System.Reflection
 open System.Reflection.Emit;
-open System.IO
 
 let private template = @"
 /*
@@ -96,7 +94,6 @@ let generate () =
         allCodes
         |> Seq.map (fun (name, code) ->
             let info = opCodesInfo.[name]
-
             {| arguments = info.Args |> Seq.map getArgumentName
                description = info.Description 
                name = name

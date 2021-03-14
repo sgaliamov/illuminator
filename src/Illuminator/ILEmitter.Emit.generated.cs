@@ -1279,7 +1279,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes the integer value of 0 onto the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>

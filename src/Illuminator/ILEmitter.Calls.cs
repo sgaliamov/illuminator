@@ -14,8 +14,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Call, methodInfo);
 
-            if (!methodInfo.IsStatic)
-            {
+            if (!methodInfo.IsStatic) {
                 Pop(methodInfo.DeclaringType);
             }
 
@@ -30,8 +29,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Callvirt, methodInfo);
 
-            if (methodInfo.IsStatic)
-            {
+            if (methodInfo.IsStatic) {
                 throw new IlluminatorException(
                     $"Can't make virtual call on the static method {methodInfo.DeclaringType.FullName}.{methodInfo.Name}");
             }
@@ -68,14 +66,12 @@ namespace Illuminator
             // todo: test with var args
             _il.EmitCall(opcode, methodInfo, optionalParameterTypes);
 
-            if (!methodInfo.IsStatic)
-            {
+            if (!methodInfo.IsStatic) {
                 Pop(methodInfo.DeclaringType);
             }
 
             Pop(methodInfo.GetParameters());
-            if (optionalParameterTypes != null)
-            {
+            if (optionalParameterTypes != null) {
                 Pop(optionalParameterTypes);
             }
 

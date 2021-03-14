@@ -21,8 +21,7 @@ namespace Illuminator
 
         private void VerifyStackIsEmpty()
         {
-            if (_stack.Count != 0)
-            {
+            if (_stack.Count != 0) {
                 throw new IlluminatorStackException($"Stack should be empty: [{string.Join(", ", _stack)}]");
             }
         }
@@ -34,16 +33,14 @@ namespace Illuminator
                 .GetField("m_maxMidStackCur", PrivateFieldBindingFlags)
                 .GetValue(_il);
 
-            if (_stack.Count != maxMidStackCur)
-            {
+            if (_stack.Count != maxMidStackCur) {
                 throw new IlluminatorStackException($"Stack size does not match to ILGenerator stack. [{string.Join(", ", _stack)}].");
             }
         }
 
         private void Push(Type type)
         {
-            if (type == typeof(void))
-            {
+            if (type == typeof(void)) {
                 return;
             }
 
@@ -55,16 +52,14 @@ namespace Illuminator
         {
             Debug.Assert(types.Length != 0);
 
-            foreach (var item in types)
-            {
+            foreach (var item in types) {
                 _stack.Push(item);
             }
         }
 
         private void Pop(params ParameterInfo[] types)
         {
-            if (types.Length == 0)
-            {
+            if (types.Length == 0) {
                 return;
             }
 
@@ -78,16 +73,13 @@ namespace Illuminator
         {
             Debug.Assert(types.Length != 0);
 
-            if (_stack.Count == 0)
-            {
+            if (_stack.Count == 0) {
                 throw new IlluminatorStackException("Stack is empty to return a value.");
             }
 
-            foreach (var item in types)
-            {
+            foreach (var item in types) {
                 var pop = _stack.Pop();
-                if (pop != item && pop != "any" && item != "any")
-                {
+                if (pop != item && pop != "any" && item != "any") {
                     // todo: test
                     throw new IlluminatorStackException($"Unexpected type {item} in stack {pop}.");
                 }
@@ -99,24 +91,20 @@ namespace Illuminator
             Debug.Assert(type != typeof(void));
 
             // todo: smart types check
-            if (type == typeof(int))
-            {
+            if (type == typeof(int)) {
                 return "int";
             }
 
-            if (type == typeof(long))
-            {
+            if (type == typeof(long)) {
                 // todo: test
                 return "long";
             }
 
-            if (type == typeof(double))
-            {
+            if (type == typeof(double)) {
                 return "double";
             }
 
-            if (type == typeof(float))
-            {
+            if (type == typeof(float)) {
                 return "float";
             }
 

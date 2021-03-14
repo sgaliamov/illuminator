@@ -26,8 +26,7 @@ namespace Illuminator
         {
             _il.Emit(OpCodes.Ret);
 
-            if (_methodBuilder.ReturnType == typeof(void))
-            {
+            if (_methodBuilder.ReturnType == typeof(void)) {
                 VerifyStackIsEmpty();
                 return this;
             }

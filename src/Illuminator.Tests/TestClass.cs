@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using System.Text;
 
 namespace Illuminator.Tests
 {
@@ -16,14 +17,14 @@ namespace Illuminator.Tests
         public static ConstructorInfo DefaultCtor =>
             typeof(TestClass).GetConstructor(Type.EmptyTypes)!;
 
-        public static ConstructorInfo ParameterizedCtor =>
-            typeof(TestClass).GetConstructor(new[] { typeof(int), typeof(int).MakeByRefType() })!;
+        public static MethodInfo DoubleFooMethodInfo =>
+            typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(double) })!;
 
         public static MethodInfo FloatFooMethodInfo =>
             typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(float) })!;
 
-        public static MethodInfo DoubleFooMethodInfo =>
-            typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(double) })!;
+        public static ConstructorInfo ParameterizedCtor =>
+            typeof(TestClass).GetConstructor(new[] { typeof(int), typeof(int).MakeByRefType() })!;
 
         public static MethodInfo VoidFooMethodInfo =>
             typeof(TestClass).GetMethod(nameof(Foo), Type.EmptyTypes)!;
@@ -36,6 +37,18 @@ namespace Illuminator.Tests
             b = A + 1;
 
             return A + b;
+        }
+
+        public static string Foo(object val, __arglist)
+        {
+            var argumentIterator = new ArgIterator(__arglist);
+            var sb = new StringBuilder(val.ToString());
+            for (var i = 0; i < argumentIterator.GetRemainingCount(); i++) {
+                var o = __refvalue(argumentIterator.GetNextArg(), object);
+                sb.Append(o);
+            }
+
+            return sb.ToString();
         }
 
         public static float Foo(float v) => v;

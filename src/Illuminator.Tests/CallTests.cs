@@ -86,5 +86,14 @@ namespace Illuminator.Tests
 
             Assert.True(actual);
         }
+
+        [Fact]
+        public void EmitCall_on_static_method()
+        {
+
+        }
+
+        [Fact]
+        public void EmitCall_with_var_args() { }
     }
 }

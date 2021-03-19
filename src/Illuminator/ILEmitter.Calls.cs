@@ -42,26 +42,10 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     Calls the method indicated on the evaluation stack (as a pointer to an entry point) with arguments described by a
-        ///     calling convention.
-        /// </summary>
-        private ILEmitter EmitCalli(
-            CallingConventions callingConvention,
-            Type? returnType,
-            Type[]? parameterTypes,
-            Type[]? optionalParameterTypes)
-        {
-            // todo: test
-            _il.EmitCalli(OpCodes.Calli, callingConvention, returnType, parameterTypes, optionalParameterTypes);
-
-            return this;
-        }
-
-        /// <summary>
         ///     Puts a call or callvirt instruction onto the Microsoft intermediate language
         ///     (MSIL) stream to call a varargs method.
         /// </summary>
-        private ILEmitter EmitCall(OpCode opcode, MethodInfo methodInfo, Type[]? optionalParameterTypes)
+        public ILEmitter EmitCall(OpCode opcode, MethodInfo methodInfo, Type[]? optionalParameterTypes)
         {
             // todo: test with var args
             _il.EmitCall(opcode, methodInfo, optionalParameterTypes);
@@ -76,6 +60,22 @@ namespace Illuminator
             }
 
             Push(methodInfo.ReturnType);
+
+            return this;
+        }
+
+        /// <summary>
+        ///     Calls the method indicated on the evaluation stack (as a pointer to an entry point) with arguments described by a
+        ///     calling convention.
+        /// </summary>
+        public ILEmitter EmitCalli(
+            CallingConventions callingConvention,
+            Type? returnType,
+            Type[]? parameterTypes,
+            Type[]? optionalParameterTypes)
+        {
+            // todo: test
+            _il.EmitCalli(OpCodes.Calli, callingConvention, returnType, parameterTypes, optionalParameterTypes);
 
             return this;
         }

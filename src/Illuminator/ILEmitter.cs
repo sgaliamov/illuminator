@@ -4,6 +4,7 @@ using System.Reflection.Emit;
 
 namespace Illuminator
 {
+    // todo: interface at the end
     public sealed partial class ILEmitter
     {
         private const BindingFlags PrivateFieldBindingFlags = BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance;

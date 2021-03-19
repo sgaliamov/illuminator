@@ -38,6 +38,9 @@ namespace Illuminator
             }
         }
 
+        /// <summary>
+        ///     Ignores Void type
+        /// </summary>
         private void Push(Type type)
         {
             if (type == typeof(void)) {

@@ -29,21 +29,12 @@ git submodule add https://github.com/sgaliamov/illuminator.git external/illumina
 
 No package for now because **it's not production ready**.
 
-C:\Users\sgaliamov\projects\github\dotnet-runtime\src\coreclr\jit\utils.cpp
-C:\Users\sgaliamov\projects\github\dotnet-runtime\src\mono\mono\cil\cil-opcodes.xml
-C:\Users\sgaliamov\projects\github\dotnet-runtime\src\coreclr\vm\interpreter.cpp
-C:\Users\sgaliamov\projects\github\dotnet-runtime\src\mono\mono\mini\interp\transform.c
-C:\Users\sgaliamov\projects\github\dotnet-runtime\src\mono\mono\mini\method-to-ir.c
-
 ### Plan
 
-1. Stack size for methods.
 1. The EmitCall method is provided for varargs calls. Use the Emit method for normal calls.
 1. Branch optimizations. Can calculate distance.
+1. Try/catch.
 1. Bacis overloads with ILEmitterFunc depending on input parameters.
 1. Fuctional versions on all named functions.
-1. Try/catch.
-1. Partial applications?
-1. Typed ILEmitterFunc?
 1. Verifications for types of arguments.
 1. Logger.

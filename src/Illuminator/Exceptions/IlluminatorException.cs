@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 namespace Illuminator.Exceptions
 {
     [Serializable]
+    [ExcludeFromCodeCoverage]
     public class IlluminatorException : Exception
     {
         public IlluminatorException() { }

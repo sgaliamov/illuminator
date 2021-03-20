@@ -1383,7 +1383,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes the integer value of 8 onto the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1422,13 +1422,13 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes a supplied value of type int64 onto the evaluation stack as an int64.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
-        public ILEmitter Ldc_I8()
+        public ILEmitter Ldc_I8(long value)
         {
-            _il.Emit(OpCodes.Ldc_I8);
+            _il.Emit(OpCodes.Ldc_I8, value);
             Push("long");
 
             return this;

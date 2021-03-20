@@ -16,7 +16,8 @@ let private excapedName = Set.ofList [
     nameof byte
     nameof string
     nameof float
-    nameof double ]
+    nameof double
+    "long" ]
 
 let getArgumentName (name: string) =
     if excapedName.Contains(name.ToLowerInvariant())

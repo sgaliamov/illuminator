@@ -23,6 +23,9 @@ namespace Illuminator.Tests
         public static MethodInfo FloatFooMethodInfo =>
             typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(float) })!;
 
+        public static MethodInfo LongFooMethodInfo =>
+            typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(long) })!;
+
         public static ConstructorInfo ParameterizedCtor =>
             typeof(TestClass).GetConstructor(new[] { typeof(int), typeof(int).MakeByRefType() })!;
 

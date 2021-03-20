@@ -93,13 +93,11 @@ namespace Illuminator
         {
             Debug.Assert(type != typeof(void));
 
-            // todo: smart types check
             if (type == typeof(int)) {
                 return "int";
             }
 
             if (type == typeof(long)) {
-                // todo: test
                 return "long";
             }
 
@@ -111,6 +109,7 @@ namespace Illuminator
                 return "float";
             }
 
+            // todo: smart types check
             return "any";
         }
     }

@@ -45,9 +45,9 @@ namespace Illuminator
         ///     Puts a call or callvirt instruction onto the Microsoft intermediate language
         ///     (MSIL) stream to call a varargs method.
         /// </summary>
-        public ILEmitter EmitCall(OpCode opcode, MethodInfo methodInfo, Type[]? optionalParameterTypes)
+        public ILEmitter EmitCall(OpCode opcode, MethodInfo methodInfo, Type[]? optionalParameterTypes = null)
         {
-            // todo: test with var args
+            // op code is not calculated because it will change API and sometimes you may want to call a virtual method with Call code.
             _il.EmitCall(opcode, methodInfo, optionalParameterTypes);
 
             if (!methodInfo.IsStatic) {
@@ -70,9 +70,9 @@ namespace Illuminator
         /// </summary>
         public ILEmitter EmitCalli(
             CallingConventions callingConvention,
-            Type? returnType,
-            Type[]? parameterTypes,
-            Type[]? optionalParameterTypes)
+            Type? returnType = null,
+            Type[]? parameterTypes = null,
+            Type[]? optionalParameterTypes = null)
         {
             // todo: test
             _il.EmitCalli(OpCodes.Calli, callingConvention, returnType, parameterTypes, optionalParameterTypes);

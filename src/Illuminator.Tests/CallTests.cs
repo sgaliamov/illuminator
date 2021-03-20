@@ -90,7 +90,19 @@ namespace Illuminator.Tests
         [Fact]
         public void EmitCall_on_static_method()
         {
+            var target = new DynamicMethod("test", typeof(long), new[] { typeof(TestClass) })
+                .GetILGenerator()
+                .UseIlluminator()
+                .Ldc_I8(1)
+                .EmitCall(OpCodes.Call, TestClass.LongFooMethodInfo)
+                .Ret()
+                .CreateDelegate<Func<TestClass, long>>();
 
+            var arg = new TestClass();
+
+            var actual =target(arg);
+
+            Assert.Equal(1, actual);
         }
 
         [Fact]

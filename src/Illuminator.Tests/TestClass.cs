@@ -14,9 +14,6 @@ namespace Illuminator.Tests
             b = A + 1;
         }
 
-        public static ConstructorInfo DefaultCtor =>
-            typeof(TestClass).GetConstructor(Type.EmptyTypes)!;
-
         public static MethodInfo DoubleFooMethodInfo =>
             typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(double) })!;
 
@@ -25,6 +22,12 @@ namespace Illuminator.Tests
 
         public static MethodInfo LongFooMethodInfo =>
             typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(long) })!;
+
+        public static MethodInfo VarArgFooMethodInfo =>
+            typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(object) })!;
+
+        //public static ConstructorInfo DefaultCtor =>
+        //    typeof(TestClass).GetConstructor(Type.EmptyTypes)!;
 
         public static ConstructorInfo ParameterizedCtor =>
             typeof(TestClass).GetConstructor(new[] { typeof(int), typeof(int).MakeByRefType() })!;
@@ -42,12 +45,15 @@ namespace Illuminator.Tests
             return A + b;
         }
 
-        public static string Foo(object val, __arglist)
+        public string Foo(object val, __arglist)
         {
             var argumentIterator = new ArgIterator(__arglist);
             var sb = new StringBuilder(val.ToString());
-            for (var i = 0; i < argumentIterator.GetRemainingCount(); i++) {
-                var o = __refvalue(argumentIterator.GetNextArg(), object);
+            while (argumentIterator.GetRemainingCount() != 0)
+            {
+                var reference = argumentIterator.GetNextArg();
+                var o = TypedReference.ToObject(reference);
+
                 sb.Append(o);
             }
 

@@ -100,12 +100,35 @@ namespace Illuminator.Tests
 
             var arg = new TestClass();
 
-            var actual =target(arg);
+            var actual = target(arg);
 
             Assert.Equal(1, actual);
         }
 
         [Fact]
-        public void EmitCall_with_var_args() { }
+        public void EmitCall_with_var_args()
+        {
+            var target = new DynamicMethod("test", typeof(string), new[] { typeof(TestClass) })
+                .GetILGenerator()
+                .UseIlluminator()
+                .Ldarg_0()
+                .Ldc_I8(2)
+                .Box(typeof(long))
+                .Ldstr("test")
+                .Ldc_I4_1()
+                .EmitCall(
+                    OpCodes.Call,
+                    TestClass.VarArgFooMethodInfo,
+                    new[] { typeof(string), typeof(int) }
+                )
+                .Ret()
+                .CreateDelegate<Func<TestClass, string>>();
+
+            var arg = new TestClass();
+
+            var actual = target(arg);
+
+            Assert.Equal("2test1", actual);
+        }
     }
 }

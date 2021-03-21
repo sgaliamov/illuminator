@@ -76,11 +76,11 @@ namespace Illuminator
         {
             Debug.Assert(types.Length != 0);
 
-            if (_stack.Count == 0) {
-                throw new IlluminatorStackException("Stack is empty to return a value.");
-            }
-
             foreach (var item in types) {
+                if (_stack.Count == 0) {
+                    throw new IlluminatorStackException("Stack is empty to return a value.");
+                }
+
                 var pop = _stack.Pop();
                 if (pop != item && pop != "any" && item != "any") {
                     // todo: test

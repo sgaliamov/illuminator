@@ -49,7 +49,8 @@ let generate () =
     // additional information about op codes
     let opCodesInfo =
         OpCodesInfo.GetSamples()
-        |> Seq.map (fun info -> info.Name, info)
+        |> Seq.groupBy (fun info -> info.Name)
+        |> Seq.map (fun (key, group) -> (key, Array.ofSeq group))
         |> Map.ofSeq
 
     // stack sizes
@@ -93,15 +94,19 @@ let generate () =
 
         allCodes
         |> Seq.map (fun (name, code) ->
-            let info = opCodesInfo.[name]
-            {| arguments = info.Args |> Seq.map getArgumentName
-               description = info.Description 
-               name = name
-               parameters = info.Args |> Seq.map (fun a -> $"{a} {getArgumentName a}")
-               pop_behaviour = code.StackBehaviourPop.ToString()
-               pops = stackBehaviourMap.[code.StackBehaviourPop] |> join
-               push_behaviour = code.StackBehaviourPush.ToString()
-               pushes = stackBehaviourMap.[code.StackBehaviourPush] |> join |})
+            opCodesInfo.[name]
+            |> Seq.map (fun info ->
+                {| 
+                    arguments = info.Args |> Seq.map getArgumentName
+                    description = info.Description 
+                    name = name
+                    parameters = info.Args |> Seq.map (fun a -> $"{a} {getArgumentName a}")
+                    pop_behaviour = code.StackBehaviourPop.ToString()
+                    pops = stackBehaviourMap.[code.StackBehaviourPop] |> join
+                    push_behaviour = code.StackBehaviourPush.ToString()
+                    pushes = stackBehaviourMap.[code.StackBehaviourPush] |> join 
+                |}))
+            |> Seq.collect id
 
     let scriban = Template.Parse template
     let result = scriban.Render {| methods = getNamedMethods() |} // => "Hello World!"

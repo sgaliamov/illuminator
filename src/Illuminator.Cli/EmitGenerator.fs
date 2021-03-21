@@ -110,5 +110,5 @@ let generate () =
             |> Seq.collect id
 
     let scriban = Template.Parse template
-    let result = scriban.Render {| methods = getNamedMethods() |} // => "Hello World!"
+    let result = scriban.Render {| methods = getNamedMethods() |}
     result.Trim()

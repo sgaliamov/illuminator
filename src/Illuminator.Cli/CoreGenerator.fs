@@ -82,5 +82,5 @@ let generate () =
         |> Seq.map toModel
 
     let scriban = Template.Parse template
-    let result = scriban.Render {| methods = methods |} // => "Hello World!"
+    let result = scriban.Render {| methods = methods |}
     result.Trim()

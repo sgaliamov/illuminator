@@ -16,5 +16,5 @@ let private template = @"
 
 let generate () =
     let scriban = Template.Parse template
-    let result = scriban.Render {| codes = allCodes |> Seq.map (fun (name, _) -> {| name = name |}) |} // => "Hello World!"
+    let result = scriban.Render {| codes = allCodes |> Seq.map (fun (name, _) -> {| name = name |}) |}
     result.Trim()

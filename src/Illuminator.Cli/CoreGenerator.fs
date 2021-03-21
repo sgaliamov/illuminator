@@ -2,7 +2,6 @@
 
 open Scriban
 open Shared
-open System
 open System.Reflection.Emit;
 open System.Reflection
 
@@ -79,6 +78,7 @@ let generate () =
         typeof<ILGenerator>.GetMethods()
         |> Seq.filter (fun m -> not (exclude.Contains m.Name))
         |> Seq.filter (fun m -> not m.IsSpecialName)
+        |> Seq.sortBy (fun x -> x.Name)
         |> Seq.map toModel
 
     let scriban = Template.Parse template

@@ -2,3 +2,7 @@ obj/
 bin/
 .vs/
 *.user
+.ionide/
+publish/
+coveragereport/
+TestResults/

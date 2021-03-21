@@ -10,10 +10,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="Shared.fs" />
-    <Compile Include="LabelGenerator.fs" />
-    <Compile Include="CoreGenerator.fs" />
-    <Compile Include="EmitGenerator.fs" />
-    <Compile Include="JsonGenerator.fs" />
+    <Compile Include="Generators\CoreGenerator.fs" />
+    <Compile Include="Generators\EmitGenerator.fs" />
+    <Compile Include="Generators\FunGenerator.fs" />
+    <Compile Include="Generators\JsonGenerator.fs" />
+    <Compile Include="Generators\LabelGenerator.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

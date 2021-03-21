@@ -1,6 +1,5 @@
 ﻿module EmitGenerator
 
-open FSharp.Data
 open Scriban
 open Shared
 open System.Reflection.Emit;
@@ -44,12 +43,12 @@ namespace Illuminator
     }
 }"
 
-type private OpCodesInfo = JsonProvider<"./opcodes.json">
+
 
 let generate () =
     // additional information about op codes
     let opCodesInfo =
-        OpCodesInfo.GetSamples()
+        OpCodesInfo
         |> Seq.groupBy (fun info -> info.Name)
         |> Seq.map (fun (key, group) -> (key, Array.ofSeq group))
         |> Map.ofSeq
@@ -93,7 +92,7 @@ let generate () =
             |> Seq.map (fun x -> $"\"{x}\"")
             |> join ", "
 
-        allCodes
+        AllCodes
         |> Seq.map (fun (name, code) ->
             opCodesInfo.[name]
             |> Seq.map (fun info ->

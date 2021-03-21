@@ -3,6 +3,7 @@
 open System
 open System.Reflection.Emit
 open System.Reflection
+open FSharp.Data
 
 // makes the first letter lower
 let lowerFirst text =
@@ -39,9 +40,14 @@ let private manualCodes = Set.ofList [
     OpCodes.Ret.Name ]
 
 // all op codes
-let allCodes =
+let AllCodes =
     typeof<OpCodes>.GetFields(BindingFlags.Static ||| BindingFlags.Public ||| BindingFlags.GetField)
     |> Seq.map (fun field -> field.Name, field.GetValue null :?> OpCode )
     |> Seq.filter (fun (_, code) -> not (manualCodes.Contains code.Name))
     |> Seq.sortBy (fun (name, _) -> name)
     |> Seq.cache
+
+// Codes info
+type private OpCodesInfo = JsonProvider<"./opcodes.json">
+
+let OpCodesInfo = OpCodesInfo.GetSamples()

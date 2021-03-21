@@ -27,13 +27,13 @@ namespace Illuminator.Tests
             var method = new DynamicMethod("test", type, Type.EmptyTypes);
 
             using var il = method
-                .GetILGenerator()
-                .UseIlluminator()
-                .DeclareLocal(typeof(int), out var local)
-                .Ldc_I4_0()
-                .Ldloca_S((byte)local.LocalIndex)
-                .Newobj(TestClass.ParameterizedCtor)
-                .Ret();
+                           .GetILGenerator()
+                           .UseIlluminator()
+                           .DeclareLocal(typeof(int), out var local)
+                           .Ldc_I4_0()
+                           .Ldloca_S((byte)local.LocalIndex)
+                           .Newobj(TestClass.ParameterizedCtor)
+                           .Ret();
 
             var ctor = method.CreateDelegate<Func<TestClass>>();
             var actual = ctor();

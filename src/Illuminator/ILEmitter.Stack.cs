@@ -30,8 +30,8 @@ namespace Illuminator
         private void DebugVerifyStackSize()
         {
             var maxMidStackCur = (int)typeof(ILGenerator)
-                .GetField("m_maxMidStackCur", PrivateFieldBindingFlags)
-                .GetValue(_il);
+                                      .GetField("m_maxMidStackCur", PrivateFieldBindingFlags)
+                                      .GetValue(_il);
 
             if (_stack.Count != maxMidStackCur) {
                 throw new IlluminatorStackException($"Stack size does not match to ILGenerator stack. [{string.Join(", ", _stack)}].");

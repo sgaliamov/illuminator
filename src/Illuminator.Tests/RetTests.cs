@@ -62,10 +62,10 @@ namespace Illuminator.Tests
 
             Assert.Throws<IlluminatorStackException>(
                 () => method
-                    .GetILGenerator()
-                    .UseIlluminator()
-                    .Ldstr("wrong result")
-                    .Ret());
+                      .GetILGenerator()
+                      .UseIlluminator()
+                      .Ldstr("wrong result")
+                      .Ret());
         }
     }
 }

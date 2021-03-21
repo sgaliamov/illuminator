@@ -7,6 +7,7 @@
 */
 
 using System;
+using System.Reflection;
 using System.Reflection.Emit;
 
 namespace Illuminator
@@ -28,7 +29,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Adds two integers, performs an overflow check, and pushes the result onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -42,7 +43,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Adds two unsigned integer values, performs an overflow check, and pushes the result onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -56,7 +57,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Computes the bitwise AND of two values and pushes the result onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -70,7 +71,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Returns an unmanaged pointer to the argument list of the current method.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -96,260 +97,260 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction (short form) if two values are equal.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Beq_S()
+        public ILEmitter Beq_S(Label label)
         {
-            _il.Emit(OpCodes.Beq_S);
+            _il.Emit(OpCodes.Beq_S, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction if the first value is greater than or equal to the second value.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Bge()
+        public ILEmitter Bge(Label label)
         {
-            _il.Emit(OpCodes.Bge);
+            _il.Emit(OpCodes.Bge, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction (short form) if the first value is greater than or equal to the second value.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Bge_S()
+        public ILEmitter Bge_S(Label label)
         {
-            _il.Emit(OpCodes.Bge_S);
+            _il.Emit(OpCodes.Bge_S, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Bge_Un()
+        public ILEmitter Bge_Un(Label label)
         {
-            _il.Emit(OpCodes.Bge_Un);
+            _il.Emit(OpCodes.Bge_Un, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction (short form) if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Bge_Un_S()
+        public ILEmitter Bge_Un_S(Label label)
         {
-            _il.Emit(OpCodes.Bge_Un_S);
+            _il.Emit(OpCodes.Bge_Un_S, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction if the first value is greater than the second value.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Bgt()
+        public ILEmitter Bgt(Label label)
         {
-            _il.Emit(OpCodes.Bgt);
+            _il.Emit(OpCodes.Bgt, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction (short form) if the first value is greater than the second value.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Bgt_S()
+        public ILEmitter Bgt_S(Label label)
         {
-            _il.Emit(OpCodes.Bgt_S);
+            _il.Emit(OpCodes.Bgt_S, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Bgt_Un()
+        public ILEmitter Bgt_Un(Label label)
         {
-            _il.Emit(OpCodes.Bgt_Un);
+            _il.Emit(OpCodes.Bgt_Un, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction (short form) if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Bgt_Un_S()
+        public ILEmitter Bgt_Un_S(Label label)
         {
-            _il.Emit(OpCodes.Bgt_Un_S);
+            _il.Emit(OpCodes.Bgt_Un_S, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction if the first value is less than or equal to the second value.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Ble()
+        public ILEmitter Ble(Label label)
         {
-            _il.Emit(OpCodes.Ble);
+            _il.Emit(OpCodes.Ble, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction (short form) if the first value is less than or equal to the second value.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Ble_S()
+        public ILEmitter Ble_S(Label label)
         {
-            _il.Emit(OpCodes.Ble_S);
+            _il.Emit(OpCodes.Ble_S, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction if the first value is less than or equal to the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Ble_Un()
+        public ILEmitter Ble_Un(Label label)
         {
-            _il.Emit(OpCodes.Ble_Un);
+            _il.Emit(OpCodes.Ble_Un, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction (short form) if the first value is less than or equal to the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Ble_Un_S()
+        public ILEmitter Ble_Un_S(Label label)
         {
-            _il.Emit(OpCodes.Ble_Un_S);
+            _il.Emit(OpCodes.Ble_Un_S, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction if the first value is less than the second value.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Blt()
+        public ILEmitter Blt(Label label)
         {
-            _il.Emit(OpCodes.Blt);
+            _il.Emit(OpCodes.Blt, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction (short form) if the first value is less than the second value.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Blt_S()
+        public ILEmitter Blt_S(Label label)
         {
-            _il.Emit(OpCodes.Blt_S);
+            _il.Emit(OpCodes.Blt_S, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction if the first value is less than the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Blt_Un()
+        public ILEmitter Blt_Un(Label label)
         {
-            _il.Emit(OpCodes.Blt_Un);
+            _il.Emit(OpCodes.Blt_Un, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction (short form) if the first value is less than the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Blt_Un_S()
+        public ILEmitter Blt_Un_S(Label label)
         {
-            _il.Emit(OpCodes.Blt_Un_S);
+            _il.Emit(OpCodes.Blt_Un_S, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction when two unsigned integer values or unordered float values are not equal.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Bne_Un()
+        public ILEmitter Bne_Un(Label label)
         {
-            _il.Emit(OpCodes.Bne_Un);
+            _il.Emit(OpCodes.Bne_Un, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction (short form) when two unsigned integer values or unordered float values are not equal.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Bne_Un_S()
+        public ILEmitter Bne_Un_S(Label label)
         {
-            _il.Emit(OpCodes.Bne_Un_S);
+            _il.Emit(OpCodes.Bne_Un_S, label);
             Pop("any", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts a value type to an object reference (type O).</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushref.</para>
         /// </summary>
-        public ILEmitter Box()
+        public ILEmitter Box(Type type)
         {
-            _il.Emit(OpCodes.Box);
+            _il.Emit(OpCodes.Box, type);
             Pop("any");
             Push("ref");
 
@@ -357,31 +358,31 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Unconditionally transfers control to a target instruction.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Br()
+        public ILEmitter Br(Label label)
         {
-            _il.Emit(OpCodes.Br);
+            _il.Emit(OpCodes.Br, label);
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Unconditionally transfers control to a target instruction (short form).</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Br_S()
+        public ILEmitter Br_S(Label label)
         {
-            _il.Emit(OpCodes.Br_S);
+            _il.Emit(OpCodes.Br_S, label);
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Signals the Common Language Infrastructure (CLI) to inform the debugger that a break point has been tripped.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -393,65 +394,65 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction if value is false, a null reference (Nothing in Visual Basic), or zero.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Brfalse()
+        public ILEmitter Brfalse(Label label)
         {
-            _il.Emit(OpCodes.Brfalse);
+            _il.Emit(OpCodes.Brfalse, label);
             Pop("int");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction if value is false, a null reference, or zero.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Brfalse_S()
+        public ILEmitter Brfalse_S(Label label)
         {
-            _il.Emit(OpCodes.Brfalse_S);
+            _il.Emit(OpCodes.Brfalse_S, label);
             Pop("int");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction if value is true, not null, or non-zero.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Brtrue()
+        public ILEmitter Brtrue(Label label)
         {
-            _il.Emit(OpCodes.Brtrue);
+            _il.Emit(OpCodes.Brtrue, label);
             Pop("int");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control to a target instruction (short form) if value is true, not null, or non-zero.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Brtrue_S()
+        public ILEmitter Brtrue_S(Label label)
         {
-            _il.Emit(OpCodes.Brtrue_S);
+            _il.Emit(OpCodes.Brtrue_S, label);
             Pop("int");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Attempts to cast an object passed by reference to the specified class.</para>
         ///     <para>StackBehaviourPop: Popref.</para>
         ///     <para>StackBehaviourPush: Pushref.</para>
         /// </summary>
-        public ILEmitter Castclass()
+        public ILEmitter Castclass(Type type)
         {
-            _il.Emit(OpCodes.Castclass);
+            _il.Emit(OpCodes.Castclass, type);
             Pop("ref");
             Push("ref");
 
@@ -459,7 +460,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Compares two values. If they are equal, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -473,7 +474,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Compares two values. If the first value is greater than the second, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -487,7 +488,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Compares two unsigned or unordered values. If the first value is greater than the second, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -501,7 +502,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Throws ArithmeticException if value is not a finite number.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushr8.</para>
         /// </summary>
@@ -515,7 +516,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Compares two values. If the first value is less than the second, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -529,7 +530,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Compares the unsigned or unordered values value1 and value2. If value1 is less than value2, then the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -543,19 +544,19 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Constrains the type on which a virtual method call is made.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Constrained()
+        public ILEmitter Constrained(Type type)
         {
-            _il.Emit(OpCodes.Constrained);
+            _il.Emit(OpCodes.Constrained, type);
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the value on top of the evaluation stack to native int.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -569,7 +570,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the value on top of the evaluation stack to int8, then extends (pads) it to int32.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -583,7 +584,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the value on top of the evaluation stack to int16, then extends (pads) it to int32.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -597,7 +598,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the value on top of the evaluation stack to int32.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -611,7 +612,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the value on top of the evaluation stack to int64.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
@@ -625,7 +626,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the signed value on top of the evaluation stack to signed native int, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -639,7 +640,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the signed value on top of the evaluation stack to signed int8 and extends it to int32, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -653,7 +654,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the unsigned value on top of the evaluation stack to signed int8 and extends it to int32, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -667,7 +668,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the signed value on top of the evaluation stack to signed int16 and extending it to int32, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -681,7 +682,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the unsigned value on top of the evaluation stack to signed int16 and extends it to int32, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -695,7 +696,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the signed value on top of the evaluation stack to signed int32, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -709,7 +710,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the unsigned value on top of the evaluation stack to signed int32, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -723,7 +724,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the signed value on top of the evaluation stack to signed int64, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
@@ -737,7 +738,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the unsigned value on top of the evaluation stack to signed int64, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
@@ -751,7 +752,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the unsigned value on top of the evaluation stack to signed native int, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -765,7 +766,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the signed value on top of the evaluation stack to unsigned native int, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -779,7 +780,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the signed value on top of the evaluation stack to unsigned int8 and extends it to int32, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -793,7 +794,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the unsigned value on top of the evaluation stack to unsigned int8 and extends it to int32, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -807,7 +808,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the signed value on top of the evaluation stack to unsigned int16 and extends it to int32, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -821,7 +822,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the signed value on top of the evaluation stack to unsigned int16 and extends it to int32, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -835,7 +836,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the signed value on top of the evaluation stack to unsigned int32, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -849,7 +850,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the unsigned value on top of the evaluation stack to unsigned int32, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -863,7 +864,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the signed value on top of the evaluation stack to unsigned int64, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
@@ -877,7 +878,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the unsigned value on top of the evaluation stack to unsigned int64, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
@@ -891,7 +892,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the unsigned value on top of the evaluation stack to unsigned native int, throwing OverflowException on overflow.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -905,7 +906,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the value on top of the evaluation stack to float32.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushr4.</para>
         /// </summary>
@@ -919,7 +920,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the value on top of the evaluation stack to float32.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushr8.</para>
         /// </summary>
@@ -933,7 +934,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the unsigned integer value on top of the evaluation stack to float32.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushr8.</para>
         /// </summary>
@@ -947,7 +948,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the value on top of the evaluation stack to float32.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -961,7 +962,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the value on top of the evaluation stack to unsigned int8, and extends it to int32.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -975,7 +976,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the value on top of the evaluation stack to unsigned int16, and extends it to int32.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -989,7 +990,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the value on top of the evaluation stack to unsigned int32, and extends it to int32.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1003,7 +1004,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the value on top of the evaluation stack to unsigned int64, and extends it to int64.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
@@ -1017,7 +1018,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Copies a specified number bytes from a source address to a destination address.</para>
         ///     <para>StackBehaviourPop: Popi_popi_popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -1030,20 +1031,20 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Copies the value type located at the address of an object (type &, or native int) to the address of the destination object (type &, or native int).</para>
         ///     <para>StackBehaviourPop: Popi_popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Cpobj()
+        public ILEmitter Cpobj(Type type)
         {
-            _il.Emit(OpCodes.Cpobj);
+            _il.Emit(OpCodes.Cpobj, type);
             Pop("int", "int");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Divides two values and pushes the result as a floating-point (type F) or quotient (type int32) onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -1057,7 +1058,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Divides two unsigned integer values and pushes the result (int32) onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -1071,7 +1072,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Copies the current topmost value on the evaluation stack, and then pushes the copy onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Push1_push1.</para>
         /// </summary>
@@ -1085,7 +1086,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control from the filter clause of an exception back to the Common Language Infrastructure (CLI) exception handler.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -1098,7 +1099,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Transfers control from the fault or finally clause of an exception block back to the Common Language Infrastructure (CLI) exception handler.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -1110,7 +1111,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Initializes a specified block of memory at a specific address to a given size and initial value.</para>
         ///     <para>StackBehaviourPop: Popi_popi_popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -1123,26 +1124,26 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Initializes each field of the value type at a specified address to a null reference or a 0 of the appropriate primitive type.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Initobj()
+        public ILEmitter Initobj(Type type)
         {
-            _il.Emit(OpCodes.Initobj);
+            _il.Emit(OpCodes.Initobj, type);
             Pop("int");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Tests whether an object reference (type O) is an instance of a particular class.</para>
         ///     <para>StackBehaviourPop: Popref.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Isinst()
+        public ILEmitter Isinst(Type type)
         {
-            _il.Emit(OpCodes.Isinst);
+            _il.Emit(OpCodes.Isinst, type);
             Pop("ref");
             Push("int");
 
@@ -1150,25 +1151,25 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Exits current method and jumps to specified method.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Jmp()
+        public ILEmitter Jmp(MethodInfo methodInfo)
         {
-            _il.Emit(OpCodes.Jmp);
+            _il.Emit(OpCodes.Jmp, methodInfo);
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads an argument (referenced by a specified index value) onto the stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
-        public ILEmitter Ldarg()
+        public ILEmitter Ldarg(short value)
         {
-            _il.Emit(OpCodes.Ldarg);
+            _il.Emit(OpCodes.Ldarg, value);
             Push("any");
 
             return this;
@@ -1188,7 +1189,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the argument at index 1 onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -1201,7 +1202,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the argument at index 2 onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -1214,7 +1215,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the argument at index 3 onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -1227,52 +1228,52 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the argument (referenced by a specified short form index) onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
-        public ILEmitter Ldarg_S()
+        public ILEmitter Ldarg_S(byte value)
         {
-            _il.Emit(OpCodes.Ldarg_S);
+            _il.Emit(OpCodes.Ldarg_S, value);
             Push("any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Load an argument address onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Ldarga()
+        public ILEmitter Ldarga(short value)
         {
-            _il.Emit(OpCodes.Ldarga);
+            _il.Emit(OpCodes.Ldarga, value);
             Push("int");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Load an argument address, in short form, onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Ldarga_S()
+        public ILEmitter Ldarga_S(byte value)
         {
-            _il.Emit(OpCodes.Ldarga_S);
+            _il.Emit(OpCodes.Ldarga_S, value);
             Push("int");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes a supplied value of type int32 onto the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Ldc_I4()
+        public ILEmitter Ldc_I4(int value)
         {
-            _il.Emit(OpCodes.Ldc_I4);
+            _il.Emit(OpCodes.Ldc_I4, value);
             Push("int");
 
             return this;
@@ -1292,7 +1293,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes the integer value of 1 onto the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1305,7 +1306,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes the integer value of 2 onto the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1318,7 +1319,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes the integer value of 3 onto the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1331,7 +1332,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes the integer value of 4 onto the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1344,7 +1345,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes the integer value of 5 onto the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1357,7 +1358,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes the integer value of 6 onto the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1370,7 +1371,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes the integer value of 7 onto the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1396,7 +1397,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes the integer value of -1 onto the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1409,13 +1410,26 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes the supplied int8 value onto the evaluation stack as an int32, short form.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Ldc_I4_S()
+        public ILEmitter Ldc_I4_S(byte value)
         {
-            _il.Emit(OpCodes.Ldc_I4_S);
+            _il.Emit(OpCodes.Ldc_I4_S, value);
+            Push("int");
+
+            return this;
+        }
+
+        /// <summary>
+        ///     <para>Pushes the supplied int8 value onto the evaluation stack as an int32, short form.</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
+        /// </summary>
+        public ILEmitter Ldc_I4_S(sbyte value)
+        {
+            _il.Emit(OpCodes.Ldc_I4_S, value);
             Push("int");
 
             return this;
@@ -1461,13 +1475,13 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the element at a specified array index onto the top of the evaluation stack as the type specified in the instruction.</para>
         ///     <para>StackBehaviourPop: Popref_popi.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
-        public ILEmitter Ldelem()
+        public ILEmitter Ldelem(Type type)
         {
-            _il.Emit(OpCodes.Ldelem);
+            _il.Emit(OpCodes.Ldelem, type);
             Pop("ref", "int");
             Push("any");
 
@@ -1475,7 +1489,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the element with type native int at a specified array index onto the top of the evaluation stack as a native int.</para>
         ///     <para>StackBehaviourPop: Popref_popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1489,7 +1503,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the element with type int8 at a specified array index onto the top of the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Popref_popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1503,7 +1517,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the element with type int16 at a specified array index onto the top of the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Popref_popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1517,7 +1531,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the element with type int32 at a specified array index onto the top of the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Popref_popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1531,7 +1545,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the element with type int64 at a specified array index onto the top of the evaluation stack as an int64.</para>
         ///     <para>StackBehaviourPop: Popref_popi.</para>
         ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
@@ -1545,7 +1559,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the element with type float32 at a specified array index onto the top of the evaluation stack as type F (float).</para>
         ///     <para>StackBehaviourPop: Popref_popi.</para>
         ///     <para>StackBehaviourPush: Pushr4.</para>
         /// </summary>
@@ -1559,7 +1573,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the element with type float64 at a specified array index onto the top of the evaluation stack as type F (float).</para>
         ///     <para>StackBehaviourPop: Popref_popi.</para>
         ///     <para>StackBehaviourPush: Pushr8.</para>
         /// </summary>
@@ -1573,7 +1587,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the element containing an object reference at a specified array index onto the top of the evaluation stack as type O (object reference).</para>
         ///     <para>StackBehaviourPop: Popref_popi.</para>
         ///     <para>StackBehaviourPush: Pushref.</para>
         /// </summary>
@@ -1587,7 +1601,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the element with type unsigned int8 at a specified array index onto the top of the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Popref_popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1601,7 +1615,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the element with type unsigned int16 at a specified array index onto the top of the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Popref_popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1615,7 +1629,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the element with type unsigned int32 at a specified array index onto the top of the evaluation stack as an int32.</para>
         ///     <para>StackBehaviourPop: Popref_popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1629,13 +1643,13 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the address of the array element at a specified array index onto the top of the evaluation stack as type & (managed pointer).</para>
         ///     <para>StackBehaviourPop: Popref_popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Ldelema()
+        public ILEmitter Ldelema(Type type)
         {
-            _il.Emit(OpCodes.Ldelema);
+            _il.Emit(OpCodes.Ldelema, type);
             Pop("ref", "int");
             Push("int");
 
@@ -1643,13 +1657,13 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Finds the value of a field in the object whose reference is currently on the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popref.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
-        public ILEmitter Ldfld()
+        public ILEmitter Ldfld(FieldInfo fieldInfo)
         {
-            _il.Emit(OpCodes.Ldfld);
+            _il.Emit(OpCodes.Ldfld, fieldInfo);
             Pop("ref");
             Push("any");
 
@@ -1657,13 +1671,13 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Finds the address of a field in the object whose reference is currently on the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popref.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Ldflda()
+        public ILEmitter Ldflda(FieldInfo fieldInfo)
         {
-            _il.Emit(OpCodes.Ldflda);
+            _il.Emit(OpCodes.Ldflda, fieldInfo);
             Pop("ref");
             Push("int");
 
@@ -1671,20 +1685,20 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes an unmanaged pointer (type native int) to the native code implementing a specific method onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Ldftn()
+        public ILEmitter Ldftn(MethodInfo methodInfo)
         {
-            _il.Emit(OpCodes.Ldftn);
+            _il.Emit(OpCodes.Ldftn, methodInfo);
             Push("int");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads a value of type native int as a native int onto the evaluation stack indirectly.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1698,7 +1712,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads a value of type int8 as an int32 onto the evaluation stack indirectly.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1712,7 +1726,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads a value of type int16 as an int32 onto the evaluation stack indirectly.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1726,7 +1740,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads a value of type int32 as an int32 onto the evaluation stack indirectly.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1740,7 +1754,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads a value of type int64 as an int64 onto the evaluation stack indirectly.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Pushi8.</para>
         /// </summary>
@@ -1754,7 +1768,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads a value of type float32 as a type F (float) onto the evaluation stack indirectly.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Pushr4.</para>
         /// </summary>
@@ -1768,7 +1782,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads a value of type float64 as a type F (float) onto the evaluation stack indirectly.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Pushr8.</para>
         /// </summary>
@@ -1782,7 +1796,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads an object reference as a type O (object reference) onto the evaluation stack indirectly.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Pushref.</para>
         /// </summary>
@@ -1796,7 +1810,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads a value of type unsigned int8 as an int32 onto the evaluation stack indirectly.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1810,7 +1824,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads a value of type unsigned int16 as an int32 onto the evaluation stack indirectly.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1824,7 +1838,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads a value of type unsigned int32 as an int32 onto the evaluation stack indirectly.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1838,7 +1852,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes the number of elements of a zero-based, one-dimensional array onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popref.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -1852,20 +1866,33 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the local variable at a specific index onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
-        public ILEmitter Ldloc()
+        public ILEmitter Ldloc(LocalBuilder localBuilder)
         {
-            _il.Emit(OpCodes.Ldloc);
+            _il.Emit(OpCodes.Ldloc, localBuilder);
             Push("any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the local variable at a specific index onto the evaluation stack.</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
+        /// </summary>
+        public ILEmitter Ldloc(short value)
+        {
+            _il.Emit(OpCodes.Ldloc, value);
+            Push("any");
+
+            return this;
+        }
+
+        /// <summary>
+        ///     <para>Loads the local variable at index 0 onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -1878,7 +1905,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the local variable at index 1 onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -1891,7 +1918,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the local variable at index 2 onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -1904,7 +1931,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the local variable at index 3 onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -1917,26 +1944,39 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the local variable at a specific index onto the evaluation stack, short form.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
-        public ILEmitter Ldloc_S()
+        public ILEmitter Ldloc_S(LocalBuilder localBuilder)
         {
-            _il.Emit(OpCodes.Ldloc_S);
+            _il.Emit(OpCodes.Ldloc_S, localBuilder);
             Push("any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Loads the local variable at a specific index onto the evaluation stack, short form.</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push1.</para>
+        /// </summary>
+        public ILEmitter Ldloc_S(short value)
+        {
+            _il.Emit(OpCodes.Ldloc_S, value);
+            Push("any");
+
+            return this;
+        }
+
+        /// <summary>
+        ///     <para>Loads the address of the local variable at a specific index onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Ldloca()
+        public ILEmitter Ldloca(short value)
         {
-            _il.Emit(OpCodes.Ldloca);
+            _il.Emit(OpCodes.Ldloca, value);
             Push("int");
 
             return this;
@@ -1969,13 +2009,13 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Copies the value type object pointed to by an address to the top of the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
-        public ILEmitter Ldobj()
+        public ILEmitter Ldobj(Type type)
         {
-            _il.Emit(OpCodes.Ldobj);
+            _il.Emit(OpCodes.Ldobj, type);
             Pop("int");
             Push("any");
 
@@ -1983,26 +2023,26 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes the value of a static field onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
-        public ILEmitter Ldsfld()
+        public ILEmitter Ldsfld(FieldInfo fieldInfo)
         {
-            _il.Emit(OpCodes.Ldsfld);
+            _il.Emit(OpCodes.Ldsfld, fieldInfo);
             Push("any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes the address of a static field onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Ldsflda()
+        public ILEmitter Ldsflda(FieldInfo fieldInfo)
         {
-            _il.Emit(OpCodes.Ldsflda);
+            _il.Emit(OpCodes.Ldsflda, fieldInfo);
             Push("int");
 
             return this;
@@ -2022,26 +2062,52 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts a metadata token to its runtime representation, pushing it onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Ldtoken()
+        public ILEmitter Ldtoken(MethodInfo methodInfo)
         {
-            _il.Emit(OpCodes.Ldtoken);
+            _il.Emit(OpCodes.Ldtoken, methodInfo);
             Push("int");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts a metadata token to its runtime representation, pushing it onto the evaluation stack.</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
+        /// </summary>
+        public ILEmitter Ldtoken(FieldInfo fieldInfo)
+        {
+            _il.Emit(OpCodes.Ldtoken, fieldInfo);
+            Push("int");
+
+            return this;
+        }
+
+        /// <summary>
+        ///     <para>Converts a metadata token to its runtime representation, pushing it onto the evaluation stack.</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Pushi.</para>
+        /// </summary>
+        public ILEmitter Ldtoken(Type type)
+        {
+            _il.Emit(OpCodes.Ldtoken, type);
+            Push("int");
+
+            return this;
+        }
+
+        /// <summary>
+        ///     <para>Pushes an unmanaged pointer (type native int) to the native code implementing a particular virtual method associated with a specified object onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popref.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Ldvirtftn()
+        public ILEmitter Ldvirtftn(MethodInfo methodInfo)
         {
-            _il.Emit(OpCodes.Ldvirtftn);
+            _il.Emit(OpCodes.Ldvirtftn, methodInfo);
             Pop("ref");
             Push("int");
 
@@ -2049,31 +2115,31 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Exits a protected region of code, unconditionally transferring control to a specific target instruction.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Leave()
+        public ILEmitter Leave(Label label)
         {
-            _il.Emit(OpCodes.Leave);
+            _il.Emit(OpCodes.Leave, label);
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Exits a protected region of code, unconditionally transferring control to a target instruction (short form).</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Leave_S()
+        public ILEmitter Leave_S(Label label)
         {
-            _il.Emit(OpCodes.Leave_S);
+            _il.Emit(OpCodes.Leave_S, label);
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Allocates a certain number of bytes from the local dynamic memory pool and pushes the address (a transient pointer, type *) of the first allocated byte onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -2087,13 +2153,13 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes a typed reference to an instance of a specific type onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
-        public ILEmitter Mkrefany()
+        public ILEmitter Mkrefany(Type type)
         {
-            _il.Emit(OpCodes.Mkrefany);
+            _il.Emit(OpCodes.Mkrefany, type);
             Pop("int");
             Push("any");
 
@@ -2101,7 +2167,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Multiplies two values and pushes the result on the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -2115,7 +2181,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Multiplies two integer values, performs an overflow check, and pushes the result onto the evaluation stack</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -2129,7 +2195,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Multiplies two unsigned integer values, performs an overflow check, and pushes the result onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -2143,7 +2209,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Negates a value and pushes the result onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -2157,13 +2223,13 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes an object reference to a new zero-based, one-dimensional array whose elements are of a specific type onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Pushref.</para>
         /// </summary>
-        public ILEmitter Newarr()
+        public ILEmitter Newarr(Type type)
         {
-            _il.Emit(OpCodes.Newarr);
+            _il.Emit(OpCodes.Newarr, type);
             Pop("int");
             Push("ref");
 
@@ -2171,7 +2237,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Fills space if opcodes are patched. No meaningful operation is performed although a processing cycle can be consumed.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2183,7 +2249,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Computes the bitwise complement of the integer value on top of the stack and pushes the result onto the evaluation stack as the same type.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -2197,7 +2263,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Compute the bitwise complement of the two integer values on top of the stack and pushes the result onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -2211,7 +2277,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Removes the value currently on top of the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2224,7 +2290,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>This is a reserved instruction.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2236,7 +2302,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>This is a reserved instruction.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2248,7 +2314,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>This is a reserved instruction.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2260,7 +2326,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>This is a reserved instruction.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2272,7 +2338,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>This is a reserved instruction.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2284,7 +2350,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>This is a reserved instruction.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2296,7 +2362,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>This is a reserved instruction.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2308,7 +2374,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>This is a reserved instruction.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2320,7 +2386,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Specifies that the subsequent array address operation performs no type check at run time, and that it returns a managed pointer whose mutability is restricted.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2332,7 +2398,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Retrieves the type token embedded in a typed reference.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
@@ -2346,13 +2412,13 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Retrieves the address (type &) embedded in a typed reference.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Refanyval()
+        public ILEmitter Refanyval(Type type)
         {
-            _il.Emit(OpCodes.Refanyval);
+            _il.Emit(OpCodes.Refanyval, type);
             Pop("any");
             Push("int");
 
@@ -2360,7 +2426,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Divides two values and pushes the remainder onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -2374,7 +2440,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Divides two unsigned values and pushes the remainder onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -2388,7 +2454,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Rethrows the current exception.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2400,7 +2466,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Shifts an integer value to the left (in zeroes) by a specified number of bits, pushing the result onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -2414,7 +2480,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Shifts an integer value (in sign) to the right by a specified number of bits, pushing the result onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -2428,7 +2494,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Shifts an unsigned integer value (in zeroes) to the right by a specified number of bits, pushing the result onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -2442,59 +2508,59 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pushes the size, in bytes, of a supplied value type onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Sizeof()
+        public ILEmitter Sizeof(Type type)
         {
-            _il.Emit(OpCodes.Sizeof);
+            _il.Emit(OpCodes.Sizeof, type);
             Push("int");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Stores the value on top of the evaluation stack in the argument slot at a specified index.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Starg()
+        public ILEmitter Starg(short value)
         {
-            _il.Emit(OpCodes.Starg);
+            _il.Emit(OpCodes.Starg, value);
             Pop("any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Stores the value on top of the evaluation stack in the argument slot at a specified index, short form.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Starg_S()
+        public ILEmitter Starg_S(byte value)
         {
-            _il.Emit(OpCodes.Starg_S);
+            _il.Emit(OpCodes.Starg_S, value);
             Pop("any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Replaces the array element at a given index with the value on the evaluation stack, whose type is specified in the instruction.</para>
         ///     <para>StackBehaviourPop: Popref_popi_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Stelem()
+        public ILEmitter Stelem(Type type)
         {
-            _il.Emit(OpCodes.Stelem);
+            _il.Emit(OpCodes.Stelem, type);
             Pop("ref", "int", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Replaces the array element at a given index with the native int value on the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popref_popi_popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2507,7 +2573,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Replaces the array element at a given index with the int8 value on the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popref_popi_popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2520,7 +2586,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Replaces the array element at a given index with the int16 value on the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popref_popi_popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2533,7 +2599,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Replaces the array element at a given index with the int32 value on the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popref_popi_popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2546,7 +2612,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Replaces the array element at a given index with the int64 value on the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popref_popi_popi8.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2559,7 +2625,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Replaces the array element at a given index with the float32 value on the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popref_popi_popr4.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2572,7 +2638,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Replaces the array element at a given index with the float64 value on the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popref_popi_popr8.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2585,7 +2651,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Replaces the array element at a given index with the object ref value (type O) on the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popref_popi_popref.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2598,20 +2664,20 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Replaces the value stored in the field of an object reference or pointer with a new value.</para>
         ///     <para>StackBehaviourPop: Popref_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Stfld()
+        public ILEmitter Stfld(FieldInfo fieldInfo)
         {
-            _il.Emit(OpCodes.Stfld);
+            _il.Emit(OpCodes.Stfld, fieldInfo);
             Pop("ref", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Stores a value of type native int at a supplied address.</para>
         ///     <para>StackBehaviourPop: Popi_popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2624,7 +2690,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Stores a value of type int8 at a supplied address.</para>
         ///     <para>StackBehaviourPop: Popi_popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2637,7 +2703,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Stores a value of type int16 at a supplied address.</para>
         ///     <para>StackBehaviourPop: Popi_popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2650,7 +2716,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Stores a value of type int32 at a supplied address.</para>
         ///     <para>StackBehaviourPop: Popi_popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2663,7 +2729,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Stores a value of type int64 at a supplied address.</para>
         ///     <para>StackBehaviourPop: Popi_popi8.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2676,7 +2742,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Stores a value of type float32 at a supplied address.</para>
         ///     <para>StackBehaviourPop: Popi_popr4.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2689,7 +2755,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Stores a value of type float64 at a supplied address.</para>
         ///     <para>StackBehaviourPop: Popi_popr8.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2702,7 +2768,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Stores a object reference value at a supplied address.</para>
         ///     <para>StackBehaviourPop: Popi_popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2715,20 +2781,33 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at a specified index.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Stloc()
+        public ILEmitter Stloc(LocalBuilder localBuilder)
         {
-            _il.Emit(OpCodes.Stloc);
+            _il.Emit(OpCodes.Stloc, localBuilder);
             Pop("any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at a specified index.</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
+        /// </summary>
+        public ILEmitter Stloc(short value)
+        {
+            _il.Emit(OpCodes.Stloc, value);
+            Pop("any");
+
+            return this;
+        }
+
+        /// <summary>
+        ///     <para>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 0.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2741,7 +2820,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 1.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2754,7 +2833,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 2.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2767,7 +2846,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 3.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2780,46 +2859,59 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index (short form).</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Stloc_S()
+        public ILEmitter Stloc_S(LocalBuilder localBuilder)
         {
-            _il.Emit(OpCodes.Stloc_S);
+            _il.Emit(OpCodes.Stloc_S, localBuilder);
             Pop("any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index (short form).</para>
+        ///     <para>StackBehaviourPop: Pop1.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
+        /// </summary>
+        public ILEmitter Stloc_S(byte value)
+        {
+            _il.Emit(OpCodes.Stloc_S, value);
+            Pop("any");
+
+            return this;
+        }
+
+        /// <summary>
+        ///     <para>Copies a value of a specified type from the evaluation stack into a supplied memory address.</para>
         ///     <para>StackBehaviourPop: Popi_pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Stobj()
+        public ILEmitter Stobj(Type type)
         {
-            _il.Emit(OpCodes.Stobj);
+            _il.Emit(OpCodes.Stobj, type);
             Pop("int", "any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Replaces the value of a static field with a value from the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Stsfld()
+        public ILEmitter Stsfld(FieldInfo fieldInfo)
         {
-            _il.Emit(OpCodes.Stsfld);
+            _il.Emit(OpCodes.Stsfld, fieldInfo);
             Pop("any");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Subtracts one value from another and pushes the result onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -2833,7 +2925,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Subtracts one integer value from another, performs an overflow check, and pushes the result onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -2847,7 +2939,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Subtracts one unsigned integer value from another, performs an overflow check, and pushes the result onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
@@ -2861,20 +2953,20 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Implements a jump table.</para>
         ///     <para>StackBehaviourPop: Popi.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Switch()
+        public ILEmitter Switch(Label[] label)
         {
-            _il.Emit(OpCodes.Switch);
+            _il.Emit(OpCodes.Switch, label);
             Pop("int");
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Performs a postfixed method call instruction such that the current method's stack frame is removed before the actual call instruction is executed.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2886,7 +2978,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Throws the exception object currently on the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Popref.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2899,25 +2991,37 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Indicates that an address currently atop the evaluation stack might not be aligned to the natural size of the immediately following ldind, stind, ldfld, stfld, ldobj, stobj, initblk, or cpblk instruction.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
-        public ILEmitter Unaligned()
+        public ILEmitter Unaligned(byte value)
         {
-            _il.Emit(OpCodes.Unaligned);
+            _il.Emit(OpCodes.Unaligned, value);
 
             return this;
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Indicates that an address currently atop the evaluation stack might not be aligned to the natural size of the immediately following ldind, stind, ldfld, stfld, ldobj, stobj, initblk, or cpblk instruction.</para>
+        ///     <para>StackBehaviourPop: Pop0.</para>
+        ///     <para>StackBehaviourPush: Push0.</para>
+        /// </summary>
+        public ILEmitter Unaligned(Label label)
+        {
+            _il.Emit(OpCodes.Unaligned, label);
+
+            return this;
+        }
+
+        /// <summary>
+        ///     <para>Converts the boxed representation of a value type to its unboxed form.</para>
         ///     <para>StackBehaviourPop: Popref.</para>
         ///     <para>StackBehaviourPush: Pushi.</para>
         /// </summary>
-        public ILEmitter Unbox()
+        public ILEmitter Unbox(Type type)
         {
-            _il.Emit(OpCodes.Unbox);
+            _il.Emit(OpCodes.Unbox, type);
             Pop("ref");
             Push("int");
 
@@ -2925,13 +3029,13 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Converts the boxed representation of a type specified in the instruction to its unboxed form.</para>
         ///     <para>StackBehaviourPop: Popref.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>
-        public ILEmitter Unbox_Any()
+        public ILEmitter Unbox_Any(Type type)
         {
-            _il.Emit(OpCodes.Unbox_Any);
+            _il.Emit(OpCodes.Unbox_Any, type);
             Pop("ref");
             Push("any");
 
@@ -2939,7 +3043,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Specifies that an address currently atop the evaluation stack might be volatile, and the results of reading that location cannot be cached or that multiple stores to that location cannot be suppressed.</para>
         ///     <para>StackBehaviourPop: Pop0.</para>
         ///     <para>StackBehaviourPush: Push0.</para>
         /// </summary>
@@ -2951,7 +3055,7 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     <para>TBD</para>
+        ///     <para>Computes the bitwise XOR of the top two values on the evaluation stack, pushing the result onto the evaluation stack.</para>
         ///     <para>StackBehaviourPop: Pop1_pop1.</para>
         ///     <para>StackBehaviourPush: Push1.</para>
         /// </summary>

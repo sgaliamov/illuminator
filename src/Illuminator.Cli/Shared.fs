@@ -14,6 +14,7 @@ let lowerFirst text =
 // safe naming for parameters
 let private excapedName = Set.ofList [
     "long"
+    "short"
     nameof byte
     nameof double
     nameof float
@@ -24,7 +25,7 @@ let private excapedName = Set.ofList [
 let getArgumentName (name: string) =
     if excapedName.Contains(name.ToLowerInvariant())
     then "value"
-    else lowerFirst name
+    else lowerFirst (name.Replace("[]", ""))
 
 // join strings with separator
 let join separator (values: seq<string>) = String.Join(separator, values)

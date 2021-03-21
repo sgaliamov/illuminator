@@ -13,11 +13,13 @@ let lowerFirst text =
 
 // safe naming for parameters
 let private excapedName = Set.ofList [
+    "long"
     nameof byte
-    nameof string
-    nameof float
     nameof double
-    "long" ]
+    nameof float
+    nameof int
+    nameof sbyte
+    nameof string ]
 
 let getArgumentName (name: string) =
     if excapedName.Contains(name.ToLowerInvariant())

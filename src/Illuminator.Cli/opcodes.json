@@ -5,23 +5,19 @@
   },
   {
     "name": "Add_Ovf",
-    "description": "TBD",
-    "args": []
+    "description": "Adds two integers, performs an overflow check, and pushes the result onto the evaluation stack."
   },
   {
     "name": "Add_Ovf_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Adds two unsigned integer values, performs an overflow check, and pushes the result onto the evaluation stack."
   },
   {
     "name": "And",
-    "description": "TBD",
-    "args": []
+    "description": "Computes the bitwise AND of two values and pushes the result onto the evaluation stack."
   },
   {
     "name": "Arglist",
-    "description": "TBD",
-    "args": []
+    "description": "Returns an unmanaged pointer to the argument list of the current method."
   },
   {
     "name": "Beq",
@@ -30,403 +26,356 @@
   },
   {
     "name": "Beq_S",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction (short form) if two values are equal.",
+    "args": ["Label"]
   },
   {
     "name": "Bge",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction if the first value is greater than or equal to the second value.",
+    "args": ["Label"]
   },
   {
     "name": "Bge_S",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction (short form) if the first value is greater than or equal to the second value.",
+    "args": ["Label"]
   },
   {
     "name": "Bge_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.",
+    "args": ["Label"]
   },
   {
     "name": "Bge_Un_S",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction (short form) if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.",
+    "args": ["Label"]
   },
   {
     "name": "Bgt",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction if the first value is greater than the second value.",
+    "args": ["Label"]
   },
   {
     "name": "Bgt_S",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction (short form) if the first value is greater than the second value.",
+    "args": ["Label"]
   },
   {
     "name": "Bgt_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.",
+    "args": ["Label"]
   },
   {
     "name": "Bgt_Un_S",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction (short form) if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.",
+    "args": ["Label"]
   },
   {
     "name": "Ble",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction if the first value is less than or equal to the second value.",
+    "args": ["Label"]
   },
   {
     "name": "Ble_S",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction (short form) if the first value is less than or equal to the second value.",
+    "args": ["Label"]
   },
   {
     "name": "Ble_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction if the first value is less than or equal to the second value, when comparing unsigned integer values or unordered float values.",
+    "args": ["Label"]
   },
   {
     "name": "Ble_Un_S",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction (short form) if the first value is less than or equal to the second value, when comparing unsigned integer values or unordered float values.",
+    "args": ["Label"]
   },
   {
     "name": "Blt",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction if the first value is less than the second value.",
+    "args": ["Label"]
   },
   {
     "name": "Blt_S",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction (short form) if the first value is less than the second value.",
+    "args": ["Label"]
   },
   {
     "name": "Blt_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction if the first value is less than the second value, when comparing unsigned integer values or unordered float values.",
+    "args": ["Label"]
   },
   {
     "name": "Blt_Un_S",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction (short form) if the first value is less than the second value, when comparing unsigned integer values or unordered float values.",
+    "args": ["Label"]
   },
   {
     "name": "Bne_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction when two unsigned integer values or unordered float values are not equal.",
+    "args": ["Label"]
   },
   {
     "name": "Bne_Un_S",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction (short form) when two unsigned integer values or unordered float values are not equal.",
+    "args": ["Label"]
   },
   {
     "name": "Box",
-    "description": "TBD",
-    "args": []
+    "description": "Converts a value type to an object reference (type O).",
+    "args": ["Type"]
   },
   {
     "name": "Br",
-    "description": "TBD",
-    "args": []
+    "description": "Unconditionally transfers control to a target instruction.",
+    "args": ["Label"]
   },
   {
     "name": "Br_S",
-    "description": "TBD",
-    "args": []
+    "description": "Unconditionally transfers control to a target instruction (short form).",
+    "args": ["Label"]
   },
   {
     "name": "Break",
-    "description": "TBD",
-    "args": []
+    "description": "Signals the Common Language Infrastructure (CLI) to inform the debugger that a break point has been tripped."
   },
   {
     "name": "Brfalse",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction if value is false, a null reference (Nothing in Visual Basic), or zero.",
+    "args": ["Label"]
   },
   {
     "name": "Brfalse_S",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction if value is false, a null reference, or zero.",
+    "args": ["Label"]
   },
   {
     "name": "Brtrue",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction if value is true, not null, or non-zero.",
+    "args": ["Label"]
   },
   {
     "name": "Brtrue_S",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control to a target instruction (short form) if value is true, not null, or non-zero.",
+    "args": ["Label"]
   },
   {
     "name": "Castclass",
-    "description": "TBD",
-    "args": []
+    "description": "Attempts to cast an object passed by reference to the specified class.",
+    "args": ["Type"]
   },
   {
     "name": "Ceq",
-    "description": "TBD",
-    "args": []
+    "description": "Compares two values. If they are equal, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack."
   },
   {
     "name": "Cgt",
-    "description": "TBD",
-    "args": []
+    "description": "Compares two values. If the first value is greater than the second, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack."
   },
   {
     "name": "Cgt_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Compares two unsigned or unordered values. If the first value is greater than the second, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack."
   },
   {
     "name": "Ckfinite",
-    "description": "TBD",
-    "args": []
+    "description": "Throws ArithmeticException if value is not a finite number."
   },
   {
     "name": "Clt",
-    "description": "TBD",
-    "args": []
+    "description": "Compares two values. If the first value is less than the second, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack."
   },
   {
     "name": "Clt_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Compares the unsigned or unordered values value1 and value2. If value1 is less than value2, then the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack."
   },
   {
     "name": "Constrained",
-    "description": "TBD",
-    "args": []
+    "description": "Constrains the type on which a virtual method call is made.",
+    "args": ["Type"]
   },
   {
     "name": "Conv_I",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the value on top of the evaluation stack to native int."
   },
   {
     "name": "Conv_I1",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the value on top of the evaluation stack to int8, then extends (pads) it to int32."
   },
   {
     "name": "Conv_I2",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the value on top of the evaluation stack to int16, then extends (pads) it to int32."
   },
   {
     "name": "Conv_I4",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the value on top of the evaluation stack to int32."
   },
   {
     "name": "Conv_I8",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the value on top of the evaluation stack to int64."
   },
   {
     "name": "Conv_Ovf_I",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the signed value on top of the evaluation stack to signed native int, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I1",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the signed value on top of the evaluation stack to signed int8 and extends it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I1_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the unsigned value on top of the evaluation stack to signed int8 and extends it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I2",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the signed value on top of the evaluation stack to signed int16 and extending it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I2_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the unsigned value on top of the evaluation stack to signed int16 and extends it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I4",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the signed value on top of the evaluation stack to signed int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I4_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the unsigned value on top of the evaluation stack to signed int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I8",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the signed value on top of the evaluation stack to signed int64, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I8_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the unsigned value on top of the evaluation stack to signed int64, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the unsigned value on top of the evaluation stack to signed native int, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the signed value on top of the evaluation stack to unsigned native int, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U1",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the signed value on top of the evaluation stack to unsigned int8 and extends it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U1_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the unsigned value on top of the evaluation stack to unsigned int8 and extends it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U2",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the signed value on top of the evaluation stack to unsigned int16 and extends it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U2_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the signed value on top of the evaluation stack to unsigned int16 and extends it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U4",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the signed value on top of the evaluation stack to unsigned int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U4_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the unsigned value on top of the evaluation stack to unsigned int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U8",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the signed value on top of the evaluation stack to unsigned int64, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U8_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the unsigned value on top of the evaluation stack to unsigned int64, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the unsigned value on top of the evaluation stack to unsigned native int, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_R4",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the value on top of the evaluation stack to float32."
   },
   {
     "name": "Conv_R8",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the value on top of the evaluation stack to float32."
   },
   {
     "name": "Conv_R_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the unsigned integer value on top of the evaluation stack to float32."
   },
   {
     "name": "Conv_U",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the value on top of the evaluation stack to float32."
   },
   {
     "name": "Conv_U1",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the value on top of the evaluation stack to unsigned int8, and extends it to int32."
   },
   {
     "name": "Conv_U2",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the value on top of the evaluation stack to unsigned int16, and extends it to int32."
   },
   {
     "name": "Conv_U4",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the value on top of the evaluation stack to unsigned int32, and extends it to int32."
   },
   {
     "name": "Conv_U8",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the value on top of the evaluation stack to unsigned int64, and extends it to int64."
   },
   {
     "name": "Cpblk",
-    "description": "TBD",
-    "args": []
+    "description": "Copies a specified number bytes from a source address to a destination address."
   },
   {
     "name": "Cpobj",
-    "description": "TBD",
-    "args": []
+    "description": "Copies the value type located at the address of an object (type &, or native int) to the address of the destination object (type &, or native int).",
+    "args": ["Type"]
   },
   {
     "name": "Div",
-    "description": "TBD",
-    "args": []
+    "description": "Divides two values and pushes the result as a floating-point (type F) or quotient (type int32) onto the evaluation stack."
   },
   {
     "name": "Div_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Divides two unsigned integer values and pushes the result (int32) onto the evaluation stack."
   },
   {
     "name": "Dup",
-    "description": "TBD",
-    "args": []
+    "description": "Copies the current topmost value on the evaluation stack, and then pushes the copy onto the evaluation stack."
   },
   {
     "name": "Endfilter",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control from the filter clause of an exception back to the Common Language Infrastructure (CLI) exception handler."
   },
   {
     "name": "Endfinally",
-    "description": "TBD",
-    "args": []
+    "description": "Transfers control from the fault or finally clause of an exception block back to the Common Language Infrastructure (CLI) exception handler."
   },
   {
     "name": "Initblk",
-    "description": "TBD",
-    "args": []
+    "description": "Initializes a specified block of memory at a specific address to a given size and initial value."
   },
   {
     "name": "Initobj",
-    "description": "TBD",
-    "args": []
+    "description": "Initializes each field of the value type at a specified address to a null reference or a 0 of the appropriate primitive type.",
+    "args": ["Type"]
   },
   {
     "name": "Isinst",
-    "description": "TBD",
-    "args": []
+    "description": "Tests whether an object reference (type O) is an instance of a particular class.",
+    "args": ["Type"]
   },
   {
     "name": "Jmp",
-    "description": "TBD",
-    "args": []
+    "description": "Exits current method and jumps to specified method.",
+    "args": ["MethodInfo"]
   },
   {
     "name": "Ldarg",
-    "description": "TBD",
-    "args": []
+    "description": "Loads an argument (referenced by a specified index value) onto the stack.",
+    "args": ["short"]
   },
   {
     "name": "Ldarg_0",
@@ -434,38 +383,35 @@
   },
   {
     "name": "Ldarg_1",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the argument at index 1 onto the evaluation stack."
   },
   {
     "name": "Ldarg_2",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the argument at index 2 onto the evaluation stack."
   },
   {
     "name": "Ldarg_3",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the argument at index 3 onto the evaluation stack."
   },
   {
     "name": "Ldarg_S",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the argument (referenced by a specified short form index) onto the evaluation stack.",
+    "args": ["byte"]
   },
   {
     "name": "Ldarga",
-    "description": "TBD",
-    "args": []
+    "description": "Load an argument address onto the evaluation stack.",
+    "args": ["short"]
   },
   {
     "name": "Ldarga_S",
-    "description": "TBD",
-    "args": []
+    "description": "Load an argument address, in short form, onto the evaluation stack.",
+    "args": ["byte"]
   },
   {
     "name": "Ldc_I4",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes a supplied value of type int32 onto the evaluation stack as an int32.",
+    "args": ["int"]
   },
   {
     "name": "Ldc_I4_0",
@@ -473,38 +419,31 @@
   },
   {
     "name": "Ldc_I4_1",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes the integer value of 1 onto the evaluation stack as an int32."
   },
   {
     "name": "Ldc_I4_2",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes the integer value of 2 onto the evaluation stack as an int32."
   },
   {
     "name": "Ldc_I4_3",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes the integer value of 3 onto the evaluation stack as an int32."
   },
   {
     "name": "Ldc_I4_4",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes the integer value of 4 onto the evaluation stack as an int32."
   },
   {
     "name": "Ldc_I4_5",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes the integer value of 5 onto the evaluation stack as an int32."
   },
   {
     "name": "Ldc_I4_6",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes the integer value of 6 onto the evaluation stack as an int32."
   },
   {
     "name": "Ldc_I4_7",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes the integer value of 7 onto the evaluation stack as an int32."
   },
   {
     "name": "Ldc_I4_8",
@@ -512,13 +451,17 @@
   },
   {
     "name": "Ldc_I4_M1",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes the integer value of -1 onto the evaluation stack as an int32."
   },
   {
     "name": "Ldc_I4_S",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes the supplied int8 value onto the evaluation stack as an int32, short form.",
+    "args": ["byte"]
+  },
+  {
+    "name": "Ldc_I4_S",
+    "description": "Pushes the supplied int8 value onto the evaluation stack as an int32, short form.",
+    "args": ["sbyte"]
   },
   {
     "name": "Ldc_I8",
@@ -537,178 +480,161 @@
   },
   {
     "name": "Ldelem",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the element at a specified array index onto the top of the evaluation stack as the type specified in the instruction.",
+    "args": ["Type"]
   },
   {
     "name": "Ldelem_I",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the element with type native int at a specified array index onto the top of the evaluation stack as a native int."
   },
   {
     "name": "Ldelem_I1",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the element with type int8 at a specified array index onto the top of the evaluation stack as an int32."
   },
   {
     "name": "Ldelem_I2",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the element with type int16 at a specified array index onto the top of the evaluation stack as an int32."
   },
   {
     "name": "Ldelem_I4",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the element with type int32 at a specified array index onto the top of the evaluation stack as an int32."
   },
   {
     "name": "Ldelem_I8",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the element with type int64 at a specified array index onto the top of the evaluation stack as an int64."
   },
   {
     "name": "Ldelem_R4",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the element with type float32 at a specified array index onto the top of the evaluation stack as type F (float)."
   },
   {
     "name": "Ldelem_R8",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the element with type float64 at a specified array index onto the top of the evaluation stack as type F (float)."
   },
   {
     "name": "Ldelem_Ref",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the element containing an object reference at a specified array index onto the top of the evaluation stack as type O (object reference)."
   },
   {
     "name": "Ldelem_U1",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the element with type unsigned int8 at a specified array index onto the top of the evaluation stack as an int32."
   },
   {
     "name": "Ldelem_U2",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the element with type unsigned int16 at a specified array index onto the top of the evaluation stack as an int32."
   },
   {
     "name": "Ldelem_U4",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the element with type unsigned int32 at a specified array index onto the top of the evaluation stack as an int32."
   },
   {
     "name": "Ldelema",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the address of the array element at a specified array index onto the top of the evaluation stack as type & (managed pointer).",
+    "args": ["Type"]
   },
   {
     "name": "Ldfld",
-    "description": "TBD",
-    "args": []
+    "description": "Finds the value of a field in the object whose reference is currently on the evaluation stack.",
+    "args": ["FieldInfo"]
   },
   {
     "name": "Ldflda",
-    "description": "TBD",
-    "args": []
+    "description": "Finds the address of a field in the object whose reference is currently on the evaluation stack.",
+    "args": ["FieldInfo"]
   },
   {
     "name": "Ldftn",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes an unmanaged pointer (type native int) to the native code implementing a specific method onto the evaluation stack.",
+    "args": ["MethodInfo"]
   },
   {
     "name": "Ldind_I",
-    "description": "TBD",
-    "args": []
+    "description": "Loads a value of type native int as a native int onto the evaluation stack indirectly."
   },
   {
     "name": "Ldind_I1",
-    "description": "TBD",
-    "args": []
+    "description": "Loads a value of type int8 as an int32 onto the evaluation stack indirectly."
   },
   {
     "name": "Ldind_I2",
-    "description": "TBD",
-    "args": []
+    "description": "Loads a value of type int16 as an int32 onto the evaluation stack indirectly."
   },
   {
     "name": "Ldind_I4",
-    "description": "TBD",
-    "args": []
+    "description": "Loads a value of type int32 as an int32 onto the evaluation stack indirectly."
   },
   {
     "name": "Ldind_I8",
-    "description": "TBD",
-    "args": []
+    "description": "Loads a value of type int64 as an int64 onto the evaluation stack indirectly."
   },
   {
     "name": "Ldind_R4",
-    "description": "TBD",
-    "args": []
+    "description": "Loads a value of type float32 as a type F (float) onto the evaluation stack indirectly."
   },
   {
     "name": "Ldind_R8",
-    "description": "TBD",
-    "args": []
+    "description": "Loads a value of type float64 as a type F (float) onto the evaluation stack indirectly."
   },
   {
     "name": "Ldind_Ref",
-    "description": "TBD",
-    "args": []
+    "description": "Loads an object reference as a type O (object reference) onto the evaluation stack indirectly."
   },
   {
     "name": "Ldind_U1",
-    "description": "TBD",
-    "args": []
+    "description": "Loads a value of type unsigned int8 as an int32 onto the evaluation stack indirectly."
   },
   {
     "name": "Ldind_U2",
-    "description": "TBD",
-    "args": []
+    "description": "Loads a value of type unsigned int16 as an int32 onto the evaluation stack indirectly."
   },
   {
     "name": "Ldind_U4",
-    "description": "TBD",
-    "args": []
+    "description": "Loads a value of type unsigned int32 as an int32 onto the evaluation stack indirectly."
   },
   {
     "name": "Ldlen",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes the number of elements of a zero-based, one-dimensional array onto the evaluation stack."
   },
   {
     "name": "Ldloc",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the local variable at a specific index onto the evaluation stack.",
+    "args": ["LocalBuilder"]
+  },
+  {
+    "name": "Ldloc",
+    "description": "Loads the local variable at a specific index onto the evaluation stack.",
+    "args": ["short"]
   },
   {
     "name": "Ldloc_0",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the local variable at index 0 onto the evaluation stack."
   },
   {
     "name": "Ldloc_1",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the local variable at index 1 onto the evaluation stack."
   },
   {
     "name": "Ldloc_2",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the local variable at index 2 onto the evaluation stack."
   },
   {
     "name": "Ldloc_3",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the local variable at index 3 onto the evaluation stack."
   },
   {
     "name": "Ldloc_S",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the local variable at a specific index onto the evaluation stack, short form.",
+    "args": ["LocalBuilder"]
+  },
+  {
+    "name": "Ldloc_S",
+    "description": "Loads the local variable at a specific index onto the evaluation stack, short form.",
+    "args": ["short"]
   },
   {
     "name": "Ldloca",
-    "description": "TBD",
-    "args": []
+    "description": "Loads the address of the local variable at a specific index onto the evaluation stack.",
+    "args": ["short"]
   },
   {
     "name": "Ldloca_S",
@@ -717,23 +643,22 @@
   },
   {
     "name": "Ldnull",
-    "description": "Pushes a null reference (type O) onto the evaluation stack.",
-    "args": []
+    "description": "Pushes a null reference (type O) onto the evaluation stack."
   },
   {
     "name": "Ldobj",
-    "description": "TBD",
-    "args": []
+    "description": "Copies the value type object pointed to by an address to the top of the evaluation stack.",
+    "args": ["Type"]
   },
   {
     "name": "Ldsfld",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes the value of a static field onto the evaluation stack.",
+    "args": ["FieldInfo"]
   },
   {
     "name": "Ldsflda",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes the address of a static field onto the evaluation stack.",
+    "args": ["FieldInfo"]
   },
   {
     "name": "Ldstr",
@@ -742,362 +667,335 @@
   },
   {
     "name": "Ldtoken",
-    "description": "TBD",
-    "args": []
+    "description": "Converts a metadata token to its runtime representation, pushing it onto the evaluation stack.",
+    "args": ["MethodInfo"]
+  },
+  {
+    "name": "Ldtoken",
+    "description": "Converts a metadata token to its runtime representation, pushing it onto the evaluation stack.",
+    "args": ["FieldInfo"]
+  },
+  {
+    "name": "Ldtoken",
+    "description": "Converts a metadata token to its runtime representation, pushing it onto the evaluation stack.",
+    "args": ["Type"]
   },
   {
     "name": "Ldvirtftn",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes an unmanaged pointer (type native int) to the native code implementing a particular virtual method associated with a specified object onto the evaluation stack.",
+    "args": ["MethodInfo"]
   },
   {
     "name": "Leave",
-    "description": "TBD",
-    "args": []
+    "description": "Exits a protected region of code, unconditionally transferring control to a specific target instruction.",
+    "args": ["Label"]
   },
   {
     "name": "Leave_S",
-    "description": "TBD",
-    "args": []
+    "description": "Exits a protected region of code, unconditionally transferring control to a target instruction (short form).",
+    "args": ["Label"]
   },
   {
     "name": "Localloc",
-    "description": "TBD",
-    "args": []
+    "description": "Allocates a certain number of bytes from the local dynamic memory pool and pushes the address (a transient pointer, type *) of the first allocated byte onto the evaluation stack."
   },
   {
     "name": "Mkrefany",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes a typed reference to an instance of a specific type onto the evaluation stack.",
+    "args": ["Type"]
   },
   {
     "name": "Mul",
-    "description": "TBD",
-    "args": []
+    "description": "Multiplies two values and pushes the result on the evaluation stack."
   },
   {
     "name": "Mul_Ovf",
-    "description": "TBD",
-    "args": []
+    "description": "Multiplies two integer values, performs an overflow check, and pushes the result onto the evaluation stack"
   },
   {
     "name": "Mul_Ovf_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Multiplies two unsigned integer values, performs an overflow check, and pushes the result onto the evaluation stack."
   },
   {
     "name": "Neg",
-    "description": "TBD",
-    "args": []
+    "description": "Negates a value and pushes the result onto the evaluation stack."
   },
   {
     "name": "Newarr",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes an object reference to a new zero-based, one-dimensional array whose elements are of a specific type onto the evaluation stack.",
+    "args": ["Type"]
   },
   {
     "name": "Nop",
-    "description": "TBD",
-    "args": []
+    "description": "Fills space if opcodes are patched. No meaningful operation is performed although a processing cycle can be consumed."
   },
   {
     "name": "Not",
-    "description": "TBD",
-    "args": []
+    "description": "Computes the bitwise complement of the integer value on top of the stack and pushes the result onto the evaluation stack as the same type."
   },
   {
     "name": "Or",
-    "description": "TBD",
-    "args": []
+    "description": "Compute the bitwise complement of the two integer values on top of the stack and pushes the result onto the evaluation stack."
   },
   {
     "name": "Pop",
-    "description": "TBD",
-    "args": []
+    "description": "Removes the value currently on top of the evaluation stack."
   },
   {
     "name": "Prefix1",
-    "description": "TBD",
-    "args": []
+    "description": "This is a reserved instruction."
   },
   {
     "name": "Prefix2",
-    "description": "TBD",
-    "args": []
+    "description": "This is a reserved instruction."
   },
   {
     "name": "Prefix3",
-    "description": "TBD",
-    "args": []
+    "description": "This is a reserved instruction."
   },
   {
     "name": "Prefix4",
-    "description": "TBD",
-    "args": []
+    "description": "This is a reserved instruction."
   },
   {
     "name": "Prefix5",
-    "description": "TBD",
-    "args": []
+    "description": "This is a reserved instruction."
   },
   {
     "name": "Prefix6",
-    "description": "TBD",
-    "args": []
+    "description": "This is a reserved instruction."
   },
   {
     "name": "Prefix7",
-    "description": "TBD",
-    "args": []
+    "description": "This is a reserved instruction."
   },
   {
     "name": "Prefixref",
-    "description": "TBD",
-    "args": []
+    "description": "This is a reserved instruction."
   },
   {
     "name": "Readonly",
-    "description": "TBD",
-    "args": []
+    "description": "Specifies that the subsequent array address operation performs no type check at run time, and that it returns a managed pointer whose mutability is restricted."
   },
   {
     "name": "Refanytype",
-    "description": "TBD",
-    "args": []
+    "description": "Retrieves the type token embedded in a typed reference."
   },
   {
     "name": "Refanyval",
-    "description": "TBD",
-    "args": []
+    "description": "Retrieves the address (type &) embedded in a typed reference.",
+    "args": ["Type"]
   },
   {
     "name": "Rem",
-    "description": "TBD",
-    "args": []
+    "description": "Divides two values and pushes the remainder onto the evaluation stack."
   },
   {
     "name": "Rem_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Divides two unsigned values and pushes the remainder onto the evaluation stack."
   },
   {
     "name": "Rethrow",
-    "description": "TBD",
-    "args": []
+    "description": "Rethrows the current exception."
   },
   {
     "name": "Shl",
-    "description": "TBD",
-    "args": []
+    "description": "Shifts an integer value to the left (in zeroes) by a specified number of bits, pushing the result onto the evaluation stack."
   },
   {
     "name": "Shr",
-    "description": "TBD",
-    "args": []
+    "description": "Shifts an integer value (in sign) to the right by a specified number of bits, pushing the result onto the evaluation stack."
   },
   {
     "name": "Shr_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Shifts an unsigned integer value (in zeroes) to the right by a specified number of bits, pushing the result onto the evaluation stack."
   },
   {
     "name": "Sizeof",
-    "description": "TBD",
-    "args": []
+    "description": "Pushes the size, in bytes, of a supplied value type onto the evaluation stack.",
+    "args": ["Type"]
   },
   {
     "name": "Starg",
-    "description": "TBD",
-    "args": []
+    "description": "Stores the value on top of the evaluation stack in the argument slot at a specified index.",
+    "args": ["short"]
   },
   {
     "name": "Starg_S",
-    "description": "TBD",
-    "args": []
+    "description": "Stores the value on top of the evaluation stack in the argument slot at a specified index, short form.",
+    "args": ["byte"]
   },
   {
     "name": "Stelem",
-    "description": "TBD",
-    "args": []
+    "description": "Replaces the array element at a given index with the value on the evaluation stack, whose type is specified in the instruction.",
+    "args": ["Type"]
   },
   {
     "name": "Stelem_I",
-    "description": "TBD",
-    "args": []
+    "description": "Replaces the array element at a given index with the native int value on the evaluation stack."
   },
   {
     "name": "Stelem_I1",
-    "description": "TBD",
-    "args": []
+    "description": "Replaces the array element at a given index with the int8 value on the evaluation stack."
   },
   {
     "name": "Stelem_I2",
-    "description": "TBD",
-    "args": []
+    "description": "Replaces the array element at a given index with the int16 value on the evaluation stack."
   },
   {
     "name": "Stelem_I4",
-    "description": "TBD",
-    "args": []
+    "description": "Replaces the array element at a given index with the int32 value on the evaluation stack."
   },
   {
     "name": "Stelem_I8",
-    "description": "TBD",
-    "args": []
+    "description": "Replaces the array element at a given index with the int64 value on the evaluation stack."
   },
   {
     "name": "Stelem_R4",
-    "description": "TBD",
-    "args": []
+    "description": "Replaces the array element at a given index with the float32 value on the evaluation stack."
   },
   {
     "name": "Stelem_R8",
-    "description": "TBD",
-    "args": []
+    "description": "Replaces the array element at a given index with the float64 value on the evaluation stack."
   },
   {
     "name": "Stelem_Ref",
-    "description": "TBD",
-    "args": []
+    "description": "Replaces the array element at a given index with the object ref value (type O) on the evaluation stack."
   },
   {
     "name": "Stfld",
-    "description": "TBD",
-    "args": []
+    "description": "Replaces the value stored in the field of an object reference or pointer with a new value.",
+    "args": ["FieldInfo"]
   },
   {
     "name": "Stind_I",
-    "description": "TBD",
-    "args": []
+    "description": "Stores a value of type native int at a supplied address."
   },
   {
     "name": "Stind_I1",
-    "description": "TBD",
-    "args": []
+    "description": "Stores a value of type int8 at a supplied address."
   },
   {
     "name": "Stind_I2",
-    "description": "TBD",
-    "args": []
+    "description": "Stores a value of type int16 at a supplied address."
   },
   {
     "name": "Stind_I4",
-    "description": "TBD",
-    "args": []
+    "description": "Stores a value of type int32 at a supplied address."
   },
   {
     "name": "Stind_I8",
-    "description": "TBD",
-    "args": []
+    "description": "Stores a value of type int64 at a supplied address."
   },
   {
     "name": "Stind_R4",
-    "description": "TBD",
-    "args": []
+    "description": "Stores a value of type float32 at a supplied address."
   },
   {
     "name": "Stind_R8",
-    "description": "TBD",
-    "args": []
+    "description": "Stores a value of type float64 at a supplied address."
   },
   {
     "name": "Stind_Ref",
-    "description": "TBD",
-    "args": []
+    "description": "Stores a object reference value at a supplied address."
   },
   {
     "name": "Stloc",
-    "description": "TBD",
-    "args": []
+    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at a specified index.",
+    "args": ["LocalBuilder"]
+  },
+  {
+    "name": "Stloc",
+    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at a specified index.",
+    "args": ["short"]
   },
   {
     "name": "Stloc_0",
-    "description": "TBD",
-    "args": []
+    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 0."
   },
   {
     "name": "Stloc_1",
-    "description": "TBD",
-    "args": []
+    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 1."
   },
   {
     "name": "Stloc_2",
-    "description": "TBD",
-    "args": []
+    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 2."
   },
   {
     "name": "Stloc_3",
-    "description": "TBD",
-    "args": []
+    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 3."
   },
   {
     "name": "Stloc_S",
-    "description": "TBD",
-    "args": []
+    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index (short form).",
+    "args": ["LocalBuilder"]
+  },
+  {
+    "name": "Stloc_S",
+    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index (short form).",
+    "args": ["byte"]
   },
   {
     "name": "Stobj",
-    "description": "TBD",
-    "args": []
+    "description": "Copies a value of a specified type from the evaluation stack into a supplied memory address.",
+    "args": ["Type"]
   },
   {
     "name": "Stsfld",
-    "description": "TBD",
-    "args": []
+    "description": "Replaces the value of a static field with a value from the evaluation stack.",
+    "args": ["FieldInfo"]
   },
   {
     "name": "Sub",
-    "description": "TBD",
-    "args": []
+    "description": "Subtracts one value from another and pushes the result onto the evaluation stack."
   },
   {
     "name": "Sub_Ovf",
-    "description": "TBD",
-    "args": []
+    "description": "Subtracts one integer value from another, performs an overflow check, and pushes the result onto the evaluation stack."
   },
   {
     "name": "Sub_Ovf_Un",
-    "description": "TBD",
-    "args": []
+    "description": "Subtracts one unsigned integer value from another, performs an overflow check, and pushes the result onto the evaluation stack."
   },
   {
     "name": "Switch",
-    "description": "TBD",
-    "args": []
+    "description": "Implements a jump table.",
+    "args": ["Label[]"]
   },
   {
     "name": "Tailcall",
-    "description": "TBD",
-    "args": []
+    "description": "Performs a postfixed method call instruction such that the current method's stack frame is removed before the actual call instruction is executed."
   },
   {
     "name": "Throw",
-    "description": "TBD",
-    "args": []
+    "description": "Throws the exception object currently on the evaluation stack."
   },
   {
     "name": "Unaligned",
-    "description": "TBD",
-    "args": []
+    "description": "Indicates that an address currently atop the evaluation stack might not be aligned to the natural size of the immediately following ldind, stind, ldfld, stfld, ldobj, stobj, initblk, or cpblk instruction.",
+    "args": ["byte"]
+  },
+  {
+    "name": "Unaligned",
+    "description": "Indicates that an address currently atop the evaluation stack might not be aligned to the natural size of the immediately following ldind, stind, ldfld, stfld, ldobj, stobj, initblk, or cpblk instruction.",
+    "args": ["Label"]
   },
   {
     "name": "Unbox",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the boxed representation of a value type to its unboxed form.",
+    "args": ["Type"]
   },
   {
     "name": "Unbox_Any",
-    "description": "TBD",
-    "args": []
+    "description": "Converts the boxed representation of a type specified in the instruction to its unboxed form.",
+    "args": ["Type"]
   },
   {
     "name": "Volatile",
-    "description": "TBD",
-    "args": []
+    "description": "Specifies that an address currently atop the evaluation stack might be volatile, and the results of reading that location cannot be cached or that multiple stores to that location cannot be suppressed."
   },
   {
     "name": "Xor",
-    "description": "TBD",
-    "args": []
+    "description": "Computes the bitwise XOR of the top two values on the evaluation stack, pushing the result onto the evaluation stack."
   }
 ]

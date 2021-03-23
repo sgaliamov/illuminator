@@ -53,7 +53,7 @@ type private OpCodesInfo = JsonProvider<"./opcodes.json">
 let OpCodesInfo = OpCodesInfo.GetSamples()
 
 // stack sizes
-let stackBehaviourMap = Map.ofList [
+let StackBehaviourMap = Map.ofList [
     (StackBehaviour.Pop0, [])
     (StackBehaviour.Pop1, ["any"])
     (StackBehaviour.Pop1_pop1, ["any"; "any"])

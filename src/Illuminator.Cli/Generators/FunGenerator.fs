@@ -39,17 +39,10 @@ namespace Illuminator.Functional
 }"
 
 let generate () =
-    // additional information about op codes
-    let opCodesInfo =
-        OpCodesInfo
-        |> Seq.groupBy (fun info -> info.Name)
-        |> Seq.map (fun (key, group) -> (key, Array.ofSeq group))
-        |> Map.ofSeq
-
     // provides metainformation about codes
     let getNamedMethods () =
         AllCodes
-        |> Seq.map (fun (name, code) -> opCodesInfo.[name] |> Seq.map (fun info -> name, info, code))
+        |> Seq.map (fun (name, code) -> OpCodesInfoGrouped.[name] |> Seq.map (fun info -> name, info, code))
         |> Seq.collect id
         |> Seq.map (fun (name, info, code) ->
             let funArgs = 

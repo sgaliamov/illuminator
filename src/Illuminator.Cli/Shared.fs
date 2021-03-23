@@ -52,6 +52,13 @@ type private OpCodesInfo = JsonProvider<"./opcodes.json">
 
 let OpCodesInfo = OpCodesInfo.GetSamples()
 
+// Codes info grouped by name
+let OpCodesInfoGrouped =
+    OpCodesInfo
+    |> Seq.groupBy (fun info -> info.Name)
+    |> Seq.map (fun (key, group) -> (key, Array.ofSeq group))
+    |> Map.ofSeq
+
 // stack sizes
 let StackBehaviourMap = Map.ofList [
     (StackBehaviour.Pop0, [])

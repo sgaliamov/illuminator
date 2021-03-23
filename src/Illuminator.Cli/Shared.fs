@@ -51,3 +51,33 @@ let AllCodes =
 type private OpCodesInfo = JsonProvider<"./opcodes.json">
 
 let OpCodesInfo = OpCodesInfo.GetSamples()
+
+// stack sizes
+let stackBehaviourMap = Map.ofList [
+    (StackBehaviour.Pop0, [])
+    (StackBehaviour.Pop1, ["any"])
+    (StackBehaviour.Pop1_pop1, ["any"; "any"])
+    (StackBehaviour.Popi, ["int"])
+    (StackBehaviour.Popi_pop1, ["int"; "any"])
+    (StackBehaviour.Popi_popi, ["int"; "int"])
+    (StackBehaviour.Popi_popi_popi, ["int"; "int"; "int"])
+    (StackBehaviour.Popi_popi8, ["int"; "long"])
+    (StackBehaviour.Popi_popr4, ["int"; "float"])
+    (StackBehaviour.Popi_popr8, ["int"; "double"])
+    (StackBehaviour.Popref, ["ref"])
+    (StackBehaviour.Popref_pop1, ["ref"; "any"])
+    (StackBehaviour.Popref_popi, ["ref"; "int"])
+    (StackBehaviour.Popref_popi_pop1, ["ref"; "int"; "any"])
+    (StackBehaviour.Popref_popi_popi, ["ref"; "int"; "int"])
+    (StackBehaviour.Popref_popi_popi8, ["ref"; "int"; "long"])
+    (StackBehaviour.Popref_popi_popr4, ["ref"; "int"; "float"])
+    (StackBehaviour.Popref_popi_popr8, ["ref"; "int"; "double"])
+    (StackBehaviour.Popref_popi_popref, ["ref"; "int"; "ref"])
+    (StackBehaviour.Push0, [])
+    (StackBehaviour.Push1, ["any"])
+    (StackBehaviour.Push1_push1, ["any"; "any"])
+    (StackBehaviour.Pushi, ["int"])
+    (StackBehaviour.Pushi8, ["long"])
+    (StackBehaviour.Pushr4, ["float"])
+    (StackBehaviour.Pushr8, ["double"])
+    (StackBehaviour.Pushref, ["ref"]) ]

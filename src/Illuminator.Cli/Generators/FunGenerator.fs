@@ -1,4 +1,4 @@
-﻿module EmitGenerator
+﻿module FunGenerator
 
 open Scriban
 open Shared
@@ -16,27 +16,17 @@ using System;
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace Illuminator
+namespace Illuminator.Functional
 {
-    public sealed partial class ILEmitter
+    public static class FunExtensions
     {
         {{- for method in methods }}
         /// <summary>
-        ///     <para>{{ method.description }}</para>
-        ///     <para>StackBehaviourPop: {{ method.pop_behaviour }}.</para>
-        ///     <para>StackBehaviourPush: {{ method.push_behaviour }}.</para>
+        ///     {{ method.description }}
         /// </summary>
-        public ILEmitter {{ method.name }}({{ method.parameters | array.join "", "" }})
+        public static ILEmitter {{ method.name }}({{ method.parameters | array.insert_at 0 ""this ILEmitter self"" | array.join "", "" }})
         {
-            _il.Emit(OpCodes.{{ method.arguments | array.insert_at 0 method.name | array.join "", "" }});
-            {{~ if method.pops | !string.empty ~}}
-            Pop({{ method.pops }});
-            {{~ end ~}}
-            {{~ if method.pushes | !string.empty ~}}
-            Push({{ method.pushes }});
-            {{~ end ~}}
-
-            return this;
+            return self.{{ method.name }}({{ method.arguments | array.join "", "" }});
         }
         {{~ end ~}}
     }
@@ -50,26 +40,18 @@ let generate () =
         |> Seq.map (fun (key, group) -> (key, Array.ofSeq group))
         |> Map.ofSeq
 
-    let join (values: seq<string>) =
-        values
-        |> Seq.map (fun x -> $"\"{x}\"")
-        |> join ", "
-
     // provides metainformation about codes
     let getNamedMethods () =
         AllCodes
         |> Seq.map (fun (name, code) -> opCodesInfo.[name] |> Seq.map (fun info -> name, info, code))
         |> Seq.collect id
         |> Seq.map (fun (name, info, code) ->
-        {|
+        {| 
             arguments = info.Args |> Seq.map getArgumentName
             description = info.Description 
             name = name
             parameters = info.Args |> Seq.map (fun a -> $"{a} {getArgumentName a}")
-            pop_behaviour = code.StackBehaviourPop.ToString()
-            pops = stackBehaviourMap.[code.StackBehaviourPop] |> join
-            push_behaviour = code.StackBehaviourPush.ToString()
-            pushes = stackBehaviourMap.[code.StackBehaviourPush] |> join 
+            fun_count = stackBehaviourMap.[code.StackBehaviourPop].Length
         |})
 
     let scriban = Template.Parse template

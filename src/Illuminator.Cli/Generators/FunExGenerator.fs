@@ -46,7 +46,7 @@ let generate () =
         |> Seq.collect id
         |> Seq.map (fun (name, info, code) ->
             let funArgs = 
-                Seq.init StackBehaviourMap.[code.StackBehaviourPop].Length (fun i -> $"fun{i}")
+                Seq.init StackBehaviourMap.[code.StackBehaviourPop].Length (fun i -> $"fun{i + 1}")
                 |> Seq.toArray // must be array to make `method.fun_args.size != 0` work
 
             let parameters =

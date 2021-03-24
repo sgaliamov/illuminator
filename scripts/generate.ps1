@@ -6,3 +6,4 @@ dotnet publish .\src\Illuminator.Cli -o .\publish -c release -r win-x64 -p:Publi
 .\publish\Illuminator.Cli.exe core > .\src\Illuminator\ILEmitter.Core.generated.cs
 .\publish\Illuminator.Cli.exe label > .\src\Illuminator.Extensions\LabelMethodsExtensions.generated.cs
 .\publish\Illuminator.Cli.exe fun-ex > .\src\Illuminator\Functional\FunExtensions.generated.cs
+.\publish\Illuminator.Cli.exe functions > .\src\Illuminator\ILEmitter.Functions.generated.cs

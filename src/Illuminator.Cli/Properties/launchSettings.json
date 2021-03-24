@@ -2,7 +2,7 @@
   "profiles": {
     "Illuminator.Cli": {
       "commandName": "Project",
-      "commandLineArgs": "fun"
+      "commandLineArgs": "functions"
     }
   }
 }

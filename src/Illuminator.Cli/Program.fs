@@ -6,5 +6,6 @@ let main args =
     | [| "json" |]-> printfn "%s" (JsonGenerator.generate())
     | [| "label" |]-> printfn "%s" (LabelGenerator.generate())
     | [| "fun-ex" |]-> printfn "%s" (FunExGenerator.generate())
+    | [| "functions" |]-> printfn "%s" (FunctionsGenerator.generate())
     | _ -> ()
     0

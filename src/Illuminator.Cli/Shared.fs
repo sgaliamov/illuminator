@@ -31,6 +31,12 @@ let getArgumentName (name: string) =
 // join strings with separator
 let join separator (values: seq<string>) = String.Join(separator, values)
 
+// All op codes
+let AllCodes =
+    typeof<OpCodes>.GetFields(BindingFlags.Static ||| BindingFlags.Public ||| BindingFlags.GetField)
+    |> Seq.map (fun field -> field.Name, field.GetValue null :?> OpCode )
+    |> Seq.cache
+
 // codes with not standart behaviour
 let private manualCodes = Set.ofList [
     OpCodes.Call.Name
@@ -39,10 +45,9 @@ let private manualCodes = Set.ofList [
     OpCodes.Newobj.Name
     OpCodes.Ret.Name ]
 
-// all op codes
-let AllCodes =
-    typeof<OpCodes>.GetFields(BindingFlags.Static ||| BindingFlags.Public ||| BindingFlags.GetField)
-    |> Seq.map (fun field -> field.Name, field.GetValue null :?> OpCode )
+// Filtered codes
+let FilteredCodes =
+    AllCodes
     |> Seq.filter (fun (_, code) -> not (manualCodes.Contains code.Name))
     |> Seq.sortBy (fun (name, _) -> name)
     |> Seq.cache

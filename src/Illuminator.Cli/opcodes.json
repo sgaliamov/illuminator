@@ -159,26 +159,6 @@
     "args": ["Label"]
   },
   {
-    "name": "Call",
-    "description": "Calls the method indicated by the passed method descriptor.",
-    "args": ["MethodInfo"]
-  },
-  {
-    "name": "Call",
-    "description": "Calls the method indicated by the passed method descriptor.",
-    "args": ["ConstructorInfo"]
-  },
-  {
-    "name": "Calli",
-    "description": "Calls the method indicated on the evaluation stack (as a pointer to an entry point) with arguments described by a calling convention.",
-    "args": ["MethodInfo"]
-  },
-  {
-    "name": "Callvirt",
-    "description": "Calls a late-bound method on an object, pushing the return value onto the evaluation stack.",
-    "args": ["MethodInfo"]
-  },
-  {
     "name": "Castclass",
     "description": "Attempts to cast an object passed by reference to the specified class.",
     "args": ["Type"]
@@ -746,11 +726,6 @@
     "args": ["Type"]
   },
   {
-    "name": "Newobj",
-    "description": "Creates a new object or a new instance of a value type, pushing an object reference (type O) onto the evaluation stack.",
-    "args": ["ConstructorInfo"]
-  },
-  {
     "name": "Nop",
     "description": "Fills space if opcodes are patched. No meaningful operation is performed although a processing cycle can be consumed."
   },
@@ -818,10 +793,6 @@
   {
     "name": "Rem_Un",
     "description": "Divides two unsigned values and pushes the remainder onto the evaluation stack."
-  },
-  {
-    "name": "Ret",
-    "description": "Returns from the current method, pushing a return value (if present) from the callee's evaluation stack onto the caller's evaluation stack."
   },
   {
     "name": "Rethrow",

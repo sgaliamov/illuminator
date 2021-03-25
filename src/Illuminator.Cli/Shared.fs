@@ -13,7 +13,7 @@ let lowerFirst text =
     | _ -> String.Empty
 
 // safe naming for parameters
-let private excapedName = Set.ofList [
+let private ExcapedName = Set.ofList [
     "long"
     "short"
     nameof byte
@@ -24,7 +24,7 @@ let private excapedName = Set.ofList [
     nameof string ]
 
 let getArgumentName (name: string) =
-    if excapedName.Contains(name.ToLowerInvariant())
+    if ExcapedName.Contains(name.ToLowerInvariant())
     then "value"
     else lowerFirst (name.Replace("[]", ""))
 
@@ -32,13 +32,13 @@ let getArgumentName (name: string) =
 let join separator (values: seq<string>) = String.Join(separator, values)
 
 // All op codes
-let AllCodes =
+let private AllCodes =
     typeof<OpCodes>.GetFields(BindingFlags.Static ||| BindingFlags.Public ||| BindingFlags.GetField)
     |> Seq.map (fun field -> field.Name, field.GetValue null :?> OpCode )
     |> Seq.cache
 
 // codes with not standart behaviour
-let private manualCodes = Set.ofList [
+let private ManualCodes = Set.ofList [
     OpCodes.Call.Name
     OpCodes.Calli.Name
     OpCodes.Callvirt.Name
@@ -48,7 +48,7 @@ let private manualCodes = Set.ofList [
 // Filtered codes
 let FilteredCodes =
     AllCodes
-    |> Seq.filter (fun (_, code) -> not (manualCodes.Contains code.Name))
+    |> Seq.filter (fun (_, code) -> not (ManualCodes.Contains code.Name))
     |> Seq.sortBy (fun (name, _) -> name)
     |> Seq.cache
 

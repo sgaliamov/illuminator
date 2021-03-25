@@ -92,4 +92,6 @@ let StackBehaviourMap = Map.ofList [
     (StackBehaviour.Pushi8, ["long"])
     (StackBehaviour.Pushr4, ["float"])
     (StackBehaviour.Pushr8, ["double"])
-    (StackBehaviour.Pushref, ["ref"]) ]
+    (StackBehaviour.Pushref, ["ref"])
+    (StackBehaviour.Varpop, [])
+    (StackBehaviour.Varpush, []) ]

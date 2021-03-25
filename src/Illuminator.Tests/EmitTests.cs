@@ -2,6 +2,7 @@ using System;
 using System.Reflection.Emit;
 using Illuminator.Exceptions;
 using Xunit;
+using static Illuminator.Functions;
 
 namespace Illuminator.Tests
 {
@@ -26,14 +27,15 @@ namespace Illuminator.Tests
             var type = typeof(TestClass);
             var method = new DynamicMethod("test", type, Type.EmptyTypes);
 
-            using var il = method
-                           .GetILGenerator()
-                           .UseIlluminator()
-                           .DeclareLocal(typeof(int), out var local)
-                           .Ldc_I4_0()
-                           .Ldloca_S((byte)local.LocalIndex)
-                           .Newobj(TestClass.ParameterizedCtor)
-                           .Ret();
+            using var il = method.GetILGenerator()
+                                 .UseIlluminator()
+                                 .DeclareLocal(typeof(int), out var local)
+                                 .Fun(
+                                     Newobj(
+                                         TestClass.ParameterizedCtor,
+                                         Ldc_I4_0(),
+                                         Ldloca_S((byte)local.LocalIndex),
+                                         Ret()));
 
             var ctor = method.CreateDelegate<Func<TestClass>>();
             var actual = ctor();

@@ -5,6 +5,7 @@ using Illuminator.Exceptions;
 
 namespace Illuminator
 {
+    // Calls of methods.
     public sealed partial class ILEmitter
     {
         /// <summary>
@@ -23,6 +24,17 @@ namespace Illuminator
 
             return this;
         }
+
+        //public ILEmitter Call(ConstructorInfo constructorInfo)
+        //{
+        //    // todo: test. why would anyone call a constructor as a method?
+        //    _il.Emit(OpCodes.Call, constructorInfo);
+
+        //    Pop(constructorInfo.GetParameters());
+        //    Push(constructorInfo.DeclaringType);
+
+        //    return this;
+        //}
 
         /// <summary>Calls a late-bound method on an object, pushing the return value onto the evaluation stack.</summary>
         public ILEmitter Callvirt(MethodInfo methodInfo)
@@ -90,6 +102,24 @@ namespace Illuminator
 
             Pop(constructorInfo.GetParameters());
             Push(constructorInfo.DeclaringType);
+
+            return this;
+        }
+
+        /// <summary>
+        ///     Returns from the current method, pushing a return value (if present) from the callee's evaluation stack onto the
+        ///     caller's evaluation stack.
+        /// </summary>
+        public ILEmitter Ret()
+        {
+            _il.Emit(OpCodes.Ret);
+
+            if (_methodBuilder.ReturnType == typeof(void)) {
+                VerifyStackIsEmpty();
+                return this;
+            }
+
+            Pop(_methodBuilder.ReturnType);
 
             return this;
         }

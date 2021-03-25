@@ -4,6 +4,11 @@ The library is for personal projects to work with `Reflection.Emit` API.
 
 Basically, it's yet another wrapper around [`ILGenerator`](https://docs.microsoft.com/en-us/dotnet/api/system.reflection.emit.ilgenerator).
 
+## Packages
+
+1. Illuminator - core functionality.
+1. Illuminator.Extensions - useful combinations of core methods.
+
 ## Features
 
 1. Fluent and convenient API.

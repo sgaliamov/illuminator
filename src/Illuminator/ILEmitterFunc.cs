@@ -1,4 +1,4 @@
-﻿namespace Illuminator.Functional
+﻿namespace Illuminator
 {
     public delegate ILEmitter ILEmitterFunc(ILEmitter emitter);
 }

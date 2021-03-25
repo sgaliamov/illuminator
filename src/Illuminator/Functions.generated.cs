@@ -13,7 +13,7 @@ using Illuminator.Functional;
 
 namespace Illuminator
 {
-    public static class ILEmitterFunctions
+    public static partial class Functions
     {
         /// <summary>
         ///     Adds two values and pushes the result onto the evaluation stack.

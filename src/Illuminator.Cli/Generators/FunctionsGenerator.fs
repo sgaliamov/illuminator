@@ -19,7 +19,7 @@ using Illuminator.Functional;
 
 namespace Illuminator
 {
-    public static class ILEmitterFunctions
+    public static partial class Functions
     {
         {{- for method in methods }}
         /// <summary>

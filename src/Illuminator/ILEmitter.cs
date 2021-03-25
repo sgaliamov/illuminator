@@ -19,24 +19,6 @@ namespace Illuminator
                                          .GetValue(_il);
         }
 
-        /// <summary>
-        ///     Returns from the current method, pushing a return value (if present) from the callee's evaluation stack onto the
-        ///     caller's evaluation stack.
-        /// </summary>
-        public ILEmitter Ret()
-        {
-            _il.Emit(OpCodes.Ret);
-
-            if (_methodBuilder.ReturnType == typeof(void)) {
-                VerifyStackIsEmpty();
-                return this;
-            }
-
-            Pop(_methodBuilder.ReturnType);
-
-            return this;
-        }
-
         /// <summary>Creates a delegate of type <typeparamref name="T" /> from this method.</summary>
         /// <typeparam name="T">The type of the delegate to create.</typeparam>
         /// <returns>The delegate for this method.</returns>

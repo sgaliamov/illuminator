@@ -9,6 +9,7 @@ using Illuminator.Exceptions;
 
 namespace Illuminator
 {
+    // Tracking state of the stack.
     public sealed partial class ILEmitter : IDisposable
     {
         private readonly Stack<string> _stack = new Stack<string>();

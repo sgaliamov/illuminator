@@ -18,7 +18,7 @@ using System.Reflection.Emit;
 
 namespace Illuminator.Functional
 {
-    public static class FunExtensions
+    public static partial class FunExtensions
     {
         {{- 
         for method in methods 

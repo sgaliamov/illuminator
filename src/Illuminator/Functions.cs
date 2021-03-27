@@ -34,6 +34,6 @@ namespace Illuminator
         public static ILEmitterFunc Callvirt(MethodInfo methodInfo, params ILEmitterFunc[] funcs) =>
             il => il.Callvirt(methodInfo, funcs);
 
-        public static ILEmitterFunc Ret() => il => il.Ret();
+        public static ILEmitterFunc Ret(params ILEmitterFunc[] funcs) => il => il.Ret(funcs);
     }
 }

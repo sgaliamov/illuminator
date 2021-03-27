@@ -12,7 +12,7 @@ using System.Reflection.Emit;
 
 namespace Illuminator
 {
-    // Wrappers over ILGenerator.
+    // Generated wrappers over ILGenerator.
     public sealed partial class ILEmitter
     {
         /// <summary>

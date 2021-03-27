@@ -2,6 +2,7 @@
 
 namespace Illuminator
 {
+    // Extensions for call methods with ILEmitterFunc parameters.
     public static partial class FunExtensions
     {
         public static ILEmitter Call(this ILEmitter self, MethodInfo methodInfo, params ILEmitterFunc[] parameters)

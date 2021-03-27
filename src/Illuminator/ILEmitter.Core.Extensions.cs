@@ -3,7 +3,7 @@
 namespace Illuminator
 {
     /// <summary>
-    ///     Generic helpers.
+    ///     Extensions for manual wrappers over ILGenerator methods inducing calls.
     /// </summary>
     public static class ILEmitterExtensions
     {

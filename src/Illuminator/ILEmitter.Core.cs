@@ -5,7 +5,7 @@ using System.Reflection.Emit;
 namespace Illuminator
 {
     // todo: interface at the end
-    // Manual wrappers over ILGenerator.
+    // Manual wrappers over ILGenerator methods inducing calls.
     public sealed partial class ILEmitter
     {
         private const BindingFlags PrivateFieldBindingFlags = BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance;

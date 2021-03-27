@@ -13,6 +13,7 @@ using Illuminator.Functional;
 
 namespace Illuminator
 {
+    // Generated functions for op code methods.
     public static partial class Functions
     {
         /// <summary>

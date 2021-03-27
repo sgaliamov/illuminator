@@ -14,14 +14,12 @@ namespace Illuminator
     {
         private readonly Stack<string> _stack = new Stack<string>();
 
-        public void Dispose()
-        {
-            DebugVerifyStackSize();
-            VerifyStackIsEmpty();
-        }
+        public void Dispose() => VerifyStackIsEmpty();
 
         private void VerifyStackIsEmpty()
         {
+            DebugVerifyStackSize();
+
             if (_stack.Count != 0) {
                 throw new IlluminatorStackException($"Stack should be empty: [{string.Join(", ", _stack)}]");
             }

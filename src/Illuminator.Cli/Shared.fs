@@ -5,14 +5,14 @@ open System.Reflection.Emit
 open System.Reflection
 open FSharp.Data
 
-// makes the first letter lower
+/// Makes the first letter lower.
 let lowerFirst text =
     let text = text |> Seq.toList
     match text with
     | head :: tail -> Char.ToLowerInvariant head :: tail |> Seq.toArray |> String
     | _ -> String.Empty
 
-// safe naming for parameters
+/// safe naming for parameters
 let private ExcapedName = Set.ofList [
     "long"
     "short"
@@ -28,10 +28,10 @@ let getArgumentName (name: string) =
     then "value"
     else lowerFirst (name.Replace("[]", ""))
 
-// join strings with separator
+/// join strings with separator
 let join separator (values: seq<string>) = String.Join(separator, values)
 
-// All op codes
+/// All op codes
 let private AllCodes =
     typeof<OpCodes>.GetFields(BindingFlags.Static ||| BindingFlags.Public ||| BindingFlags.GetField)
     |> Seq.map (fun field -> field.Name, field.GetValue null :?> OpCode )

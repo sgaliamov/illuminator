@@ -16,6 +16,71 @@ namespace Illuminator
     public static partial class Functions
     {
         /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.BeginCatchBlock(Type)"/>.
+        /// </summary>
+        public static ILEmitterFunc BeginCatchBlock(Type exceptionType) => il => il.BeginCatchBlock(exceptionType);
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.BeginExceptFilterBlock()"/>.
+        /// </summary>
+        public static ILEmitterFunc BeginExceptFilterBlock() => il => il.BeginExceptFilterBlock();
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.BeginFaultBlock()"/>.
+        /// </summary>
+        public static ILEmitterFunc BeginFaultBlock() => il => il.BeginFaultBlock();
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.BeginFinallyBlock()"/>.
+        /// </summary>
+        public static ILEmitterFunc BeginFinallyBlock() => il => il.BeginFinallyBlock();
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.BeginScope()"/>.
+        /// </summary>
+        public static ILEmitterFunc BeginScope() => il => il.BeginScope();
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.EmitWriteLine(String)"/>.
+        /// </summary>
+        public static ILEmitterFunc EmitWriteLine(String value) => il => il.EmitWriteLine(value);
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.EmitWriteLine(LocalBuilder)"/>.
+        /// </summary>
+        public static ILEmitterFunc EmitWriteLine(LocalBuilder localBuilder) => il => il.EmitWriteLine(localBuilder);
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.EmitWriteLine(FieldInfo)"/>.
+        /// </summary>
+        public static ILEmitterFunc EmitWriteLine(FieldInfo fld) => il => il.EmitWriteLine(fld);
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.EndExceptionBlock()"/>.
+        /// </summary>
+        public static ILEmitterFunc EndExceptionBlock() => il => il.EndExceptionBlock();
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.EndScope()"/>.
+        /// </summary>
+        public static ILEmitterFunc EndScope() => il => il.EndScope();
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.MarkLabel(Label)"/>.
+        /// </summary>
+        public static ILEmitterFunc MarkLabel(Label loc) => il => il.MarkLabel(loc);
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.ThrowException(Type)"/>.
+        /// </summary>
+        public static ILEmitterFunc ThrowException(Type excType) => il => il.ThrowException(excType);
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.UsingNamespace(String)"/>.
+        /// </summary>
+        public static ILEmitterFunc UsingNamespace(String usingNamespace) => il => il.UsingNamespace(usingNamespace);
+
+        /// <summary>
         ///     Adds two values and pushes the result onto the evaluation stack.
         /// </summary>
         public static ILEmitterFunc Add(ILEmitterFunc fun1, ILEmitterFunc fun2) => il => il.Add(fun1, fun2);

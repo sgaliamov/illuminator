@@ -29,10 +29,12 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Call(ConstructorInfo constructorInfo)
         {
+            _il.Emit(OpCodes.Call, constructorInfo);
+
             // todo: test. why would anyone call a constructor as a method? base constructor?
             if (!constructorInfo.IsStatic) {
                 // todo: can constructor be static?
-                _il.Emit(OpCodes.Call, constructorInfo);
+                Pop(constructorInfo.DeclaringType);
             }
 
             Pop(constructorInfo.GetParameters());

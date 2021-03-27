@@ -18,13 +18,6 @@ let private ManualCodes = Set.ofList [
     OpCodes.Newobj.Name
     OpCodes.Ret.Name ]
 
-/// Filtered codes
-let FilteredCodes =
-    AllCodes
-    |> Seq.filter (fun (_, code) -> not (ManualCodes.Contains code.Name))
-    |> Seq.sortBy (fun (name, _) -> name)
-    |> Seq.cache
-
 /// Codes info
 type private OpCodesInfo = JsonProvider<"./opcodes.json">
 
@@ -36,6 +29,15 @@ let OpCodesInfoGrouped =
     |> Seq.groupBy (fun info -> info.Name)
     |> Seq.map (fun (key, group) -> (key, Array.ofSeq group))
     |> Map.ofSeq
+
+/// Filtered codes
+let FilteredCodes =
+    AllCodes
+    |> Seq.filter (fun (_, code) -> not (ManualCodes.Contains code.Name))
+    |> Seq.sortBy (fun (name, _) -> name)
+    |> Seq.map (fun (name, code) -> OpCodesInfoGrouped.[name] |> Seq.map (fun info -> name, info, code))
+    |> Seq.collect id
+    |> Seq.cache
 
 /// Stack sizes
 let StackBehaviourMap = Map.ofList [

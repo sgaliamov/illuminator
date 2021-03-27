@@ -34,8 +34,6 @@ namespace Illuminator
 let generate () =
     let getEmitMethods () =
         FilteredCodes
-        |> Seq.map (fun (name, code) -> OpCodesInfoGrouped.[name] |> Seq.map (fun info -> name, info, code))
-        |> Seq.collect id
         |> Seq.map (fun (name, info, code) ->
             let arguments =
                 Seq.init StackBehaviourMap.[code.StackBehaviourPop].Length (fun i -> $"fun{i + 1}")

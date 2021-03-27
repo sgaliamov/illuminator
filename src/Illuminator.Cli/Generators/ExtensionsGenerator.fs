@@ -43,8 +43,6 @@ let generate () =
     // provides metainformation about codes
     let getNamedMethods () =
         FilteredCodes
-        |> Seq.map (fun (name, code) -> OpCodesInfoGrouped.[name] |> Seq.map (fun info -> name, info, code))
-        |> Seq.collect id
         |> Seq.map (fun (name, info, code) ->
             let funArgs = 
                 Seq.init StackBehaviourMap.[code.StackBehaviourPop].Length (fun i -> $"fun{i + 1}")

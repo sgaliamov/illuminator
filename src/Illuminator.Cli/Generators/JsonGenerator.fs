@@ -1,7 +1,6 @@
 ﻿module JsonGenerator
 
 open Scriban
-open Shared
 open OpCodes
 
 let private template = @"
@@ -17,5 +16,11 @@ let private template = @"
 
 let generate () =
     let scriban = Template.Parse template
-    let result = scriban.Render {| codes = FilteredCodes |> Seq.map (fun (name, _) -> {| name = name |}) |}
+    let codes =
+        FilteredCodes 
+        |> Seq.map (fun (name, _, _) -> name) 
+        |> Seq.distinct 
+        |> Seq.map (fun name -> {| name = name |})
+
+    let result = scriban.Render {| codes = codes |}
     result.Trim()

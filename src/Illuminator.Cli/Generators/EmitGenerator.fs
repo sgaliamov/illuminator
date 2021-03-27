@@ -52,8 +52,6 @@ let generate () =
     // provides metainformation about codes
     let getNamedMethods () =
         FilteredCodes
-        |> Seq.map (fun (name, code) -> OpCodesInfoGrouped.[name] |> Seq.map (fun info -> name, info, code))
-        |> Seq.collect id
         |> Seq.map (fun (name, info, code) ->
         {|
             arguments = info.Args |> Seq.map getArgumentName

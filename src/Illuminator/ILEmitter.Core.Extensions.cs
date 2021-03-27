@@ -10,21 +10,23 @@ namespace Illuminator
     /// </summary>
     public static partial class ILEmitterExtensions
     {
-        public static ILEmitter UseIlluminator(this ILGenerator self, params ILEmitterFunc[] funs) =>
-            new ILEmitter(self).Fun(funs);
+        public static ILEmitter UseIlluminator(this ILGenerator self, params ILEmitterFunc[] funcs) =>
+            new ILEmitter(self).Emit(funcs);
 
-        // todo: better name
-        public static ILEmitter Fun(this ILEmitter self, params ILEmitterFunc[] funs) =>
-            funs.Aggregate(self, (il, func) => func(il));
+        /// <summary>
+        ///     Runs emit functions sequentially.
+        /// </summary>
+        public static ILEmitter Emit(this ILEmitter self, params ILEmitterFunc[] funcs) =>
+            funcs.Aggregate(self, (il, func) => func(il));
 
         public static ILEmitter EmitCall(
             this ILEmitter self,
             OpCode opcode,
             MethodInfo methodInfo,
             Type[]? optionalParameterTypes = null,
-            params ILEmitterFunc[] funs) =>
-            funs.Aggregate(self, (il, func) => func(il))
-                .EmitCall(opcode, methodInfo, optionalParameterTypes);
+            params ILEmitterFunc[] funcs) =>
+            funcs.Aggregate(self, (il, func) => func(il))
+                 .EmitCall(opcode, methodInfo, optionalParameterTypes);
 
         public static ILEmitter EmitCalli(
             this ILEmitter self,
@@ -32,8 +34,8 @@ namespace Illuminator
             Type? returnType = null,
             Type[]? parameterTypes = null,
             Type[]? optionalParameterTypes = null,
-            params ILEmitterFunc[] funs) =>
-            funs.Aggregate(self, (il, func) => func(il))
-                .EmitCalli(callingConvention, returnType, parameterTypes, optionalParameterTypes);
+            params ILEmitterFunc[] funcs) =>
+            funcs.Aggregate(self, (il, func) => func(il))
+                 .EmitCalli(callingConvention, returnType, parameterTypes, optionalParameterTypes);
     }
 }

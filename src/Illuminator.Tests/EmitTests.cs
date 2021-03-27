@@ -30,7 +30,7 @@ namespace Illuminator.Tests
             using var il = method.GetILGenerator()
                                  .UseIlluminator()
                                  .DeclareLocal(typeof(int), out var local)
-                                 .Fun(
+                                 .Emit(
                                      Newobj(
                                          TestClass.ParameterizedCtor,
                                          Ldc_I4_0(),

@@ -37,7 +37,7 @@ let generate () =
         FilteredCodes
         |> Seq.map (fun (name, info, code) ->
             let arguments =
-                Seq.init StackBehaviourMap.[code.StackBehaviourPop].Length (fun i -> $"fun{i + 1}")
+                Seq.init StackBehaviourMap.[code.StackBehaviourPop].Length (fun i -> $"func{i + 1}")
                 |> Seq.cache
 
             let parameters =

@@ -11,28 +11,28 @@ namespace Illuminator
             OpCode opcode,
             MethodInfo methodInfo,
             Type[]? optionalParameterTypes = null,
-            params ILEmitterFunc[] funs) =>
-            il => il.EmitCall(opcode, methodInfo, optionalParameterTypes, funs);
+            params ILEmitterFunc[] funcs) =>
+            il => il.EmitCall(opcode, methodInfo, optionalParameterTypes, funcs);
 
         public static ILEmitterFunc EmitCalli(
             CallingConventions callingConvention,
             Type? returnType = null,
             Type[]? parameterTypes = null,
             Type[]? optionalParameterTypes = null,
-            params ILEmitterFunc[] funs) =>
-            il => il.EmitCalli(callingConvention, returnType, parameterTypes, optionalParameterTypes, funs);
+            params ILEmitterFunc[] funcs) =>
+            il => il.EmitCalli(callingConvention, returnType, parameterTypes, optionalParameterTypes, funcs);
 
-        public static ILEmitterFunc Newobj(ConstructorInfo constructorInfo, params ILEmitterFunc[] funs) =>
-            il => il.Newobj(constructorInfo, funs);
+        public static ILEmitterFunc Newobj(ConstructorInfo constructorInfo, params ILEmitterFunc[] funcs) =>
+            il => il.Newobj(constructorInfo, funcs);
 
-        public static ILEmitterFunc Call(ConstructorInfo constructorInfo, params ILEmitterFunc[] funs) =>
-            il => il.Call(constructorInfo, funs);
+        public static ILEmitterFunc Call(ConstructorInfo constructorInfo, params ILEmitterFunc[] funcs) =>
+            il => il.Call(constructorInfo, funcs);
 
-        public static ILEmitterFunc Call(MethodInfo methodInfo, params ILEmitterFunc[] funs) =>
-            il => il.Call(methodInfo, funs);
+        public static ILEmitterFunc Call(MethodInfo methodInfo, params ILEmitterFunc[] funcs) =>
+            il => il.Call(methodInfo, funcs);
 
-        public static ILEmitterFunc Callvirt(MethodInfo methodInfo, params ILEmitterFunc[] funs) =>
-            il => il.Callvirt(methodInfo, funs);
+        public static ILEmitterFunc Callvirt(MethodInfo methodInfo, params ILEmitterFunc[] funcs) =>
+            il => il.Callvirt(methodInfo, funcs);
 
         public static ILEmitterFunc Ret() => il => il.Ret();
     }

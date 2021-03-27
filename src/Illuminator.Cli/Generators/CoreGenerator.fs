@@ -1,8 +1,7 @@
 ﻿module CoreGenerator
 
 open Scriban
-open Shared
-open System.Reflection
+open CoreMethods
 
 let private template = @"
 /*
@@ -40,31 +39,6 @@ namespace Illuminator
 }"
 
 let generate () =
-    let toModel (m: MethodInfo) =
-        let parameters =
-            m.GetParameters()
-            |> Seq.map (fun p -> $"{p.ParameterType.Name} {getArgumentName p.Name}")
-            |> List.ofSeq
-
-        let hasOutput = m.ReturnType <> typeof<System.Void>
-
-        let parameters =
-            match hasOutput with
-            | false -> parameters
-            | _ -> parameters @ [$"out {m.ReturnType.Name} output"]
-
-        let parameterTypes =
-            m.GetParameters()
-            |> Seq.map (fun p -> p.ParameterType.Name)
-            |> join ", "
-
-        {| name = m.Name
-           has_output = hasOutput
-           description = $"Wrapper over <see cref=\"ILGenerator.{m.Name}({parameterTypes})\"/>."
-           arguments = m.GetParameters() |> Array.map (fun p -> getArgumentName p.Name)
-           parameters = parameters |}
-
-    let methods = CoreMethods |> Seq.map toModel
     let scriban = Template.Parse template
-    let result = scriban.Render {| methods = methods |}
+    let result = scriban.Render {| methods = CoreMethods |}
     result.Trim()

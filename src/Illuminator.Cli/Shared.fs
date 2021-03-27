@@ -1,7 +1,6 @@
 ﻿module Shared
 
 open System
-open System.Reflection.Emit
 
 /// Makes the first letter lower.
 let lowerFirst text =
@@ -9,25 +8,6 @@ let lowerFirst text =
     match text with
     | head :: tail -> Char.ToLowerInvariant head :: tail |> Seq.toArray |> String
     | _ -> String.Empty
-
-/// Core methods for manula implementation.
-let private Exclude = Set.ofList [
-    "Emit"
-    "EmitCall"
-    "EmitCalli"
-    "Equals"
-    "GetHashCode"
-    "GetType"
-    "MarkSequencePoint"
-    "ToString" ]
-
-/// Core methods
-let CoreMethods =
-    typeof<ILGenerator>.GetMethods()
-    |> Seq.filter (fun m -> not (Exclude.Contains m.Name))
-    |> Seq.filter (fun m -> not m.IsSpecialName)
-    |> Seq.sortBy (fun x -> x.Name)
-    |> Seq.cache
 
 /// safe naming for parameters
 let private ExcapedName = Set.ofList [

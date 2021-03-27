@@ -10,6 +10,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="Shared.fs" />
+    <Compile Include="CoreMethods.fs" />
     <Compile Include="OpCodes.fs" />
     <Compile Include="Generators\CoreGenerator.fs" />
     <Compile Include="Generators\EmitGenerator.fs" />

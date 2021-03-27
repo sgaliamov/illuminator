@@ -2,6 +2,7 @@
 
 open Scriban
 open Shared
+open OpCodes
 
 let private template = @"
 /*
@@ -31,7 +32,7 @@ namespace Illuminator
 }"
 
 let generate () =
-    let getNamedMethods () =
+    let getEmitMethods () =
         FilteredCodes
         |> Seq.map (fun (name, code) -> OpCodesInfoGrouped.[name] |> Seq.map (fun info -> name, info, code))
         |> Seq.collect id
@@ -61,5 +62,5 @@ let generate () =
         |> Seq.toArray
 
     let scriban = Template.Parse template
-    let result = scriban.Render {| methods = getNamedMethods() |}
+    let result = scriban.Render {| methods = getEmitMethods() |}
     result.Trim()

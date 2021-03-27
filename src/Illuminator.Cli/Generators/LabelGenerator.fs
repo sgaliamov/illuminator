@@ -1,7 +1,7 @@
 ﻿module LabelGenerator
 
 open Scriban
-open Shared
+open OpCodes
 
 let private template = @"
 /*

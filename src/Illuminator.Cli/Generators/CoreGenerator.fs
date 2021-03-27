@@ -2,7 +2,6 @@
 
 open Scriban
 open Shared
-open System.Reflection.Emit;
 open System.Reflection
 
 let private template = @"
@@ -40,16 +39,6 @@ namespace Illuminator
     }
 }"
 
-let exclude = Set.ofList [
-    "Emit"
-    "EmitCall"
-    "EmitCalli"
-    "Equals"
-    "GetHashCode"
-    "GetType"
-    "MarkSequencePoint"
-    "ToString" ]
-
 let generate () =
     let toModel (m: MethodInfo) =
         let parameters =
@@ -75,13 +64,7 @@ let generate () =
            arguments = m.GetParameters() |> Array.map (fun p -> getArgumentName p.Name)
            parameters = parameters |}
 
-    let methods =
-        typeof<ILGenerator>.GetMethods()
-        |> Seq.filter (fun m -> not (exclude.Contains m.Name))
-        |> Seq.filter (fun m -> not m.IsSpecialName)
-        |> Seq.sortBy (fun x -> x.Name)
-        |> Seq.map toModel
-
+    let methods = CoreMethods |> Seq.map toModel
     let scriban = Template.Parse template
     let result = scriban.Render {| methods = methods |}
     result.Trim()

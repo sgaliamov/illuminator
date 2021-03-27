@@ -1,4 +1,4 @@
-﻿module FunExGenerator
+﻿module ExtensionsGenerator
 
 open Scriban
 open Shared

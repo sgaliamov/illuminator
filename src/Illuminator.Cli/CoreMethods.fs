@@ -33,11 +33,11 @@ let toModel (m: MethodInfo) =
         |> Seq.map (fun p -> p.ParameterType.Name)
         |> join ", "
     
-    {|  name = m.Name
-        has_output = hasOutput
-        description = $"Wrapper over <see cref=\"ILGenerator.{m.Name}({parameterTypes})\"/>."
-        arguments = m.GetParameters() |> Seq.map (fun p -> getArgumentName p.Name) |> Seq.toList
-        parameters = parameters |}
+    {| name = m.Name
+       has_output = hasOutput
+       description = $"Wrapper over <see cref=\"ILGenerator.{m.Name}({parameterTypes})\"/>."
+       arguments = m.GetParameters() |> Seq.map (fun p -> getArgumentName p.Name) |> Seq.toList
+       parameters = parameters |}
 
 /// Core methods
 let CoreMethods =

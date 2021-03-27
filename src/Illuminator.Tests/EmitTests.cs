@@ -11,14 +11,14 @@ namespace Illuminator.Tests
         [Fact]
         public void CreateDelegate_detects_extra_stack()
         {
-            Assert.Throws<IlluminatorStackException>(() =>
-                new DynamicMethod("test", typeof(double), null)
-                    .GetILGenerator()
-                    .UseIlluminator()
-                    .Ldc_I4_0()
-                    .Ldc_R8(1.0)
-                    .Ret()
-                    .CreateDelegate<Func<double>>());
+            Assert.Throws<IlluminatorStackException>(
+                () => new DynamicMethod("test", typeof(double), null)
+                      .GetILGenerator()
+                      .UseIlluminator()
+                      .Ldc_I4_0()
+                      .Ldc_R8(1.0)
+                      .Ret()
+                      .CreateDelegate<Func<double>>());
         }
 
         [Fact]
@@ -30,12 +30,10 @@ namespace Illuminator.Tests
             using var il = method.GetILGenerator()
                                  .UseIlluminator()
                                  .DeclareLocal(typeof(int), out var local)
-                                 .Emit(
-                                     Newobj(
-                                         TestClass.ParameterizedCtor,
-                                         Ldc_I4_0(),
-                                         Ldloca_S((byte)local.LocalIndex),
-                                         Ret()));
+                                 .Emit(Newobj(TestClass.ParameterizedCtor,
+                                              Ldc_I4_0(),
+                                              Ldloca_S((byte)local.LocalIndex),
+                                              Ret()));
 
             var ctor = method.CreateDelegate<Func<TestClass>>();
             var actual = ctor();
@@ -48,12 +46,12 @@ namespace Illuminator.Tests
         [Fact]
         public void Ret_detects_not_empty_stack_on_void_method()
         {
-            Assert.Throws<IlluminatorStackException>(() =>
-                new DynamicMethod("test", null, null)
-                    .GetILGenerator()
-                    .UseIlluminator()
-                    .Ldc_I4_0()
-                    .Ret());
+            Assert.Throws<IlluminatorStackException>(
+                () => new DynamicMethod("test", null, null)
+                      .GetILGenerator()
+                      .UseIlluminator()
+                      .Ldc_I4_0()
+                      .Ret());
         }
     }
 }

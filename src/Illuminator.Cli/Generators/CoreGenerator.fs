@@ -20,6 +20,7 @@ using System.Reflection.Emit;
 
 namespace Illuminator
 {
+    // Generated wrappers over ILGenerator.
     public sealed partial class ILEmitter
     {
         {{- for method in methods }}

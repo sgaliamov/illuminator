@@ -12,6 +12,20 @@ namespace Illuminator
     // Tracking state of the stack.
     public sealed partial class ILEmitter : IDisposable
     {
+        private const string AnyType = "ANY";
+        private const string IntType = "I4";
+        private const string LongType = "I8";
+        private const string FloatType = "R4";
+        private const string DoubleType = "R8";
+        private const string RefType = "REF";
+
+        private static readonly IReadOnlyDictionary<Type, string> TypesMap = new Dictionary<Type, string> {
+            [typeof(int)] = IntType,
+            [typeof(long)] = LongType,
+            [typeof(float)] = FloatType,
+            [typeof(double)] = DoubleType
+        };
+
         private readonly Stack<string> _stack = new Stack<string>();
 
         public void Dispose() => VerifyStackIsEmpty();
@@ -81,7 +95,7 @@ namespace Illuminator
                 }
 
                 var pop = _stack.Pop();
-                if (pop != item && pop != "any" && item != "any") {
+                if (pop != item && pop != AnyType && item != AnyType) {
                     // todo: test
                     throw new IlluminatorStackException($"Unexpected type {item} in stack {pop}.");
                 }
@@ -92,24 +106,9 @@ namespace Illuminator
         {
             Debug.Assert(type != typeof(void));
 
-            if (type == typeof(int)) {
-                return "int";
-            }
-
-            if (type == typeof(long)) {
-                return "long";
-            }
-
-            if (type == typeof(double)) {
-                return "double";
-            }
-
-            if (type == typeof(float)) {
-                return "float";
-            }
-
-            // todo: smart types check
-            return "any";
+            return TypesMap.TryGetValue(type, out var value)
+                ? value
+                : AnyType;
         }
     }
 }

@@ -39,34 +39,52 @@ let FilteredCodes =
     |> Seq.collect id
     |> Seq.cache
 
+[<Literal>]
+let AnyType = "AnyType"
+
+[<Literal>]
+let IntType = "IntType"
+
+[<Literal>]
+let LongType = "LongType"
+
+[<Literal>]
+let FloatType = "FloatType"
+
+[<Literal>]
+let DoubleType = "DoubleType"
+
+[<Literal>]
+let RefType = "RefType"
+
 /// Stack sizes
 let StackBehaviourMap = Map.ofList [
     (StackBehaviour.Pop0, [])
-    (StackBehaviour.Pop1, ["any"])
-    (StackBehaviour.Pop1_pop1, ["any"; "any"])
-    (StackBehaviour.Popi, ["int"])
-    (StackBehaviour.Popi_pop1, ["int"; "any"])
-    (StackBehaviour.Popi_popi, ["int"; "int"])
-    (StackBehaviour.Popi_popi_popi, ["int"; "int"; "int"])
-    (StackBehaviour.Popi_popi8, ["int"; "long"])
-    (StackBehaviour.Popi_popr4, ["int"; "float"])
-    (StackBehaviour.Popi_popr8, ["int"; "double"])
-    (StackBehaviour.Popref, ["ref"])
-    (StackBehaviour.Popref_pop1, ["ref"; "any"])
-    (StackBehaviour.Popref_popi, ["ref"; "int"])
-    (StackBehaviour.Popref_popi_pop1, ["ref"; "int"; "any"])
-    (StackBehaviour.Popref_popi_popi, ["ref"; "int"; "int"])
-    (StackBehaviour.Popref_popi_popi8, ["ref"; "int"; "long"])
-    (StackBehaviour.Popref_popi_popr4, ["ref"; "int"; "float"])
-    (StackBehaviour.Popref_popi_popr8, ["ref"; "int"; "double"])
-    (StackBehaviour.Popref_popi_popref, ["ref"; "int"; "ref"])
+    (StackBehaviour.Pop1, [AnyType])
+    (StackBehaviour.Pop1_pop1, [AnyType; AnyType])
+    (StackBehaviour.Popi, [IntType])
+    (StackBehaviour.Popi_pop1, [IntType; AnyType])
+    (StackBehaviour.Popi_popi, [IntType; IntType])
+    (StackBehaviour.Popi_popi_popi, [IntType; IntType; IntType])
+    (StackBehaviour.Popi_popi8, [IntType; LongType])
+    (StackBehaviour.Popi_popr4, [IntType; FloatType])
+    (StackBehaviour.Popi_popr8, [IntType; DoubleType])
+    (StackBehaviour.Popref, [RefType])
+    (StackBehaviour.Popref_pop1, [RefType; AnyType])
+    (StackBehaviour.Popref_popi, [RefType; IntType])
+    (StackBehaviour.Popref_popi_pop1, [RefType; IntType; AnyType])
+    (StackBehaviour.Popref_popi_popi, [RefType; IntType; IntType])
+    (StackBehaviour.Popref_popi_popi8, [RefType; IntType; LongType])
+    (StackBehaviour.Popref_popi_popr4, [RefType; IntType; FloatType])
+    (StackBehaviour.Popref_popi_popr8, [RefType; IntType; DoubleType])
+    (StackBehaviour.Popref_popi_popref, [RefType; IntType; RefType])
     (StackBehaviour.Push0, [])
-    (StackBehaviour.Push1, ["any"])
-    (StackBehaviour.Push1_push1, ["any"; "any"])
-    (StackBehaviour.Pushi, ["int"])
-    (StackBehaviour.Pushi8, ["long"])
-    (StackBehaviour.Pushr4, ["float"])
-    (StackBehaviour.Pushr8, ["double"])
-    (StackBehaviour.Pushref, ["ref"])
+    (StackBehaviour.Push1, [AnyType])
+    (StackBehaviour.Push1_push1, [AnyType; AnyType])
+    (StackBehaviour.Pushi, [IntType])
+    (StackBehaviour.Pushi8, [LongType])
+    (StackBehaviour.Pushr4, [FloatType])
+    (StackBehaviour.Pushr8, [DoubleType])
+    (StackBehaviour.Pushref, [RefType])
     (StackBehaviour.Varpop, [])
     (StackBehaviour.Varpush, []) ]

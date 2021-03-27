@@ -22,9 +22,17 @@ namespace Illuminator
             params ILEmitterFunc[] funs) =>
             il => il.EmitCalli(callingConvention, returnType, parameterTypes, optionalParameterTypes, funs);
 
-        public static ILEmitterFunc Newobj(ConstructorInfo constructorInfo, params ILEmitterFunc[] funs) => il => il.Newobj(constructorInfo, funs);
-        public static ILEmitterFunc Call(ConstructorInfo constructorInfo, params ILEmitterFunc[] funs) => il => il.Call(constructorInfo, funs);
-        public static ILEmitterFunc Call(MethodInfo methodInfo, params ILEmitterFunc[] funs) => il => il.Call(methodInfo, funs);
+        public static ILEmitterFunc Newobj(ConstructorInfo constructorInfo, params ILEmitterFunc[] funs) =>
+            il => il.Newobj(constructorInfo, funs);
+
+        public static ILEmitterFunc Call(ConstructorInfo constructorInfo, params ILEmitterFunc[] funs) =>
+            il => il.Call(constructorInfo, funs);
+
+        public static ILEmitterFunc Call(MethodInfo methodInfo, params ILEmitterFunc[] funs) =>
+            il => il.Call(methodInfo, funs);
+
+        public static ILEmitterFunc Callvirt(MethodInfo methodInfo, params ILEmitterFunc[] funs) =>
+            il => il.Callvirt(methodInfo, funs);
 
         public static ILEmitterFunc Ret() => il => il.Ret();
     }

@@ -1,45 +1,29 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 
 namespace Illuminator
 {
     // Extensions for call methods with ILEmitterFunc parameters.
     public static partial class ILEmitterExtensions
     {
-        public static ILEmitter Call(this ILEmitter self, MethodInfo methodInfo, params ILEmitterFunc[] parameters)
-        {
-            // todo: think where to move it
-            //if (!(methodInfo is MethodBuilder)) {
-            //    var methodParametesLenght = methodInfo.GetParameters().Length;
+        public static ILEmitter Call(this ILEmitter self, MethodInfo methodInfo, params ILEmitterFunc[] parameters) =>
+            parameters
+                .Aggregate(self, (il, func) => func(il))
+                .Call(methodInfo);
 
-            //    if ((methodInfo.IsStatic && methodParametesLenght != parameters.Length)
-            //        || (!methodInfo.IsStatic && methodParametesLenght != parameters.Length - 1)) {
-            //        throw new ArgumentException($"Amount of parameters does not match method {methodInfo} signature.");
-            //    }
-            //}
+        public static ILEmitter Call(this ILEmitter self, ConstructorInfo constructorInfo, params ILEmitterFunc[] parameters) =>
+            parameters
+                .Aggregate(self, (il, func) => func(il))
+                .Call(constructorInfo);
 
-            foreach (var parameter in parameters) {
-                parameter(self);
-            }
+        public static ILEmitter Callvirt(this ILEmitter self, MethodInfo methodInfo, params ILEmitterFunc[] parameters) =>
+            parameters
+                .Aggregate(self, (il, func) => func(il))
+                .Callvirt(methodInfo);
 
-            return self.Call(methodInfo);
-        }
-
-        public static ILEmitter Call(this ILEmitter self, ConstructorInfo constructorInfo, params ILEmitterFunc[] parameters)
-        {
-            foreach (var parameter in parameters) {
-                parameter(self);
-            }
-
-            return self.Newobj(constructorInfo);
-        }
-
-        public static ILEmitter Newobj(this ILEmitter self, ConstructorInfo constructorInfo, params ILEmitterFunc[] parameters)
-        {
-            foreach (var parameter in parameters) {
-                parameter(self);
-            }
-
-            return self.Newobj(constructorInfo);
-        }
+        public static ILEmitter Newobj(this ILEmitter self, ConstructorInfo constructorInfo, params ILEmitterFunc[] parameters) =>
+            parameters
+                .Aggregate(self, (il, func) => func(il))
+                .Newobj(constructorInfo);
     }
 }

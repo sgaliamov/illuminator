@@ -5,7 +5,7 @@ using System.Reflection.Emit;
 namespace Illuminator
 {
     // todo: interface at the end
-    // Manual wrappers over ILGenerator methods inducing calls.
+    // Manual wrappers over ILGenerator methods that cannot be generated, inducing calls.
     public sealed partial class ILEmitter
     {
         private const BindingFlags PrivateFieldBindingFlags = BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance;
@@ -20,7 +20,6 @@ namespace Illuminator
                                          .GetValue(_il);
         }
 
-        
         /// <summary>
         ///     Puts a call or callvirt instruction onto the Microsoft intermediate language
         ///     (MSIL) stream to call a varargs method.

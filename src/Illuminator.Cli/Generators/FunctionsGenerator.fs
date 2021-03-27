@@ -15,7 +15,6 @@ let private template = @"
 using System;
 using System.Reflection;
 using System.Reflection.Emit;
-using Illuminator.Functional;
 
 namespace Illuminator
 {

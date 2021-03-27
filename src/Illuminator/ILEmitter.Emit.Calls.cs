@@ -24,16 +24,23 @@ namespace Illuminator
             return this;
         }
 
-        //public ILEmitter Call(ConstructorInfo constructorInfo)
-        //{
-        //    // todo: test. why would anyone call a constructor as a method?
-        //    _il.Emit(OpCodes.Call, constructorInfo);
+        /// <summary>
+        ///     Calls the method indicated by the passed constructor descriptor.
+        /// </summary>
+        public ILEmitter Call(ConstructorInfo constructorInfo)
+        {
+            // todo: test. why would anyone call a constructor as a method? base constructor?
+            if (!constructorInfo.IsStatic) {
+                // todo: can constructor be static?
+                _il.Emit(OpCodes.Call, constructorInfo);
+            }
 
-        //    Pop(constructorInfo.GetParameters());
-        //    Push(constructorInfo.DeclaringType);
+            Pop(constructorInfo.GetParameters());
+            // todo: test
+            Push(constructorInfo.DeclaringType);
 
-        //    return this;
-        //}
+            return this;
+        }
 
         /// <summary>Calls a late-bound method on an object, pushing the return value onto the evaluation stack.</summary>
         public ILEmitter Callvirt(MethodInfo methodInfo)

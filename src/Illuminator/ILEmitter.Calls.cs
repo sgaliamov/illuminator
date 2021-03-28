@@ -19,7 +19,7 @@ namespace Illuminator
                 Pop(optionalParameterTypes.Reverse().ToArray());
             }
 
-            Pop(methodInfo.GetParameters().Reverse().ToArray());
+            PopReversed(methodInfo.GetParameters());
 
             if (!methodInfo.IsStatic) {
                 Pop(methodInfo.DeclaringType);
@@ -71,11 +71,11 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Call(MethodInfo methodInfo)
         {
+            PopReversed(methodInfo.GetParameters());
+
             if (!methodInfo.IsStatic) {
                 Pop(methodInfo.DeclaringType);
             }
-
-            Pop(methodInfo.GetParameters());
 
             _il.Emit(OpCodes.Call, methodInfo);
 
@@ -89,13 +89,13 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Call(ConstructorInfo constructorInfo)
         {
+            PopReversed(constructorInfo.GetParameters());
+
             // todo: test. why would anyone call a constructor as a method? base constructor?
             if (!constructorInfo.IsStatic) {
                 // todo: can constructor be static?
                 Pop(constructorInfo.DeclaringType);
             }
-
-            Pop(constructorInfo.GetParameters());
 
             _il.Emit(OpCodes.Call, constructorInfo);
 
@@ -113,8 +113,8 @@ namespace Illuminator
                     $"Can't make virtual call on the static method {methodInfo.DeclaringType.FullName}.{methodInfo.Name}");
             }
 
+            PopReversed(methodInfo.GetParameters());
             Pop(methodInfo.DeclaringType);
-            Pop(methodInfo.GetParameters());
 
             _il.Emit(OpCodes.Callvirt, methodInfo);
 
@@ -129,7 +129,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Newobj(ConstructorInfo constructorInfo)
         {
-            Pop(constructorInfo.GetParameters());
+            PopReversed(constructorInfo.GetParameters());
 
             _il.Emit(OpCodes.Newobj, constructorInfo);
 

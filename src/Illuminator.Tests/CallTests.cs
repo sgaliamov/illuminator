@@ -34,13 +34,31 @@ namespace Illuminator.Tests
                          .GetILGenerator()
                          .UseIlluminator()
                          .Ldc_R4(1)
+                         .Ldstr("test")
                          .Call(TestClass.FloatFooMethodInfo)
                          .Ret()
                          .CreateDelegate<Func<float>>();
 
             var actual = target();
 
-            Assert.Equal(TestClass.FloatFoo(1), actual);
+            Assert.Equal(TestClass.FloatFoo(1, "test"), actual);
+        }
+
+        [Fact]
+        public void Call_static_float_method_functional()
+        {
+            var method = new DynamicMethod("test", typeof(float), null);
+
+            var target = method
+                         .GetILGenerator()
+                         .UseIlluminator(Ret(Call(TestClass.FloatFooMethodInfo,
+                                                  Ldc_R4(1),
+                                                  Ldstr("test"))))
+                         .CreateDelegate<Func<float>>();
+
+            var actual = target();
+
+            Assert.Equal(TestClass.FloatFoo(1, "test"), actual);
         }
 
         [Fact]
@@ -80,6 +98,8 @@ namespace Illuminator.Tests
                          .GetILGenerator()
                          .UseIlluminator()
                          .Ldarg_0()
+                         .Ldc_I4_1()
+                         .Ldstr("a")
                          .Callvirt(BaseClass.WooMethodInfo)
                          .Ret()
                          .CreateDelegate<Func<BaseClass, bool>>();
@@ -143,7 +163,7 @@ namespace Illuminator.Tests
                          .Ret(EmitCalli(
                                   CallingConventions.HasThis | CallingConventions.VarArgs,
                                   typeof(string),
-                                  new[] { typeof(object), typeof(string)  },
+                                  new[] { typeof(object), typeof(string) },
                                   new[] { typeof(string), typeof(int), typeof(float) },
                                   Ldarg_0(), // this
                                   Box(Ldc_I8(2), typeof(long)),
@@ -178,6 +198,29 @@ namespace Illuminator.Tests
             var actual = target();
 
             Assert.Equal(1, actual);
+        }
+
+        [Fact]
+        public void Newobj_creates_object()
+        {
+            var type = typeof(TestClass);
+            var method = new DynamicMethod("test", type, Type.EmptyTypes);
+
+            using var il = method.GetILGenerator()
+                                 .UseIlluminator()
+                                 .DeclareLocal(typeof(int), out var local)
+                                 .Emit(Ret(Newobj(TestClass.ParameterizedCtor,
+                                                  Ldc_I8(1),
+                                                  Ldstr("str"),
+                                                  Ldloca_S((byte)local.LocalIndex))));
+
+            var ctor = method.CreateDelegate<Func<TestClass>>();
+            var actual = ctor();
+            var result = actual.Foo(1, "test", out var b, out var c);
+
+            Assert.Equal(6, b);
+            Assert.Equal(3, c);
+            Assert.Equal(15, result);
         }
     }
 }

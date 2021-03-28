@@ -22,28 +22,6 @@ namespace Illuminator.Tests
         }
 
         [Fact]
-        public void Newobj_creates_object()
-        {
-            var type = typeof(TestClass);
-            var method = new DynamicMethod("test", type, Type.EmptyTypes);
-
-            using var il = method.GetILGenerator()
-                                 .UseIlluminator()
-                                 .DeclareLocal(typeof(int), out var local)
-                                 .Emit(Ret(Newobj(TestClass.ParameterizedCtor,
-                                                  Ldc_I4_0(),
-                                                  Ldloca_S((byte)local.LocalIndex))));
-
-            var ctor = method.CreateDelegate<Func<TestClass>>();
-            var actual = ctor();
-            var result = actual.Foo(1, "test", out var b, out var c);
-
-            Assert.Equal(2, b);
-            Assert.Equal(3, c);
-            Assert.Equal(7, result);
-        }
-
-        [Fact]
         public void Ret_detects_not_empty_stack_on_void_method()
         {
             Assert.Throws<IlluminatorStackException>(

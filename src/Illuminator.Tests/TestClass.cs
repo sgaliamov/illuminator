@@ -9,9 +9,9 @@ namespace Illuminator.Tests
         public TestClass() { }
 
         // ReSharper disable once UnusedMember.Global
-        public TestClass(int a, out int b)
+        public TestClass(long a, string str, out int b)
         {
-            A = a;
+            A = (int)(a + str.Length);
             b = A + 1;
         }
 
@@ -19,13 +19,13 @@ namespace Illuminator.Tests
             typeof(TestClass).GetMethod(nameof(DoubleFoo), new[] { typeof(double) })!;
 
         public static MethodInfo FloatFooMethodInfo =>
-            typeof(TestClass).GetMethod(nameof(FloatFoo), new[] { typeof(float) })!;
+            typeof(TestClass).GetMethod(nameof(FloatFoo), new[] { typeof(float), typeof(string) })!;
 
         public static MethodInfo LongFooMethodInfo =>
             typeof(TestClass).GetMethod(nameof(LongFoo), new[] { typeof(long) })!;
 
         public static ConstructorInfo ParameterizedCtor =>
-            typeof(TestClass).GetConstructor(new[] { typeof(int), typeof(int).MakeByRefType() })!;
+            typeof(TestClass).GetConstructor(new[] { typeof(int), typeof(string), typeof(int).MakeByRefType() })!;
 
         public static MethodInfo VarArgFooMethodInfo =>
             typeof(TestClass).GetMethod(nameof(VarArgFoo), new[] { typeof(object), typeof(string) })!;
@@ -58,13 +58,13 @@ namespace Illuminator.Tests
             return sb.ToString();
         }
 
-        public static float FloatFoo(float v) => v;
+        public static float FloatFoo(float v, string str) => v + str.Length;
 
         public static double DoubleFoo(double v) => v;
 
         public static long LongFoo(long v) => v;
 
-        public override bool Woo() => true;
+        public override bool Woo(int a, string b) => a == b.Length;
 
         public void VoidFoo() => A = 1;
     }
@@ -72,8 +72,8 @@ namespace Illuminator.Tests
     public abstract class BaseClass
     {
         public static MethodInfo WooMethodInfo =>
-            typeof(BaseClass).GetMethod(nameof(Woo), Type.EmptyTypes)!;
+            typeof(BaseClass).GetMethod(nameof(Woo), new[] { typeof(int), typeof(string) })!;
 
-        public virtual bool Woo() => false;
+        public virtual bool Woo(int a, string b) => a != b.Length;
     }
 }

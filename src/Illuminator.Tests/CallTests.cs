@@ -139,23 +139,24 @@ namespace Illuminator.Tests
             var target = new DynamicMethod("test", typeof(string), new[] { typeof(TestClass) })
                          .GetILGenerator()
                          .UseIlluminator()
-                         .Ldftn(TestClass.VarArgFooMethodInfo)
-                         .Ldarg_0()
                          .Ret(EmitCalli(
-                                  CallingConventions.HasThis | CallingConventions.VarArgs | CallingConventions.ExplicitThis,
+                                  CallingConventions.HasThis | CallingConventions.VarArgs,
                                   typeof(string),
-                                  new[] { typeof(long) },
+                                  new[] { typeof(object), typeof(string)  },
                                   new[] { typeof(string), typeof(int), typeof(float) },
+                                  Ldarg_0(), // this
                                   Box(Ldc_I8(2), typeof(long)),
-                                  Ldstr("test"),
+                                  Ldstr("_str"),
+                                  Ldstr("_var"),
                                   Ldc_I4_1(),
-                                  Ldc_R4(3)
+                                  Ldc_R4(3),
+                                  Ldftn(TestClass.VarArgFooMethodInfo) // method to call
                               ))
                          .CreateDelegate<Func<TestClass, string>>();
 
             var actual = target(new TestClass());
 
-            Assert.Equal("2test13", actual);
+            Assert.Equal("2_str_var13", actual);
         }
 
         [Fact]
@@ -164,12 +165,13 @@ namespace Illuminator.Tests
             var target = new DynamicMethod("test", typeof(long), null)
                          .GetILGenerator()
                          .UseIlluminator(
-                             Ldftn(TestClass.LongFooMethodInfo),
-                             Ret(EmitCalli(CallingConventions.Standard,
-                                           typeof(long),
-                                           new[] { typeof(long) },
-                                           null,
-                                           Ldc_I8(1))))
+                             Ret(EmitCalli(
+                                     CallingConventions.Standard,
+                                     typeof(long),
+                                     new[] { typeof(long) },
+                                     null,
+                                     Ldc_I8(1),
+                                     Ldftn(TestClass.LongFooMethodInfo))))
                          .CreateDelegate<Func<long>>();
 
             var actual = target();

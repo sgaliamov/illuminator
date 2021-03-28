@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using Illuminator.Exceptions;
@@ -41,18 +42,18 @@ namespace Illuminator
             Type[]? parameterTypes = null,
             Type[]? optionalParameterTypes = null)
         {
-            Pop(AnyType);
+            Pop(IntType); // func pointer
 
-            if (callingConventions.HasFlag(CallingConventions.HasThis)) {
-                Pop(AnyType);
+            if (optionalParameterTypes != null) {
+                Pop(optionalParameterTypes.Reverse().ToArray());
             }
 
             if (parameterTypes != null) {
-                Pop(parameterTypes);
+                Pop(parameterTypes.Reverse().ToArray());
             }
 
-            if (optionalParameterTypes != null) {
-                Pop(optionalParameterTypes);
+            if (callingConventions.HasFlag(CallingConventions.HasThis)) {
+                Pop(AnyType);
             }
 
             _il.EmitCalli(OpCodes.Calli, callingConventions, returnType, parameterTypes, optionalParameterTypes);
@@ -142,14 +143,14 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ret()
         {
+            _il.Emit(OpCodes.Ret);
+
             if (_methodBuilder.ReturnType == typeof(void)) {
                 VerifyStackIsEmpty();
                 return this;
             }
 
             Pop(_methodBuilder.ReturnType);
-
-            _il.Emit(OpCodes.Ret);
 
             return this;
         }

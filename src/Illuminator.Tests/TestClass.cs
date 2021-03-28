@@ -30,25 +30,26 @@ namespace Illuminator.Tests
             typeof(TestClass).GetConstructor(new[] { typeof(int), typeof(int).MakeByRefType() })!;
 
         public static MethodInfo VarArgFooMethodInfo =>
-            typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(object) })!;
+            typeof(TestClass).GetMethod(nameof(VarArgFoo), new[] { typeof(object), typeof(string) })!;
 
         public static MethodInfo VoidFooMethodInfo =>
             typeof(TestClass).GetMethod(nameof(VoidFoo), Type.EmptyTypes)!;
 
         public int A { get; private set; }
 
-        public int Foo(int a, out int b)
+        public int Foo(int a, string str, out int b, out long c)
         {
             A += a;
             b = A + 1;
+            c = 3;
 
-            return A + b;
+            return A + b + str.Length;
         }
 
-        public string Foo(object val, __arglist)
+        public string VarArgFoo(object a, string str, __arglist)
         {
             var argumentIterator = new ArgIterator(__arglist);
-            var sb = new StringBuilder(val.ToString());
+            var sb = new StringBuilder().Append(a).Append(str);
             while (argumentIterator.GetRemainingCount() != 0) {
                 var reference = argumentIterator.GetNextArg();
                 var o = TypedReference.ToObject(reference);

@@ -36,10 +36,11 @@ namespace Illuminator.Tests
 
             var ctor = method.CreateDelegate<Func<TestClass>>();
             var actual = ctor();
-            var result = actual.Foo(1, out var b);
+            var result = actual.Foo(1, "test", out var b, out var c);
 
             Assert.Equal(2, b);
-            Assert.Equal(3, result);
+            Assert.Equal(3, c);
+            Assert.Equal(7, result);
         }
 
         [Fact]

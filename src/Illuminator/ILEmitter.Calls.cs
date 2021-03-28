@@ -100,7 +100,9 @@ namespace Illuminator
             _il.Emit(OpCodes.Call, constructorInfo);
 
             // todo: test
-            Push(constructorInfo.DeclaringType);
+            if (!constructorInfo.IsStatic) {
+                Push(constructorInfo.DeclaringType);
+            }
 
             return this;
         }

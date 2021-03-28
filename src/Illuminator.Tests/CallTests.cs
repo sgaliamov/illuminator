@@ -200,6 +200,39 @@ namespace Illuminator.Tests
         }
 
         [Fact]
+        public void Invoke_static_constructor()
+        {
+            var typeBuilder = AssemblyBuilder
+                              .DefineDynamicAssembly(new AssemblyName("test"), AssemblyBuilderAccess.Run)
+                              .DefineDynamicModule("module")
+                              .DefineType("type");
+
+            var fieldBuilder = typeBuilder.DefineField("field", typeof(int), FieldAttributes.Static);
+
+            var constructorBuilder = typeBuilder.DefineTypeInitializer();
+            constructorBuilder
+                .GetILGenerator()
+                .UseIlluminator()
+                .Ldnull()
+                .Ldc_I4_1()
+                .Stfld(fieldBuilder)
+                .Ret();
+
+            typeBuilder
+                .DefineMethod("test", MethodAttributes.Static | MethodAttributes.Public)
+                .GetILGenerator()
+                .UseIlluminator()
+                .Call(constructorBuilder)
+                .Ret();
+
+            var type = typeBuilder.CreateType()!;
+
+            var o = Activator.CreateInstance(type)!;
+
+            var t = type.GetMethod("test");
+        }
+
+        [Fact]
         public void Newobj_creates_object()
         {
             var type = typeof(TestClass);

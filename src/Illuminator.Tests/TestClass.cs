@@ -70,8 +70,6 @@ namespace Illuminator.Tests
         public void VoidFoo() => A = 1;
     }
 
-    public delegate long LongFooDelegate(long x);
-
     public abstract class BaseClass
     {
         public static MethodInfo WooMethodInfo =>

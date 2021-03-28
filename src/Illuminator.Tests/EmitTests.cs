@@ -2,7 +2,6 @@ using System;
 using System.Reflection.Emit;
 using Illuminator.Exceptions;
 using Xunit;
-using static Illuminator.Functions;
 
 namespace Illuminator.Tests
 {

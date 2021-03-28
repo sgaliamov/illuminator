@@ -15,8 +15,7 @@ namespace Illuminator.Tests
             var target = new DynamicMethod("test", typeof(bool), new[] { typeof(BaseClass) })
                          .GetILGenerator()
                          .UseIlluminator()
-                         .Ldarg_0()
-                         .Call(BaseClass.WooMethodInfo)
+                         .Call(BaseClass.WooMethodInfo, Ldarg_0(), Ldc_I4_1(), Ldstr("a"))
                          .Ret()
                          .CreateDelegate<Func<BaseClass, bool>>();
 

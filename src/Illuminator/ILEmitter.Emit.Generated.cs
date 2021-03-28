@@ -1481,7 +1481,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem(Type type)
         {
-            Pop(IntType, RefType);
+            Pop(RefType, IntType);
             _il.Emit(OpCodes.Ldelem, type);
             Push(AnyType);
 
@@ -1495,7 +1495,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_I()
         {
-            Pop(IntType, RefType);
+            Pop(RefType, IntType);
             _il.Emit(OpCodes.Ldelem_I);
             Push(IntType);
 
@@ -1509,7 +1509,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_I1()
         {
-            Pop(IntType, RefType);
+            Pop(RefType, IntType);
             _il.Emit(OpCodes.Ldelem_I1);
             Push(IntType);
 
@@ -1523,7 +1523,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_I2()
         {
-            Pop(IntType, RefType);
+            Pop(RefType, IntType);
             _il.Emit(OpCodes.Ldelem_I2);
             Push(IntType);
 
@@ -1537,7 +1537,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_I4()
         {
-            Pop(IntType, RefType);
+            Pop(RefType, IntType);
             _il.Emit(OpCodes.Ldelem_I4);
             Push(IntType);
 
@@ -1551,7 +1551,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_I8()
         {
-            Pop(IntType, RefType);
+            Pop(RefType, IntType);
             _il.Emit(OpCodes.Ldelem_I8);
             Push(LongType);
 
@@ -1565,7 +1565,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_R4()
         {
-            Pop(IntType, RefType);
+            Pop(RefType, IntType);
             _il.Emit(OpCodes.Ldelem_R4);
             Push(FloatType);
 
@@ -1579,7 +1579,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_R8()
         {
-            Pop(IntType, RefType);
+            Pop(RefType, IntType);
             _il.Emit(OpCodes.Ldelem_R8);
             Push(DoubleType);
 
@@ -1593,7 +1593,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_Ref()
         {
-            Pop(IntType, RefType);
+            Pop(RefType, IntType);
             _il.Emit(OpCodes.Ldelem_Ref);
             Push(RefType);
 
@@ -1607,7 +1607,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_U1()
         {
-            Pop(IntType, RefType);
+            Pop(RefType, IntType);
             _il.Emit(OpCodes.Ldelem_U1);
             Push(IntType);
 
@@ -1621,7 +1621,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_U2()
         {
-            Pop(IntType, RefType);
+            Pop(RefType, IntType);
             _il.Emit(OpCodes.Ldelem_U2);
             Push(IntType);
 
@@ -1635,7 +1635,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_U4()
         {
-            Pop(IntType, RefType);
+            Pop(RefType, IntType);
             _il.Emit(OpCodes.Ldelem_U4);
             Push(IntType);
 
@@ -1649,7 +1649,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelema(Type type)
         {
-            Pop(IntType, RefType);
+            Pop(RefType, IntType);
             _il.Emit(OpCodes.Ldelema, type);
             Push(IntType);
 
@@ -2553,7 +2553,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem(Type type)
         {
-            Pop(AnyType, IntType, RefType);
+            Pop(RefType, IntType, AnyType);
             _il.Emit(OpCodes.Stelem, type);
 
             return this;
@@ -2566,7 +2566,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem_I()
         {
-            Pop(IntType, IntType, RefType);
+            Pop(RefType, IntType, IntType);
             _il.Emit(OpCodes.Stelem_I);
 
             return this;
@@ -2579,7 +2579,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem_I1()
         {
-            Pop(IntType, IntType, RefType);
+            Pop(RefType, IntType, IntType);
             _il.Emit(OpCodes.Stelem_I1);
 
             return this;
@@ -2592,7 +2592,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem_I2()
         {
-            Pop(IntType, IntType, RefType);
+            Pop(RefType, IntType, IntType);
             _il.Emit(OpCodes.Stelem_I2);
 
             return this;
@@ -2605,7 +2605,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem_I4()
         {
-            Pop(IntType, IntType, RefType);
+            Pop(RefType, IntType, IntType);
             _il.Emit(OpCodes.Stelem_I4);
 
             return this;
@@ -2618,7 +2618,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem_I8()
         {
-            Pop(LongType, IntType, RefType);
+            Pop(RefType, IntType, LongType);
             _il.Emit(OpCodes.Stelem_I8);
 
             return this;
@@ -2631,7 +2631,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem_R4()
         {
-            Pop(FloatType, IntType, RefType);
+            Pop(RefType, IntType, FloatType);
             _il.Emit(OpCodes.Stelem_R4);
 
             return this;
@@ -2644,7 +2644,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem_R8()
         {
-            Pop(DoubleType, IntType, RefType);
+            Pop(RefType, IntType, DoubleType);
             _il.Emit(OpCodes.Stelem_R8);
 
             return this;
@@ -2670,7 +2670,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stfld(FieldInfo fieldInfo)
         {
-            Pop(AnyType, RefType);
+            Pop(RefType, AnyType);
             _il.Emit(OpCodes.Stfld, fieldInfo);
 
             return this;
@@ -2735,7 +2735,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stind_I8()
         {
-            Pop(LongType, IntType);
+            Pop(IntType, LongType);
             _il.Emit(OpCodes.Stind_I8);
 
             return this;
@@ -2748,7 +2748,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stind_R4()
         {
-            Pop(FloatType, IntType);
+            Pop(IntType, FloatType);
             _il.Emit(OpCodes.Stind_R4);
 
             return this;
@@ -2761,7 +2761,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stind_R8()
         {
-            Pop(DoubleType, IntType);
+            Pop(IntType, DoubleType);
             _il.Emit(OpCodes.Stind_R8);
 
             return this;
@@ -2891,7 +2891,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stobj(Type type)
         {
-            Pop(AnyType, IntType);
+            Pop(IntType, AnyType);
             _il.Emit(OpCodes.Stobj, type);
 
             return this;

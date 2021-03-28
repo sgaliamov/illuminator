@@ -16,10 +16,10 @@ namespace Illuminator
         public ILEmitter EmitCall(OpCode opcode, MethodInfo methodInfo, Type[]? optionalParameterTypes = null)
         {
             if (optionalParameterTypes != null) {
-                Pop(optionalParameterTypes.Reverse().ToArray());
+                Pop(optionalParameterTypes);
             }
 
-            PopReversed(methodInfo.GetParameters());
+            Pop(methodInfo.GetParameters());
 
             if (!methodInfo.IsStatic) {
                 Pop(methodInfo.DeclaringType);
@@ -46,11 +46,11 @@ namespace Illuminator
             Pop(IntType); // func pointer
 
             if (optionalParameterTypes != null) {
-                Pop(optionalParameterTypes.Reverse().ToArray());
+                Pop(optionalParameterTypes);
             }
 
             if (parameterTypes != null) {
-                Pop(parameterTypes.Reverse().ToArray());
+                Pop(parameterTypes);
             }
 
             if (callingConventions.HasFlag(CallingConventions.HasThis)) {
@@ -71,7 +71,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Call(MethodInfo methodInfo)
         {
-            PopReversed(methodInfo.GetParameters());
+            Pop(methodInfo.GetParameters());
 
             if (!methodInfo.IsStatic) {
                 Pop(methodInfo.DeclaringType);
@@ -89,7 +89,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Call(ConstructorInfo constructorInfo)
         {
-            PopReversed(constructorInfo.GetParameters());
+            Pop(constructorInfo.GetParameters());
 
             // todo: test. why would anyone call a constructor as a method? base constructor?
             if (!constructorInfo.IsStatic) {
@@ -115,7 +115,7 @@ namespace Illuminator
                     $"Can't make virtual call on the static method {methodInfo.DeclaringType.FullName}.{methodInfo.Name}");
             }
 
-            PopReversed(methodInfo.GetParameters());
+            Pop(methodInfo.GetParameters());
             Pop(methodInfo.DeclaringType);
 
             _il.Emit(OpCodes.Callvirt, methodInfo);
@@ -131,7 +131,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Newobj(ConstructorInfo constructorInfo)
         {
-            PopReversed(constructorInfo.GetParameters());
+            Pop(constructorInfo.GetParameters());
 
             _il.Emit(OpCodes.Newobj, constructorInfo);
 

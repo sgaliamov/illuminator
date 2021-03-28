@@ -54,9 +54,9 @@ let generate () =
             name = name
             parameters = info.Args |> Seq.map (fun a -> $"{a} {getArgumentName a}")
             pop_behaviour = code.StackBehaviourPop.ToString()
-            pops = StackBehaviourMap.[code.StackBehaviourPop] |> Seq.rev |> join ", "
+            pops = StackBehaviourMap.[code.StackBehaviourPop] |> join ", "
             push_behaviour = code.StackBehaviourPush.ToString()
-            pushes = StackBehaviourMap.[code.StackBehaviourPush] |> Seq.rev |> join ", "
+            pushes = StackBehaviourMap.[code.StackBehaviourPush] |> join ", "
         |})
 
     let scriban = Template.Parse template

@@ -73,23 +73,26 @@ namespace Illuminator
             }
         }
 
-        private void PopReversed(params ParameterInfo[] types)
+        private void Pop(params ParameterInfo[] types)
         {
             if (types.Length == 0) {
                 return;
             }
 
-            Pop(types.Select(x => x.ParameterType).Reverse().ToArray());
+            Pop(types.Select(x => x.ParameterType).ToArray());
         }
 
         private void Pop(params Type[] types) => Pop(types.Select(ToSimpleType).ToArray());
 
+        /// <summary>
+        ///     Unwind types in reversed order and compare items with stack.
+        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void Pop(params string[] types)
         {
             Debug.Assert(types.Length != 0);
 
-            foreach (var item in types) {
+            foreach (var item in types.Reverse()) {
                 if (_stack.Count == 0) {
                     throw new IlluminatorStackException("Stack is empty to return a value.");
                 }

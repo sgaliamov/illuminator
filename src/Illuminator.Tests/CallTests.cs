@@ -119,6 +119,7 @@ namespace Illuminator.Tests
                              TestClass.VarArgFooMethodInfo,
                              new[] { typeof(string), typeof(int), typeof(float) },
                              Box(Ldc_I8(2), typeof(long)),
+                             Ldstr("_str_"),
                              Ldstr("test"),
                              Ldc_I4_1(),
                              Ldc_R4(3)
@@ -130,7 +131,7 @@ namespace Illuminator.Tests
 
             var actual = target(arg);
 
-            Assert.Equal("2test13", actual);
+            Assert.Equal("2_str_test13", actual);
         }
 
         [Fact]

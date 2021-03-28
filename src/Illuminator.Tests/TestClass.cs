@@ -8,6 +8,7 @@ namespace Illuminator.Tests
     {
         public TestClass() { }
 
+        // ReSharper disable once UnusedMember.Global
         public TestClass(int a, out int b)
         {
             A = a;
@@ -22,9 +23,6 @@ namespace Illuminator.Tests
 
         public static MethodInfo LongFooMethodInfo =>
             typeof(TestClass).GetMethod(nameof(LongFoo), new[] { typeof(long) })!;
-
-        //public static ConstructorInfo DefaultCtor =>
-        //    typeof(TestClass).GetConstructor(Type.EmptyTypes)!;
 
         public static ConstructorInfo ParameterizedCtor =>
             typeof(TestClass).GetConstructor(new[] { typeof(int), typeof(int).MakeByRefType() })!;

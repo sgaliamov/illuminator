@@ -15,13 +15,14 @@ namespace Illuminator
         /// </summary>
         public ILEmitter EmitCall(OpCode opcode, MethodInfo methodInfo, Type[]? optionalParameterTypes = null)
         {
-            if (!methodInfo.IsStatic) {
-                Pop(methodInfo.DeclaringType);
+            if (optionalParameterTypes != null) {
+                Pop(optionalParameterTypes.Reverse().ToArray());
             }
 
-            Pop(methodInfo.GetParameters());
-            if (optionalParameterTypes != null) {
-                Pop(optionalParameterTypes);
+            Pop(methodInfo.GetParameters().Reverse().ToArray());
+
+            if (!methodInfo.IsStatic) {
+                Pop(methodInfo.DeclaringType);
             }
 
             // op code is not calculated because it will change API and sometimes you may want to call a virtual method with Call code.

@@ -1,6 +1,7 @@
 # To do
 
 1. Branch optimizations. Can calculate distance.
+1. Test stack for Popref_popi_popr8.
 1. Try/catch.
 1. Bacis overloads with ILEmitterFunc depending on input parameters.
 1. Fuctional versions on all named functions.

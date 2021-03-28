@@ -24,8 +24,8 @@ namespace Illuminator
         {{- for method in methods }}
         /// <summary>
         ///     <para>{{ method.description }}</para>
-        ///     <para>StackBehaviourPop: {{ method.pop_behaviour }}.</para>
-        ///     <para>StackBehaviourPush: {{ method.push_behaviour }}.</para>
+        ///     <para>Pop: {{ method.pop_behaviour }}.</para>
+        ///     <para>Push: {{ method.push_behaviour }}.</para>
         /// </summary>
         public ILEmitter {{ method.name }}({{ method.parameters | array.join "", "" }})
         {
@@ -54,9 +54,9 @@ let generate () =
             name = name
             parameters = info.Args |> Seq.map (fun a -> $"{a} {getArgumentName a}")
             pop_behaviour = code.StackBehaviourPop.ToString()
-            pops = StackBehaviourMap.[code.StackBehaviourPop] |> join ", "
+            pops = StackBehaviourMap.[code.StackBehaviourPop] |> Seq.rev |> join ", "
             push_behaviour = code.StackBehaviourPush.ToString()
-            pushes = StackBehaviourMap.[code.StackBehaviourPush] |> join ", "
+            pushes = StackBehaviourMap.[code.StackBehaviourPush] |> Seq.rev |> join ", "
         |})
 
     let scriban = Template.Parse template

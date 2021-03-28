@@ -7,3 +7,4 @@
 1. Verifications for types of arguments.
 1. Logger.
 1. Use ISymbolDocumentWriter.
+1. Implementation for unmanaged Calli. Need 2.1 support.

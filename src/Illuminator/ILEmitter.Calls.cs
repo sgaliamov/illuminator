@@ -14,9 +14,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter EmitCall(OpCode opcode, MethodInfo methodInfo, Type[]? optionalParameterTypes = null)
         {
-            // op code is not calculated because it will change API and sometimes you may want to call a virtual method with Call code.
-            _il.EmitCall(opcode, methodInfo, optionalParameterTypes);
-
             if (!methodInfo.IsStatic) {
                 Pop(methodInfo.DeclaringType);
             }
@@ -25,6 +22,9 @@ namespace Illuminator
             if (optionalParameterTypes != null) {
                 Pop(optionalParameterTypes);
             }
+
+            // op code is not calculated because it will change API and sometimes you may want to call a virtual method with Call code.
+            _il.EmitCall(opcode, methodInfo, optionalParameterTypes);
 
             Push(methodInfo.ReturnType);
 
@@ -36,13 +36,30 @@ namespace Illuminator
         ///     calling convention.
         /// </summary>
         public ILEmitter EmitCalli(
-            CallingConventions callingConvention,
+            CallingConventions callingConventions,
             Type? returnType = null,
             Type[]? parameterTypes = null,
             Type[]? optionalParameterTypes = null)
         {
-            // todo: test
-            _il.EmitCalli(OpCodes.Calli, callingConvention, returnType, parameterTypes, optionalParameterTypes);
+            Pop(AnyType);
+
+            if (callingConventions.HasFlag(CallingConventions.HasThis)) {
+                Pop(AnyType);
+            }
+
+            if (parameterTypes != null) {
+                Pop(parameterTypes);
+            }
+
+            if (optionalParameterTypes != null) {
+                Pop(optionalParameterTypes);
+            }
+
+            _il.EmitCalli(OpCodes.Calli, callingConventions, returnType, parameterTypes, optionalParameterTypes);
+
+            if (returnType != null) {
+                Push(returnType);
+            }
 
             return this;
         }
@@ -52,13 +69,14 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Call(MethodInfo methodInfo)
         {
-            _il.Emit(OpCodes.Call, methodInfo);
-
             if (!methodInfo.IsStatic) {
                 Pop(methodInfo.DeclaringType);
             }
 
             Pop(methodInfo.GetParameters());
+
+            _il.Emit(OpCodes.Call, methodInfo);
+
             Push(methodInfo.ReturnType);
 
             return this;
@@ -69,8 +87,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Call(ConstructorInfo constructorInfo)
         {
-            _il.Emit(OpCodes.Call, constructorInfo);
-
             // todo: test. why would anyone call a constructor as a method? base constructor?
             if (!constructorInfo.IsStatic) {
                 // todo: can constructor be static?
@@ -78,6 +94,9 @@ namespace Illuminator
             }
 
             Pop(constructorInfo.GetParameters());
+
+            _il.Emit(OpCodes.Call, constructorInfo);
+
             // todo: test
             Push(constructorInfo.DeclaringType);
 
@@ -87,8 +106,6 @@ namespace Illuminator
         /// <summary>Calls a late-bound method on an object, pushing the return value onto the evaluation stack.</summary>
         public ILEmitter Callvirt(MethodInfo methodInfo)
         {
-            _il.Emit(OpCodes.Callvirt, methodInfo);
-
             if (methodInfo.IsStatic) {
                 throw new IlluminatorException(
                     $"Can't make virtual call on the static method {methodInfo.DeclaringType.FullName}.{methodInfo.Name}");
@@ -96,6 +113,9 @@ namespace Illuminator
 
             Pop(methodInfo.DeclaringType);
             Pop(methodInfo.GetParameters());
+
+            _il.Emit(OpCodes.Callvirt, methodInfo);
+
             Push(methodInfo.ReturnType);
 
             return this;
@@ -107,9 +127,10 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Newobj(ConstructorInfo constructorInfo)
         {
+            Pop(constructorInfo.GetParameters());
+
             _il.Emit(OpCodes.Newobj, constructorInfo);
 
-            Pop(constructorInfo.GetParameters());
             Push(constructorInfo.DeclaringType);
 
             return this;
@@ -121,14 +142,14 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ret()
         {
-            _il.Emit(OpCodes.Ret);
-
             if (_methodBuilder.ReturnType == typeof(void)) {
                 VerifyStackIsEmpty();
                 return this;
             }
 
             Pop(_methodBuilder.ReturnType);
+
+            _il.Emit(OpCodes.Ret);
 
             return this;
         }

@@ -95,8 +95,16 @@ namespace Illuminator
                 }
 
                 var pop = _stack.Pop();
-                if (pop != item && pop != AnyType && item != AnyType) {
-                    // todo: test
+
+                if (pop == AnyType || item == AnyType) {
+                    continue;
+                }
+
+                if (pop == RefType || item == RefType) {
+                    continue; // todo: think how to handle ref types. boxing change type of an item in the stack.
+                }
+
+                if (pop != item) {
                     throw new IlluminatorStackException($"Unexpected type {item} in stack {pop}.");
                 }
             }

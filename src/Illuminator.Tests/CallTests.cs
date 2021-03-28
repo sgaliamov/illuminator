@@ -33,14 +33,14 @@ namespace Illuminator.Tests
             var target = method
                          .GetILGenerator()
                          .UseIlluminator()
-                         .Ldc_R4(1.0f)
+                         .Ldc_R4(1)
                          .Call(TestClass.FloatFooMethodInfo)
                          .Ret()
                          .CreateDelegate<Func<float>>();
 
             var actual = target();
 
-            Assert.Equal(TestClass.Foo(1.0f), actual);
+            Assert.Equal(TestClass.FloatFoo(1), actual);
         }
 
         [Fact]
@@ -48,10 +48,9 @@ namespace Illuminator.Tests
         {
             var target = new DynamicMethod("test", null, new[] { typeof(TestClass) })
                          .GetILGenerator()
-                         .UseIlluminator()
-                         .Ldarg_0()
-                         .Call(TestClass.VoidFooMethodInfo)
-                         .Ret()
+                         .UseIlluminator(
+                             Ret(Call(TestClass.VoidFooMethodInfo,
+                                      Ldarg_0())))
                          .CreateDelegate<Action<TestClass>>();
 
             var arg = new TestClass();
@@ -164,13 +163,13 @@ namespace Illuminator.Tests
         {
             var target = new DynamicMethod("test", typeof(long), null)
                          .GetILGenerator()
-                         .UseIlluminator()
-                         .Ldftn(TestClass.LongFooMethodInfo)
-                         .Ret(EmitCalli(CallingConventions.Standard,
-                                        typeof(long),
-                                        new[] { typeof(long) },
-                                        null,
-                                        Ldc_I8(1)))
+                         .UseIlluminator(
+                             Ldftn(TestClass.LongFooMethodInfo),
+                             Ret(EmitCalli(CallingConventions.Standard,
+                                           typeof(long),
+                                           new[] { typeof(long) },
+                                           null,
+                                           Ldc_I8(1))))
                          .CreateDelegate<Func<long>>();
 
             var actual = target();

@@ -15,10 +15,10 @@ namespace Illuminator.Tests
         }
 
         public static MethodInfo DoubleFooMethodInfo =>
-            typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(double) })!;
+            typeof(TestClass).GetMethod(nameof(DoubleFoo), new[] { typeof(double) })!;
 
         public static MethodInfo FloatFooMethodInfo =>
-            typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(float) })!;
+            typeof(TestClass).GetMethod(nameof(FloatFoo), new[] { typeof(float) })!;
 
         public static MethodInfo LongFooMethodInfo =>
             typeof(TestClass).GetMethod(nameof(LongFoo), new[] { typeof(long) })!;
@@ -33,7 +33,7 @@ namespace Illuminator.Tests
             typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(object) })!;
 
         public static MethodInfo VoidFooMethodInfo =>
-            typeof(TestClass).GetMethod(nameof(Foo), Type.EmptyTypes)!;
+            typeof(TestClass).GetMethod(nameof(VoidFoo), Type.EmptyTypes)!;
 
         public int A { get; private set; }
 
@@ -59,15 +59,15 @@ namespace Illuminator.Tests
             return sb.ToString();
         }
 
-        public static float Foo(float v) => v;
+        public static float FloatFoo(float v) => v;
 
-        public static double Foo(double v) => v;
+        public static double DoubleFoo(double v) => v;
 
         public static long LongFoo(long v) => v;
 
         public override bool Woo() => true;
 
-        public void Foo() => A = 1;
+        public void VoidFoo() => A = 1;
     }
 
     public delegate long LongFooDelegate(long x);

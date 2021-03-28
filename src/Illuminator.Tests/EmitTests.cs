@@ -30,10 +30,9 @@ namespace Illuminator.Tests
             using var il = method.GetILGenerator()
                                  .UseIlluminator()
                                  .DeclareLocal(typeof(int), out var local)
-                                 .Emit(Newobj(TestClass.ParameterizedCtor,
-                                              Ldc_I4_0(),
-                                              Ldloca_S((byte)local.LocalIndex),
-                                              Ret()));
+                                 .Emit(Ret(Newobj(TestClass.ParameterizedCtor,
+                                                  Ldc_I4_0(),
+                                                  Ldloca_S((byte)local.LocalIndex))));
 
             var ctor = method.CreateDelegate<Func<TestClass>>();
             var actual = ctor();

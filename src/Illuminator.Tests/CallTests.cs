@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Reflection;
 using System.Reflection.Emit;
 using Illuminator.Exceptions;
 using Xunit;
+using static Illuminator.Functions;
 
 namespace Illuminator.Tests
 {
@@ -62,13 +64,14 @@ namespace Illuminator.Tests
         [Fact]
         public void Callvirt_on_static_method_should_not_work()
         {
-            Assert.Throws<IlluminatorException>(() => new DynamicMethod("test", typeof(double), null)
-                                                      .GetILGenerator()
-                                                      .UseIlluminator()
-                                                      .Ldc_R8(1.0)
-                                                      .Callvirt(TestClass.DoubleFooMethodInfo)
-                                                      .Ret()
-                                                      .CreateDelegate<Func<double>>());
+            Assert.Throws<IlluminatorException>(
+                () => new DynamicMethod("test", typeof(double), null)
+                      .GetILGenerator()
+                      .UseIlluminator()
+                      .Ldc_R8(1.0)
+                      .Callvirt(TestClass.DoubleFooMethodInfo)
+                      .Ret()
+                      .CreateDelegate<Func<double>>());
         }
 
         [Fact]
@@ -112,14 +115,14 @@ namespace Illuminator.Tests
                          .GetILGenerator()
                          .UseIlluminator()
                          .Ldarg_0()
-                         .Ldc_I8(2)
-                         .Box(typeof(long))
-                         .Ldstr("test")
-                         .Ldc_I4_1()
                          .EmitCall(
                              OpCodes.Call,
                              TestClass.VarArgFooMethodInfo,
-                             new[] { typeof(string), typeof(int) }
+                             new[] { typeof(string), typeof(int), typeof(float) },
+                             Box(Ldc_I8(2), typeof(long)),
+                             Ldstr("test"),
+                             Ldc_I4_1(),
+                             Ldc_R4(3)
                          )
                          .Ret()
                          .CreateDelegate<Func<TestClass, string>>();
@@ -128,7 +131,51 @@ namespace Illuminator.Tests
 
             var actual = target(arg);
 
-            Assert.Equal("2test1", actual);
+            Assert.Equal("2test13", actual);
+        }
+
+        [Fact]
+        public void EmitCalli_with_instance_vararg_method()
+        {
+            var target = new DynamicMethod("test", typeof(string), new[] { typeof(TestClass) })
+                         .GetILGenerator()
+                         .UseIlluminator()
+                         .Ldftn(TestClass.VarArgFooMethodInfo)
+                         .Ldarg_0()
+                         .Ret(EmitCalli(
+                                  CallingConventions.HasThis | CallingConventions.VarArgs | CallingConventions.ExplicitThis,
+                                  typeof(string),
+                                  new[] { typeof(long) },
+                                  new[] { typeof(string), typeof(int), typeof(float) },
+                                  Box(Ldc_I8(2), typeof(long)),
+                                  Ldstr("test"),
+                                  Ldc_I4_1(),
+                                  Ldc_R4(3)
+                              ))
+                         .CreateDelegate<Func<TestClass, string>>();
+
+            var actual = target(new TestClass());
+
+            Assert.Equal("2test13", actual);
+        }
+
+        [Fact]
+        public void EmitCalli_with_static_method()
+        {
+            var target = new DynamicMethod("test", typeof(long), null)
+                         .GetILGenerator()
+                         .UseIlluminator()
+                         .Ldftn(TestClass.LongFooMethodInfo)
+                         .Ret(EmitCalli(CallingConventions.Standard,
+                                        typeof(long),
+                                        new[] { typeof(long) },
+                                        null,
+                                        Ldc_I8(1)))
+                         .CreateDelegate<Func<long>>();
+
+            var actual = target();
+
+            Assert.Equal(1, actual);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Illuminator.Tests
             typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(float) })!;
 
         public static MethodInfo LongFooMethodInfo =>
-            typeof(TestClass).GetMethod(nameof(Foo), new[] { typeof(long) })!;
+            typeof(TestClass).GetMethod(nameof(LongFoo), new[] { typeof(long) })!;
 
         //public static ConstructorInfo DefaultCtor =>
         //    typeof(TestClass).GetConstructor(Type.EmptyTypes)!;
@@ -63,12 +63,14 @@ namespace Illuminator.Tests
 
         public static double Foo(double v) => v;
 
-        public static long Foo(long v) => v;
+        public static long LongFoo(long v) => v;
 
         public override bool Woo() => true;
 
         public void Foo() => A = 1;
     }
+
+    public delegate long LongFooDelegate(long x);
 
     public abstract class BaseClass
     {

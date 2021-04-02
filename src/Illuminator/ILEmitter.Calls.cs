@@ -81,28 +81,28 @@ namespace Illuminator
         /// <summary>
         ///     Calls the method indicated by the passed constructor descriptor.
         /// </summary>
-        public ILEmitter Call(ConstructorInfo constructorInfo, params Type[] parameterTypes)
+        public ILEmitter Call(ConstructorInfo constructorInfo, params Type[]? parameterTypes)
         {
             Pop(parameterTypes);
 
             // todo: test. why would anyone call a constructor as a method? base constructor?
             if (!constructorInfo.IsStatic) {
                 // todo: can constructor be static?
-                Pop(constructorInfo.DeclaringType);
+                Pop(constructorInfo.DeclaringType!);
             }
 
             _il.Emit(OpCodes.Call, constructorInfo);
 
             // todo: test
             if (!constructorInfo.IsStatic) {
-                Push(constructorInfo.DeclaringType);
+                Push(constructorInfo.DeclaringType!);
             }
 
             return this;
         }
 
         /// <summary>Calls a late-bound method on an object, pushing the return value onto the evaluation stack.</summary>
-        public ILEmitter Callvirt(MethodInfo methodInfo, params Type[] parameterTypes)
+        public ILEmitter Callvirt(MethodInfo methodInfo, params Type[]? parameterTypes)
         {
             if (methodInfo.IsStatic) {
                 throw new IlluminatorException(
@@ -123,13 +123,13 @@ namespace Illuminator
         ///     Creates a new object or a new instance of a value type, pushing an object reference (type O) onto the
         ///     evaluation stack.
         /// </summary>
-        public ILEmitter Newobj(ConstructorInfo constructorInfo, params Type[] parameterTypes)
+        public ILEmitter Newobj(ConstructorInfo constructorInfo, params Type[]? parameterTypes)
         {
             Pop(parameterTypes);
 
             _il.Emit(OpCodes.Newobj, constructorInfo);
 
-            Push(constructorInfo.DeclaringType);
+            Push(constructorInfo.DeclaringType!);
 
             return this;
         }

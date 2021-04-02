@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Reflection.Emit;
 using Illuminator.Exceptions;
+using Illuminator.Extensions;
 using Xunit;
 using static Illuminator.Functions;
 
@@ -15,7 +16,11 @@ namespace Illuminator.Tests
             var target = new DynamicMethod("test", typeof(bool), new[] { typeof(BaseClass) })
                          .GetILGenerator()
                          .UseIlluminator()
-                         .Call(BaseClass.WooMethodInfo, Ldarg_0(), Ldc_I4_1(), Ldstr("a"))
+                         .Call(BaseClass.WooMethodInfo,
+                               BaseClass.WooMethodInfo.GetParameterTypes(),
+                               Ldarg_0(),
+                               Ldc_I4_1(),
+                               Ldstr("a"))
                          .Ret()
                          .CreateDelegate<Func<BaseClass, bool>>();
 
@@ -34,7 +39,7 @@ namespace Illuminator.Tests
                          .UseIlluminator()
                          .Ldc_R4(1)
                          .Ldstr("test")
-                         .Call(TestClass.FloatFooMethodInfo)
+                         .Call(TestClass.FloatFooMethodInfo, TestClass.FloatFooMethodInfo.GetParameterTypes())
                          .Ret()
                          .CreateDelegate<Func<float>>();
 
@@ -51,6 +56,7 @@ namespace Illuminator.Tests
             var target = method
                          .GetILGenerator()
                          .UseIlluminator(Ret(Call(TestClass.FloatFooMethodInfo,
+                                                  TestClass.FloatFooMethodInfo.GetParameterTypes(),
                                                   Ldc_R4(1),
                                                   Ldstr("test"))))
                          .CreateDelegate<Func<float>>();
@@ -67,6 +73,8 @@ namespace Illuminator.Tests
                          .GetILGenerator()
                          .UseIlluminator(
                              Ret(Call(TestClass.VoidFooMethodInfo,
+                                      TestClass.VoidFooMethodInfo.GetParameterTypes(),
+
                                       Ldarg_0())))
                          .CreateDelegate<Action<TestClass>>();
 
@@ -85,7 +93,7 @@ namespace Illuminator.Tests
                       .GetILGenerator()
                       .UseIlluminator()
                       .Ldc_R8(1.0)
-                      .Callvirt(TestClass.DoubleFooMethodInfo)
+                      .Callvirt(TestClass.DoubleFooMethodInfo, TestClass.DoubleFooMethodInfo.GetParameterTypes())
                       .Ret()
                       .CreateDelegate<Func<double>>());
         }
@@ -99,7 +107,7 @@ namespace Illuminator.Tests
                          .Ldarg_0()
                          .Ldc_I4_1()
                          .Ldstr("a")
-                         .Callvirt(BaseClass.WooMethodInfo)
+                         .Callvirt(BaseClass.WooMethodInfo, BaseClass.WooMethodInfo.GetParameterTypes())
                          .Ret()
                          .CreateDelegate<Func<BaseClass, bool>>();
 
@@ -115,7 +123,9 @@ namespace Illuminator.Tests
                          .GetILGenerator()
                          .UseIlluminator()
                          .Ldc_I8(1)
-                         .EmitCall(OpCodes.Call, TestClass.LongFooMethodInfo)
+                         .EmitCall(OpCodes.Call,
+                                   TestClass.LongFooMethodInfo,
+                                   TestClass.LongFooMethodInfo.GetParameterTypes())
                          .Ret()
                          .CreateDelegate<Func<TestClass, long>>();
 
@@ -136,6 +146,7 @@ namespace Illuminator.Tests
                          .EmitCall(
                              OpCodes.Call,
                              TestClass.VarArgFooMethodInfo,
+                             TestClass.VarArgFooMethodInfo.GetParameterTypes(),
                              new[] { typeof(string), typeof(int), typeof(float) },
                              Box(Ldc_I8(2), typeof(long)),
                              Ldstr("_str_"),
@@ -162,7 +173,7 @@ namespace Illuminator.Tests
                          .Ret(EmitCalli(
                                   CallingConventions.HasThis | CallingConventions.VarArgs,
                                   typeof(string),
-                                  new[] { typeof(object), typeof(string) },
+                                  TestClass.VarArgFooMethodInfo.GetParameterTypes(),
                                   new[] { typeof(string), typeof(int), typeof(float) },
                                   Ldarg_0(), // this
                                   Box(Ldc_I8(2), typeof(long)),
@@ -188,7 +199,7 @@ namespace Illuminator.Tests
                              Ret(EmitCalli(
                                      CallingConventions.Standard,
                                      typeof(long),
-                                     new[] { typeof(long) },
+                                     TestClass.LongFooMethodInfo.GetParameterTypes(),
                                      null,
                                      Ldc_I8(1),
                                      Ldftn(TestClass.LongFooMethodInfo))))
@@ -242,6 +253,7 @@ namespace Illuminator.Tests
                                  .UseIlluminator()
                                  .DeclareLocal(typeof(int), out var local)
                                  .Emit(Ret(Newobj(TestClass.ParameterizedCtor,
+                                                  TestClass.ParameterizedCtor.GetParameterTypes(),
                                                   Ldc_I8(1),
                                                   Ldstr("str"),
                                                   Ldloca_S((byte)local.LocalIndex))));

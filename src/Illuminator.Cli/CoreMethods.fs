@@ -4,16 +4,20 @@ open System.Reflection.Emit
 open System.Reflection
 open Shared
 
-/// Core methods for manula implementation.
-let private Exclude = Set.ofList [
+/// Call methods for manual implementation.
+let CallMethods = [
     "Emit"
     "EmitCall"
-    "EmitCalli"
-    "Equals"
-    "GetHashCode"
-    "GetType"
-    "MarkSequencePoint"
-    "ToString" ]
+    "EmitCalli" ]
+
+/// Core methods for manual implementation.
+let private Exclude = 
+    CallMethods @ [
+        "Equals"
+        "GetHashCode"
+        "GetType"
+        "MarkSequencePoint"
+        "ToString" ]
 
 let toModel (m: MethodInfo) =
     let parameters =
@@ -42,7 +46,7 @@ let toModel (m: MethodInfo) =
 /// Core methods
 let CoreMethods =
     typeof<ILGenerator>.GetMethods()
-    |> Seq.filter (fun m -> not (Exclude.Contains m.Name))
+    |> Seq.filter (fun m -> List.contains m.Name Exclude |> not)
     |> Seq.filter (fun m -> not m.IsSpecialName)
     |> Seq.sortBy (fun x -> x.Name)
     |> Seq.map toModel

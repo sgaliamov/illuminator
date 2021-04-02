@@ -11,7 +11,7 @@ let private AllCodes =
     |> Seq.cache
 
 /// Codes with not standart behaviour
-let private ManualCodes = Set.ofList [
+let ManualCodes = [
     OpCodes.Call.Name
     OpCodes.Calli.Name
     OpCodes.Callvirt.Name
@@ -33,7 +33,7 @@ let OpCodesInfoGrouped =
 /// Filtered codes
 let FilteredCodes =
     AllCodes
-    |> Seq.filter (fun (_, code) -> not (ManualCodes.Contains code.Name))
+    |> Seq.filter (fun (_, code) -> List.contains code.Name ManualCodes |> not)
     |> Seq.sortBy (fun (name, _) -> name)
     |> Seq.map (fun (name, code) -> OpCodesInfoGrouped.[name] |> Seq.map (fun info -> name, info, code))
     |> Seq.collect id

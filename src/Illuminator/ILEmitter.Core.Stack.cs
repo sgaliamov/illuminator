@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using Illuminator.Exceptions;
@@ -26,7 +25,7 @@ namespace Illuminator
             [typeof(double)] = DoubleType
         };
 
-        private readonly Stack<string> _stack = new Stack<string>();
+        private readonly Stack<string> _stack = new();
 
         public void Dispose() => VerifyStackIsEmpty();
 
@@ -43,11 +42,11 @@ namespace Illuminator
         private void DebugVerifyStackSize()
         {
             var maxMidStackCur = (int)typeof(ILGenerator)
-                                      .GetField("m_maxMidStackCur", PrivateFieldBindingFlags)
-                                      .GetValue(_il);
+                .GetField("m_maxMidStackCur", PrivateFieldBindingFlags)!.GetValue(_il);
 
             if (_stack.Count != maxMidStackCur) {
-                throw new IlluminatorStackException($"Stack size does not match to ILGenerator stack. [{string.Join(", ", _stack)}].");
+                throw new IlluminatorStackException(
+                    $"Stack size does not match to ILGenerator stack. [{string.Join(", ", _stack)}].");
             }
         }
 
@@ -73,16 +72,14 @@ namespace Illuminator
             }
         }
 
-        private void Pop(params ParameterInfo[] types)
+        private void Pop(params Type[]? types)
         {
-            if (types.Length == 0) {
+            if (types == null) {
                 return;
             }
 
-            Pop(types.Select(x => x.ParameterType).ToArray());
+            Pop(types.Select(ToSimpleType).ToArray());
         }
-
-        private void Pop(params Type[] types) => Pop(types.Select(ToSimpleType).ToArray());
 
         /// <summary>
         ///     Unwind types in reversed order and compare items with stack.

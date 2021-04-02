@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using Illuminator.Exceptions;
@@ -13,16 +12,17 @@ namespace Illuminator
         ///     Puts a call or callvirt instruction onto the Microsoft intermediate language
         ///     (MSIL) stream to call a varargs method.
         /// </summary>
-        public ILEmitter EmitCall(OpCode opcode, MethodInfo methodInfo, Type[]? optionalParameterTypes = null)
+        public ILEmitter EmitCall(
+            OpCode opcode,
+            MethodInfo methodInfo,
+            Type[]? parameterTypes = null,
+            Type[]? optionalParameterTypes = null)
         {
-            if (optionalParameterTypes != null) {
-                Pop(optionalParameterTypes);
-            }
-
-            Pop(methodInfo.GetParameters());
+            Pop(optionalParameterTypes);
+            Pop(parameterTypes);
 
             if (!methodInfo.IsStatic) {
-                Pop(methodInfo.DeclaringType);
+                Pop(methodInfo.DeclaringType!);
             }
 
             // op code is not calculated because it will change API and sometimes you may want to call a virtual method with Call code.
@@ -44,14 +44,8 @@ namespace Illuminator
             Type[]? optionalParameterTypes = null)
         {
             Pop(IntType); // func pointer
-
-            if (optionalParameterTypes != null) {
-                Pop(optionalParameterTypes);
-            }
-
-            if (parameterTypes != null) {
-                Pop(parameterTypes);
-            }
+            Pop(optionalParameterTypes);
+            Pop(parameterTypes);
 
             if (callingConventions.HasFlag(CallingConventions.HasThis)) {
                 Pop(AnyType);
@@ -69,12 +63,12 @@ namespace Illuminator
         /// <summary>
         ///     Calls the method indicated by the passed method descriptor.
         /// </summary>
-        public ILEmitter Call(MethodInfo methodInfo)
+        public ILEmitter Call(MethodInfo methodInfo, params Type[]? parameterTypes)
         {
-            Pop(methodInfo.GetParameters());
+            Pop(parameterTypes);
 
             if (!methodInfo.IsStatic) {
-                Pop(methodInfo.DeclaringType);
+                Pop(methodInfo.DeclaringType!);
             }
 
             _il.Emit(OpCodes.Call, methodInfo);
@@ -87,9 +81,9 @@ namespace Illuminator
         /// <summary>
         ///     Calls the method indicated by the passed constructor descriptor.
         /// </summary>
-        public ILEmitter Call(ConstructorInfo constructorInfo)
+        public ILEmitter Call(ConstructorInfo constructorInfo, params Type[] parameterTypes)
         {
-            Pop(constructorInfo.GetParameters());
+            Pop(parameterTypes);
 
             // todo: test. why would anyone call a constructor as a method? base constructor?
             if (!constructorInfo.IsStatic) {
@@ -108,15 +102,15 @@ namespace Illuminator
         }
 
         /// <summary>Calls a late-bound method on an object, pushing the return value onto the evaluation stack.</summary>
-        public ILEmitter Callvirt(MethodInfo methodInfo)
+        public ILEmitter Callvirt(MethodInfo methodInfo, params Type[] parameterTypes)
         {
             if (methodInfo.IsStatic) {
                 throw new IlluminatorException(
-                    $"Can't make virtual call on the static method {methodInfo.DeclaringType.FullName}.{methodInfo.Name}");
+                    $"Can't make virtual call on the static method {methodInfo.DeclaringType!.FullName}.{methodInfo.Name}");
             }
 
-            Pop(methodInfo.GetParameters());
-            Pop(methodInfo.DeclaringType);
+            Pop(parameterTypes);
+            Pop(methodInfo.DeclaringType!);
 
             _il.Emit(OpCodes.Callvirt, methodInfo);
 
@@ -129,9 +123,9 @@ namespace Illuminator
         ///     Creates a new object or a new instance of a value type, pushing an object reference (type O) onto the
         ///     evaluation stack.
         /// </summary>
-        public ILEmitter Newobj(ConstructorInfo constructorInfo)
+        public ILEmitter Newobj(ConstructorInfo constructorInfo, params Type[] parameterTypes)
         {
-            Pop(constructorInfo.GetParameters());
+            Pop(parameterTypes);
 
             _il.Emit(OpCodes.Newobj, constructorInfo);
 

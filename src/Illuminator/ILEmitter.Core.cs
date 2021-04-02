@@ -17,7 +17,7 @@ namespace Illuminator
         {
             _il = il ?? throw new ArgumentNullException(nameof(il));
             _methodBuilder = (MethodInfo)typeof(ILGenerator)
-                                         .GetField("m_methodBuilder", PrivateFieldBindingFlags)
+                                         .GetField("m_methodBuilder", PrivateFieldBindingFlags)!
                                          .GetValue(_il);
         }
 

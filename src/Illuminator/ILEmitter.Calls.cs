@@ -85,15 +85,12 @@ namespace Illuminator
         {
             Pop(parameterTypes);
 
-            // todo: test. why would anyone call a constructor as a method? base constructor?
             if (!constructorInfo.IsStatic) {
-                // todo: can constructor be static?
                 Pop(constructorInfo.DeclaringType!);
             }
 
             _il.Emit(OpCodes.Call, constructorInfo);
 
-            // todo: test
             if (!constructorInfo.IsStatic) {
                 Push(constructorInfo.DeclaringType!);
             }
@@ -125,6 +122,10 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Newobj(ConstructorInfo constructorInfo, params Type[]? parameterTypes)
         {
+            if (constructorInfo.IsStatic) {
+                throw new NotSupportedException("Static constructors are not supported.");
+            }
+
             Pop(parameterTypes);
 
             _il.Emit(OpCodes.Newobj, constructorInfo);

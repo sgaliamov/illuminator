@@ -74,7 +74,7 @@ namespace Illuminator
 
         private void Pop(params Type[]? types)
         {
-            if (types == null) {
+            if (types == null || types.Length == 0) {
                 return;
             }
 

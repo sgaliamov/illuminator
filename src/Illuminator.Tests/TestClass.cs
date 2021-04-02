@@ -6,6 +6,8 @@ namespace Illuminator.Tests
 {
     public sealed class TestClass : BaseClass
     {
+        static TestClass() => Inner.StaticField++;
+
         public TestClass() { }
 
         // ReSharper disable once UnusedMember.Global
@@ -26,6 +28,11 @@ namespace Illuminator.Tests
 
         public static ConstructorInfo ParameterizedCtor =>
             typeof(TestClass).GetConstructor(new[] { typeof(int), typeof(string), typeof(int).MakeByRefType() })!;
+
+        public static ConstructorInfo StaticCtor => typeof(TestClass).TypeInitializer!;
+
+        // ReSharper disable once ConvertToAutoProperty
+        public static int StaticValue => Inner.StaticField;
 
         public static MethodInfo VarArgFooMethodInfo =>
             typeof(TestClass).GetMethod(nameof(VarArgFoo), new[] { typeof(object), typeof(string) })!;
@@ -67,6 +74,12 @@ namespace Illuminator.Tests
         public override bool Woo(int a, string b) => a == b.Length;
 
         public void VoidFoo() => A = 1;
+
+        public static class Inner
+        {
+            // ReSharper disable once MemberInitializerValueIgnored
+            public static int StaticField = 1;
+        }
     }
 
     public abstract class BaseClass

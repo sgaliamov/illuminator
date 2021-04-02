@@ -74,7 +74,6 @@ namespace Illuminator.Tests
                          .UseIlluminator(
                              Ret(Call(TestClass.VoidFooMethodInfo,
                                       TestClass.VoidFooMethodInfo.GetParameterTypes(),
-
                                       Ldarg_0())))
                          .CreateDelegate<Action<TestClass>>();
 
@@ -103,17 +102,62 @@ namespace Illuminator.Tests
         {
             var target = new DynamicMethod("test", typeof(bool), new[] { typeof(BaseClass) })
                          .GetILGenerator()
-                         .UseIlluminator()
-                         .Ldarg_0()
-                         .Ldc_I4_1()
-                         .Ldstr("a")
-                         .Callvirt(BaseClass.WooMethodInfo, BaseClass.WooMethodInfo.GetParameterTypes())
-                         .Ret()
+                         .UseIlluminator(
+                             Ldarg_0(),
+                             Ldc_I4_1(),
+                             Ldstr("a"),
+                             Callvirt(BaseClass.WooMethodInfo, BaseClass.WooMethodInfo.GetParameterTypes()),
+                             Ret())
                          .CreateDelegate<Func<BaseClass, bool>>();
 
             var actual = target(new TestClass());
 
             Assert.True(actual);
+        }
+
+        [Fact]
+        public void Create_method_with_AssemblyBuilder()
+        {
+            var typeBuilder =
+                AssemblyBuilder
+                    .DefineDynamicAssembly(new AssemblyName("test"), AssemblyBuilderAccess.RunAndCollect)
+                    .DefineDynamicModule("module")
+                    .DefineType("type");
+
+            var add2Method = typeBuilder
+                .DefineMethod(
+                    "add2",
+                    MethodAttributes.Static | MethodAttributes.Public,
+                    typeof(int),
+                    new[] { typeof(int) });
+
+            using var _ =
+                add2Method
+                    .GetILGenerator()
+                    .UseIlluminator(
+                        Ret(Add(Ldc_I4_2(),
+                                Ldarg_0())));
+
+            using var __ =
+                typeBuilder
+                    .DefineMethod(
+                        "test",
+                        MethodAttributes.Static | MethodAttributes.Public,
+                        typeof(int),
+                        null)
+                    .GetILGenerator()
+                    .UseIlluminator(
+                        Ret(Call(add2Method,
+                                 new[] { typeof(int) },
+                                 Ldc_I4_3())));
+
+            var type = typeBuilder.CreateType()!;
+
+            var target = type.GetMethod("test")!.CreateDelegate<Func<int>>();
+
+            var actual = target();
+
+            Assert.Equal(5, actual);
         }
 
         [Fact]
@@ -213,34 +257,18 @@ namespace Illuminator.Tests
         [Fact]
         public void Invoke_static_constructor()
         {
-            var typeBuilder = AssemblyBuilder
-                              .DefineDynamicAssembly(new AssemblyName("test"), AssemblyBuilderAccess.Run)
-                              .DefineDynamicModule("module")
-                              .DefineType("type");
+            Assert.Equal(2, TestClass.StaticValue);
 
-            var fieldBuilder = typeBuilder.DefineField("field", typeof(int), FieldAttributes.Static);
+            var target = new DynamicMethod("test", null, Type.EmptyTypes)
+                         .GetILGenerator()
+                         .UseIlluminator(
+                             Call(TestClass.StaticCtor),
+                             Ret())
+                         .CreateDelegate<Action>();
 
-            var constructorBuilder = typeBuilder.DefineTypeInitializer();
-            constructorBuilder
-                .GetILGenerator()
-                .UseIlluminator()
-                .Ldnull()
-                .Ldc_I4_1()
-                .Stfld(fieldBuilder)
-                .Ret();
+            target();
 
-            typeBuilder
-                .DefineMethod("test", MethodAttributes.Static | MethodAttributes.Public)
-                .GetILGenerator()
-                .UseIlluminator()
-                .Call(constructorBuilder)
-                .Ret();
-
-            var type = typeBuilder.CreateType()!;
-
-            var o = Activator.CreateInstance(type)!;
-
-            var t = type.GetMethod("test");
+            Assert.Equal(3, TestClass.StaticValue);
         }
 
         [Fact]

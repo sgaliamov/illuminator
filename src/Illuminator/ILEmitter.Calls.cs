@@ -91,10 +91,6 @@ namespace Illuminator
 
             _il.Emit(OpCodes.Call, constructorInfo);
 
-            if (!constructorInfo.IsStatic) {
-                Push(constructorInfo.DeclaringType!);
-            }
-
             return this;
         }
 

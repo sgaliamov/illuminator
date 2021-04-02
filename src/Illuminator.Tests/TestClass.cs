@@ -1,13 +1,42 @@
 using System;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 
 namespace Illuminator.Tests
 {
+    public class CtorTestClass
+    {
+        static CtorTestClass() => Inner.AddInStaticCtor();
+
+        public CtorTestClass() => Inner.AddInDefaultCtor();
+
+        public static ConstructorInfo DefaultCtor => typeof(CtorTestClass).GetConstructor(Type.EmptyTypes)!;
+
+        // ReSharper disable once ConvertToAutoProperty
+        public static int DefaultCtorProp => Inner.DefaultCtorValue;
+
+        public static ConstructorInfo StaticCtor => typeof(CtorTestClass).TypeInitializer!;
+
+        // ReSharper disable once ConvertToAutoProperty
+        public static int StaticCtorProp => Inner.StaticCtorValue;
+
+        public static class Inner
+        {
+            // ReSharper disable once MemberInitializerValueIgnored
+            internal static volatile int StaticCtorValue = 1;
+
+            // ReSharper disable once MemberInitializerValueIgnored
+            internal static volatile int DefaultCtorValue = 1;
+
+            public static void AddInStaticCtor() => Interlocked.Increment(ref StaticCtorValue);
+
+            public static void AddInDefaultCtor() => Interlocked.Increment(ref DefaultCtorValue);
+        }
+    }
+
     public sealed class TestClass : BaseClass
     {
-        static TestClass() => Inner.StaticField++;
-
         public TestClass() { }
 
         // ReSharper disable once UnusedMember.Global
@@ -28,11 +57,6 @@ namespace Illuminator.Tests
 
         public static ConstructorInfo ParameterizedCtor =>
             typeof(TestClass).GetConstructor(new[] { typeof(int), typeof(string), typeof(int).MakeByRefType() })!;
-
-        public static ConstructorInfo StaticCtor => typeof(TestClass).TypeInitializer!;
-
-        // ReSharper disable once ConvertToAutoProperty
-        public static int StaticValue => Inner.StaticField;
 
         public static MethodInfo VarArgFooMethodInfo =>
             typeof(TestClass).GetMethod(nameof(VarArgFoo), new[] { typeof(object), typeof(string) })!;
@@ -74,12 +98,6 @@ namespace Illuminator.Tests
         public override bool Woo(int a, string b) => a == b.Length;
 
         public void VoidFoo() => A = 1;
-
-        public static class Inner
-        {
-            // ReSharper disable once MemberInitializerValueIgnored
-            public static int StaticField = 1;
-        }
     }
 
     public abstract class BaseClass

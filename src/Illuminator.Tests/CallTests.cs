@@ -255,20 +255,40 @@ namespace Illuminator.Tests
         }
 
         [Fact]
+        public void Invoke_default_constructor()
+        {
+            var arg = new CtorTestClass();
+
+            Assert.Equal(2, CtorTestClass.DefaultCtorProp);
+
+            var target = new DynamicMethod("test", null, new[] { typeof(CtorTestClass) })
+                         .GetILGenerator()
+                         .UseIlluminator(
+                             Ldarg_0(),
+                             Call(CtorTestClass.DefaultCtor),
+                             Ret())
+                         .CreateDelegate<Action<CtorTestClass>>();
+
+            target(arg);
+
+            Assert.Equal(3, CtorTestClass.DefaultCtorProp);
+        }
+
+        [Fact]
         public void Invoke_static_constructor()
         {
-            Assert.Equal(2, TestClass.StaticValue);
+            Assert.Equal(2, CtorTestClass.StaticCtorProp);
 
             var target = new DynamicMethod("test", null, Type.EmptyTypes)
                          .GetILGenerator()
                          .UseIlluminator(
-                             Call(TestClass.StaticCtor),
+                             Call(CtorTestClass.StaticCtor),
                              Ret())
                          .CreateDelegate<Action>();
 
             target();
 
-            Assert.Equal(3, TestClass.StaticValue);
+            Assert.Equal(3, CtorTestClass.StaticCtorProp);
         }
 
         [Fact]

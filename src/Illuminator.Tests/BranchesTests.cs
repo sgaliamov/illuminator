@@ -27,6 +27,22 @@ namespace Illuminator.Tests
         }
 
         [Fact]
+        public void Should_detect_long_jump_forward_on_short_branching()
+        {
+            using var il = new DynamicMethod("test", typeof(bool), null)
+                           .GetILGenerator()
+                           .UseIlluminator();
+
+            il.DefineLabel(out var end).Br_S(end);
+
+            for (var i = 0; i < 125; i++) {
+                il.Nop();
+            }
+
+            Assert.Throws<IlluminatorJumpException>(() => il.MarkLabel(end));
+        }
+
+        [Fact]
         public void Should_jump_back_on_short_branching()
         {
             using var il = new DynamicMethod("test", typeof(bool), null)

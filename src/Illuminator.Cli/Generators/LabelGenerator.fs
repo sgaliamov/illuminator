@@ -16,7 +16,8 @@ using System.Reflection.Emit;
 
 namespace Illuminator.Extensions
 {
-    public static class LabelMethodsExtensions
+    // Extensions for label methods.
+    public static partial class ILEmitterExtensions
     {
         {{- for method in methods }}
         /// <summary>

@@ -10,7 +10,8 @@ using System.Reflection.Emit;
 
 namespace Illuminator.Extensions
 {
-    public static class LabelMethodsExtensions
+    // Extensions for label methods.
+    public static partial class ILEmitterExtensions
     {
         /// <summary>
         ///     Transfers control to a target instruction if two values are equal.
@@ -472,7 +473,9 @@ namespace Illuminator.Extensions
         /// </summary>
         public static ILEmitter Brtrue_S(this ILEmitter self, ILEmitterFunc func1, out Label label)
         {
-           return func1(self).DefineLabel(out label)
+            func1(self);
+
+            return self.DefineLabel(out label)
                        .Brtrue_S(label);
         }
 

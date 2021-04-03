@@ -24,8 +24,7 @@ namespace Illuminator
         {{- for method in methods }}
         /// <summary>
         ///     <para>{{ method.description }}</para>
-        ///     <para>Pop: {{ method.pop_behaviour }}.</para>
-        ///     <para>Push: {{ method.push_behaviour }}.</para>
+        ///     <para>{{ method.pop_behaviour }}, {{ method.push_behaviour }}.</para>
         /// </summary>
         public ILEmitter {{ method.name }}({{ method.parameters | array.join "", "" }})
         {

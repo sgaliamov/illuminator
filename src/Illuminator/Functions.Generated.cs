@@ -66,11 +66,6 @@ namespace Illuminator
         public static ILEmitterFunc EndScope() => il => il.EndScope();
 
         /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.MarkLabel(Label)"/>.
-        /// </summary>
-        public static ILEmitterFunc MarkLabel(Label loc) => il => il.MarkLabel(loc);
-
-        /// <summary>
         ///     Wrapper over <see cref="ILGenerator.ThrowException(Type)"/>.
         /// </summary>
         public static ILEmitterFunc ThrowException(Type excType) => il => il.ThrowException(excType);

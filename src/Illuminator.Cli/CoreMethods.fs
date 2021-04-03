@@ -16,6 +16,7 @@ let private Exclude =
         "Equals"
         "GetHashCode"
         "GetType"
+        "MarkLabel"
         "MarkSequencePoint"
         "ToString" ]
 

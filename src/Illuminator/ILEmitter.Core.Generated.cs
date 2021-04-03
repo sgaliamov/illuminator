@@ -156,16 +156,6 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.MarkLabel(Label)"/>.
-        /// </summary>
-        public ILEmitter MarkLabel(Label loc)
-        {
-            _il.MarkLabel(loc);
-
-            return this;
-        }
-
-        /// <summary>
         ///     Wrapper over <see cref="ILGenerator.ThrowException(Type)"/>.
         /// </summary>
         public ILEmitter ThrowException(Type excType)

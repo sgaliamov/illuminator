@@ -22,12 +22,7 @@ namespace Illuminator
 
         public void ValidateLabel(in Label label) => GetLabelInfo(label).ValidateLabel(_il.ILOffset);
 
-        public void ValidateJump(params Label[] labels)
-        {
-            foreach (var label in labels) {
-                GetLabelInfo(label).ValidateJump(_il.ILOffset);
-            }
-        }
+        public void ValidateJump(Label label) => GetLabelInfo(label).ValidateJump(_il.ILOffset);
 
         private LabelInfo GetLabelInfo(Label loc)
         {
@@ -70,9 +65,9 @@ namespace Illuminator
 
             private static void Validate(int labelPosition, int jumpPosition)
             {
-                if (Math.Abs(labelPosition - jumpPosition) > 128) {
+                if (Math.Abs(labelPosition - jumpPosition) >= 127) {
                     throw new IlluminatorJumpException(
-                        $"Cannot jump from position {jumpPosition} to {labelPosition}");
+                        $"Cannot make short jump from position {jumpPosition} to {labelPosition}.");
                 }
             }
         }

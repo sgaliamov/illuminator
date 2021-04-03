@@ -51,17 +51,21 @@ let generate () =
     let getNamedMethods () =
         FilteredCodes
         |> Seq.map (fun (name, info, code) ->
-        {|
-            arguments = info.Args |> Seq.map getArgumentName
-            description = info.Description 
-            name = name
-            parameters = info.Args |> Seq.map (fun a -> $"in {a} {getArgumentName a}")
-            pop_behaviour = code.StackBehaviourPop.ToString()
-            pops = StackBehaviourMap.[code.StackBehaviourPop] |> join ", "
-            push_behaviour = code.StackBehaviourPush.ToString()
-            pushes = StackBehaviourMap.[code.StackBehaviourPush] |> join ", "
-            validate_jump = code.FlowControl = FlowControl.Branch || code.FlowControl = FlowControl.Cond_Branch
-        |})
+            let validate_jump =
+                (code.FlowControl = FlowControl.Branch || code.FlowControl = FlowControl.Cond_Branch) 
+                && code.OperandType = OperandType.ShortInlineBrTarget
+
+            {|
+                arguments = info.Args |> Seq.map getArgumentName
+                description = info.Description 
+                name = name
+                parameters = info.Args |> Seq.map (fun a -> $"in {a} {getArgumentName a}")
+                pop_behaviour = code.StackBehaviourPop.ToString()
+                pops = StackBehaviourMap.[code.StackBehaviourPop] |> join ", "
+                push_behaviour = code.StackBehaviourPush.ToString()
+                pushes = StackBehaviourMap.[code.StackBehaviourPush] |> join ", "
+                validate_jump = validate_jump
+            |})
 
     let scriban = Template.Parse template
     let result = scriban.Render {| methods = getNamedMethods() |}

@@ -25,16 +25,36 @@ namespace Illuminator.Extensions
         public static ILEmitter {{ method.name }}(this ILEmitter self, out Label label) =>
             self.DefineLabel(out label)
                 .{{ method.name }}(label);
+        {{~ if method.fun_args.size != 0 }}
+        /// <summary>
+        ///     {{ method.description }}
+        /// </summary>
+        public static ILEmitter {{ method.name }}({{ method.parameters | array.insert_at 0 ""this ILEmitter self"" | array.join "", "" }}, out Label label)
+        {
+            {{~ for item in method.fun_args ~}}
+            {{ item }}(self);
+            {{~ end }}
+            return self.DefineLabel(out label)
+                       .{{ method.name }}(label);
+        }
+        {{~ end ~}}
         {{~ end ~}}
     }
 }"
 
 let generate () =
     let methods =
-        OpCodesInfo
-        |> Seq.filter (fun x -> x.Args = [| "Label" |])
-        |> Seq.sortBy (fun x -> x.Name)
-        |> Seq.map (fun x -> {| name = x.Name; description = x.Description |})
+        FilteredCodes
+        |> Seq.filter (fun (_, info, _) -> info.Args = [| "Label" |])
+        |> Seq.map (fun (name, info, code) ->
+            let (args, parameters) = getFunArgs code
+
+            {| 
+                name = name
+                fun_args = args
+                parameters = parameters
+                description = info.Description
+            |})
     
     let scriban = Template.Parse template
     let result = scriban.Render {| methods = methods |}

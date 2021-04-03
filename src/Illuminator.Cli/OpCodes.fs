@@ -98,5 +98,6 @@ let getFunArgs (code: OpCode) =
     let parameters =
         arguments
         |> Seq.map (fun name -> $"ILEmitterFunc {name}")
+        |> Seq.toArray
     
     (arguments, parameters)

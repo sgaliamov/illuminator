@@ -88,3 +88,15 @@ let StackBehaviourMap = Map.ofList [
     (StackBehaviour.Pushref, [RefType])
     (StackBehaviour.Varpop, [])
     (StackBehaviour.Varpush, []) ]
+
+/// Pair of functilan parameters and arguments.
+let getFunArgs (code: OpCode) =
+    let arguments =
+        Seq.init StackBehaviourMap.[code.StackBehaviourPop].Length (fun i -> $"func{i + 1}")
+        |> Seq.toArray // must be array to make `method.fun_args.size != 0` work
+    
+    let parameters =
+        arguments
+        |> Seq.map (fun name -> $"ILEmitterFunc {name}")
+    
+    (arguments, parameters)

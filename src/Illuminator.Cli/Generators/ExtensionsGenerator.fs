@@ -44,13 +44,8 @@ let generate () =
     let getNamedMethods () =
         FilteredCodes
         |> Seq.map (fun (name, info, code) ->
-            let funArgs = 
-                Seq.init StackBehaviourMap.[code.StackBehaviourPop].Length (fun i -> $"func{i + 1}")
-                |> Seq.toArray // must be array to make `method.fun_args.size != 0` work
-
-            let parameters =
-                funArgs
-                |> Seq.map (fun name -> $"in ILEmitterFunc {name}")
+            let (funArgs, parameters) = getFunArgs code
+            let parameters = parameters |> Seq.map (fun p -> $"in {p}")
 
             let parameters =
                 info.Args

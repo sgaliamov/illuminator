@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 namespace Illuminator.Exceptions
 {
+    /// <summary>
+    ///     Thrown when invalid stack state is detected.
+    /// </summary>
     [Serializable]
-    [ExcludeFromCodeCoverage]
     public class IlluminatorStackException : IlluminatorException
     {
         public IlluminatorStackException() { }

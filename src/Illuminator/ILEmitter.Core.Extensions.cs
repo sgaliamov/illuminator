@@ -1,8 +1,8 @@
 ﻿using System.Reflection.Emit;
 
-namespace Illuminator.Extensions
+namespace Illuminator
 {
-    public static class CoreExtensions
+    public static partial class ILEmitterExtensions
     {
         /// <summary>
         ///     Generic version of <see cref="ILEmitter.DeclareLocal(System.Type, out LocalBuilder)" />

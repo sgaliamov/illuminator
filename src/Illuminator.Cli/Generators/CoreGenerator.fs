@@ -40,5 +40,16 @@ namespace Illuminator
 
 let generate () =
     let scriban = Template.Parse template
-    let result = scriban.Render {| methods = CoreMethods |}
+    let methods =
+        CoreMethods 
+        |> Seq.map (fun m ->
+            let parameters =
+                m.parameters 
+                |> Seq.map (fun p -> if p.StartsWith "out" then p else $"in {p}")
+                |> Seq.toList
+
+            {| m with parameters = parameters |})
+        |> Seq.toList
+
+    let result = scriban.Render {| methods = methods |}
     result.Trim()

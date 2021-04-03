@@ -3,5 +3,5 @@
     /// <summary>
     ///     Delegate for Illuminator functions.
     /// </summary>
-    public delegate ILEmitter ILEmitterFunc(ILEmitter emitter);
+    public delegate ILEmitter ILEmitterFunc(in ILEmitter emitter);
 }

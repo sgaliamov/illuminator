@@ -13,7 +13,7 @@ namespace Illuminator
         private readonly ILGenerator _il;
         private readonly MethodInfo _methodBuilder;
 
-        public ILEmitter(ILGenerator il)
+        public ILEmitter(in ILGenerator il)
         {
             _il = il ?? throw new ArgumentNullException(nameof(il));
             _methodBuilder = (MethodInfo)typeof(ILGenerator)

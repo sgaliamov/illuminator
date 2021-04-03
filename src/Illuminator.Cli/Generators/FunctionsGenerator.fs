@@ -27,7 +27,7 @@ namespace Illuminator
         /// <summary>
         ///     {{ method.description }}
         /// </summary>
-        public static ILEmitterFunc {{ method.name }}({{ method.parameters | array.join "", "" }}) => il => il.{{ method.name }}({{ method.arguments | array.join "", "" }});
+        public static ILEmitterFunc {{ method.name }}({{ method.parameters | array.join "", "" }}) => (in ILEmitter il) => il.{{ method.name }}({{ method.arguments | array.join "", "" }});
         {{~ end ~}}
     }
 }"
@@ -36,13 +36,7 @@ let generate () =
     let emitMethods =
         FilteredCodes
         |> Seq.map (fun (name, info, code) ->
-            let arguments =
-                Seq.init StackBehaviourMap.[code.StackBehaviourPop].Length (fun i -> $"func{i + 1}")
-                |> Seq.cache
-
-            let parameters =
-                arguments
-                |> Seq.map (fun name -> $"ILEmitterFunc {name}")
+            let (arguments, parameters) = getFunArgs code
 
             let parameters =
                 info.Args

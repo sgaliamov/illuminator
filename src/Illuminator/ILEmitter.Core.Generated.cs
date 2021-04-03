@@ -18,7 +18,7 @@ namespace Illuminator
         /// <summary>
         ///     Wrapper over <see cref="ILGenerator.BeginCatchBlock(Type)"/>.
         /// </summary>
-        public ILEmitter BeginCatchBlock(Type exceptionType)
+        public ILEmitter BeginCatchBlock(in Type exceptionType)
         {
             _il.BeginCatchBlock(exceptionType);
 
@@ -78,7 +78,7 @@ namespace Illuminator
         /// <summary>
         ///     Wrapper over <see cref="ILGenerator.DeclareLocal(Type)"/>.
         /// </summary>
-        public ILEmitter DeclareLocal(Type localType, out LocalBuilder output)
+        public ILEmitter DeclareLocal(in Type localType, out LocalBuilder output)
         {
             output =_il.DeclareLocal(localType);
 
@@ -88,7 +88,7 @@ namespace Illuminator
         /// <summary>
         ///     Wrapper over <see cref="ILGenerator.DeclareLocal(Type, Boolean)"/>.
         /// </summary>
-        public ILEmitter DeclareLocal(Type localType, Boolean pinned, out LocalBuilder output)
+        public ILEmitter DeclareLocal(in Type localType, in Boolean pinned, out LocalBuilder output)
         {
             output =_il.DeclareLocal(localType, pinned);
 
@@ -108,7 +108,7 @@ namespace Illuminator
         /// <summary>
         ///     Wrapper over <see cref="ILGenerator.EmitWriteLine(String)"/>.
         /// </summary>
-        public ILEmitter EmitWriteLine(String value)
+        public ILEmitter EmitWriteLine(in String value)
         {
             _il.EmitWriteLine(value);
 
@@ -118,7 +118,7 @@ namespace Illuminator
         /// <summary>
         ///     Wrapper over <see cref="ILGenerator.EmitWriteLine(LocalBuilder)"/>.
         /// </summary>
-        public ILEmitter EmitWriteLine(LocalBuilder localBuilder)
+        public ILEmitter EmitWriteLine(in LocalBuilder localBuilder)
         {
             _il.EmitWriteLine(localBuilder);
 
@@ -128,7 +128,7 @@ namespace Illuminator
         /// <summary>
         ///     Wrapper over <see cref="ILGenerator.EmitWriteLine(FieldInfo)"/>.
         /// </summary>
-        public ILEmitter EmitWriteLine(FieldInfo fld)
+        public ILEmitter EmitWriteLine(in FieldInfo fld)
         {
             _il.EmitWriteLine(fld);
 
@@ -156,19 +156,9 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.MarkLabel(Label)"/>.
-        /// </summary>
-        public ILEmitter MarkLabel(Label loc)
-        {
-            _il.MarkLabel(loc);
-
-            return this;
-        }
-
-        /// <summary>
         ///     Wrapper over <see cref="ILGenerator.ThrowException(Type)"/>.
         /// </summary>
-        public ILEmitter ThrowException(Type excType)
+        public ILEmitter ThrowException(in Type excType)
         {
             _il.ThrowException(excType);
 
@@ -178,7 +168,7 @@ namespace Illuminator
         /// <summary>
         ///     Wrapper over <see cref="ILGenerator.UsingNamespace(String)"/>.
         /// </summary>
-        public ILEmitter UsingNamespace(String usingNamespace)
+        public ILEmitter UsingNamespace(in String usingNamespace)
         {
             _il.UsingNamespace(usingNamespace);
 

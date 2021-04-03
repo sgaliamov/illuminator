@@ -85,6 +85,7 @@ namespace Illuminator
         public ILEmitter Beq(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Beq, label);
 
             return this;
@@ -97,6 +98,7 @@ namespace Illuminator
         public ILEmitter Beq_S(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Beq_S, label);
 
             return this;
@@ -109,6 +111,7 @@ namespace Illuminator
         public ILEmitter Bge(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Bge, label);
 
             return this;
@@ -121,6 +124,7 @@ namespace Illuminator
         public ILEmitter Bge_S(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Bge_S, label);
 
             return this;
@@ -133,6 +137,7 @@ namespace Illuminator
         public ILEmitter Bge_Un(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Bge_Un, label);
 
             return this;
@@ -145,6 +150,7 @@ namespace Illuminator
         public ILEmitter Bge_Un_S(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Bge_Un_S, label);
 
             return this;
@@ -157,6 +163,7 @@ namespace Illuminator
         public ILEmitter Bgt(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Bgt, label);
 
             return this;
@@ -169,6 +176,7 @@ namespace Illuminator
         public ILEmitter Bgt_S(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Bgt_S, label);
 
             return this;
@@ -181,6 +189,7 @@ namespace Illuminator
         public ILEmitter Bgt_Un(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Bgt_Un, label);
 
             return this;
@@ -193,6 +202,7 @@ namespace Illuminator
         public ILEmitter Bgt_Un_S(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Bgt_Un_S, label);
 
             return this;
@@ -205,6 +215,7 @@ namespace Illuminator
         public ILEmitter Ble(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Ble, label);
 
             return this;
@@ -217,6 +228,7 @@ namespace Illuminator
         public ILEmitter Ble_S(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Ble_S, label);
 
             return this;
@@ -229,6 +241,7 @@ namespace Illuminator
         public ILEmitter Ble_Un(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Ble_Un, label);
 
             return this;
@@ -241,6 +254,7 @@ namespace Illuminator
         public ILEmitter Ble_Un_S(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Ble_Un_S, label);
 
             return this;
@@ -253,6 +267,7 @@ namespace Illuminator
         public ILEmitter Blt(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Blt, label);
 
             return this;
@@ -265,6 +280,7 @@ namespace Illuminator
         public ILEmitter Blt_S(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Blt_S, label);
 
             return this;
@@ -277,6 +293,7 @@ namespace Illuminator
         public ILEmitter Blt_Un(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Blt_Un, label);
 
             return this;
@@ -289,6 +306,7 @@ namespace Illuminator
         public ILEmitter Blt_Un_S(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Blt_Un_S, label);
 
             return this;
@@ -301,6 +319,7 @@ namespace Illuminator
         public ILEmitter Bne_Un(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Bne_Un, label);
 
             return this;
@@ -313,6 +332,7 @@ namespace Illuminator
         public ILEmitter Bne_Un_S(in Label label)
         {
             Pop(AnyType, AnyType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Bne_Un_S, label);
 
             return this;
@@ -337,6 +357,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Br(in Label label)
         {
+            ValidateJump(label);
             _il.Emit(OpCodes.Br, label);
 
             return this;
@@ -348,6 +369,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Br_S(in Label label)
         {
+            ValidateJump(label);
             _il.Emit(OpCodes.Br_S, label);
 
             return this;
@@ -371,6 +393,7 @@ namespace Illuminator
         public ILEmitter Brfalse(in Label label)
         {
             Pop(IntType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Brfalse, label);
 
             return this;
@@ -383,6 +406,7 @@ namespace Illuminator
         public ILEmitter Brfalse_S(in Label label)
         {
             Pop(IntType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Brfalse_S, label);
 
             return this;
@@ -395,6 +419,7 @@ namespace Illuminator
         public ILEmitter Brtrue(in Label label)
         {
             Pop(IntType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Brtrue, label);
 
             return this;
@@ -407,6 +432,7 @@ namespace Illuminator
         public ILEmitter Brtrue_S(in Label label)
         {
             Pop(IntType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Brtrue_S, label);
 
             return this;
@@ -1964,6 +1990,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Leave(in Label label)
         {
+            ValidateJump(label);
             _il.Emit(OpCodes.Leave, label);
 
             return this;
@@ -1975,6 +2002,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Leave_S(in Label label)
         {
+            ValidateJump(label);
             _il.Emit(OpCodes.Leave_S, label);
 
             return this;
@@ -2739,6 +2767,7 @@ namespace Illuminator
         public ILEmitter Switch(in Label[] label)
         {
             Pop(IntType);
+            ValidateJump(label);
             _il.Emit(OpCodes.Switch, label);
 
             return this;

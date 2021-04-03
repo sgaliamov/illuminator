@@ -20,9 +20,14 @@ namespace Illuminator
             return this;
         }
 
-        public void ValidateLabel(in Label loc) => GetLabelInfo(loc).ValidateLabel(_il.ILOffset);
+        public void ValidateLabel(in Label label) => GetLabelInfo(label).ValidateLabel(_il.ILOffset);
 
-        public void ValidateJump(in Label loc) => GetLabelInfo(loc).ValidateJump(_il.ILOffset);
+        public void ValidateJump(params Label[] labels)
+        {
+            foreach (var label in labels) {
+                GetLabelInfo(label).ValidateJump(_il.ILOffset);
+            }
+        }
 
         private LabelInfo GetLabelInfo(Label loc)
         {

@@ -8,10 +8,10 @@ namespace Illuminator
     public static partial class Functions
     {
         public static ILEmitterFunc EmitCall(
-            in OpCode opcode,
-            in MethodInfo methodInfo,
-            in Type[]? parametersTypes = null,
-            in Type[]? optionalParameterTypes = null,
+            OpCode opcode,
+            MethodInfo methodInfo,
+            Type[]? parametersTypes = null,
+            Type[]? optionalParameterTypes = null,
             params ILEmitterFunc[] parameters) =>
             (in ILEmitter il) => il.EmitCall(opcode, methodInfo, parametersTypes, optionalParameterTypes, parameters);
 

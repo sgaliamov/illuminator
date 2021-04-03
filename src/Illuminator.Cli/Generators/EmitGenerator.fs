@@ -1,5 +1,6 @@
 ﻿module EmitGenerator
 
+open System.Reflection.Emit
 open Scriban
 open Shared
 open OpCodes
@@ -31,6 +32,9 @@ namespace Illuminator
             {{~ if method.pops | !string.empty ~}}
             Pop({{ method.pops }});
             {{~ end ~}}
+            {{~ if method.validate_jump ~}}
+            ValidateJump(label);
+            {{~ end ~}}
             _il.Emit(OpCodes.{{ method.arguments | array.insert_at 0 method.name | array.join "", "" }});
             {{~ if method.pushes | !string.empty ~}}
             Push({{ method.pushes }});
@@ -56,6 +60,7 @@ let generate () =
             pops = StackBehaviourMap.[code.StackBehaviourPop] |> join ", "
             push_behaviour = code.StackBehaviourPush.ToString()
             pushes = StackBehaviourMap.[code.StackBehaviourPush] |> join ", "
+            validate_jump = code.FlowControl = FlowControl.Branch || code.FlowControl = FlowControl.Cond_Branch
         |})
 
     let scriban = Template.Parse template

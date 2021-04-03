@@ -13,10 +13,10 @@ namespace Illuminator
         ///     (MSIL) stream to call a varargs method.
         /// </summary>
         public ILEmitter EmitCall(
-            OpCode opcode,
-            MethodInfo methodInfo,
-            Type[]? parameterTypes = null,
-            Type[]? optionalParameterTypes = null)
+            in OpCode opcode,
+            in MethodInfo methodInfo,
+            in Type[]? parameterTypes = null,
+            in Type[]? optionalParameterTypes = null)
         {
             Pop(optionalParameterTypes);
             Pop(parameterTypes);
@@ -38,10 +38,10 @@ namespace Illuminator
         ///     calling convention.
         /// </summary>
         public ILEmitter EmitCalli(
-            CallingConventions callingConventions,
-            Type? returnType = null,
-            Type[]? parameterTypes = null,
-            Type[]? optionalParameterTypes = null)
+            in CallingConventions callingConventions,
+            in Type? returnType = null,
+            in Type[]? parameterTypes = null,
+            in Type[]? optionalParameterTypes = null)
         {
             Pop(IntType); // func pointer
             Pop(optionalParameterTypes);
@@ -63,7 +63,7 @@ namespace Illuminator
         /// <summary>
         ///     Calls the method indicated by the passed method descriptor.
         /// </summary>
-        public ILEmitter Call(MethodInfo methodInfo, params Type[]? parameterTypes)
+        public ILEmitter Call(in MethodInfo methodInfo, params Type[]? parameterTypes)
         {
             Pop(parameterTypes);
 
@@ -81,7 +81,7 @@ namespace Illuminator
         /// <summary>
         ///     Calls the method indicated by the passed constructor descriptor.
         /// </summary>
-        public ILEmitter Call(ConstructorInfo constructorInfo, params Type[]? parameterTypes)
+        public ILEmitter Call(in ConstructorInfo constructorInfo, params Type[]? parameterTypes)
         {
             Pop(parameterTypes);
 
@@ -95,7 +95,7 @@ namespace Illuminator
         }
 
         /// <summary>Calls a late-bound method on an object, pushing the return value onto the evaluation stack.</summary>
-        public ILEmitter Callvirt(MethodInfo methodInfo, params Type[]? parameterTypes)
+        public ILEmitter Callvirt(in MethodInfo methodInfo, params Type[]? parameterTypes)
         {
             if (methodInfo.IsStatic) {
                 throw new IlluminatorException(
@@ -116,7 +116,7 @@ namespace Illuminator
         ///     Creates a new object or a new instance of a value type, pushing an object reference (type O) onto the
         ///     evaluation stack.
         /// </summary>
-        public ILEmitter Newobj(ConstructorInfo constructorInfo, params Type[]? parameterTypes)
+        public ILEmitter Newobj(in ConstructorInfo constructorInfo, params Type[]? parameterTypes)
         {
             if (constructorInfo.IsStatic) {
                 throw new NotSupportedException("Static constructors are not supported.");

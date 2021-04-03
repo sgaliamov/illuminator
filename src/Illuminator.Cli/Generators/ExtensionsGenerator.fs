@@ -50,11 +50,11 @@ let generate () =
 
             let parameters =
                 funArgs
-                |> Seq.map (fun name -> $"ILEmitterFunc {name}")
+                |> Seq.map (fun name -> $"in ILEmitterFunc {name}")
 
             let parameters =
                 info.Args
-                |> Seq.map (fun typeName -> $"{typeName} {getArgumentName typeName}")
+                |> Seq.map (fun typeName -> $"in {typeName} {getArgumentName typeName}")
                 |> Seq.append parameters
 
             {| arguments = info.Args |> Seq.map getArgumentName

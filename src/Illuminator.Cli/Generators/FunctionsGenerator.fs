@@ -27,7 +27,7 @@ namespace Illuminator
         /// <summary>
         ///     {{ method.description }}
         /// </summary>
-        public static ILEmitterFunc {{ method.name }}({{ method.parameters | array.join "", "" }}) => il => il.{{ method.name }}({{ method.arguments | array.join "", "" }});
+        public static ILEmitterFunc {{ method.name }}({{ method.parameters | array.join "", "" }}) => (in ILEmitter il) => il.{{ method.name }}({{ method.arguments | array.join "", "" }});
         {{~ end ~}}
     }
 }"

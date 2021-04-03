@@ -82,7 +82,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction if two values are equal.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Beq(Label label)
+        public ILEmitter Beq(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Beq, label);
@@ -94,7 +94,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction (short form) if two values are equal.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Beq_S(Label label)
+        public ILEmitter Beq_S(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Beq_S, label);
@@ -106,7 +106,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction if the first value is greater than or equal to the second value.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Bge(Label label)
+        public ILEmitter Bge(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Bge, label);
@@ -118,7 +118,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction (short form) if the first value is greater than or equal to the second value.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Bge_S(Label label)
+        public ILEmitter Bge_S(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Bge_S, label);
@@ -130,7 +130,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Bge_Un(Label label)
+        public ILEmitter Bge_Un(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Bge_Un, label);
@@ -142,7 +142,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction (short form) if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Bge_Un_S(Label label)
+        public ILEmitter Bge_Un_S(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Bge_Un_S, label);
@@ -154,7 +154,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction if the first value is greater than the second value.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Bgt(Label label)
+        public ILEmitter Bgt(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Bgt, label);
@@ -166,7 +166,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction (short form) if the first value is greater than the second value.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Bgt_S(Label label)
+        public ILEmitter Bgt_S(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Bgt_S, label);
@@ -178,7 +178,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Bgt_Un(Label label)
+        public ILEmitter Bgt_Un(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Bgt_Un, label);
@@ -190,7 +190,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction (short form) if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Bgt_Un_S(Label label)
+        public ILEmitter Bgt_Un_S(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Bgt_Un_S, label);
@@ -202,7 +202,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction if the first value is less than or equal to the second value.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Ble(Label label)
+        public ILEmitter Ble(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Ble, label);
@@ -214,7 +214,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction (short form) if the first value is less than or equal to the second value.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Ble_S(Label label)
+        public ILEmitter Ble_S(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Ble_S, label);
@@ -226,7 +226,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction if the first value is less than or equal to the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Ble_Un(Label label)
+        public ILEmitter Ble_Un(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Ble_Un, label);
@@ -238,7 +238,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction (short form) if the first value is less than or equal to the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Ble_Un_S(Label label)
+        public ILEmitter Ble_Un_S(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Ble_Un_S, label);
@@ -250,7 +250,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction if the first value is less than the second value.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Blt(Label label)
+        public ILEmitter Blt(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Blt, label);
@@ -262,7 +262,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction (short form) if the first value is less than the second value.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Blt_S(Label label)
+        public ILEmitter Blt_S(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Blt_S, label);
@@ -274,7 +274,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction if the first value is less than the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Blt_Un(Label label)
+        public ILEmitter Blt_Un(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Blt_Un, label);
@@ -286,7 +286,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction (short form) if the first value is less than the second value, when comparing unsigned integer values or unordered float values.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Blt_Un_S(Label label)
+        public ILEmitter Blt_Un_S(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Blt_Un_S, label);
@@ -298,7 +298,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction when two unsigned integer values or unordered float values are not equal.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Bne_Un(Label label)
+        public ILEmitter Bne_Un(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Bne_Un, label);
@@ -310,7 +310,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction (short form) when two unsigned integer values or unordered float values are not equal.</para>
         ///     <para>Pop1_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Bne_Un_S(Label label)
+        public ILEmitter Bne_Un_S(in Label label)
         {
             Pop(AnyType, AnyType);
             _il.Emit(OpCodes.Bne_Un_S, label);
@@ -322,7 +322,7 @@ namespace Illuminator
         ///     <para>Converts a value type to an object reference (type O).</para>
         ///     <para>Pop1, Pushref.</para>
         /// </summary>
-        public ILEmitter Box(Type type)
+        public ILEmitter Box(in Type type)
         {
             Pop(AnyType);
             _il.Emit(OpCodes.Box, type);
@@ -335,7 +335,7 @@ namespace Illuminator
         ///     <para>Unconditionally transfers control to a target instruction.</para>
         ///     <para>Pop0, Push0.</para>
         /// </summary>
-        public ILEmitter Br(Label label)
+        public ILEmitter Br(in Label label)
         {
             _il.Emit(OpCodes.Br, label);
 
@@ -346,7 +346,7 @@ namespace Illuminator
         ///     <para>Unconditionally transfers control to a target instruction (short form).</para>
         ///     <para>Pop0, Push0.</para>
         /// </summary>
-        public ILEmitter Br_S(Label label)
+        public ILEmitter Br_S(in Label label)
         {
             _il.Emit(OpCodes.Br_S, label);
 
@@ -368,7 +368,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction if value is false, a null reference (Nothing in Visual Basic), or zero.</para>
         ///     <para>Popi, Push0.</para>
         /// </summary>
-        public ILEmitter Brfalse(Label label)
+        public ILEmitter Brfalse(in Label label)
         {
             Pop(IntType);
             _il.Emit(OpCodes.Brfalse, label);
@@ -380,7 +380,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction if value is false, a null reference, or zero.</para>
         ///     <para>Popi, Push0.</para>
         /// </summary>
-        public ILEmitter Brfalse_S(Label label)
+        public ILEmitter Brfalse_S(in Label label)
         {
             Pop(IntType);
             _il.Emit(OpCodes.Brfalse_S, label);
@@ -392,7 +392,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction if value is true, not null, or non-zero.</para>
         ///     <para>Popi, Push0.</para>
         /// </summary>
-        public ILEmitter Brtrue(Label label)
+        public ILEmitter Brtrue(in Label label)
         {
             Pop(IntType);
             _il.Emit(OpCodes.Brtrue, label);
@@ -404,7 +404,7 @@ namespace Illuminator
         ///     <para>Transfers control to a target instruction (short form) if value is true, not null, or non-zero.</para>
         ///     <para>Popi, Push0.</para>
         /// </summary>
-        public ILEmitter Brtrue_S(Label label)
+        public ILEmitter Brtrue_S(in Label label)
         {
             Pop(IntType);
             _il.Emit(OpCodes.Brtrue_S, label);
@@ -416,7 +416,7 @@ namespace Illuminator
         ///     <para>Attempts to cast an object passed by reference to the specified class.</para>
         ///     <para>Popref, Pushref.</para>
         /// </summary>
-        public ILEmitter Castclass(Type type)
+        public ILEmitter Castclass(in Type type)
         {
             Pop(RefType);
             _il.Emit(OpCodes.Castclass, type);
@@ -507,7 +507,7 @@ namespace Illuminator
         ///     <para>Constrains the type on which a virtual method call is made.</para>
         ///     <para>Pop0, Push0.</para>
         /// </summary>
-        public ILEmitter Constrained(Type type)
+        public ILEmitter Constrained(in Type type)
         {
             _il.Emit(OpCodes.Constrained, type);
 
@@ -959,7 +959,7 @@ namespace Illuminator
         ///     <para>Copies the value type located at the address of an object (type &, or native int) to the address of the destination object (type &, or native int).</para>
         ///     <para>Popi_popi, Push0.</para>
         /// </summary>
-        public ILEmitter Cpobj(Type type)
+        public ILEmitter Cpobj(in Type type)
         {
             Pop(IntType, IntType);
             _il.Emit(OpCodes.Cpobj, type);
@@ -1045,7 +1045,7 @@ namespace Illuminator
         ///     <para>Initializes each field of the value type at a specified address to a null reference or a 0 of the appropriate primitive type.</para>
         ///     <para>Popi, Push0.</para>
         /// </summary>
-        public ILEmitter Initobj(Type type)
+        public ILEmitter Initobj(in Type type)
         {
             Pop(IntType);
             _il.Emit(OpCodes.Initobj, type);
@@ -1057,7 +1057,7 @@ namespace Illuminator
         ///     <para>Tests whether an object reference (type O) is an instance of a particular class.</para>
         ///     <para>Popref, Pushi.</para>
         /// </summary>
-        public ILEmitter Isinst(Type type)
+        public ILEmitter Isinst(in Type type)
         {
             Pop(RefType);
             _il.Emit(OpCodes.Isinst, type);
@@ -1070,7 +1070,7 @@ namespace Illuminator
         ///     <para>Exits current method and jumps to specified method.</para>
         ///     <para>Pop0, Push0.</para>
         /// </summary>
-        public ILEmitter Jmp(MethodInfo methodInfo)
+        public ILEmitter Jmp(in MethodInfo methodInfo)
         {
             _il.Emit(OpCodes.Jmp, methodInfo);
 
@@ -1081,7 +1081,7 @@ namespace Illuminator
         ///     <para>Loads an argument (referenced by a specified index value) onto the stack.</para>
         ///     <para>Pop0, Push1.</para>
         /// </summary>
-        public ILEmitter Ldarg(short value)
+        public ILEmitter Ldarg(in short value)
         {
             _il.Emit(OpCodes.Ldarg, value);
             Push(AnyType);
@@ -1141,7 +1141,7 @@ namespace Illuminator
         ///     <para>Loads the argument (referenced by a specified short form index) onto the evaluation stack.</para>
         ///     <para>Pop0, Push1.</para>
         /// </summary>
-        public ILEmitter Ldarg_S(byte value)
+        public ILEmitter Ldarg_S(in byte value)
         {
             _il.Emit(OpCodes.Ldarg_S, value);
             Push(AnyType);
@@ -1153,7 +1153,7 @@ namespace Illuminator
         ///     <para>Load an argument address onto the evaluation stack.</para>
         ///     <para>Pop0, Pushi.</para>
         /// </summary>
-        public ILEmitter Ldarga(short value)
+        public ILEmitter Ldarga(in short value)
         {
             _il.Emit(OpCodes.Ldarga, value);
             Push(IntType);
@@ -1165,7 +1165,7 @@ namespace Illuminator
         ///     <para>Load an argument address, in short form, onto the evaluation stack.</para>
         ///     <para>Pop0, Pushi.</para>
         /// </summary>
-        public ILEmitter Ldarga_S(byte value)
+        public ILEmitter Ldarga_S(in byte value)
         {
             _il.Emit(OpCodes.Ldarga_S, value);
             Push(IntType);
@@ -1177,7 +1177,7 @@ namespace Illuminator
         ///     <para>Pushes a supplied value of type int32 onto the evaluation stack as an int32.</para>
         ///     <para>Pop0, Pushi.</para>
         /// </summary>
-        public ILEmitter Ldc_I4(int value)
+        public ILEmitter Ldc_I4(in int value)
         {
             _il.Emit(OpCodes.Ldc_I4, value);
             Push(IntType);
@@ -1309,7 +1309,7 @@ namespace Illuminator
         ///     <para>Pushes the supplied int8 value onto the evaluation stack as an int32, short form.</para>
         ///     <para>Pop0, Pushi.</para>
         /// </summary>
-        public ILEmitter Ldc_I4_S(byte value)
+        public ILEmitter Ldc_I4_S(in byte value)
         {
             _il.Emit(OpCodes.Ldc_I4_S, value);
             Push(IntType);
@@ -1321,7 +1321,7 @@ namespace Illuminator
         ///     <para>Pushes the supplied int8 value onto the evaluation stack as an int32, short form.</para>
         ///     <para>Pop0, Pushi.</para>
         /// </summary>
-        public ILEmitter Ldc_I4_S(sbyte value)
+        public ILEmitter Ldc_I4_S(in sbyte value)
         {
             _il.Emit(OpCodes.Ldc_I4_S, value);
             Push(IntType);
@@ -1333,7 +1333,7 @@ namespace Illuminator
         ///     <para>Pushes a supplied value of type int64 onto the evaluation stack as an int64.</para>
         ///     <para>Pop0, Pushi8.</para>
         /// </summary>
-        public ILEmitter Ldc_I8(long value)
+        public ILEmitter Ldc_I8(in long value)
         {
             _il.Emit(OpCodes.Ldc_I8, value);
             Push(LongType);
@@ -1345,7 +1345,7 @@ namespace Illuminator
         ///     <para>Pushes a supplied value of type float32 onto the evaluation stack as type F (float).</para>
         ///     <para>Pop0, Pushr4.</para>
         /// </summary>
-        public ILEmitter Ldc_R4(float value)
+        public ILEmitter Ldc_R4(in float value)
         {
             _il.Emit(OpCodes.Ldc_R4, value);
             Push(FloatType);
@@ -1357,7 +1357,7 @@ namespace Illuminator
         ///     <para>Pushes a supplied value of type float64 onto the evaluation stack as type F (float).</para>
         ///     <para>Pop0, Pushr8.</para>
         /// </summary>
-        public ILEmitter Ldc_R8(double value)
+        public ILEmitter Ldc_R8(in double value)
         {
             _il.Emit(OpCodes.Ldc_R8, value);
             Push(DoubleType);
@@ -1369,7 +1369,7 @@ namespace Illuminator
         ///     <para>Loads the element at a specified array index onto the top of the evaluation stack as the type specified in the instruction.</para>
         ///     <para>Popref_popi, Push1.</para>
         /// </summary>
-        public ILEmitter Ldelem(Type type)
+        public ILEmitter Ldelem(in Type type)
         {
             Pop(RefType, IntType);
             _il.Emit(OpCodes.Ldelem, type);
@@ -1525,7 +1525,7 @@ namespace Illuminator
         ///     <para>Loads the address of the array element at a specified array index onto the top of the evaluation stack as type & (managed pointer).</para>
         ///     <para>Popref_popi, Pushi.</para>
         /// </summary>
-        public ILEmitter Ldelema(Type type)
+        public ILEmitter Ldelema(in Type type)
         {
             Pop(RefType, IntType);
             _il.Emit(OpCodes.Ldelema, type);
@@ -1538,7 +1538,7 @@ namespace Illuminator
         ///     <para>Finds the value of a field in the object whose reference is currently on the evaluation stack.</para>
         ///     <para>Popref, Push1.</para>
         /// </summary>
-        public ILEmitter Ldfld(FieldInfo fieldInfo)
+        public ILEmitter Ldfld(in FieldInfo fieldInfo)
         {
             Pop(RefType);
             _il.Emit(OpCodes.Ldfld, fieldInfo);
@@ -1551,7 +1551,7 @@ namespace Illuminator
         ///     <para>Finds the address of a field in the object whose reference is currently on the evaluation stack.</para>
         ///     <para>Popref, Pushi.</para>
         /// </summary>
-        public ILEmitter Ldflda(FieldInfo fieldInfo)
+        public ILEmitter Ldflda(in FieldInfo fieldInfo)
         {
             Pop(RefType);
             _il.Emit(OpCodes.Ldflda, fieldInfo);
@@ -1564,7 +1564,7 @@ namespace Illuminator
         ///     <para>Pushes an unmanaged pointer (type native int) to the native code implementing a specific method onto the evaluation stack.</para>
         ///     <para>Pop0, Pushi.</para>
         /// </summary>
-        public ILEmitter Ldftn(MethodInfo methodInfo)
+        public ILEmitter Ldftn(in MethodInfo methodInfo)
         {
             _il.Emit(OpCodes.Ldftn, methodInfo);
             Push(IntType);
@@ -1732,7 +1732,7 @@ namespace Illuminator
         ///     <para>Loads the local variable at a specific index onto the evaluation stack.</para>
         ///     <para>Pop0, Push1.</para>
         /// </summary>
-        public ILEmitter Ldloc(LocalBuilder localBuilder)
+        public ILEmitter Ldloc(in LocalBuilder localBuilder)
         {
             _il.Emit(OpCodes.Ldloc, localBuilder);
             Push(AnyType);
@@ -1744,7 +1744,7 @@ namespace Illuminator
         ///     <para>Loads the local variable at a specific index onto the evaluation stack.</para>
         ///     <para>Pop0, Push1.</para>
         /// </summary>
-        public ILEmitter Ldloc(short value)
+        public ILEmitter Ldloc(in short value)
         {
             _il.Emit(OpCodes.Ldloc, value);
             Push(AnyType);
@@ -1804,7 +1804,7 @@ namespace Illuminator
         ///     <para>Loads the local variable at a specific index onto the evaluation stack, short form.</para>
         ///     <para>Pop0, Push1.</para>
         /// </summary>
-        public ILEmitter Ldloc_S(LocalBuilder localBuilder)
+        public ILEmitter Ldloc_S(in LocalBuilder localBuilder)
         {
             _il.Emit(OpCodes.Ldloc_S, localBuilder);
             Push(AnyType);
@@ -1816,7 +1816,7 @@ namespace Illuminator
         ///     <para>Loads the local variable at a specific index onto the evaluation stack, short form.</para>
         ///     <para>Pop0, Push1.</para>
         /// </summary>
-        public ILEmitter Ldloc_S(short value)
+        public ILEmitter Ldloc_S(in short value)
         {
             _il.Emit(OpCodes.Ldloc_S, value);
             Push(AnyType);
@@ -1828,7 +1828,7 @@ namespace Illuminator
         ///     <para>Loads the address of the local variable at a specific index onto the evaluation stack.</para>
         ///     <para>Pop0, Pushi.</para>
         /// </summary>
-        public ILEmitter Ldloca(short value)
+        public ILEmitter Ldloca(in short value)
         {
             _il.Emit(OpCodes.Ldloca, value);
             Push(IntType);
@@ -1840,7 +1840,7 @@ namespace Illuminator
         ///     <para>Loads the address of the local variable at a specific index onto the evaluation stack, short form.</para>
         ///     <para>Pop0, Pushi.</para>
         /// </summary>
-        public ILEmitter Ldloca_S(byte value)
+        public ILEmitter Ldloca_S(in byte value)
         {
             _il.Emit(OpCodes.Ldloca_S, value);
             Push(IntType);
@@ -1864,7 +1864,7 @@ namespace Illuminator
         ///     <para>Copies the value type object pointed to by an address to the top of the evaluation stack.</para>
         ///     <para>Popi, Push1.</para>
         /// </summary>
-        public ILEmitter Ldobj(Type type)
+        public ILEmitter Ldobj(in Type type)
         {
             Pop(IntType);
             _il.Emit(OpCodes.Ldobj, type);
@@ -1877,7 +1877,7 @@ namespace Illuminator
         ///     <para>Pushes the value of a static field onto the evaluation stack.</para>
         ///     <para>Pop0, Push1.</para>
         /// </summary>
-        public ILEmitter Ldsfld(FieldInfo fieldInfo)
+        public ILEmitter Ldsfld(in FieldInfo fieldInfo)
         {
             _il.Emit(OpCodes.Ldsfld, fieldInfo);
             Push(AnyType);
@@ -1889,7 +1889,7 @@ namespace Illuminator
         ///     <para>Pushes the address of a static field onto the evaluation stack.</para>
         ///     <para>Pop0, Pushi.</para>
         /// </summary>
-        public ILEmitter Ldsflda(FieldInfo fieldInfo)
+        public ILEmitter Ldsflda(in FieldInfo fieldInfo)
         {
             _il.Emit(OpCodes.Ldsflda, fieldInfo);
             Push(IntType);
@@ -1901,7 +1901,7 @@ namespace Illuminator
         ///     <para>Pushes a new object reference to a string literal stored in the metadata.</para>
         ///     <para>Pop0, Pushref.</para>
         /// </summary>
-        public ILEmitter Ldstr(string value)
+        public ILEmitter Ldstr(in string value)
         {
             _il.Emit(OpCodes.Ldstr, value);
             Push(RefType);
@@ -1913,7 +1913,7 @@ namespace Illuminator
         ///     <para>Converts a metadata token to its runtime representation, pushing it onto the evaluation stack.</para>
         ///     <para>Pop0, Pushi.</para>
         /// </summary>
-        public ILEmitter Ldtoken(MethodInfo methodInfo)
+        public ILEmitter Ldtoken(in MethodInfo methodInfo)
         {
             _il.Emit(OpCodes.Ldtoken, methodInfo);
             Push(IntType);
@@ -1925,7 +1925,7 @@ namespace Illuminator
         ///     <para>Converts a metadata token to its runtime representation, pushing it onto the evaluation stack.</para>
         ///     <para>Pop0, Pushi.</para>
         /// </summary>
-        public ILEmitter Ldtoken(FieldInfo fieldInfo)
+        public ILEmitter Ldtoken(in FieldInfo fieldInfo)
         {
             _il.Emit(OpCodes.Ldtoken, fieldInfo);
             Push(IntType);
@@ -1937,7 +1937,7 @@ namespace Illuminator
         ///     <para>Converts a metadata token to its runtime representation, pushing it onto the evaluation stack.</para>
         ///     <para>Pop0, Pushi.</para>
         /// </summary>
-        public ILEmitter Ldtoken(Type type)
+        public ILEmitter Ldtoken(in Type type)
         {
             _il.Emit(OpCodes.Ldtoken, type);
             Push(IntType);
@@ -1949,7 +1949,7 @@ namespace Illuminator
         ///     <para>Pushes an unmanaged pointer (type native int) to the native code implementing a particular virtual method associated with a specified object onto the evaluation stack.</para>
         ///     <para>Popref, Pushi.</para>
         /// </summary>
-        public ILEmitter Ldvirtftn(MethodInfo methodInfo)
+        public ILEmitter Ldvirtftn(in MethodInfo methodInfo)
         {
             Pop(RefType);
             _il.Emit(OpCodes.Ldvirtftn, methodInfo);
@@ -1962,7 +1962,7 @@ namespace Illuminator
         ///     <para>Exits a protected region of code, unconditionally transferring control to a specific target instruction.</para>
         ///     <para>Pop0, Push0.</para>
         /// </summary>
-        public ILEmitter Leave(Label label)
+        public ILEmitter Leave(in Label label)
         {
             _il.Emit(OpCodes.Leave, label);
 
@@ -1973,7 +1973,7 @@ namespace Illuminator
         ///     <para>Exits a protected region of code, unconditionally transferring control to a target instruction (short form).</para>
         ///     <para>Pop0, Push0.</para>
         /// </summary>
-        public ILEmitter Leave_S(Label label)
+        public ILEmitter Leave_S(in Label label)
         {
             _il.Emit(OpCodes.Leave_S, label);
 
@@ -1997,7 +1997,7 @@ namespace Illuminator
         ///     <para>Pushes a typed reference to an instance of a specific type onto the evaluation stack.</para>
         ///     <para>Popi, Push1.</para>
         /// </summary>
-        public ILEmitter Mkrefany(Type type)
+        public ILEmitter Mkrefany(in Type type)
         {
             Pop(IntType);
             _il.Emit(OpCodes.Mkrefany, type);
@@ -2062,7 +2062,7 @@ namespace Illuminator
         ///     <para>Pushes an object reference to a new zero-based, one-dimensional array whose elements are of a specific type onto the evaluation stack.</para>
         ///     <para>Popi, Pushref.</para>
         /// </summary>
-        public ILEmitter Newarr(Type type)
+        public ILEmitter Newarr(in Type type)
         {
             Pop(IntType);
             _il.Emit(OpCodes.Newarr, type);
@@ -2236,7 +2236,7 @@ namespace Illuminator
         ///     <para>Retrieves the address (type &) embedded in a typed reference.</para>
         ///     <para>Pop1, Pushi.</para>
         /// </summary>
-        public ILEmitter Refanyval(Type type)
+        public ILEmitter Refanyval(in Type type)
         {
             Pop(AnyType);
             _il.Emit(OpCodes.Refanyval, type);
@@ -2325,7 +2325,7 @@ namespace Illuminator
         ///     <para>Pushes the size, in bytes, of a supplied value type onto the evaluation stack.</para>
         ///     <para>Pop0, Pushi.</para>
         /// </summary>
-        public ILEmitter Sizeof(Type type)
+        public ILEmitter Sizeof(in Type type)
         {
             _il.Emit(OpCodes.Sizeof, type);
             Push(IntType);
@@ -2337,7 +2337,7 @@ namespace Illuminator
         ///     <para>Stores the value on top of the evaluation stack in the argument slot at a specified index.</para>
         ///     <para>Pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Starg(short value)
+        public ILEmitter Starg(in short value)
         {
             Pop(AnyType);
             _il.Emit(OpCodes.Starg, value);
@@ -2349,7 +2349,7 @@ namespace Illuminator
         ///     <para>Stores the value on top of the evaluation stack in the argument slot at a specified index, short form.</para>
         ///     <para>Pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Starg_S(byte value)
+        public ILEmitter Starg_S(in byte value)
         {
             Pop(AnyType);
             _il.Emit(OpCodes.Starg_S, value);
@@ -2361,7 +2361,7 @@ namespace Illuminator
         ///     <para>Replaces the array element at a given index with the value on the evaluation stack, whose type is specified in the instruction.</para>
         ///     <para>Popref_popi_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Stelem(Type type)
+        public ILEmitter Stelem(in Type type)
         {
             Pop(RefType, IntType, AnyType);
             _il.Emit(OpCodes.Stelem, type);
@@ -2469,7 +2469,7 @@ namespace Illuminator
         ///     <para>Replaces the value stored in the field of an object reference or pointer with a new value.</para>
         ///     <para>Popref_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Stfld(FieldInfo fieldInfo)
+        public ILEmitter Stfld(in FieldInfo fieldInfo)
         {
             Pop(RefType, AnyType);
             _il.Emit(OpCodes.Stfld, fieldInfo);
@@ -2577,7 +2577,7 @@ namespace Illuminator
         ///     <para>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at a specified index.</para>
         ///     <para>Pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Stloc(LocalBuilder localBuilder)
+        public ILEmitter Stloc(in LocalBuilder localBuilder)
         {
             Pop(AnyType);
             _il.Emit(OpCodes.Stloc, localBuilder);
@@ -2589,7 +2589,7 @@ namespace Illuminator
         ///     <para>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at a specified index.</para>
         ///     <para>Pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Stloc(short value)
+        public ILEmitter Stloc(in short value)
         {
             Pop(AnyType);
             _il.Emit(OpCodes.Stloc, value);
@@ -2649,7 +2649,7 @@ namespace Illuminator
         ///     <para>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index (short form).</para>
         ///     <para>Pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Stloc_S(LocalBuilder localBuilder)
+        public ILEmitter Stloc_S(in LocalBuilder localBuilder)
         {
             Pop(AnyType);
             _il.Emit(OpCodes.Stloc_S, localBuilder);
@@ -2661,7 +2661,7 @@ namespace Illuminator
         ///     <para>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index (short form).</para>
         ///     <para>Pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Stloc_S(byte value)
+        public ILEmitter Stloc_S(in byte value)
         {
             Pop(AnyType);
             _il.Emit(OpCodes.Stloc_S, value);
@@ -2673,7 +2673,7 @@ namespace Illuminator
         ///     <para>Copies a value of a specified type from the evaluation stack into a supplied memory address.</para>
         ///     <para>Popi_pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Stobj(Type type)
+        public ILEmitter Stobj(in Type type)
         {
             Pop(IntType, AnyType);
             _il.Emit(OpCodes.Stobj, type);
@@ -2685,7 +2685,7 @@ namespace Illuminator
         ///     <para>Replaces the value of a static field with a value from the evaluation stack.</para>
         ///     <para>Pop1, Push0.</para>
         /// </summary>
-        public ILEmitter Stsfld(FieldInfo fieldInfo)
+        public ILEmitter Stsfld(in FieldInfo fieldInfo)
         {
             Pop(AnyType);
             _il.Emit(OpCodes.Stsfld, fieldInfo);
@@ -2736,7 +2736,7 @@ namespace Illuminator
         ///     <para>Implements a jump table.</para>
         ///     <para>Popi, Push0.</para>
         /// </summary>
-        public ILEmitter Switch(Label[] label)
+        public ILEmitter Switch(in Label[] label)
         {
             Pop(IntType);
             _il.Emit(OpCodes.Switch, label);
@@ -2771,7 +2771,7 @@ namespace Illuminator
         ///     <para>Indicates that an address currently atop the evaluation stack might not be aligned to the natural size of the immediately following ldind, stind, ldfld, stfld, ldobj, stobj, initblk, or cpblk instruction.</para>
         ///     <para>Pop0, Push0.</para>
         /// </summary>
-        public ILEmitter Unaligned(byte value)
+        public ILEmitter Unaligned(in byte value)
         {
             _il.Emit(OpCodes.Unaligned, value);
 
@@ -2782,7 +2782,7 @@ namespace Illuminator
         ///     <para>Indicates that an address currently atop the evaluation stack might not be aligned to the natural size of the immediately following ldind, stind, ldfld, stfld, ldobj, stobj, initblk, or cpblk instruction.</para>
         ///     <para>Pop0, Push0.</para>
         /// </summary>
-        public ILEmitter Unaligned(Label label)
+        public ILEmitter Unaligned(in Label label)
         {
             _il.Emit(OpCodes.Unaligned, label);
 
@@ -2793,7 +2793,7 @@ namespace Illuminator
         ///     <para>Converts the boxed representation of a value type to its unboxed form.</para>
         ///     <para>Popref, Pushi.</para>
         /// </summary>
-        public ILEmitter Unbox(Type type)
+        public ILEmitter Unbox(in Type type)
         {
             Pop(RefType);
             _il.Emit(OpCodes.Unbox, type);
@@ -2806,7 +2806,7 @@ namespace Illuminator
         ///     <para>Converts the boxed representation of a type specified in the instruction to its unboxed form.</para>
         ///     <para>Popref, Push1.</para>
         /// </summary>
-        public ILEmitter Unbox_Any(Type type)
+        public ILEmitter Unbox_Any(in Type type)
         {
             Pop(RefType);
             _il.Emit(OpCodes.Unbox_Any, type);

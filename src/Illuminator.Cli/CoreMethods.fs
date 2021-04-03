@@ -20,7 +20,8 @@ let private Exclude =
         "MarkSequencePoint"
         "ToString" ]
 
-let toModel (m: MethodInfo) =
+/// Conver method to rendering model.
+let private toModel (m: MethodInfo) =
     let parameters =
         m.GetParameters()
         |> Seq.map (fun p -> $"{p.ParameterType.Name} {getArgumentName p.Name}")

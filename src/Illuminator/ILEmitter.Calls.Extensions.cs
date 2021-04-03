@@ -12,28 +12,28 @@ namespace Illuminator
     {
         public static ILEmitter EmitCall(
             this ILEmitter self,
-            OpCode opcode,
-            MethodInfo methodInfo,
-            Type[]? parametersTypes = null,
-            Type[]? optionalParameterTypes = null,
+            in OpCode opcode,
+            in MethodInfo methodInfo,
+            in Type[]? parametersTypes = null,
+            in Type[]? optionalParameterTypes = null,
             params ILEmitterFunc[] parameters) =>
             parameters.Aggregate(self, (il, func) => func(il))
                       .EmitCall(opcode, methodInfo, parametersTypes, optionalParameterTypes);
 
         public static ILEmitter EmitCalli(
             this ILEmitter self,
-            CallingConventions callingConvention,
-            Type? returnType = null,
-            Type[]? parameterTypes = null,
-            Type[]? optionalParameterTypes = null,
+            in CallingConventions callingConvention,
+            in Type? returnType = null,
+            in Type[]? parameterTypes = null,
+            in Type[]? optionalParameterTypes = null,
             params ILEmitterFunc[] parameters) =>
             parameters.Aggregate(self, (il, func) => func(il))
                       .EmitCalli(callingConvention, returnType, parameterTypes, optionalParameterTypes);
 
         public static ILEmitter Call(
             this ILEmitter self,
-            MethodInfo methodInfo,
-            Type[]? parametersTypes = null,
+            in MethodInfo methodInfo,
+            in Type[]? parametersTypes = null,
             params ILEmitterFunc[] parameters) =>
             parameters
                 .Aggregate(self, (il, func) => func(il))
@@ -41,8 +41,8 @@ namespace Illuminator
 
         public static ILEmitter Call(
             this ILEmitter self,
-            ConstructorInfo constructorInfo,
-            Type[]? parametersTypes = null,
+            in ConstructorInfo constructorInfo,
+            in Type[]? parametersTypes = null,
             params ILEmitterFunc[] parameters) =>
             parameters
                 .Aggregate(self, (il, func) => func(il))
@@ -50,8 +50,8 @@ namespace Illuminator
 
         public static ILEmitter Callvirt(
             this ILEmitter self,
-            MethodInfo methodInfo,
-            Type[]? parametersTypes = null,
+            in MethodInfo methodInfo,
+            in Type[]? parametersTypes = null,
             params ILEmitterFunc[] parameters) =>
             parameters
                 .Aggregate(self, (il, func) => func(il))
@@ -59,8 +59,8 @@ namespace Illuminator
 
         public static ILEmitter Newobj(
             this ILEmitter self,
-            ConstructorInfo constructorInfo,
-            Type[]? parametersTypes = null,
+            in ConstructorInfo constructorInfo,
+            in Type[]? parametersTypes = null,
             params ILEmitterFunc[] parameters) =>
             parameters
                 .Aggregate(self, (il, func) => func(il))

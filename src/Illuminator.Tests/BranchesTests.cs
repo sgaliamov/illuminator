@@ -35,15 +35,23 @@ namespace Illuminator.Tests
 
             il.DeclareLocal<int>(out var state)
               .Stloc(Ldc_I4_0(), state)
-              .MarkLabel(out var begin);
-              //.Brfalse_S(Ceq(Ldc_I4_1(), 
-              //               Ldloc(state)), );
+              .MarkLabel(out var begin)
+              .Brfalse_S(Ceq(Ldc_I4_1(),
+                             Ldloc(state)),
+                         out var start)
+              .Ret(Ldc_I4_1())
+              .MarkLabel(start);
 
-            for (var i = 0; i < 127; i++) {
+            for (var i = 0; i < 116; i++) {
                 il.Nop();
             }
 
-            Assert.Throws<IlluminatorJumpException>(() => il.Br_S(begin));
+            var target =
+                il.Stloc(Ldc_I4_1(), state)
+                  .Br_S(begin)
+                  .CreateDelegate<Func<bool>>();
+
+            target().Should().BeTrue();
         }
 
         [Fact]

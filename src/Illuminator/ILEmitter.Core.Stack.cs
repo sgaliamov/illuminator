@@ -2,25 +2,37 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using Illuminator.Exceptions;
 
 namespace Illuminator
 {
+    // Tracking state of the stack.
     public sealed partial class ILEmitter : IDisposable
     {
-        private readonly Stack<string> _stack = new Stack<string>();
+        private const string AnyType = "ANY";
+        private const string IntType = "I4";
+        private const string LongType = "I8";
+        private const string FloatType = "R4";
+        private const string DoubleType = "R8";
+        private const string RefType = "REF";
 
-        public void Dispose()
-        {
-            DebugVerifyStackSize();
-            VerifyStackIsEmpty();
-        }
+        private static readonly IReadOnlyDictionary<Type, string> TypesMap = new Dictionary<Type, string> {
+            [typeof(int)] = IntType,
+            [typeof(long)] = LongType,
+            [typeof(float)] = FloatType,
+            [typeof(double)] = DoubleType
+        };
+
+        private readonly Stack<string> _stack = new();
+
+        public void Dispose() => VerifyStackIsEmpty();
 
         private void VerifyStackIsEmpty()
         {
+            DebugVerifyStackSize();
+
             if (_stack.Count != 0) {
                 throw new IlluminatorStackException($"Stack should be empty: [{string.Join(", ", _stack)}]");
             }
@@ -30,11 +42,11 @@ namespace Illuminator
         private void DebugVerifyStackSize()
         {
             var maxMidStackCur = (int)typeof(ILGenerator)
-                .GetField("m_maxMidStackCur", PrivateFieldBindingFlags)
-                .GetValue(_il);
+                .GetField("m_maxMidStackCur", PrivateFieldBindingFlags)!.GetValue(_il);
 
             if (_stack.Count != maxMidStackCur) {
-                throw new IlluminatorStackException($"Stack size does not match to ILGenerator stack. [{string.Join(", ", _stack)}].");
+                throw new IlluminatorStackException(
+                    $"Stack size does not match to ILGenerator stack. [{string.Join(", ", _stack)}].");
             }
         }
 
@@ -60,30 +72,35 @@ namespace Illuminator
             }
         }
 
-        private void Pop(params ParameterInfo[] types)
+        private void Pop(params Type[]? types)
         {
-            if (types.Length == 0) {
+            if (types == null || types.Length == 0) {
                 return;
             }
 
-            Pop(types.Select(x => x.ParameterType).ToArray());
+            Pop(types.Select(ToSimpleType).ToArray());
         }
 
-        private void Pop(params Type[] types) => Pop(types.Select(ToSimpleType).ToArray());
-
+        /// <summary>
+        ///     Unwind types in reversed order and compare items with stack.
+        /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private void Pop(params string[] types)
         {
             Debug.Assert(types.Length != 0);
 
-            foreach (var item in types) {
+            foreach (var item in types.Reverse()) {
                 if (_stack.Count == 0) {
                     throw new IlluminatorStackException("Stack is empty to return a value.");
                 }
 
                 var pop = _stack.Pop();
-                if (pop != item && pop != "any" && item != "any") {
-                    // todo: test
+
+                if (pop == AnyType || item == AnyType) {
+                    continue;
+                }
+
+                if (pop != item) {
                     throw new IlluminatorStackException($"Unexpected type {item} in stack {pop}.");
                 }
             }
@@ -93,24 +110,9 @@ namespace Illuminator
         {
             Debug.Assert(type != typeof(void));
 
-            if (type == typeof(int)) {
-                return "int";
-            }
-
-            if (type == typeof(long)) {
-                return "long";
-            }
-
-            if (type == typeof(double)) {
-                return "double";
-            }
-
-            if (type == typeof(float)) {
-                return "float";
-            }
-
-            // todo: smart types check
-            return "any";
+            return TypesMap.TryGetValue(type, out var value)
+                ? value
+                : AnyType;
         }
     }
 }

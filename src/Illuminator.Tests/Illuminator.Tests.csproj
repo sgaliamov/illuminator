@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Illuminator\Illuminator.csproj" />
+    <ProjectReference Include="..\Illuminator.Extensions\Illuminator.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

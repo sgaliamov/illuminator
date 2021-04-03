@@ -12,24 +12,15 @@ using System.Reflection.Emit;
 
 namespace Illuminator
 {
+    // Generated wrappers over ILGenerator.
     public sealed partial class ILEmitter
     {
         /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.BeginExceptionBlock()"/>.
+        ///     Wrapper over <see cref="ILGenerator.BeginCatchBlock(Type)"/>.
         /// </summary>
-        public ILEmitter BeginExceptionBlock(out Label output)
+        public ILEmitter BeginCatchBlock(Type exceptionType)
         {
-            output =_il.BeginExceptionBlock();
-
-            return this;
-        }
-
-        /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.EndExceptionBlock()"/>.
-        /// </summary>
-        public ILEmitter EndExceptionBlock()
-        {
-            _il.EndExceptionBlock();
+            _il.BeginCatchBlock(exceptionType);
 
             return this;
         }
@@ -45,11 +36,11 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.BeginCatchBlock(Type)"/>.
+        ///     Wrapper over <see cref="ILGenerator.BeginExceptionBlock()"/>.
         /// </summary>
-        public ILEmitter BeginCatchBlock(Type exceptionType)
+        public ILEmitter BeginExceptionBlock(out Label output)
         {
-            _il.BeginCatchBlock(exceptionType);
+            output =_il.BeginExceptionBlock();
 
             return this;
         }
@@ -75,31 +66,41 @@ namespace Illuminator
         }
 
         /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.BeginScope()"/>.
+        /// </summary>
+        public ILEmitter BeginScope()
+        {
+            _il.BeginScope();
+
+            return this;
+        }
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.DeclareLocal(Type)"/>.
+        /// </summary>
+        public ILEmitter DeclareLocal(Type localType, out LocalBuilder output)
+        {
+            output =_il.DeclareLocal(localType);
+
+            return this;
+        }
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.DeclareLocal(Type, Boolean)"/>.
+        /// </summary>
+        public ILEmitter DeclareLocal(Type localType, Boolean pinned, out LocalBuilder output)
+        {
+            output =_il.DeclareLocal(localType, pinned);
+
+            return this;
+        }
+
+        /// <summary>
         ///     Wrapper over <see cref="ILGenerator.DefineLabel()"/>.
         /// </summary>
         public ILEmitter DefineLabel(out Label output)
         {
             output =_il.DefineLabel();
-
-            return this;
-        }
-
-        /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.MarkLabel(Label)"/>.
-        /// </summary>
-        public ILEmitter MarkLabel(Label loc)
-        {
-            _il.MarkLabel(loc);
-
-            return this;
-        }
-
-        /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.ThrowException(Type)"/>.
-        /// </summary>
-        public ILEmitter ThrowException(Type excType)
-        {
-            _il.ThrowException(excType);
 
             return this;
         }
@@ -135,41 +136,11 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.DeclareLocal(Type)"/>.
+        ///     Wrapper over <see cref="ILGenerator.EndExceptionBlock()"/>.
         /// </summary>
-        public ILEmitter DeclareLocal(Type localType, out LocalBuilder output)
+        public ILEmitter EndExceptionBlock()
         {
-            output =_il.DeclareLocal(localType);
-
-            return this;
-        }
-
-        /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.DeclareLocal(Type, Boolean)"/>.
-        /// </summary>
-        public ILEmitter DeclareLocal(Type localType, Boolean pinned, out LocalBuilder output)
-        {
-            output =_il.DeclareLocal(localType, pinned);
-
-            return this;
-        }
-
-        /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.UsingNamespace(String)"/>.
-        /// </summary>
-        public ILEmitter UsingNamespace(String usingNamespace)
-        {
-            _il.UsingNamespace(usingNamespace);
-
-            return this;
-        }
-
-        /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.BeginScope()"/>.
-        /// </summary>
-        public ILEmitter BeginScope()
-        {
-            _il.BeginScope();
+            _il.EndExceptionBlock();
 
             return this;
         }
@@ -180,6 +151,36 @@ namespace Illuminator
         public ILEmitter EndScope()
         {
             _il.EndScope();
+
+            return this;
+        }
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.MarkLabel(Label)"/>.
+        /// </summary>
+        public ILEmitter MarkLabel(Label loc)
+        {
+            _il.MarkLabel(loc);
+
+            return this;
+        }
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.ThrowException(Type)"/>.
+        /// </summary>
+        public ILEmitter ThrowException(Type excType)
+        {
+            _il.ThrowException(excType);
+
+            return this;
+        }
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.UsingNamespace(String)"/>.
+        /// </summary>
+        public ILEmitter UsingNamespace(String usingNamespace)
+        {
+            _il.UsingNamespace(usingNamespace);
 
             return this;
         }

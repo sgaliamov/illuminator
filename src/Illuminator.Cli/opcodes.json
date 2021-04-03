@@ -9,7 +9,8 @@
   },
   {
     "name": "Add_Ovf_Un",
-    "description": "Adds two unsigned integer values, performs an overflow check, and pushes the result onto the evaluation stack."
+    "description":
+      "Adds two unsigned integer values, performs an overflow check, and pushes the result onto the evaluation stack."
   },
   {
     "name": "And",
@@ -31,22 +32,26 @@
   },
   {
     "name": "Bge",
-    "description": "Transfers control to a target instruction if the first value is greater than or equal to the second value.",
+    "description":
+      "Transfers control to a target instruction if the first value is greater than or equal to the second value.",
     "args": ["Label"]
   },
   {
     "name": "Bge_S",
-    "description": "Transfers control to a target instruction (short form) if the first value is greater than or equal to the second value.",
+    "description":
+      "Transfers control to a target instruction (short form) if the first value is greater than or equal to the second value.",
     "args": ["Label"]
   },
   {
     "name": "Bge_Un",
-    "description": "Transfers control to a target instruction if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.",
+    "description":
+      "Transfers control to a target instruction if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.",
     "args": ["Label"]
   },
   {
     "name": "Bge_Un_S",
-    "description": "Transfers control to a target instruction (short form) if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.",
+    "description":
+      "Transfers control to a target instruction (short form) if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.",
     "args": ["Label"]
   },
   {
@@ -56,37 +61,44 @@
   },
   {
     "name": "Bgt_S",
-    "description": "Transfers control to a target instruction (short form) if the first value is greater than the second value.",
+    "description":
+      "Transfers control to a target instruction (short form) if the first value is greater than the second value.",
     "args": ["Label"]
   },
   {
     "name": "Bgt_Un",
-    "description": "Transfers control to a target instruction if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.",
+    "description":
+      "Transfers control to a target instruction if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.",
     "args": ["Label"]
   },
   {
     "name": "Bgt_Un_S",
-    "description": "Transfers control to a target instruction (short form) if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.",
+    "description":
+      "Transfers control to a target instruction (short form) if the first value is greater than the second value, when comparing unsigned integer values or unordered float values.",
     "args": ["Label"]
   },
   {
     "name": "Ble",
-    "description": "Transfers control to a target instruction if the first value is less than or equal to the second value.",
+    "description":
+      "Transfers control to a target instruction if the first value is less than or equal to the second value.",
     "args": ["Label"]
   },
   {
     "name": "Ble_S",
-    "description": "Transfers control to a target instruction (short form) if the first value is less than or equal to the second value.",
+    "description":
+      "Transfers control to a target instruction (short form) if the first value is less than or equal to the second value.",
     "args": ["Label"]
   },
   {
     "name": "Ble_Un",
-    "description": "Transfers control to a target instruction if the first value is less than or equal to the second value, when comparing unsigned integer values or unordered float values.",
+    "description":
+      "Transfers control to a target instruction if the first value is less than or equal to the second value, when comparing unsigned integer values or unordered float values.",
     "args": ["Label"]
   },
   {
     "name": "Ble_Un_S",
-    "description": "Transfers control to a target instruction (short form) if the first value is less than or equal to the second value, when comparing unsigned integer values or unordered float values.",
+    "description":
+      "Transfers control to a target instruction (short form) if the first value is less than or equal to the second value, when comparing unsigned integer values or unordered float values.",
     "args": ["Label"]
   },
   {
@@ -96,27 +108,32 @@
   },
   {
     "name": "Blt_S",
-    "description": "Transfers control to a target instruction (short form) if the first value is less than the second value.",
+    "description":
+      "Transfers control to a target instruction (short form) if the first value is less than the second value.",
     "args": ["Label"]
   },
   {
     "name": "Blt_Un",
-    "description": "Transfers control to a target instruction if the first value is less than the second value, when comparing unsigned integer values or unordered float values.",
+    "description":
+      "Transfers control to a target instruction if the first value is less than the second value, when comparing unsigned integer values or unordered float values.",
     "args": ["Label"]
   },
   {
     "name": "Blt_Un_S",
-    "description": "Transfers control to a target instruction (short form) if the first value is less than the second value, when comparing unsigned integer values or unordered float values.",
+    "description":
+      "Transfers control to a target instruction (short form) if the first value is less than the second value, when comparing unsigned integer values or unordered float values.",
     "args": ["Label"]
   },
   {
     "name": "Bne_Un",
-    "description": "Transfers control to a target instruction when two unsigned integer values or unordered float values are not equal.",
+    "description":
+      "Transfers control to a target instruction when two unsigned integer values or unordered float values are not equal.",
     "args": ["Label"]
   },
   {
     "name": "Bne_Un_S",
-    "description": "Transfers control to a target instruction (short form) when two unsigned integer values or unordered float values are not equal.",
+    "description":
+      "Transfers control to a target instruction (short form) when two unsigned integer values or unordered float values are not equal.",
     "args": ["Label"]
   },
   {
@@ -136,11 +153,13 @@
   },
   {
     "name": "Break",
-    "description": "Signals the Common Language Infrastructure (CLI) to inform the debugger that a break point has been tripped."
+    "description":
+      "Signals the Common Language Infrastructure (CLI) to inform the debugger that a break point has been tripped."
   },
   {
     "name": "Brfalse",
-    "description": "Transfers control to a target instruction if value is false, a null reference (Nothing in Visual Basic), or zero.",
+    "description":
+      "Transfers control to a target instruction if value is false, a null reference (Nothing in Visual Basic), or zero.",
     "args": ["Label"]
   },
   {
@@ -165,15 +184,18 @@
   },
   {
     "name": "Ceq",
-    "description": "Compares two values. If they are equal, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack."
+    "description":
+      "Compares two values. If they are equal, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack."
   },
   {
     "name": "Cgt",
-    "description": "Compares two values. If the first value is greater than the second, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack."
+    "description":
+      "Compares two values. If the first value is greater than the second, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack."
   },
   {
     "name": "Cgt_Un",
-    "description": "Compares two unsigned or unordered values. If the first value is greater than the second, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack."
+    "description":
+      "Compares two unsigned or unordered values. If the first value is greater than the second, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack."
   },
   {
     "name": "Ckfinite",
@@ -181,11 +203,13 @@
   },
   {
     "name": "Clt",
-    "description": "Compares two values. If the first value is less than the second, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack."
+    "description":
+      "Compares two values. If the first value is less than the second, the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack."
   },
   {
     "name": "Clt_Un",
-    "description": "Compares the unsigned or unordered values value1 and value2. If value1 is less than value2, then the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack."
+    "description":
+      "Compares the unsigned or unordered values value1 and value2. If value1 is less than value2, then the integer value 1 (int32) is pushed onto the evaluation stack; otherwise 0 (int32) is pushed onto the evaluation stack."
   },
   {
     "name": "Constrained",
@@ -214,83 +238,103 @@
   },
   {
     "name": "Conv_Ovf_I",
-    "description": "Converts the signed value on top of the evaluation stack to signed native int, throwing OverflowException on overflow."
+    "description":
+      "Converts the signed value on top of the evaluation stack to signed native int, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I1",
-    "description": "Converts the signed value on top of the evaluation stack to signed int8 and extends it to int32, throwing OverflowException on overflow."
+    "description":
+      "Converts the signed value on top of the evaluation stack to signed int8 and extends it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I1_Un",
-    "description": "Converts the unsigned value on top of the evaluation stack to signed int8 and extends it to int32, throwing OverflowException on overflow."
+    "description":
+      "Converts the unsigned value on top of the evaluation stack to signed int8 and extends it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I2",
-    "description": "Converts the signed value on top of the evaluation stack to signed int16 and extending it to int32, throwing OverflowException on overflow."
+    "description":
+      "Converts the signed value on top of the evaluation stack to signed int16 and extending it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I2_Un",
-    "description": "Converts the unsigned value on top of the evaluation stack to signed int16 and extends it to int32, throwing OverflowException on overflow."
+    "description":
+      "Converts the unsigned value on top of the evaluation stack to signed int16 and extends it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I4",
-    "description": "Converts the signed value on top of the evaluation stack to signed int32, throwing OverflowException on overflow."
+    "description":
+      "Converts the signed value on top of the evaluation stack to signed int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I4_Un",
-    "description": "Converts the unsigned value on top of the evaluation stack to signed int32, throwing OverflowException on overflow."
+    "description":
+      "Converts the unsigned value on top of the evaluation stack to signed int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I8",
-    "description": "Converts the signed value on top of the evaluation stack to signed int64, throwing OverflowException on overflow."
+    "description":
+      "Converts the signed value on top of the evaluation stack to signed int64, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I8_Un",
-    "description": "Converts the unsigned value on top of the evaluation stack to signed int64, throwing OverflowException on overflow."
+    "description":
+      "Converts the unsigned value on top of the evaluation stack to signed int64, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_I_Un",
-    "description": "Converts the unsigned value on top of the evaluation stack to signed native int, throwing OverflowException on overflow."
+    "description":
+      "Converts the unsigned value on top of the evaluation stack to signed native int, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U",
-    "description": "Converts the signed value on top of the evaluation stack to unsigned native int, throwing OverflowException on overflow."
+    "description":
+      "Converts the signed value on top of the evaluation stack to unsigned native int, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U1",
-    "description": "Converts the signed value on top of the evaluation stack to unsigned int8 and extends it to int32, throwing OverflowException on overflow."
+    "description":
+      "Converts the signed value on top of the evaluation stack to unsigned int8 and extends it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U1_Un",
-    "description": "Converts the unsigned value on top of the evaluation stack to unsigned int8 and extends it to int32, throwing OverflowException on overflow."
+    "description":
+      "Converts the unsigned value on top of the evaluation stack to unsigned int8 and extends it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U2",
-    "description": "Converts the signed value on top of the evaluation stack to unsigned int16 and extends it to int32, throwing OverflowException on overflow."
+    "description":
+      "Converts the signed value on top of the evaluation stack to unsigned int16 and extends it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U2_Un",
-    "description": "Converts the signed value on top of the evaluation stack to unsigned int16 and extends it to int32, throwing OverflowException on overflow."
+    "description":
+      "Converts the signed value on top of the evaluation stack to unsigned int16 and extends it to int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U4",
-    "description": "Converts the signed value on top of the evaluation stack to unsigned int32, throwing OverflowException on overflow."
+    "description":
+      "Converts the signed value on top of the evaluation stack to unsigned int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U4_Un",
-    "description": "Converts the unsigned value on top of the evaluation stack to unsigned int32, throwing OverflowException on overflow."
+    "description":
+      "Converts the unsigned value on top of the evaluation stack to unsigned int32, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U8",
-    "description": "Converts the signed value on top of the evaluation stack to unsigned int64, throwing OverflowException on overflow."
+    "description":
+      "Converts the signed value on top of the evaluation stack to unsigned int64, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U8_Un",
-    "description": "Converts the unsigned value on top of the evaluation stack to unsigned int64, throwing OverflowException on overflow."
+    "description":
+      "Converts the unsigned value on top of the evaluation stack to unsigned int64, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_Ovf_U_Un",
-    "description": "Converts the unsigned value on top of the evaluation stack to unsigned native int, throwing OverflowException on overflow."
+    "description":
+      "Converts the unsigned value on top of the evaluation stack to unsigned native int, throwing OverflowException on overflow."
   },
   {
     "name": "Conv_R4",
@@ -330,12 +374,14 @@
   },
   {
     "name": "Cpobj",
-    "description": "Copies the value type located at the address of an object (type &, or native int) to the address of the destination object (type &, or native int).",
+    "description":
+      "Copies the value type located at the address of an object (type &, or native int) to the address of the destination object (type &, or native int).",
     "args": ["Type"]
   },
   {
     "name": "Div",
-    "description": "Divides two values and pushes the result as a floating-point (type F) or quotient (type int32) onto the evaluation stack."
+    "description":
+      "Divides two values and pushes the result as a floating-point (type F) or quotient (type int32) onto the evaluation stack."
   },
   {
     "name": "Div_Un",
@@ -343,15 +389,18 @@
   },
   {
     "name": "Dup",
-    "description": "Copies the current topmost value on the evaluation stack, and then pushes the copy onto the evaluation stack."
+    "description":
+      "Copies the current topmost value on the evaluation stack, and then pushes the copy onto the evaluation stack."
   },
   {
     "name": "Endfilter",
-    "description": "Transfers control from the filter clause of an exception back to the Common Language Infrastructure (CLI) exception handler."
+    "description":
+      "Transfers control from the filter clause of an exception back to the Common Language Infrastructure (CLI) exception handler."
   },
   {
     "name": "Endfinally",
-    "description": "Transfers control from the fault or finally clause of an exception block back to the Common Language Infrastructure (CLI) exception handler."
+    "description":
+      "Transfers control from the fault or finally clause of an exception block back to the Common Language Infrastructure (CLI) exception handler."
   },
   {
     "name": "Initblk",
@@ -359,7 +408,8 @@
   },
   {
     "name": "Initobj",
-    "description": "Initializes each field of the value type at a specified address to a null reference or a 0 of the appropriate primitive type.",
+    "description":
+      "Initializes each field of the value type at a specified address to a null reference or a 0 of the appropriate primitive type.",
     "args": ["Type"]
   },
   {
@@ -480,56 +530,69 @@
   },
   {
     "name": "Ldelem",
-    "description": "Loads the element at a specified array index onto the top of the evaluation stack as the type specified in the instruction.",
+    "description":
+      "Loads the element at a specified array index onto the top of the evaluation stack as the type specified in the instruction.",
     "args": ["Type"]
   },
   {
     "name": "Ldelem_I",
-    "description": "Loads the element with type native int at a specified array index onto the top of the evaluation stack as a native int."
+    "description":
+      "Loads the element with type native int at a specified array index onto the top of the evaluation stack as a native int."
   },
   {
     "name": "Ldelem_I1",
-    "description": "Loads the element with type int8 at a specified array index onto the top of the evaluation stack as an int32."
+    "description":
+      "Loads the element with type int8 at a specified array index onto the top of the evaluation stack as an int32."
   },
   {
     "name": "Ldelem_I2",
-    "description": "Loads the element with type int16 at a specified array index onto the top of the evaluation stack as an int32."
+    "description":
+      "Loads the element with type int16 at a specified array index onto the top of the evaluation stack as an int32."
   },
   {
     "name": "Ldelem_I4",
-    "description": "Loads the element with type int32 at a specified array index onto the top of the evaluation stack as an int32."
+    "description":
+      "Loads the element with type int32 at a specified array index onto the top of the evaluation stack as an int32."
   },
   {
     "name": "Ldelem_I8",
-    "description": "Loads the element with type int64 at a specified array index onto the top of the evaluation stack as an int64."
+    "description":
+      "Loads the element with type int64 at a specified array index onto the top of the evaluation stack as an int64."
   },
   {
     "name": "Ldelem_R4",
-    "description": "Loads the element with type float32 at a specified array index onto the top of the evaluation stack as type F (float)."
+    "description":
+      "Loads the element with type float32 at a specified array index onto the top of the evaluation stack as type F (float)."
   },
   {
     "name": "Ldelem_R8",
-    "description": "Loads the element with type float64 at a specified array index onto the top of the evaluation stack as type F (float)."
+    "description":
+      "Loads the element with type float64 at a specified array index onto the top of the evaluation stack as type F (float)."
   },
   {
     "name": "Ldelem_Ref",
-    "description": "Loads the element containing an object reference at a specified array index onto the top of the evaluation stack as type O (object reference)."
+    "description":
+      "Loads the element containing an object reference at a specified array index onto the top of the evaluation stack as type O (object reference)."
   },
   {
     "name": "Ldelem_U1",
-    "description": "Loads the element with type unsigned int8 at a specified array index onto the top of the evaluation stack as an int32."
+    "description":
+      "Loads the element with type unsigned int8 at a specified array index onto the top of the evaluation stack as an int32."
   },
   {
     "name": "Ldelem_U2",
-    "description": "Loads the element with type unsigned int16 at a specified array index onto the top of the evaluation stack as an int32."
+    "description":
+      "Loads the element with type unsigned int16 at a specified array index onto the top of the evaluation stack as an int32."
   },
   {
     "name": "Ldelem_U4",
-    "description": "Loads the element with type unsigned int32 at a specified array index onto the top of the evaluation stack as an int32."
+    "description":
+      "Loads the element with type unsigned int32 at a specified array index onto the top of the evaluation stack as an int32."
   },
   {
     "name": "Ldelema",
-    "description": "Loads the address of the array element at a specified array index onto the top of the evaluation stack as type & (managed pointer).",
+    "description":
+      "Loads the address of the array element at a specified array index onto the top of the evaluation stack as type & (managed pointer).",
     "args": ["Type"]
   },
   {
@@ -544,7 +607,8 @@
   },
   {
     "name": "Ldftn",
-    "description": "Pushes an unmanaged pointer (type native int) to the native code implementing a specific method onto the evaluation stack.",
+    "description":
+      "Pushes an unmanaged pointer (type native int) to the native code implementing a specific method onto the evaluation stack.",
     "args": ["MethodInfo"]
   },
   {
@@ -682,22 +746,26 @@
   },
   {
     "name": "Ldvirtftn",
-    "description": "Pushes an unmanaged pointer (type native int) to the native code implementing a particular virtual method associated with a specified object onto the evaluation stack.",
+    "description":
+      "Pushes an unmanaged pointer (type native int) to the native code implementing a particular virtual method associated with a specified object onto the evaluation stack.",
     "args": ["MethodInfo"]
   },
   {
     "name": "Leave",
-    "description": "Exits a protected region of code, unconditionally transferring control to a specific target instruction.",
+    "description":
+      "Exits a protected region of code, unconditionally transferring control to a specific target instruction.",
     "args": ["Label"]
   },
   {
     "name": "Leave_S",
-    "description": "Exits a protected region of code, unconditionally transferring control to a target instruction (short form).",
+    "description":
+      "Exits a protected region of code, unconditionally transferring control to a target instruction (short form).",
     "args": ["Label"]
   },
   {
     "name": "Localloc",
-    "description": "Allocates a certain number of bytes from the local dynamic memory pool and pushes the address (a transient pointer, type *) of the first allocated byte onto the evaluation stack."
+    "description":
+      "Allocates a certain number of bytes from the local dynamic memory pool and pushes the address (a transient pointer, type *) of the first allocated byte onto the evaluation stack."
   },
   {
     "name": "Mkrefany",
@@ -710,11 +778,13 @@
   },
   {
     "name": "Mul_Ovf",
-    "description": "Multiplies two integer values, performs an overflow check, and pushes the result onto the evaluation stack"
+    "description":
+      "Multiplies two integer values, performs an overflow check, and pushes the result onto the evaluation stack"
   },
   {
     "name": "Mul_Ovf_Un",
-    "description": "Multiplies two unsigned integer values, performs an overflow check, and pushes the result onto the evaluation stack."
+    "description":
+      "Multiplies two unsigned integer values, performs an overflow check, and pushes the result onto the evaluation stack."
   },
   {
     "name": "Neg",
@@ -722,20 +792,24 @@
   },
   {
     "name": "Newarr",
-    "description": "Pushes an object reference to a new zero-based, one-dimensional array whose elements are of a specific type onto the evaluation stack.",
+    "description":
+      "Pushes an object reference to a new zero-based, one-dimensional array whose elements are of a specific type onto the evaluation stack.",
     "args": ["Type"]
   },
   {
     "name": "Nop",
-    "description": "Fills space if opcodes are patched. No meaningful operation is performed although a processing cycle can be consumed."
+    "description":
+      "Fills space if opcodes are patched. No meaningful operation is performed although a processing cycle can be consumed."
   },
   {
     "name": "Not",
-    "description": "Computes the bitwise complement of the integer value on top of the stack and pushes the result onto the evaluation stack as the same type."
+    "description":
+      "Computes the bitwise complement of the integer value on top of the stack and pushes the result onto the evaluation stack as the same type."
   },
   {
     "name": "Or",
-    "description": "Compute the bitwise complement of the two integer values on top of the stack and pushes the result onto the evaluation stack."
+    "description":
+      "Compute the bitwise complement of the two integer values on top of the stack and pushes the result onto the evaluation stack."
   },
   {
     "name": "Pop",
@@ -775,7 +849,8 @@
   },
   {
     "name": "Readonly",
-    "description": "Specifies that the subsequent array address operation performs no type check at run time, and that it returns a managed pointer whose mutability is restricted."
+    "description":
+      "Specifies that the subsequent array address operation performs no type check at run time, and that it returns a managed pointer whose mutability is restricted."
   },
   {
     "name": "Refanytype",
@@ -800,15 +875,18 @@
   },
   {
     "name": "Shl",
-    "description": "Shifts an integer value to the left (in zeroes) by a specified number of bits, pushing the result onto the evaluation stack."
+    "description":
+      "Shifts an integer value to the left (in zeroes) by a specified number of bits, pushing the result onto the evaluation stack."
   },
   {
     "name": "Shr",
-    "description": "Shifts an integer value (in sign) to the right by a specified number of bits, pushing the result onto the evaluation stack."
+    "description":
+      "Shifts an integer value (in sign) to the right by a specified number of bits, pushing the result onto the evaluation stack."
   },
   {
     "name": "Shr_Un",
-    "description": "Shifts an unsigned integer value (in zeroes) to the right by a specified number of bits, pushing the result onto the evaluation stack."
+    "description":
+      "Shifts an unsigned integer value (in zeroes) to the right by a specified number of bits, pushing the result onto the evaluation stack."
   },
   {
     "name": "Sizeof",
@@ -822,12 +900,14 @@
   },
   {
     "name": "Starg_S",
-    "description": "Stores the value on top of the evaluation stack in the argument slot at a specified index, short form.",
+    "description":
+      "Stores the value on top of the evaluation stack in the argument slot at a specified index, short form.",
     "args": ["byte"]
   },
   {
     "name": "Stelem",
-    "description": "Replaces the array element at a given index with the value on the evaluation stack, whose type is specified in the instruction.",
+    "description":
+      "Replaces the array element at a given index with the value on the evaluation stack, whose type is specified in the instruction.",
     "args": ["Type"]
   },
   {
@@ -860,7 +940,8 @@
   },
   {
     "name": "Stelem_Ref",
-    "description": "Replaces the array element at a given index with the object ref value (type O) on the evaluation stack."
+    "description":
+      "Replaces the array element at a given index with the object ref value (type O) on the evaluation stack."
   },
   {
     "name": "Stfld",
@@ -901,38 +982,46 @@
   },
   {
     "name": "Stloc",
-    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at a specified index.",
+    "description":
+      "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at a specified index.",
     "args": ["LocalBuilder"]
   },
   {
     "name": "Stloc",
-    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at a specified index.",
+    "description":
+      "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at a specified index.",
     "args": ["short"]
   },
   {
     "name": "Stloc_0",
-    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 0."
+    "description":
+      "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 0."
   },
   {
     "name": "Stloc_1",
-    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 1."
+    "description":
+      "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 1."
   },
   {
     "name": "Stloc_2",
-    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 2."
+    "description":
+      "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 2."
   },
   {
     "name": "Stloc_3",
-    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 3."
+    "description":
+      "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 3."
   },
   {
     "name": "Stloc_S",
-    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index (short form).",
+    "description":
+      "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index (short form).",
     "args": ["LocalBuilder"]
   },
   {
     "name": "Stloc_S",
-    "description": "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index (short form).",
+    "description":
+      "Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index (short form).",
     "args": ["byte"]
   },
   {
@@ -951,11 +1040,13 @@
   },
   {
     "name": "Sub_Ovf",
-    "description": "Subtracts one integer value from another, performs an overflow check, and pushes the result onto the evaluation stack."
+    "description":
+      "Subtracts one integer value from another, performs an overflow check, and pushes the result onto the evaluation stack."
   },
   {
     "name": "Sub_Ovf_Un",
-    "description": "Subtracts one unsigned integer value from another, performs an overflow check, and pushes the result onto the evaluation stack."
+    "description":
+      "Subtracts one unsigned integer value from another, performs an overflow check, and pushes the result onto the evaluation stack."
   },
   {
     "name": "Switch",
@@ -964,7 +1055,8 @@
   },
   {
     "name": "Tailcall",
-    "description": "Performs a postfixed method call instruction such that the current method's stack frame is removed before the actual call instruction is executed."
+    "description":
+      "Performs a postfixed method call instruction such that the current method's stack frame is removed before the actual call instruction is executed."
   },
   {
     "name": "Throw",
@@ -972,12 +1064,14 @@
   },
   {
     "name": "Unaligned",
-    "description": "Indicates that an address currently atop the evaluation stack might not be aligned to the natural size of the immediately following ldind, stind, ldfld, stfld, ldobj, stobj, initblk, or cpblk instruction.",
+    "description":
+      "Indicates that an address currently atop the evaluation stack might not be aligned to the natural size of the immediately following ldind, stind, ldfld, stfld, ldobj, stobj, initblk, or cpblk instruction.",
     "args": ["byte"]
   },
   {
     "name": "Unaligned",
-    "description": "Indicates that an address currently atop the evaluation stack might not be aligned to the natural size of the immediately following ldind, stind, ldfld, stfld, ldobj, stobj, initblk, or cpblk instruction.",
+    "description":
+      "Indicates that an address currently atop the evaluation stack might not be aligned to the natural size of the immediately following ldind, stind, ldfld, stfld, ldobj, stobj, initblk, or cpblk instruction.",
     "args": ["Label"]
   },
   {
@@ -992,10 +1086,12 @@
   },
   {
     "name": "Volatile",
-    "description": "Specifies that an address currently atop the evaluation stack might be volatile, and the results of reading that location cannot be cached or that multiple stores to that location cannot be suppressed."
+    "description":
+      "Specifies that an address currently atop the evaluation stack might be volatile, and the results of reading that location cannot be cached or that multiple stores to that location cannot be suppressed."
   },
   {
     "name": "Xor",
-    "description": "Computes the bitwise XOR of the top two values on the evaluation stack, pushing the result onto the evaluation stack."
+    "description":
+      "Computes the bitwise XOR of the top two values on the evaluation stack, pushing the result onto the evaluation stack."
   }
 ]

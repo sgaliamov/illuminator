@@ -2,7 +2,6 @@
 
 ## Must have
 
-1. Test stack for Popref_popi_popr8!
 1. Logger!
 1. Deployment.
 

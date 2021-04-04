@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using Illuminator.Exceptions;
@@ -18,8 +19,8 @@ namespace Illuminator
             in Type[]? parameterTypes = null,
             in Type[]? optionalParameterTypes = null)
         {
-            Pop(optionalParameterTypes);
-            Pop(parameterTypes);
+            Pop(optionalParameterTypes?.Reverse().ToArray());
+            Pop(parameterTypes?.Reverse().ToArray());
 
             if (!methodInfo.IsStatic) {
                 Pop(methodInfo.DeclaringType!);
@@ -44,8 +45,8 @@ namespace Illuminator
             in Type[]? optionalParameterTypes = null)
         {
             Pop(IntType); // func pointer
-            Pop(optionalParameterTypes);
-            Pop(parameterTypes);
+            Pop(optionalParameterTypes?.Reverse().ToArray());
+            Pop(parameterTypes?.Reverse().ToArray());
 
             if (callingConventions.HasFlag(CallingConventions.HasThis)) {
                 Pop(AnyType);
@@ -65,7 +66,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Call(in MethodInfo methodInfo, params Type[]? parameterTypes)
         {
-            Pop(parameterTypes);
+            Pop(parameterTypes?.Reverse().ToArray());
 
             if (!methodInfo.IsStatic) {
                 Pop(methodInfo.DeclaringType!);
@@ -83,7 +84,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Call(in ConstructorInfo constructorInfo, params Type[]? parameterTypes)
         {
-            Pop(parameterTypes);
+            Pop(parameterTypes?.Reverse().ToArray());
 
             if (!constructorInfo.IsStatic) {
                 Pop(constructorInfo.DeclaringType!);
@@ -102,7 +103,7 @@ namespace Illuminator
                     $"Can't make virtual call on the static method {methodInfo.DeclaringType!.FullName}.{methodInfo.Name}");
             }
 
-            Pop(parameterTypes);
+            Pop(parameterTypes?.Reverse().ToArray());
             Pop(methodInfo.DeclaringType!);
 
             _il.Emit(OpCodes.Callvirt, methodInfo);
@@ -122,7 +123,7 @@ namespace Illuminator
                 throw new NotSupportedException("Static constructors are not supported.");
             }
 
-            Pop(parameterTypes);
+            Pop(parameterTypes?.Reverse().ToArray());
 
             _il.Emit(OpCodes.Newobj, constructorInfo);
 

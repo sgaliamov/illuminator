@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Illuminator", "Illuminator\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{05069F04-CCCC-459C-8648-024290AA33DF}"
 	ProjectSection(SolutionItems) = preProject
-		..\scripts\generate.ps1 = ..\scripts\generate.ps1
+		..\appveyor.yml = ..\appveyor.yml
+		..\docs\process.md = ..\docs\process.md
 		..\readme.md = ..\readme.md
-		..\scripts\run-tests.ps1 = ..\scripts\run-tests.ps1
 		..\docs\todo.md = ..\docs\todo.md
 	EndProjectSection
 EndProject
@@ -18,6 +18,14 @@ EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Illuminator.Cli", "Illuminator.Cli\Illuminator.Cli.fsproj", "{A9BD6A30-EF59-47FE-82FC-84316666F521}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Illuminator.Extensions", "Illuminator.Extensions\Illuminator.Extensions.csproj", "{6D6A789A-1448-471B-80EC-B27FC470DEE7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{B878BD69-1CE1-4299-8D9A-45F7143D123B}"
+	ProjectSection(SolutionItems) = preProject
+		..\scripts\build.ps1 = ..\scripts\build.ps1
+		..\scripts\clean.ps1 = ..\scripts\clean.ps1
+		..\scripts\generate.ps1 = ..\scripts\generate.ps1
+		..\scripts\run-tests.ps1 = ..\scripts\run-tests.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +52,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B878BD69-1CE1-4299-8D9A-45F7143D123B} = {05069F04-CCCC-459C-8648-024290AA33DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8DD34110-9816-483D-AA0D-43F20289FAF5}

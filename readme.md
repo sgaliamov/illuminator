@@ -1,6 +1,6 @@
 # Illuminator
 
-Illuminator another wrapper around [`ILGenerator`](https://docs.microsoft.com/en-us/dotnet/api/system.reflection.emit.ilgenerator), but with some unique features.
+Illuminator is an another wrapper around [`ILGenerator`](https://docs.microsoft.com/en-us/dotnet/api/system.reflection.emit.ilgenerator), but with some unique features.
 
 ## Features
 

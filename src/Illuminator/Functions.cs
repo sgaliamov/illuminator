@@ -50,7 +50,7 @@ namespace Illuminator
         public static ILEmitterFunc Ret(params ILEmitterFunc[] funcs) => (in ILEmitter il) => il.Ret(funcs);
 
         /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.MarkLabel(Label)"/>.
+        ///     Wrapper over <see cref="ILGenerator.MarkLabel(Label)" />.
         /// </summary>
         public static ILEmitterFunc MarkLabel(Label loc) => (in ILEmitter il) => il.MarkLabel(loc);
     }

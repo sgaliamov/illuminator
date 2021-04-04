@@ -1,4 +1,4 @@
-﻿module ExtensionsGenerator
+﻿module EmitExtensionsGenerator
 
 open Scriban
 open Shared

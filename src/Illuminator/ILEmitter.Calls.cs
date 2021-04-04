@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using Illuminator.Exceptions;
@@ -18,8 +19,8 @@ namespace Illuminator
             in Type[]? parameterTypes = null,
             in Type[]? optionalParameterTypes = null)
         {
-            Pop(optionalParameterTypes);
-            Pop(parameterTypes);
+            Pop(optionalParameterTypes?.Reverse().ToArray());
+            Pop(parameterTypes?.Reverse().ToArray());
 
             if (!methodInfo.IsStatic) {
                 Pop(methodInfo.DeclaringType!);
@@ -27,6 +28,7 @@ namespace Illuminator
 
             // op code is not calculated because it will change API and sometimes you may want to call a virtual method with Call code.
             _il.EmitCall(opcode, methodInfo, optionalParameterTypes);
+            _logger?.Log(nameof(EmitCall), opcode, methodInfo, parameterTypes, optionalParameterTypes);
 
             Push(methodInfo.ReturnType);
 
@@ -44,14 +46,15 @@ namespace Illuminator
             in Type[]? optionalParameterTypes = null)
         {
             Pop(IntType); // func pointer
-            Pop(optionalParameterTypes);
-            Pop(parameterTypes);
+            Pop(optionalParameterTypes?.Reverse().ToArray());
+            Pop(parameterTypes?.Reverse().ToArray());
 
             if (callingConventions.HasFlag(CallingConventions.HasThis)) {
                 Pop(AnyType);
             }
 
             _il.EmitCalli(OpCodes.Calli, callingConventions, returnType, parameterTypes, optionalParameterTypes);
+            _logger?.Log(nameof(EmitCalli), callingConventions, returnType, parameterTypes, optionalParameterTypes);
 
             if (returnType != null) {
                 Push(returnType);
@@ -65,13 +68,14 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Call(in MethodInfo methodInfo, params Type[]? parameterTypes)
         {
-            Pop(parameterTypes);
+            Pop(parameterTypes?.Reverse().ToArray());
 
             if (!methodInfo.IsStatic) {
                 Pop(methodInfo.DeclaringType!);
             }
 
             _il.Emit(OpCodes.Call, methodInfo);
+            _logger?.Log(nameof(Call), methodInfo, parameterTypes);
 
             Push(methodInfo.ReturnType);
 
@@ -83,13 +87,14 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Call(in ConstructorInfo constructorInfo, params Type[]? parameterTypes)
         {
-            Pop(parameterTypes);
+            Pop(parameterTypes?.Reverse().ToArray());
 
             if (!constructorInfo.IsStatic) {
                 Pop(constructorInfo.DeclaringType!);
             }
 
             _il.Emit(OpCodes.Call, constructorInfo);
+            _logger?.Log(nameof(Call), constructorInfo, parameterTypes);
 
             return this;
         }
@@ -102,10 +107,11 @@ namespace Illuminator
                     $"Can't make virtual call on the static method {methodInfo.DeclaringType!.FullName}.{methodInfo.Name}");
             }
 
-            Pop(parameterTypes);
+            Pop(parameterTypes?.Reverse().ToArray());
             Pop(methodInfo.DeclaringType!);
 
             _il.Emit(OpCodes.Callvirt, methodInfo);
+            _logger?.Log(nameof(Callvirt), methodInfo, parameterTypes);
 
             Push(methodInfo.ReturnType);
 
@@ -122,9 +128,10 @@ namespace Illuminator
                 throw new NotSupportedException("Static constructors are not supported.");
             }
 
-            Pop(parameterTypes);
+            Pop(parameterTypes?.Reverse().ToArray());
 
             _il.Emit(OpCodes.Newobj, constructorInfo);
+            _logger?.Log(nameof(Newobj), constructorInfo, parameterTypes);
 
             Push(constructorInfo.DeclaringType!);
 
@@ -138,6 +145,7 @@ namespace Illuminator
         public ILEmitter Ret()
         {
             _il.Emit(OpCodes.Ret);
+            _logger?.Log(nameof(Ret));
 
             if (_methodBuilder.ReturnType == typeof(void)) {
                 VerifyStackIsEmpty();

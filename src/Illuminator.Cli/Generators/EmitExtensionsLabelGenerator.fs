@@ -1,4 +1,4 @@
-﻿module LabelGenerator
+﻿module EmitExtensionsLabelGenerator
 
 open Scriban
 open OpCodes

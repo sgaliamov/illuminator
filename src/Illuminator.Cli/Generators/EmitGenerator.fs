@@ -36,6 +36,8 @@ namespace Illuminator
             ValidateJump(label);
             {{~ end ~}}
             _il.Emit(OpCodes.{{ method.arguments | array.insert_at 0 method.name | array.join "", "" }});
+            {{- message = 'nameof(' + method.name + ')' }}
+            _logger?.Log({{ method.arguments | array.insert_at 0 message | array.join "", "" }});
             {{~ if method.pushes | !string.empty ~}}
             Push({{ method.pushes }});
             {{~ end ~}}
@@ -61,7 +63,7 @@ let generate () =
                 name = name
                 parameters = info.Args |> Seq.map (fun a -> $"in {a} {getArgumentName a}")
                 pop_behaviour = code.StackBehaviourPop.ToString()
-                pops = StackBehaviourMap.[code.StackBehaviourPop] |> join ", "
+                pops = StackBehaviourMap.[code.StackBehaviourPop] |> Seq.rev |> join ", "
                 push_behaviour = code.StackBehaviourPush.ToString()
                 pushes = StackBehaviourMap.[code.StackBehaviourPush] |> join ", "
                 validate_jump = validate_jump

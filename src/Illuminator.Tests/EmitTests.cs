@@ -1,7 +1,10 @@
 using System;
 using System.Reflection.Emit;
+using FluentAssertions;
 using Illuminator.Exceptions;
+using Illuminator.Logger;
 using Xunit;
+using static Illuminator.Functions;
 
 namespace Illuminator.Tests
 {
@@ -29,6 +32,24 @@ namespace Illuminator.Tests
                       .UseIlluminator()
                       .Ldc_I4_0()
                       .Ret());
+        }
+
+        [Fact]
+        public void Set_value_to_array()
+        {
+            var target = new DynamicMethod("test", typeof(float[]), null)
+                         .GetILGenerator()
+                         .UseIlluminator(new DebugLogger())
+                         .DeclareLocal<float[]>(out var array)
+                         .Stloc(Newarr(Ldc_I4_1(), typeof(float)), array)
+                         .Stelem_R4(
+                             Ldloc(array),
+                             Ldc_I4_0(),
+                             Ldc_R4(1.1f))
+                         .Ret(Ldloc(array))
+                         .CreateDelegate<Func<float[]>>();
+
+            target().Should().BeEquivalentTo(1.1f);
         }
     }
 }

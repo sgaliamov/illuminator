@@ -89,7 +89,7 @@ let StackBehaviourMap = Map.ofList [
     (StackBehaviour.Varpop, [])
     (StackBehaviour.Varpush, []) ]
 
-/// Pair of functilan parameters and arguments.
+/// Pair of functional parameters and arguments.
 let getFunArgs (code: OpCode) =
     let arguments =
         Seq.init StackBehaviourMap.[code.StackBehaviourPop].Length (fun i -> $"func{i + 1}")

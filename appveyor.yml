@@ -1,0 +1,71 @@
+version: build.{build}
+
+branches:
+  only:
+    - master
+
+image: Visual Studio 2019
+
+environment:
+  OpenCoverToken:
+    secure: rjRmOFLQaIpAYc1WqEENE27gQEvZ05SuxucC0kqA+3yVq6YVyjW4HdJIRkMW/B4e
+
+configuration: Release
+
+before_build:
+- pwsh: |
+    gitversion /l console /output buildserver /verbosity quiet
+    if ($env:APPVEYOR_REPO_TAG -eq $false) {
+        Set-AppveyorBuildVariable -Name Configuration -Value debug
+    }
+dotnet_csproj:
+  patch: true
+  file: src\Illuminator\Illuminator.csproj
+  version: $(GitVersion_NuGetVersion)
+  assembly_version: $(GitVersion_MajorMinorPatch)
+  file_version: $(GitVersion_MajorMinorPatch)
+  informational_version: $(GitVersion_InformationalVersion)
+
+build_script:
+- pwsh: |
+    Get-ChildItem Env: | Sort Name
+    .\scripts\build.ps1 -c $env:CONFIGURATION -p -t
+test_script:
+- pwsh: |
+    if ($env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH) {
+        Get-ChildItem .\**\*.Tests.csproj -Recurse | ForEach-Object {
+            dotnet test $_ --no-build -c $env:CONFIGURATION
+        }
+    } else {
+        nuget install OpenCover -Verbosity quiet -Version 4.7.922
+        Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
+        Get-ChildItem .\**\*.Tests.csproj -Recurse | ForEach-Object {
+            .\OpenCover.4.7.922\tools\OpenCover.Console.exe `
+                -register:user `
+                -target:"C:\Program Files\dotnet\dotnet.exe" `
+                -targetargs:"test $_ --no-restore -c debug" `
+                -output:"coverage.xml" `
+                -returntargetcode
+            if (!$?) {
+                throw "`nTests for $_ failed."
+            }
+            bash codecov.sh -f "coverage.xml" -t $env:OpenCoverToken
+        }
+    }
+artifacts:
+- path: .\publish\*.nupkg
+  name: nuget-package
+  type: NuGetPackage
+
+nuget:
+  account_feed: false
+  project_feed: false
+  disable_publish_on_pr: true
+  disable_publish_octopus: true
+
+deploy:
+- provider: Environment
+  name: nuget-org
+  artifact: .\publish\*.nupkg
+  on:
+    APPVEYOR_REPO_TAG: true

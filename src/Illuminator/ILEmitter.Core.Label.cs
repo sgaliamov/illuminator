@@ -16,13 +16,14 @@ namespace Illuminator
         {
             ValidateLabel(loc);
             _il.MarkLabel(loc);
+            _logger?.Log(nameof(MarkLabel), loc);
 
             return this;
         }
 
-        public void ValidateLabel(in Label label) => GetLabelInfo(label).ValidateLabel(_il.ILOffset);
+        private void ValidateLabel(in Label label) => GetLabelInfo(label).ValidateLabel(_il.ILOffset);
 
-        public void ValidateJump(Label label) => GetLabelInfo(label).ValidateJump(_il.ILOffset);
+        private void ValidateJump(Label label) => GetLabelInfo(label).ValidateJump(_il.ILOffset);
 
         private LabelInfo GetLabelInfo(Label loc)
         {

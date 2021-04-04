@@ -1,35 +1,17 @@
 # Illuminator
 
-The library is for personal projects to work with `Reflection.Emit` API.
-
-Basically, it's yet another wrapper around [`ILGenerator`](https://docs.microsoft.com/en-us/dotnet/api/system.reflection.emit.ilgenerator).
-
-## Packages
-
-1. Illuminator - core functionality.
-1. Illuminator.Extensions - useful combinations of core methods.
+Illuminator another wrapper around [`ILGenerator`](https://docs.microsoft.com/en-us/dotnet/api/system.reflection.emit.ilgenerator), but with some unique features.
 
 ## Features
 
 1. Fluent and convenient API.
-2. Tracing generated code.
-3. Validation for stack size.
-4. Scopes to optimize local variables usage.
-5. Automatic usage of short versions of instructions.
-6. Optimization on `Callvirt` and `Call` usage.
-7. Set of useful helpers.
-8. Functional programming style.
+1. Tracing generated code.
+1. Validation for stack size.
+1. Set of useful helpers.
+1. Functional programming style.
 
 ## Why create another wrapper?
 
 1. Learning purposes.
-2. Full control on code emission.
-3. Just for fun.
-
-## How to use?
-
-``` sh
-git submodule add https://github.com/sgaliamov/illuminator.git external/illuminator
-```
-
-No package for now because **it's not production ready**.
+1. Full control on code emission.
+1. Just for fun.

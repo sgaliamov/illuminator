@@ -31,6 +31,8 @@ namespace Illuminator
             output =
             {{- end -}}
             _il.{{ method.name }}({{ method.arguments | array.join "", "" }});
+            {{- message = 'nameof(' + method.name + ')' }}
+            _logger?.Log({{ method.arguments | array.insert_at 0 message | array.join "", "" }});
 
             return this;
         }

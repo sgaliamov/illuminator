@@ -16,6 +16,7 @@ namespace Illuminator
         {
             ValidateLabel(loc);
             _il.MarkLabel(loc);
+            _logger?.Log(nameof(MarkLabel), loc);
 
             return this;
         }

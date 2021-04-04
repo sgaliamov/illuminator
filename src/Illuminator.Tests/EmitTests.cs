@@ -2,6 +2,7 @@ using System;
 using System.Reflection.Emit;
 using FluentAssertions;
 using Illuminator.Exceptions;
+using Illuminator.Logger;
 using Xunit;
 using static Illuminator.Functions;
 
@@ -38,7 +39,7 @@ namespace Illuminator.Tests
         {
             var target = new DynamicMethod("test", typeof(float[]), null)
                          .GetILGenerator()
-                         .UseIlluminator()
+                         .UseIlluminator(new DebugLogger())
                          .DeclareLocal<float[]>(out var array)
                          .Stloc(Newarr(Ldc_I4_1(), typeof(float)), array)
                          .Stelem_R4(

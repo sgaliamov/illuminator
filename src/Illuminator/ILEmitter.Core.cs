@@ -2,23 +2,24 @@
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using Illuminator.Logger;
 
 namespace Illuminator
 {
-    // todo: interface at the end
     // Manual wrappers over ILGenerator methods that cannot be generated, inducing calls.
     public sealed partial class ILEmitter
     {
         private const BindingFlags PrivateFieldBindingFlags = BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance;
         private readonly ILGenerator _il;
+        private readonly ILogger? _logger;
         private readonly MethodInfo _methodBuilder;
 
-        public ILEmitter(in ILGenerator il)
+        public ILEmitter(in ILGenerator il, ILogger? logger = null)
         {
             _il = il ?? throw new ArgumentNullException(nameof(il));
-            _methodBuilder = (MethodInfo)typeof(ILGenerator)
-                                         .GetField("m_methodBuilder", PrivateFieldBindingFlags)!
-                                         .GetValue(_il);
+            _logger = logger;
+            _methodBuilder =
+                (MethodInfo)typeof(ILGenerator).GetField("m_methodBuilder", PrivateFieldBindingFlags)!.GetValue(_il);
         }
 
         /// <summary>

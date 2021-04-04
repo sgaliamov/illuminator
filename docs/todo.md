@@ -19,3 +19,4 @@
 1. Use ISymbolDocumentWriter.
 1. Interface.
 1. Implementation for unmanaged Calli. Need 2.1 support.
+1. What faster - use NullLogger or check for null?

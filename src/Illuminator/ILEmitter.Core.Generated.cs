@@ -21,6 +21,7 @@ namespace Illuminator
         public ILEmitter BeginCatchBlock(in Type exceptionType)
         {
             _il.BeginCatchBlock(exceptionType);
+            _logger?.Log(nameof(BeginCatchBlock), exceptionType);
 
             return this;
         }
@@ -31,6 +32,7 @@ namespace Illuminator
         public ILEmitter BeginExceptFilterBlock()
         {
             _il.BeginExceptFilterBlock();
+            _logger?.Log(nameof(BeginExceptFilterBlock));
 
             return this;
         }
@@ -41,6 +43,7 @@ namespace Illuminator
         public ILEmitter BeginExceptionBlock(out Label output)
         {
             output =_il.BeginExceptionBlock();
+            _logger?.Log(nameof(BeginExceptionBlock));
 
             return this;
         }
@@ -51,6 +54,7 @@ namespace Illuminator
         public ILEmitter BeginFaultBlock()
         {
             _il.BeginFaultBlock();
+            _logger?.Log(nameof(BeginFaultBlock));
 
             return this;
         }
@@ -61,6 +65,7 @@ namespace Illuminator
         public ILEmitter BeginFinallyBlock()
         {
             _il.BeginFinallyBlock();
+            _logger?.Log(nameof(BeginFinallyBlock));
 
             return this;
         }
@@ -71,6 +76,7 @@ namespace Illuminator
         public ILEmitter BeginScope()
         {
             _il.BeginScope();
+            _logger?.Log(nameof(BeginScope));
 
             return this;
         }
@@ -81,6 +87,7 @@ namespace Illuminator
         public ILEmitter DeclareLocal(in Type localType, out LocalBuilder output)
         {
             output =_il.DeclareLocal(localType);
+            _logger?.Log(nameof(DeclareLocal), localType);
 
             return this;
         }
@@ -91,6 +98,7 @@ namespace Illuminator
         public ILEmitter DeclareLocal(in Type localType, in Boolean pinned, out LocalBuilder output)
         {
             output =_il.DeclareLocal(localType, pinned);
+            _logger?.Log(nameof(DeclareLocal), localType, pinned);
 
             return this;
         }
@@ -101,6 +109,7 @@ namespace Illuminator
         public ILEmitter DefineLabel(out Label output)
         {
             output =_il.DefineLabel();
+            _logger?.Log(nameof(DefineLabel));
 
             return this;
         }
@@ -111,6 +120,7 @@ namespace Illuminator
         public ILEmitter EmitWriteLine(in String value)
         {
             _il.EmitWriteLine(value);
+            _logger?.Log(nameof(EmitWriteLine), value);
 
             return this;
         }
@@ -121,6 +131,7 @@ namespace Illuminator
         public ILEmitter EmitWriteLine(in LocalBuilder localBuilder)
         {
             _il.EmitWriteLine(localBuilder);
+            _logger?.Log(nameof(EmitWriteLine), localBuilder);
 
             return this;
         }
@@ -131,6 +142,7 @@ namespace Illuminator
         public ILEmitter EmitWriteLine(in FieldInfo fld)
         {
             _il.EmitWriteLine(fld);
+            _logger?.Log(nameof(EmitWriteLine), fld);
 
             return this;
         }
@@ -141,6 +153,7 @@ namespace Illuminator
         public ILEmitter EndExceptionBlock()
         {
             _il.EndExceptionBlock();
+            _logger?.Log(nameof(EndExceptionBlock));
 
             return this;
         }
@@ -151,6 +164,7 @@ namespace Illuminator
         public ILEmitter EndScope()
         {
             _il.EndScope();
+            _logger?.Log(nameof(EndScope));
 
             return this;
         }
@@ -161,6 +175,7 @@ namespace Illuminator
         public ILEmitter ThrowException(in Type excType)
         {
             _il.ThrowException(excType);
+            _logger?.Log(nameof(ThrowException), excType);
 
             return this;
         }
@@ -171,6 +186,7 @@ namespace Illuminator
         public ILEmitter UsingNamespace(in String usingNamespace)
         {
             _il.UsingNamespace(usingNamespace);
+            _logger?.Log(nameof(UsingNamespace), usingNamespace);
 
             return this;
         }

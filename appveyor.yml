@@ -18,6 +18,7 @@ before_build:
     if ($env:APPVEYOR_REPO_TAG -eq $false) {
         Set-AppveyorBuildVariable -Name Configuration -Value debug
     }
+
 dotnet_csproj:
   patch: true
   file: src\Illuminator\Illuminator.csproj
@@ -30,6 +31,7 @@ build_script:
 - pwsh: |
     Get-ChildItem Env: | Sort Name
     .\scripts\build.ps1 -c $env:CONFIGURATION -p -t
+
 test_script:
 - pwsh: |
     if ($env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH) {

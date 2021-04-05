@@ -85,8 +85,7 @@ namespace Illuminator.Tests
         }
 
         [Fact]
-        public void Callvirt_on_static_method_should_not_work()
-        {
+        public void Callvirt_on_static_method_should_not_work() =>
             Assert.Throws<IlluminatorException>(
                 () => new DynamicMethod("test", typeof(double), null)
                       .GetILGenerator()
@@ -95,7 +94,6 @@ namespace Illuminator.Tests
                       .Callvirt(TestClass.DoubleFooMethodInfo, TestClass.DoubleFooMethodInfo.GetParameterTypes())
                       .Ret()
                       .CreateDelegate<Func<double>>());
-        }
 
         [Fact]
         public void Callvirt_uses_overridden_method()

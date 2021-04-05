@@ -7,7 +7,7 @@ using Illuminator.Logger;
 namespace Illuminator
 {
     // Manual wrappers over ILGenerator methods that cannot be generated, inducing calls.
-    public sealed partial class ILEmitter
+    public sealed partial class ILEmitter : IDisposable
     {
         private const BindingFlags PrivateFieldBindingFlags = BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance;
         private readonly ILGenerator _il;
@@ -20,6 +20,8 @@ namespace Illuminator
             _logger = logger;
             _methodBuilder =
                 (MethodInfo)typeof(ILGenerator).GetField("m_methodBuilder", PrivateFieldBindingFlags)!.GetValue(_il);
+
+            LocalsScope();
         }
 
         /// <summary>
@@ -35,6 +37,12 @@ namespace Illuminator
             VerifyStackIsEmpty();
 
             return (T)_methodBuilder.CreateDelegate(typeof(T));
+        }
+        
+        public void Dispose()
+        {
+            _scopes.Pop();
+            VerifyStackIsEmpty();
         }
     }
 }

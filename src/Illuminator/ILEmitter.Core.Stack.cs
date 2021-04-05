@@ -9,7 +9,7 @@ using Illuminator.Exceptions;
 namespace Illuminator
 {
     // Tracking state of the stack.
-    public sealed partial class ILEmitter : IDisposable
+    public sealed partial class ILEmitter
     {
         private const string AnyType = "ANY";
         private const string IntType = "I4";
@@ -26,8 +26,6 @@ namespace Illuminator
         };
 
         private readonly Stack<string> _stack = new();
-
-        public void Dispose() => VerifyStackIsEmpty();
 
         private void VerifyStackIsEmpty()
         {

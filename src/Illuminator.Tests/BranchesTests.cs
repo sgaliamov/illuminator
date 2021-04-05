@@ -82,12 +82,12 @@ namespace Illuminator.Tests
               .MarkLabel(out var begin)
               .Bge_S(Ldloc(index), Ldc_I4(10), exit);
 
-            for (var i = 0; i < 30; i++) {
+            for (var i = 0; i < 29; i++) {
                 il.Add(Ldloc(index), Ldc_I4_1())
                   .Stloc(index);
             }
 
-            il.Nop();
+            il.Nop().Nop();
 
             var target =
                 il.Br_S(begin)

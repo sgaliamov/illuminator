@@ -150,7 +150,7 @@ namespace Illuminator
                     return;
                 }
 
-                foreach (var type in _counter.Keys) {
+                foreach (var type in new List<Type>(_counter.Keys)) {
                     _counter[type] = _state.TryGetValue(type, out var count) ? count : 0;
                 }
 

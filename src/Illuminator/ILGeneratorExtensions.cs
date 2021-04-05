@@ -1,5 +1,4 @@
 ﻿using System.Reflection.Emit;
-using Illuminator.Logger;
 
 namespace Illuminator
 {
@@ -15,8 +14,8 @@ namespace Illuminator
 
         public static ILEmitter UseIlluminator(
             this ILGenerator self,
-            ILogger logger,
+            bool enableDebugLogger,
             params ILEmitterFunc[] funcs) =>
-            new ILEmitter(self, logger).Emit(funcs);
+            new ILEmitter(self, enableDebugLogger).Emit(funcs);
     }
 }

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -19,6 +19,17 @@
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>S. Galiamov</Authors>
+    <Description>Yet another wrapper around ILGenerator.</Description>
+    <Owners>S. Galiamov</Owners>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/sgaliamov/illuminator</PackageProjectUrl>
+    <PackageTags>MSIL, IL, ILGenerator, Runtime-Code-Generation, Reflection</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/sgaliamov/illuminator.git</RepositoryUrl>
   </PropertyGroup>
 
 </Project>

@@ -35,12 +35,12 @@ namespace Illuminator
             {{~ if method.validate_jump ~}}
             ValidateJump(label);
             {{~ end ~}}
-            _il.Emit(OpCodes.{{ method.arguments | array.insert_at 0 method.name | array.join "", "" }});
-            {{- message = 'nameof(' + method.name + ')' }}
-            _logger?.Log({{ method.arguments | array.insert_at 0 message | array.join "", "" }});
             {{~ if method.pushes | !string.empty ~}}
             Push({{ method.pushes }});
             {{~ end ~}}
+            {{- message = 'OpCodes.' + method.name }}
+            _logger?.Log({{ method.arguments | array.insert_at 0 message | array.join "", "" }});
+            _il.Emit(OpCodes.{{ method.arguments | array.insert_at 0 method.name | array.join "", "" }});
 
             return this;
         }

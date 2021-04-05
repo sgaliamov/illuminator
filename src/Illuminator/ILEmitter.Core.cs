@@ -2,24 +2,29 @@
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using Illuminator.Logger;
 
 namespace Illuminator
 {
     // Manual wrappers over ILGenerator methods that cannot be generated, inducing calls.
-    public sealed partial class ILEmitter
+    public sealed partial class ILEmitter : IDisposable
     {
         private const BindingFlags PrivateFieldBindingFlags = BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance;
         private readonly ILGenerator _il;
-        private readonly ILogger? _logger;
         private readonly MethodInfo _methodBuilder;
+        private readonly DebugLogger? _logger;
 
-        public ILEmitter(in ILGenerator il, ILogger? logger = null)
+        public ILEmitter(in ILGenerator il, bool enableDebugLogger = false)
         {
             _il = il ?? throw new ArgumentNullException(nameof(il));
-            _logger = logger;
+
             _methodBuilder =
-                (MethodInfo)typeof(ILGenerator).GetField("m_methodBuilder", PrivateFieldBindingFlags)!.GetValue(_il);
+                (MethodInfo)typeof(ILGenerator)
+                            .GetField("m_methodBuilder", PrivateFieldBindingFlags)
+                            ?.GetValue(_il)!;
+
+            _logger = enableDebugLogger ? new DebugLogger(this) : null;
+
+            _globalScope = LocalsScope();
         }
 
         /// <summary>
@@ -32,9 +37,16 @@ namespace Illuminator
         /// <returns>The delegate for this method.</returns>
         public T CreateDelegate<T>() where T : Delegate
         {
-            VerifyStackIsEmpty();
+            Dispose();
 
             return (T)_methodBuilder.CreateDelegate(typeof(T));
+        }
+
+        public void Dispose()
+        {
+            _logger?.Flush();
+            CloseScopes();
+            VerifyStackIsEmpty();
         }
     }
 }

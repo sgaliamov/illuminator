@@ -28,7 +28,7 @@ namespace Illuminator
 
             // op code is not calculated because it will change API and sometimes you may want to call a virtual method with Call code.
             _il.EmitCall(opcode, methodInfo, optionalParameterTypes);
-            _logger?.Log(nameof(EmitCall), opcode, methodInfo, parameterTypes, optionalParameterTypes);
+            _logger?.Log(opcode, methodInfo, parameterTypes, optionalParameterTypes);
 
             Push(methodInfo.ReturnType);
 
@@ -54,11 +54,12 @@ namespace Illuminator
             }
 
             _il.EmitCalli(OpCodes.Calli, callingConventions, returnType, parameterTypes, optionalParameterTypes);
-            _logger?.Log(nameof(EmitCalli), callingConventions, returnType, parameterTypes, optionalParameterTypes);
 
             if (returnType != null) {
                 Push(returnType);
             }
+
+            _logger?.Log(OpCodes.Calli, callingConventions, returnType, parameterTypes, optionalParameterTypes);
 
             return this;
         }
@@ -75,9 +76,10 @@ namespace Illuminator
             }
 
             _il.Emit(OpCodes.Call, methodInfo);
-            _logger?.Log(nameof(Call), methodInfo, parameterTypes);
 
             Push(methodInfo.ReturnType);
+
+            _logger?.Log(OpCodes.Call, methodInfo, parameterTypes);
 
             return this;
         }
@@ -94,7 +96,8 @@ namespace Illuminator
             }
 
             _il.Emit(OpCodes.Call, constructorInfo);
-            _logger?.Log(nameof(Call), constructorInfo, parameterTypes);
+
+            _logger?.Log(OpCodes.Call, constructorInfo, parameterTypes);
 
             return this;
         }
@@ -111,9 +114,9 @@ namespace Illuminator
             Pop(methodInfo.DeclaringType!);
 
             _il.Emit(OpCodes.Callvirt, methodInfo);
-            _logger?.Log(nameof(Callvirt), methodInfo, parameterTypes);
 
             Push(methodInfo.ReturnType);
+            _logger?.Log(OpCodes.Callvirt, methodInfo, parameterTypes);
 
             return this;
         }
@@ -131,9 +134,10 @@ namespace Illuminator
             Pop(parameterTypes?.Reverse().ToArray());
 
             _il.Emit(OpCodes.Newobj, constructorInfo);
-            _logger?.Log(nameof(Newobj), constructorInfo, parameterTypes);
 
             Push(constructorInfo.DeclaringType!);
+
+            _logger?.Log(OpCodes.Newobj, constructorInfo, parameterTypes);
 
             return this;
         }
@@ -145,14 +149,14 @@ namespace Illuminator
         public ILEmitter Ret()
         {
             _il.Emit(OpCodes.Ret);
-            _logger?.Log(nameof(Ret));
 
             if (_methodBuilder.ReturnType == typeof(void)) {
                 VerifyStackIsEmpty();
-                return this;
+            } else {
+                Pop(_methodBuilder.ReturnType);
             }
 
-            Pop(_methodBuilder.ReturnType);
+            _logger?.Log(OpCodes.Ret);
 
             return this;
         }

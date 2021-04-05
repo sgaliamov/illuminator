@@ -85,8 +85,7 @@ namespace Illuminator.Tests
         }
 
         [Fact]
-        public void Callvirt_on_static_method_should_not_work()
-        {
+        public void Callvirt_on_static_method_should_not_work() =>
             Assert.Throws<IlluminatorException>(
                 () => new DynamicMethod("test", typeof(double), null)
                       .GetILGenerator()
@@ -95,7 +94,6 @@ namespace Illuminator.Tests
                       .Callvirt(TestClass.DoubleFooMethodInfo, TestClass.DoubleFooMethodInfo.GetParameterTypes())
                       .Ret()
                       .CreateDelegate<Func<double>>());
-        }
 
         [Fact]
         public void Callvirt_uses_overridden_method()
@@ -219,13 +217,13 @@ namespace Illuminator.Tests
                                   typeof(string),
                                   TestClass.VarArgFooMethodInfo.GetParameterTypes(),
                                   new[] { typeof(string), typeof(int), typeof(float) },
+                                  Ldftn(TestClass.VarArgFooMethodInfo), // method to call
                                   Ldarg_0(), // this
                                   Box(Ldc_I8(2), typeof(long)),
                                   Ldstr("_str"),
                                   Ldstr("_var"),
                                   Ldc_I4_1(),
-                                  Ldc_R4(3),
-                                  Ldftn(TestClass.VarArgFooMethodInfo) // method to call
+                                  Ldc_R4(3)
                               ))
                          .CreateDelegate<Func<TestClass, string>>();
 
@@ -245,8 +243,8 @@ namespace Illuminator.Tests
                                      typeof(long),
                                      TestClass.LongFooMethodInfo.GetParameterTypes(),
                                      null,
-                                     Ldc_I8(1),
-                                     Ldftn(TestClass.LongFooMethodInfo))))
+                                     Ldftn(TestClass.LongFooMethodInfo),
+                                     Ldc_I8(1))))
                          .CreateDelegate<Func<long>>();
 
             var actual = target();

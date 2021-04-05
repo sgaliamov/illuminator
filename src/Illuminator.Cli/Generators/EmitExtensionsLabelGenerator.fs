@@ -14,7 +14,7 @@ let private template = @"
 
 using System.Reflection.Emit;
 
-namespace Illuminator.Extensions
+namespace Illuminator
 {
     // Extensions for label methods.
     public static partial class ILEmitterExtensions

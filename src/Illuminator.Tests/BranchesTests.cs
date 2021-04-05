@@ -2,7 +2,6 @@
 using System.Reflection.Emit;
 using FluentAssertions;
 using Illuminator.Exceptions;
-using Illuminator.Extensions;
 using Xunit;
 using static Illuminator.Functions;
 
@@ -75,7 +74,7 @@ namespace Illuminator.Tests
         {
             using var il = new DynamicMethod("test", typeof(bool), null)
                            .GetILGenerator()
-                           .UseIlluminator();
+                           .UseIlluminator(true);
 
             il.DeclareLocal<int>(out var index)
               .DefineLabel(out var exit)

@@ -25,14 +25,18 @@ namespace Illuminator
         /// <summary>
         ///     {{ method.description }}
         /// </summary>
-        public ILEmitter {{ method.name }}({{ method.parameters | array.join "", "" }})
+        public ILEmitter {{ method.name }}({{ method.parameters | array.join ', ' }})
         {
             {{ if method.has_output -}}
             output =
             {{- end -}}
-            _il.{{ method.name }}({{ method.arguments | array.join "", "" }});
+            _il.{{ method.name }}({{ method.arguments | array.join ', ' }});
             {{- message = 'nameof(' + method.name + ')' }}
-            _logger?.Log({{ method.arguments | array.insert_at 0 message | array.join "", "" }});
+            {{- log_args = method.arguments | array.insert_at 0 message }}
+            {{- if method.has_output
+                    log_args = log_args | array.add 'output'
+                end }}
+            _logger?.Log({{ log_args | array.join ', ' }});
 
             return this;
         }

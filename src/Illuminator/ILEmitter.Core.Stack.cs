@@ -9,7 +9,7 @@ using Illuminator.Exceptions;
 namespace Illuminator
 {
     // Tracking state of the stack.
-    public sealed partial class ILEmitter : IDisposable
+    public sealed partial class ILEmitter
     {
         private const string AnyType = "ANY";
         private const string IntType = "I4";
@@ -25,28 +25,33 @@ namespace Illuminator
             [typeof(double)] = DoubleType
         };
 
+        /// <summary>
+        ///     Variables stack.
+        /// </summary>
         private readonly Stack<string> _stack = new();
 
-        public void Dispose() => VerifyStackIsEmpty();
+        private string StackToString() => string.Join(", ", _stack);
 
         private void VerifyStackIsEmpty()
         {
             DebugVerifyStackSize();
 
             if (_stack.Count != 0) {
-                throw new IlluminatorStackException($"Stack should be empty: [{string.Join(", ", _stack)}]");
+                throw new IlluminatorStackException($"Stack should be empty: [{StackToString()}]");
             }
         }
 
         [Conditional("DEBUG")]
         private void DebugVerifyStackSize()
         {
-            var maxMidStackCur = (int)typeof(ILGenerator)
-                .GetField("m_maxMidStackCur", PrivateFieldBindingFlags)!.GetValue(_il);
+            var maxMidStackCur =
+                (int)typeof(ILGenerator)
+                     .GetField("m_maxMidStackCur", PrivateFieldBindingFlags)
+                     ?.GetValue(_il)!;
 
             if (_stack.Count != maxMidStackCur) {
                 throw new IlluminatorStackException(
-                    $"Stack size does not match to ILGenerator stack. [{string.Join(", ", _stack)}].");
+                    $"Stack size does not match to ILGenerator stack. [{StackToString()}].");
             }
         }
 

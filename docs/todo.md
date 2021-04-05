@@ -7,7 +7,6 @@ Examples in readme file.
 1. Generic methods for core, emit, and functional.
 1. Typed local variables (int, long, float, double).
 1. Normal xml documentation.
-1. Scopes to optimize local variables usage.
 1. v1 release.
 
 ## Nice to have

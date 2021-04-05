@@ -146,6 +146,10 @@ namespace Illuminator
             /// </summary>
             public void Dispose()
             {
+                if (_scopes.Count == 0) {
+                    return;
+                }
+
                 foreach (var type in _counter.Keys) {
                     _counter[type] = _state.TryGetValue(type, out var count) ? count : 0;
                 }

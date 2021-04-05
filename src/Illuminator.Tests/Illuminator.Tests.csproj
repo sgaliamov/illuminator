@@ -2,11 +2,15 @@
 
   <PropertyGroup>
     <TargetFrameworks Condition="'$(Configuration)'=='Debug'">net5.0</TargetFrameworks>
-    <TargetFrameworks Condition="'$(Configuration)'=='Release'">netcoreapp2.2;netcoreapp3.1;net5.0</TargetFrameworks>
+    <TargetFrameworks Condition="'$(Configuration)'=='Release'">netcoreapp3.1;net5.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Condition="'$(TargetFrameworks)'=='net5.0'" Remove="NetCoreApp3.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.10.3" />

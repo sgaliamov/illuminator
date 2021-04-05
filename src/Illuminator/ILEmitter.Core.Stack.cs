@@ -44,8 +44,10 @@ namespace Illuminator
         [Conditional("DEBUG")]
         private void DebugVerifyStackSize()
         {
-            var maxMidStackCur = (int)typeof(ILGenerator)
-                .GetField("m_maxMidStackCur", PrivateFieldBindingFlags)!.GetValue(_il);
+            var maxMidStackCur =
+                (int)typeof(ILGenerator)
+                     .GetField("m_maxMidStackCur", PrivateFieldBindingFlags)
+                     ?.GetValue(_il)!;
 
             if (_stack.Count != maxMidStackCur) {
                 throw new IlluminatorStackException(

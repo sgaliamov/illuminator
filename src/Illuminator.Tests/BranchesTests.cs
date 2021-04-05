@@ -2,7 +2,6 @@
 using System.Reflection.Emit;
 using FluentAssertions;
 using Illuminator.Exceptions;
-using Illuminator.Extensions;
 using Xunit;
 using static Illuminator.Functions;
 

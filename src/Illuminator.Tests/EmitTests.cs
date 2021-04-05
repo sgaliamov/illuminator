@@ -50,27 +50,27 @@ namespace Illuminator.Tests
         [Fact]
         public void Verify_locals_scopes()
         {
-           using var il = new DynamicMethod("test", typeof(int), null)
-                     .GetILGenerator()
-                     .UseIlluminator(true);
+            using var il = new DynamicMethod("test", typeof(int), null)
+                           .GetILGenerator()
+                           .UseIlluminator(true);
 
-           il.DeclareLocal<int>(out var result);
+            il.DeclareLocal<int>(out var result);
 
-           for (int i = 0; i < 3; i++) {
-               using (il.LocalsScope()) {
-                   il.DeclareLocal<int>(out var value)
-                     .Stloc(Ldc_I4_1(), value)
-                     .Add(Ldloc(value), Ldloc(result))
-                     .Stloc(result);
-               }    
-           }
+            for (var i = 0; i < 3; i++) {
+                using (il.LocalsScope()) {
+                    il.DeclareLocal<int>(out var value)
+                      .Stloc(Ldc_I4_1(), value)
+                      .Add(Ldloc(value), Ldloc(result))
+                      .Stloc(result);
+                }
+            }
 
-           il.Ldloc(result)
-             .Ret();
+            il.Ldloc(result)
+              .Ret();
 
-           var target = il.CreateDelegate<Func<int>>();
+            var target = il.CreateDelegate<Func<int>>();
 
-           target().Should().Be(3);
+            target().Should().Be(3);
         }
     }
 }

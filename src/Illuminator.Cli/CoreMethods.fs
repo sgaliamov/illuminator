@@ -13,6 +13,7 @@ let CallMethods = [
 /// Core methods for manual implementation.
 let private Exclude = 
     CallMethods @ [
+        "DeclareLocal"
         "Equals"
         "GetHashCode"
         "GetType"

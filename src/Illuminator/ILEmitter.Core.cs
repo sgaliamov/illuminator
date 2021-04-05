@@ -18,10 +18,9 @@ namespace Illuminator
         {
             _il = il ?? throw new ArgumentNullException(nameof(il));
             _logger = logger;
-            _methodBuilder =
-                (MethodInfo)typeof(ILGenerator).GetField("m_methodBuilder", PrivateFieldBindingFlags)!.GetValue(_il);
-
-            LocalsScope();
+            _methodBuilder = (MethodInfo)typeof(ILGenerator)
+                .GetField("m_methodBuilder", PrivateFieldBindingFlags)!.GetValue(_il);
+            _globalScope = LocalsScope();
         }
 
         /// <summary>
@@ -34,14 +33,15 @@ namespace Illuminator
         /// <returns>The delegate for this method.</returns>
         public T CreateDelegate<T>() where T : Delegate
         {
+            CloseScopes();
             VerifyStackIsEmpty();
 
             return (T)_methodBuilder.CreateDelegate(typeof(T));
         }
-        
+
         public void Dispose()
         {
-            _scopes.Pop();
+            CloseScopes();
             VerifyStackIsEmpty();
         }
     }

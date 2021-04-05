@@ -82,28 +82,6 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.DeclareLocal(Type)"/>.
-        /// </summary>
-        public ILEmitter DeclareLocal(in Type localType, out LocalBuilder output)
-        {
-            output =_il.DeclareLocal(localType);
-            _logger?.Log(nameof(DeclareLocal), localType);
-
-            return this;
-        }
-
-        /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.DeclareLocal(Type, Boolean)"/>.
-        /// </summary>
-        public ILEmitter DeclareLocal(in Type localType, in Boolean pinned, out LocalBuilder output)
-        {
-            output =_il.DeclareLocal(localType, pinned);
-            _logger?.Log(nameof(DeclareLocal), localType, pinned);
-
-            return this;
-        }
-
-        /// <summary>
         ///     Wrapper over <see cref="ILGenerator.DefineLabel()"/>.
         /// </summary>
         public ILEmitter DefineLabel(out Label output)

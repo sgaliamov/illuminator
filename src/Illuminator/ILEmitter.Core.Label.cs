@@ -27,12 +27,9 @@ namespace Illuminator
 
         private LabelInfo GetLabelInfo(Label loc)
         {
-            if (_labelInfos.TryGetValue(loc, out var info)) {
-                return info;
+            if (!_labelInfos.TryGetValue(loc, out var info)) {
+                _labelInfos[loc] = info = new LabelInfo();
             }
-
-            info = new LabelInfo();
-            _labelInfos.Add(loc, info);
 
             return info;
         }

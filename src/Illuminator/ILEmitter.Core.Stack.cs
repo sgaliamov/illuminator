@@ -25,6 +25,9 @@ namespace Illuminator
             [typeof(double)] = DoubleType
         };
 
+        /// <summary>
+        ///     Variables stack.
+        /// </summary>
         private readonly Stack<string> _stack = new();
 
         private void VerifyStackIsEmpty()

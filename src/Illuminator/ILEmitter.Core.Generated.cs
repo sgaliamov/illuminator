@@ -43,7 +43,7 @@ namespace Illuminator
         public ILEmitter BeginExceptionBlock(out Label output)
         {
             output =_il.BeginExceptionBlock();
-            _logger?.Log(nameof(BeginExceptionBlock));
+            _logger?.Log(nameof(BeginExceptionBlock), output);
 
             return this;
         }
@@ -87,7 +87,7 @@ namespace Illuminator
         public ILEmitter DefineLabel(out Label output)
         {
             output =_il.DefineLabel();
-            _logger?.Log(nameof(DefineLabel));
+            _logger?.Log(nameof(DefineLabel), output);
 
             return this;
         }

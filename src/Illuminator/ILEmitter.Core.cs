@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using Illuminator.Logger;
 
 namespace Illuminator
 {
@@ -11,15 +10,18 @@ namespace Illuminator
     {
         private const BindingFlags PrivateFieldBindingFlags = BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance;
         private readonly ILGenerator _il;
-        private readonly ILogger? _logger;
         private readonly MethodInfo _methodBuilder;
+        private readonly DebugLogger? _logger;
 
-        public ILEmitter(in ILGenerator il, ILogger? logger = null)
+        public ILEmitter(in ILGenerator il, bool enableDebugLogger = false)
         {
             _il = il ?? throw new ArgumentNullException(nameof(il));
-            _logger = logger;
+
             _methodBuilder = (MethodInfo)typeof(ILGenerator)
                 .GetField("m_methodBuilder", PrivateFieldBindingFlags)!.GetValue(_il);
+
+            _logger = enableDebugLogger ? new DebugLogger(this) : null;
+
             _globalScope = LocalsScope();
         }
 
@@ -33,14 +35,14 @@ namespace Illuminator
         /// <returns>The delegate for this method.</returns>
         public T CreateDelegate<T>() where T : Delegate
         {
-            CloseScopes();
-            VerifyStackIsEmpty();
+            Dispose();
 
             return (T)_methodBuilder.CreateDelegate(typeof(T));
         }
 
         public void Dispose()
         {
+            _logger?.Flush();
             CloseScopes();
             VerifyStackIsEmpty();
         }

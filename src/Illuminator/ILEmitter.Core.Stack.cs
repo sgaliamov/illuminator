@@ -30,12 +30,14 @@ namespace Illuminator
         /// </summary>
         private readonly Stack<string> _stack = new();
 
+        private string StackToString() => string.Join(", ", _stack);
+
         private void VerifyStackIsEmpty()
         {
             DebugVerifyStackSize();
 
             if (_stack.Count != 0) {
-                throw new IlluminatorStackException($"Stack should be empty: [{string.Join(", ", _stack)}]");
+                throw new IlluminatorStackException($"Stack should be empty: [{StackToString()}]");
             }
         }
 
@@ -47,7 +49,7 @@ namespace Illuminator
 
             if (_stack.Count != maxMidStackCur) {
                 throw new IlluminatorStackException(
-                    $"Stack size does not match to ILGenerator stack. [{string.Join(", ", _stack)}].");
+                    $"Stack size does not match to ILGenerator stack. [{StackToString()}].");
             }
         }
 

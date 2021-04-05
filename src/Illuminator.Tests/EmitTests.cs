@@ -2,7 +2,6 @@ using System;
 using System.Reflection.Emit;
 using FluentAssertions;
 using Illuminator.Exceptions;
-using Illuminator.Logger;
 using Xunit;
 using static Illuminator.Functions;
 
@@ -35,7 +34,7 @@ namespace Illuminator.Tests
         {
             var target = new DynamicMethod("test", typeof(float[]), null)
                          .GetILGenerator()
-                         .UseIlluminator(new DebugLogger())
+                         .UseIlluminator()
                          .DeclareLocal<float[]>(out var array)
                          .Stloc(Newarr(Ldc_I4_1(), typeof(float)), array)
                          .Stelem_R4(
@@ -46,6 +45,32 @@ namespace Illuminator.Tests
                          .CreateDelegate<Func<float[]>>();
 
             target().Should().BeEquivalentTo(1.1f);
+        }
+
+        [Fact]
+        public void Verify_locals_scopes()
+        {
+           using var il = new DynamicMethod("test", typeof(int), null)
+                     .GetILGenerator()
+                     .UseIlluminator(true);
+
+           il.DeclareLocal<int>(out var result);
+
+           for (int i = 0; i < 3; i++) {
+               using (il.LocalsScope()) {
+                   il.DeclareLocal<int>(out var value)
+                     .Stloc(Ldc_I4_1(), value)
+                     .Add(Ldloc(value), Ldloc(result))
+                     .Stloc(result);
+               }    
+           }
+
+           il.Ldloc(result)
+             .Ret();
+
+           var target = il.CreateDelegate<Func<int>>();
+
+           target().Should().Be(3);
         }
     }
 }

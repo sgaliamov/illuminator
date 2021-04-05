@@ -27,10 +27,18 @@ namespace Illuminator
             in Type? returnType = null,
             in Type[]? parameterTypes = null,
             in Type[]? optionalParameterTypes = null,
-            params ILEmitterFunc[] parameters) =>
-            parameters
-                .Aggregate(self, (il, func) => func(il))
-                .EmitCalli(callingConvention, returnType, parameterTypes, optionalParameterTypes);
+            in ILEmitterFunc? method = null,
+            params ILEmitterFunc[] parameters)
+        {
+            var il = parameters
+                .Aggregate(self, (emitter, func) => func(emitter));
+
+            if (method != null) {
+                il.Emit(method);
+            }
+
+            return il.EmitCalli(callingConvention, returnType, parameterTypes, optionalParameterTypes);
+        }
 
         public static ILEmitter Call(
             this ILEmitter self,

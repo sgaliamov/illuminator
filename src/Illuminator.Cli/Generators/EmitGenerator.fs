@@ -36,7 +36,7 @@ namespace Illuminator
             ValidateJump(label);
             {{~ end ~}}
             _il.Emit(OpCodes.{{ method.arguments | array.insert_at 0 method.name | array.join "", "" }});
-            {{- message = 'nameof(' + method.name + ')' }}
+            {{- message = 'OpCodes.' + method.name }}
             _logger?.Log({{ method.arguments | array.insert_at 0 message | array.join "", "" }});
             {{~ if method.pushes | !string.empty ~}}
             Push({{ method.pushes }});

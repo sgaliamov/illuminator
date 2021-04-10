@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -8,19 +10,19 @@ namespace Illuminator
     // Debug logger.
     public sealed partial class ILEmitter
     {
-        private sealed class DebugLogger
+        private sealed class TraceLogger
         {
             private readonly ILEmitter _owner;
             private readonly StringBuilder _log = new();
 
-            public DebugLogger(ILEmitter owner) => _owner = owner;
+            public TraceLogger(ILEmitter owner) => _owner = owner;
 
             public void Log(in string message, params object?[] args) =>
-                _log.AppendLine($"\t{message} {string.Join(" ", args.Select(x => ToString(x)))}");
+                _log.AppendLine($"\t{message} {Join(args)}");
 
             public void Log(in OpCode code, params object?[] args)
             {
-                string message = $".{code} {string.Join(" ", args.Select(x => ToString(x)))}";
+                string message = $".{code} {Join(args)}";
                 _log.AppendFormat(
                     "\t\t{0,3}: {1,-50} | {2}\n",
                     _owner._il.ILOffset,
@@ -51,15 +53,35 @@ namespace Illuminator
 
                 _log.Insert(0, $"{_owner._methodBuilder}\n");
 
-                Debug.WriteLine(_log.ToString().TrimEnd());
+                Trace.WriteLine(_log.ToString().TrimEnd());
                 _log.Clear();
             }
+
+            private static string Join<T>(IEnumerable<T> args) =>
+                string.Join(
+                    " ",
+                    args.Select(x => {
+                        var str = ToString(x);
+
+                        return string.IsNullOrWhiteSpace(str)
+                            ? "NONE" // todo: test or remove
+                            : str;
+                    }));
 
             private static string? ToString(in object? value) =>
                 value switch {
                     Label label => $"Label_{label.GetHashCode()}",
+                    string str => str,
+                    IEnumerable enumerable => Join(ToString(enumerable)),
                     _ => value?.ToString()
                 };
+
+            private static IEnumerable<string?> ToString(IEnumerable enumerable)
+            {
+                foreach (var item in enumerable) {
+                    yield return ToString(item);
+                }
+            }
         }
     }
 }

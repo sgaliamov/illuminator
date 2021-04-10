@@ -11,9 +11,9 @@ namespace Illuminator
         private const BindingFlags PrivateFieldBindingFlags = BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance;
         private readonly ILGenerator _il;
         private readonly MethodInfo _methodBuilder;
-        private readonly DebugLogger? _logger;
+        private readonly TraceLogger? _logger;
 
-        public ILEmitter(in ILGenerator il, bool enableDebugLogger = false)
+        public ILEmitter(in ILGenerator il, bool enableTraceLogger = false)
         {
             _il = il ?? throw new ArgumentNullException(nameof(il));
 
@@ -22,7 +22,7 @@ namespace Illuminator
                             .GetField("m_methodBuilder", PrivateFieldBindingFlags)
                             ?.GetValue(_il)!;
 
-            _logger = enableDebugLogger ? new DebugLogger(this) : null;
+            _logger = enableTraceLogger ? new TraceLogger(this) : null;
 
             _globalScope = LocalsScope();
         }

@@ -7,6 +7,8 @@ namespace Illuminator
     // Manual functions for call methods.
     public static partial class Functions
     {
+        public static ILEmitterFunc Emit(params ILEmitterFunc[] funcs) => (in ILEmitter il) => il.Emit(funcs);
+
         public static ILEmitterFunc EmitCall(
             OpCode opcode,
             MethodInfo methodInfo,

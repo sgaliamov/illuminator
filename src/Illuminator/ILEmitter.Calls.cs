@@ -28,6 +28,7 @@ namespace Illuminator
 
             // op code is not calculated because it will change API and sometimes you may want to call a virtual method with Call code.
             _il.EmitCall(opcode, methodInfo, optionalParameterTypes);
+
             _logger?.Log(opcode, methodInfo, parameterTypes, optionalParameterTypes);
 
             Push(methodInfo.ReturnType);

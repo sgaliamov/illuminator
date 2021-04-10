@@ -14,8 +14,8 @@ namespace Illuminator
 
         public static ILEmitter UseIlluminator(
             this ILGenerator self,
-            bool enableDebugLogger,
+            bool enableTraceLogger,
             params ILEmitterFunc[] funcs) =>
-            new ILEmitter(self, enableDebugLogger).Emit(funcs);
+            new ILEmitter(self, enableTraceLogger).Emit(funcs);
     }
 }

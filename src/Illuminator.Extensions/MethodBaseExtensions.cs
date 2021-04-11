@@ -10,13 +10,13 @@ namespace Illuminator.Extensions
             self.GetParameters().Select(x => x.ParameterType).ToArray();
     }
 }
-        //public ILEmitter Block(Action<ILEmitter, Label> between)
-        //{
-        //    var blockEnd = _il.DefineLabel();
+//public ILEmitter Block(Action<ILEmitter, Label> between)
+//{
+//    var blockEnd = _il.DefineLabel();
 
-        //    AddDebugLabel(blockEnd);
+//    AddDebugLabel(blockEnd);
 
-        //    between(this, blockEnd);
+//    between(this, blockEnd);
 
-        //    return MarkLabel(blockEnd);
-        //}
+//    return MarkLabel(blockEnd);
+//}

@@ -44,6 +44,17 @@ namespace Illuminator
         }
 
         /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.EmitCall(OpCode, MethodInfo, Type[])" />.
+        /// </summary>
+        public ILEmitter EmitCall(in OpCode opcode, in MethodInfo methodInfo, in Type[]? optionalParameterTypes = null)
+        {
+            _il.EmitCall(opcode, methodInfo, optionalParameterTypes);
+            _logger?.Log(nameof(EmitCall), opcode, methodInfo, optionalParameterTypes);
+
+            return this;
+        }
+
+        /// <summary>
         ///     Runs emit functions sequentially.
         /// </summary>
         public ILEmitter Emit(params ILEmitterFunc[] funcs) => funcs.Aggregate(this, (il, func) => func(il));

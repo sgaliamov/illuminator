@@ -9,19 +9,19 @@ namespace Illuminator
     {
         public static ILEmitterFunc Emit(params ILEmitterFunc[] funcs) => (in ILEmitter il) => il.Emit(funcs);
 
-        public static ILEmitterFunc EmitCall(
-            OpCode opcode,
-            MethodInfo methodInfo,
-            Type[]? parametersTypes = null,
-            Type[]? optionalParameterTypes = null,
-            params ILEmitterFunc[] parameters) =>
-            (in ILEmitter il) =>
-                il.EmitCall(
-                    opcode,
-                    methodInfo,
-                    parametersTypes,
-                    optionalParameterTypes,
-                    parameters);
+        //public static ILEmitterFunc EmitCall(
+        //    OpCode opcode,
+        //    MethodInfo methodInfo,
+        //    Type[]? parametersTypes = null,
+        //    Type[]? optionalParameterTypes = null,
+        //    params ILEmitterFunc[] parameters) =>
+        //    (in ILEmitter il) =>
+        //        il.EmitCall(
+        //            opcode,
+        //            methodInfo,
+        //            parametersTypes,
+        //            optionalParameterTypes,
+        //            parameters);
 
         public static ILEmitterFunc EmitCalli(
             CallingConventions callingConvention,

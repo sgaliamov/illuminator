@@ -93,17 +93,6 @@ namespace Illuminator
         }
 
         /// <summary>
-        ///     Wrapper over <see cref="ILGenerator.EmitCall(OpCode, MethodInfo, Type[])"/>.
-        /// </summary>
-        public ILEmitter EmitCall(in OpCode opcode, in MethodInfo methodInfo, in Type[] optionalParameterTypes)
-        {
-            _il.EmitCall(opcode, methodInfo, optionalParameterTypes);
-            _logger?.Log(nameof(EmitCall), opcode, methodInfo, optionalParameterTypes);
-
-            return this;
-        }
-
-        /// <summary>
         ///     Wrapper over <see cref="ILGenerator.EmitWriteLine(String)"/>.
         /// </summary>
         public ILEmitter EmitWriteLine(in String value)

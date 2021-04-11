@@ -7,8 +7,9 @@ open Shared
 /// Core methods for manual implementation.
 let private Exclude = [
     "DeclareLocal"
-    "EmitCalli"
     "Emit"
+    "EmitCall"
+    "EmitCalli"
     "Equals"
     "GetHashCode"
     "GetType"

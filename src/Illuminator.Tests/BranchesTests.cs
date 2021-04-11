@@ -97,5 +97,25 @@ namespace Illuminator.Tests
 
             target().Should().BeTrue();
         }
+
+        [Fact]
+        public void When_stack_is_not_linear()
+        {
+            using var il = new DynamicMethod("test", typeof(int), new[] { typeof(bool) })
+                           .GetILGenerator()
+                           .UseIlluminator(true);
+
+            var target = il.Brtrue_S(Ldarg_0(), out var l)
+                           .Ldc_I4_2()
+                           .Br_S(out var exit)
+                           .MarkLabel(l)
+                           .Ldc_I4_3()
+                           .MarkLabel(exit)
+                           .Ret()
+                           .CreateDelegate<Func<bool, int>>();
+
+            target(true).Should().Be(3);
+            target(false).Should().Be(2);
+        }
     }
 }

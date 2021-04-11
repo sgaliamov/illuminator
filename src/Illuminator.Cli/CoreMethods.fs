@@ -4,22 +4,17 @@ open System.Reflection.Emit
 open System.Reflection
 open Shared
 
-/// Call methods for manual implementation.
-let CallMethods = [
-    "Emit"
-    "EmitCall"
-    "EmitCalli" ]
-
 /// Core methods for manual implementation.
-let private Exclude = 
-    CallMethods @ [
-        "DeclareLocal"
-        "Equals"
-        "GetHashCode"
-        "GetType"
-        "MarkLabel"
-        "MarkSequencePoint"
-        "ToString" ]
+let private Exclude = [
+    "DeclareLocal"
+    "EmitCalli"
+    "Emit"
+    "Equals"
+    "GetHashCode"
+    "GetType"
+    "MarkLabel"
+    "MarkSequencePoint"
+    "ToString" ]
 
 /// Conver method to rendering model.
 let private toModel (m: MethodInfo) =

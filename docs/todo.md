@@ -5,6 +5,7 @@ Examples in readme file.
 ## Important
 
 1. Generic methods for core, emit, and functional.
+1. Smart stack verification. Now it does not work with branching.
 1. Typed local variables (int, long, float, double).
 1. Normal xml documentation.
 1. v1 release.

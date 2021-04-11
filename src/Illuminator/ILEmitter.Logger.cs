@@ -24,7 +24,7 @@ namespace Illuminator
             {
                 string message = $".{code} {Join(args)}";
                 _log.AppendFormat(
-                    "\t\t{0,3}: {1,-50} | {2}\n",
+                    "\t\t{0,3}: {1,-120} | {2}\n",
                     _owner._il.ILOffset,
                     message,
                     _owner.StackToString());
@@ -36,52 +36,72 @@ namespace Illuminator
                     return;
                 }
 
+                WriteLocals();
+
+                var declaringType = _owner._methodBuilder.DeclaringType == null
+                    ? string.Empty
+                    : $"Type: {Stringify(_owner._methodBuilder.DeclaringType)}\n";
+
+                _log.Insert(0, $"\n\n{declaringType}{Stringify(_owner._methodBuilder)}\n");
+
+                Trace.WriteLine(_log.ToString().TrimEnd());
+
+                _log.Clear();
+            }
+
+            private void WriteLocals()
+            {
                 var locals =
                     _owner._locals
                           .SelectMany(x => x.Value)
                           .OrderBy(x => x.LocalIndex)
                           .ToArray();
 
-                if (locals.Length != 0) {
-                    var sbLocals = new StringBuilder("\tLocals:\n");
-                    foreach (var item in locals) {
-                        sbLocals.AppendLine($"\t\t[{item.LocalIndex}] {item.LocalType}");
-                    }
-
-                    _log.Insert(0, sbLocals);
+                if (locals.Length == 0) {
+                    return;
                 }
 
-                _log.Insert(0, $"{_owner._methodBuilder}\n");
+                var sbLocals = new StringBuilder("\tLocals:\n");
 
-                Trace.WriteLine(_log.ToString().TrimEnd());
-                _log.Clear();
+                foreach (var item in locals) {
+                    sbLocals.AppendLine($"\t\t[{item.LocalIndex}] {item.LocalType}");
+                }
+
+                _log.Insert(0, sbLocals);
             }
 
-            private static string Join<T>(IEnumerable<T> args) =>
-                string.Join(
+            private static string Join<T>(IEnumerable<T>? args)
+            {
+                if (args == null) {
+                    return string.Empty;
+                }
+
+                return string.Join(
                     " ",
                     args.Select(x => {
-                        var str = ToString(x);
+                        var str = Stringify(x);
 
                         return string.IsNullOrWhiteSpace(str)
                             ? "NONE" // todo: test or remove
                             : str;
                     }));
+            }
 
-            private static string? ToString(in object? value) =>
+            private static IEnumerable<string?> Stringify(IEnumerable enumerable) =>
+                from object? item in enumerable
+                select Stringify(item);
+
+            private static string? Stringify(in object? value) =>
                 value switch {
                     Label label => $"Label_{label.GetHashCode()}",
-                    string str => str,
-                    IEnumerable enumerable => Join(ToString(enumerable)),
-                    _ => value?.ToString()
+                    string str => str.Replace("System.", ""),
+                    IEnumerable enumerable => Join(Stringify(enumerable)),
+                    _ => Join(value
+                              ?.ToString()
+                              .Split('\n')
+                              .Select(x => x.Trim())
+                              .Where(x => !string.IsNullOrWhiteSpace(x)))
                 };
-
-            private static IEnumerable<string?> ToString(IEnumerable enumerable)
-            {
-                foreach (var item in enumerable) {
-                    yield return ToString(item);
-                }
-            }
         }
     }
 }

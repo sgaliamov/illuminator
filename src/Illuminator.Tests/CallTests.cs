@@ -133,6 +133,7 @@ namespace Illuminator.Tests
                 add2Method
                     .GetILGenerator()
                     .UseIlluminator(
+                        true,
                         Ret(Add(Ldc_I4_2(),
                                 Ldarg_0())));
 
@@ -145,6 +146,7 @@ namespace Illuminator.Tests
                         null)
                     .GetILGenerator()
                     .UseIlluminator(
+                        true,
                         Ret(Call(add2Method,
                                  new[] { typeof(int) },
                                  Ldc_I4_3())));

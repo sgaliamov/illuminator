@@ -241,6 +241,21 @@ namespace Illuminator
         public static ILEmitterFunc Brtrue_S(ILEmitterFunc func1, Label label) => (in ILEmitter il) => il.Brtrue_S(func1, label);
 
         /// <summary>
+        ///     Calls the method indicated by the passed method descriptor.
+        /// </summary>
+        public static ILEmitterFunc Call(MethodInfo methodInfo) => (in ILEmitter il) => il.Call(methodInfo);
+
+        /// <summary>
+        ///     Calls the method indicated by the passed method descriptor.
+        /// </summary>
+        public static ILEmitterFunc Call(ConstructorInfo constructorInfo) => (in ILEmitter il) => il.Call(constructorInfo);
+
+        /// <summary>
+        ///     Calls a late-bound method on an object, pushing the return value onto the evaluation stack.
+        /// </summary>
+        public static ILEmitterFunc Callvirt(MethodInfo methodInfo) => (in ILEmitter il) => il.Callvirt(methodInfo);
+
+        /// <summary>
         ///     Attempts to cast an object passed by reference to the specified class.
         /// </summary>
         public static ILEmitterFunc Castclass(ILEmitterFunc func1, Type type) => (in ILEmitter il) => il.Castclass(func1, type);
@@ -901,6 +916,11 @@ namespace Illuminator
         public static ILEmitterFunc Newarr(ILEmitterFunc func1, Type type) => (in ILEmitter il) => il.Newarr(func1, type);
 
         /// <summary>
+        ///     Creates a new object or a new instance of a value type, pushing an object reference (type O) onto the evaluation stack.
+        /// </summary>
+        public static ILEmitterFunc Newobj(ConstructorInfo constructorInfo) => (in ILEmitter il) => il.Newobj(constructorInfo);
+
+        /// <summary>
         ///     Fills space if opcodes are patched. No meaningful operation is performed although a processing cycle can be consumed.
         /// </summary>
         public static ILEmitterFunc Nop() => (in ILEmitter il) => il.Nop();
@@ -984,6 +1004,11 @@ namespace Illuminator
         ///     Divides two unsigned values and pushes the remainder onto the evaluation stack.
         /// </summary>
         public static ILEmitterFunc Rem_Un(ILEmitterFunc func1, ILEmitterFunc func2) => (in ILEmitter il) => il.Rem_Un(func1, func2);
+
+        /// <summary>
+        ///     Returns from the current method, pushing a return value (if present) from the callee's evaluation stack onto the caller's evaluation stack.
+        /// </summary>
+        public static ILEmitterFunc Ret() => (in ILEmitter il) => il.Ret();
 
         /// <summary>
         ///     Rethrows the current exception.

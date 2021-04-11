@@ -4,11 +4,10 @@
 [![NuGet Badge](https://buildstats.info/nuget/illuminator)](https://www.nuget.org/packages/illuminator)
 
 
-Illuminator is yet another wrapper around [`ILGenerator`](https://docs.microsoft.com/en-us/dotnet/api/system.reflection.emit.ilgenerator), but with some interesting features.
+Illuminator is yet another wrapper around [`ILGenerator`](https://docs.microsoft.com/en-us/dotnet/api/system.reflection.emit.ilgenerator), but with some interesting features:
 
 1. [Fluent, convenient API](#fluent-api) with functional programming flavor.
 1. Tracing generated code.
-1. Validation for stack size.
 1. Set of useful helpers.
 1. Scopes to optimize local variables usage.
 

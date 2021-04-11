@@ -27,7 +27,7 @@ namespace Illuminator
                     "\t\t{0,3}: {1,-120} | {2}\n",
                     _owner._il.ILOffset,
                     message,
-                    _owner.StackToString());
+                    _owner.GetStackSize());
             }
 
             public void Flush()
@@ -91,7 +91,7 @@ namespace Illuminator
                 from object? item in enumerable
                 select Stringify(item);
 
-            private static string? Stringify(in object? value) =>
+            private static string Stringify(in object? value) =>
                 value switch {
                     Label label => $"Label_{label.GetHashCode()}",
                     string str => str.Replace("System.", ""),

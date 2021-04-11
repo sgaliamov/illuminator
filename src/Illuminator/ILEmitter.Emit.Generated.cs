@@ -20,9 +20,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Add()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Add);
             _il.Emit(OpCodes.Add);
 
@@ -35,9 +32,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Add_Ovf()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Add_Ovf);
             _il.Emit(OpCodes.Add_Ovf);
 
@@ -50,9 +44,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Add_Ovf_Un()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Add_Ovf_Un);
             _il.Emit(OpCodes.Add_Ovf_Un);
 
@@ -65,9 +56,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter And()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.And);
             _il.Emit(OpCodes.And);
 
@@ -80,8 +68,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Arglist()
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Arglist);
             _il.Emit(OpCodes.Arglist);
 
@@ -94,8 +80,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Beq(in Label label)
         {
-            Pop(AnyType, AnyType);
-
             _logger?.Log(OpCodes.Beq, label);
             _il.Emit(OpCodes.Beq, label);
 
@@ -108,9 +92,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Beq_S(in Label label)
         {
-            Pop(AnyType, AnyType);
             ValidateJump(label);
-
             _logger?.Log(OpCodes.Beq_S, label);
             _il.Emit(OpCodes.Beq_S, label);
 
@@ -123,8 +105,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Bge(in Label label)
         {
-            Pop(AnyType, AnyType);
-
             _logger?.Log(OpCodes.Bge, label);
             _il.Emit(OpCodes.Bge, label);
 
@@ -137,9 +117,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Bge_S(in Label label)
         {
-            Pop(AnyType, AnyType);
             ValidateJump(label);
-
             _logger?.Log(OpCodes.Bge_S, label);
             _il.Emit(OpCodes.Bge_S, label);
 
@@ -152,8 +130,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Bge_Un(in Label label)
         {
-            Pop(AnyType, AnyType);
-
             _logger?.Log(OpCodes.Bge_Un, label);
             _il.Emit(OpCodes.Bge_Un, label);
 
@@ -166,9 +142,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Bge_Un_S(in Label label)
         {
-            Pop(AnyType, AnyType);
             ValidateJump(label);
-
             _logger?.Log(OpCodes.Bge_Un_S, label);
             _il.Emit(OpCodes.Bge_Un_S, label);
 
@@ -181,8 +155,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Bgt(in Label label)
         {
-            Pop(AnyType, AnyType);
-
             _logger?.Log(OpCodes.Bgt, label);
             _il.Emit(OpCodes.Bgt, label);
 
@@ -195,9 +167,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Bgt_S(in Label label)
         {
-            Pop(AnyType, AnyType);
             ValidateJump(label);
-
             _logger?.Log(OpCodes.Bgt_S, label);
             _il.Emit(OpCodes.Bgt_S, label);
 
@@ -210,8 +180,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Bgt_Un(in Label label)
         {
-            Pop(AnyType, AnyType);
-
             _logger?.Log(OpCodes.Bgt_Un, label);
             _il.Emit(OpCodes.Bgt_Un, label);
 
@@ -224,9 +192,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Bgt_Un_S(in Label label)
         {
-            Pop(AnyType, AnyType);
             ValidateJump(label);
-
             _logger?.Log(OpCodes.Bgt_Un_S, label);
             _il.Emit(OpCodes.Bgt_Un_S, label);
 
@@ -239,8 +205,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ble(in Label label)
         {
-            Pop(AnyType, AnyType);
-
             _logger?.Log(OpCodes.Ble, label);
             _il.Emit(OpCodes.Ble, label);
 
@@ -253,9 +217,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ble_S(in Label label)
         {
-            Pop(AnyType, AnyType);
             ValidateJump(label);
-
             _logger?.Log(OpCodes.Ble_S, label);
             _il.Emit(OpCodes.Ble_S, label);
 
@@ -268,8 +230,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ble_Un(in Label label)
         {
-            Pop(AnyType, AnyType);
-
             _logger?.Log(OpCodes.Ble_Un, label);
             _il.Emit(OpCodes.Ble_Un, label);
 
@@ -282,9 +242,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ble_Un_S(in Label label)
         {
-            Pop(AnyType, AnyType);
             ValidateJump(label);
-
             _logger?.Log(OpCodes.Ble_Un_S, label);
             _il.Emit(OpCodes.Ble_Un_S, label);
 
@@ -297,8 +255,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Blt(in Label label)
         {
-            Pop(AnyType, AnyType);
-
             _logger?.Log(OpCodes.Blt, label);
             _il.Emit(OpCodes.Blt, label);
 
@@ -311,9 +267,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Blt_S(in Label label)
         {
-            Pop(AnyType, AnyType);
             ValidateJump(label);
-
             _logger?.Log(OpCodes.Blt_S, label);
             _il.Emit(OpCodes.Blt_S, label);
 
@@ -326,8 +280,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Blt_Un(in Label label)
         {
-            Pop(AnyType, AnyType);
-
             _logger?.Log(OpCodes.Blt_Un, label);
             _il.Emit(OpCodes.Blt_Un, label);
 
@@ -340,9 +292,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Blt_Un_S(in Label label)
         {
-            Pop(AnyType, AnyType);
             ValidateJump(label);
-
             _logger?.Log(OpCodes.Blt_Un_S, label);
             _il.Emit(OpCodes.Blt_Un_S, label);
 
@@ -355,8 +305,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Bne_Un(in Label label)
         {
-            Pop(AnyType, AnyType);
-
             _logger?.Log(OpCodes.Bne_Un, label);
             _il.Emit(OpCodes.Bne_Un, label);
 
@@ -369,9 +317,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Bne_Un_S(in Label label)
         {
-            Pop(AnyType, AnyType);
             ValidateJump(label);
-
             _logger?.Log(OpCodes.Bne_Un_S, label);
             _il.Emit(OpCodes.Bne_Un_S, label);
 
@@ -384,9 +330,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Box(in Type type)
         {
-            Pop(AnyType);
-            Push(RefType);
-
             _logger?.Log(OpCodes.Box, type);
             _il.Emit(OpCodes.Box, type);
 
@@ -399,7 +342,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Br(in Label label)
         {
-
             _logger?.Log(OpCodes.Br, label);
             _il.Emit(OpCodes.Br, label);
 
@@ -413,7 +355,6 @@ namespace Illuminator
         public ILEmitter Br_S(in Label label)
         {
             ValidateJump(label);
-
             _logger?.Log(OpCodes.Br_S, label);
             _il.Emit(OpCodes.Br_S, label);
 
@@ -426,7 +367,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Break()
         {
-
             _logger?.Log(OpCodes.Break);
             _il.Emit(OpCodes.Break);
 
@@ -439,8 +379,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Brfalse(in Label label)
         {
-            Pop(IntType);
-
             _logger?.Log(OpCodes.Brfalse, label);
             _il.Emit(OpCodes.Brfalse, label);
 
@@ -453,9 +391,7 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Brfalse_S(in Label label)
         {
-            Pop(IntType);
             ValidateJump(label);
-
             _logger?.Log(OpCodes.Brfalse_S, label);
             _il.Emit(OpCodes.Brfalse_S, label);
 
@@ -468,8 +404,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Brtrue(in Label label)
         {
-            Pop(IntType);
-
             _logger?.Log(OpCodes.Brtrue, label);
             _il.Emit(OpCodes.Brtrue, label);
 
@@ -482,11 +416,45 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Brtrue_S(in Label label)
         {
-            Pop(IntType);
             ValidateJump(label);
-
             _logger?.Log(OpCodes.Brtrue_S, label);
             _il.Emit(OpCodes.Brtrue_S, label);
+
+            return this;
+        }
+
+        /// <summary>
+        ///     <para>Calls the method indicated by the passed method descriptor.</para>
+        ///     <para>Varpop, Varpush.</para>
+        /// </summary>
+        public ILEmitter Call(in MethodInfo methodInfo)
+        {
+            _logger?.Log(OpCodes.Call, methodInfo);
+            _il.Emit(OpCodes.Call, methodInfo);
+
+            return this;
+        }
+
+        /// <summary>
+        ///     <para>Calls the method indicated by the passed method descriptor.</para>
+        ///     <para>Varpop, Varpush.</para>
+        /// </summary>
+        public ILEmitter Call(in ConstructorInfo constructorInfo)
+        {
+            _logger?.Log(OpCodes.Call, constructorInfo);
+            _il.Emit(OpCodes.Call, constructorInfo);
+
+            return this;
+        }
+
+        /// <summary>
+        ///     <para>Calls a late-bound method on an object, pushing the return value onto the evaluation stack.</para>
+        ///     <para>Varpop, Varpush.</para>
+        /// </summary>
+        public ILEmitter Callvirt(in MethodInfo methodInfo)
+        {
+            _logger?.Log(OpCodes.Callvirt, methodInfo);
+            _il.Emit(OpCodes.Callvirt, methodInfo);
 
             return this;
         }
@@ -497,9 +465,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Castclass(in Type type)
         {
-            Pop(RefType);
-            Push(RefType);
-
             _logger?.Log(OpCodes.Castclass, type);
             _il.Emit(OpCodes.Castclass, type);
 
@@ -512,9 +477,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ceq()
         {
-            Pop(AnyType, AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ceq);
             _il.Emit(OpCodes.Ceq);
 
@@ -527,9 +489,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Cgt()
         {
-            Pop(AnyType, AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Cgt);
             _il.Emit(OpCodes.Cgt);
 
@@ -542,9 +501,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Cgt_Un()
         {
-            Pop(AnyType, AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Cgt_Un);
             _il.Emit(OpCodes.Cgt_Un);
 
@@ -557,9 +513,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ckfinite()
         {
-            Pop(AnyType);
-            Push(DoubleType);
-
             _logger?.Log(OpCodes.Ckfinite);
             _il.Emit(OpCodes.Ckfinite);
 
@@ -572,9 +525,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Clt()
         {
-            Pop(AnyType, AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Clt);
             _il.Emit(OpCodes.Clt);
 
@@ -587,9 +537,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Clt_Un()
         {
-            Pop(AnyType, AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Clt_Un);
             _il.Emit(OpCodes.Clt_Un);
 
@@ -602,7 +549,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Constrained(in Type type)
         {
-
             _logger?.Log(OpCodes.Constrained, type);
             _il.Emit(OpCodes.Constrained, type);
 
@@ -615,9 +561,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_I()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_I);
             _il.Emit(OpCodes.Conv_I);
 
@@ -630,9 +573,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_I1()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_I1);
             _il.Emit(OpCodes.Conv_I1);
 
@@ -645,9 +585,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_I2()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_I2);
             _il.Emit(OpCodes.Conv_I2);
 
@@ -660,9 +597,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_I4()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_I4);
             _il.Emit(OpCodes.Conv_I4);
 
@@ -675,9 +609,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_I8()
         {
-            Pop(AnyType);
-            Push(LongType);
-
             _logger?.Log(OpCodes.Conv_I8);
             _il.Emit(OpCodes.Conv_I8);
 
@@ -690,9 +621,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_I()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_I);
             _il.Emit(OpCodes.Conv_Ovf_I);
 
@@ -705,9 +633,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_I1()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_I1);
             _il.Emit(OpCodes.Conv_Ovf_I1);
 
@@ -720,9 +645,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_I1_Un()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_I1_Un);
             _il.Emit(OpCodes.Conv_Ovf_I1_Un);
 
@@ -735,9 +657,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_I2()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_I2);
             _il.Emit(OpCodes.Conv_Ovf_I2);
 
@@ -750,9 +669,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_I2_Un()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_I2_Un);
             _il.Emit(OpCodes.Conv_Ovf_I2_Un);
 
@@ -765,9 +681,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_I4()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_I4);
             _il.Emit(OpCodes.Conv_Ovf_I4);
 
@@ -780,9 +693,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_I4_Un()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_I4_Un);
             _il.Emit(OpCodes.Conv_Ovf_I4_Un);
 
@@ -795,9 +705,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_I8()
         {
-            Pop(AnyType);
-            Push(LongType);
-
             _logger?.Log(OpCodes.Conv_Ovf_I8);
             _il.Emit(OpCodes.Conv_Ovf_I8);
 
@@ -810,9 +717,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_I8_Un()
         {
-            Pop(AnyType);
-            Push(LongType);
-
             _logger?.Log(OpCodes.Conv_Ovf_I8_Un);
             _il.Emit(OpCodes.Conv_Ovf_I8_Un);
 
@@ -825,9 +729,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_I_Un()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_I_Un);
             _il.Emit(OpCodes.Conv_Ovf_I_Un);
 
@@ -840,9 +741,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_U()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_U);
             _il.Emit(OpCodes.Conv_Ovf_U);
 
@@ -855,9 +753,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_U1()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_U1);
             _il.Emit(OpCodes.Conv_Ovf_U1);
 
@@ -870,9 +765,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_U1_Un()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_U1_Un);
             _il.Emit(OpCodes.Conv_Ovf_U1_Un);
 
@@ -885,9 +777,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_U2()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_U2);
             _il.Emit(OpCodes.Conv_Ovf_U2);
 
@@ -900,9 +789,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_U2_Un()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_U2_Un);
             _il.Emit(OpCodes.Conv_Ovf_U2_Un);
 
@@ -915,9 +801,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_U4()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_U4);
             _il.Emit(OpCodes.Conv_Ovf_U4);
 
@@ -930,9 +813,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_U4_Un()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_U4_Un);
             _il.Emit(OpCodes.Conv_Ovf_U4_Un);
 
@@ -945,9 +825,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_U8()
         {
-            Pop(AnyType);
-            Push(LongType);
-
             _logger?.Log(OpCodes.Conv_Ovf_U8);
             _il.Emit(OpCodes.Conv_Ovf_U8);
 
@@ -960,9 +837,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_U8_Un()
         {
-            Pop(AnyType);
-            Push(LongType);
-
             _logger?.Log(OpCodes.Conv_Ovf_U8_Un);
             _il.Emit(OpCodes.Conv_Ovf_U8_Un);
 
@@ -975,9 +849,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_Ovf_U_Un()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_Ovf_U_Un);
             _il.Emit(OpCodes.Conv_Ovf_U_Un);
 
@@ -990,9 +861,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_R4()
         {
-            Pop(AnyType);
-            Push(FloatType);
-
             _logger?.Log(OpCodes.Conv_R4);
             _il.Emit(OpCodes.Conv_R4);
 
@@ -1005,9 +873,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_R8()
         {
-            Pop(AnyType);
-            Push(DoubleType);
-
             _logger?.Log(OpCodes.Conv_R8);
             _il.Emit(OpCodes.Conv_R8);
 
@@ -1020,9 +885,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_R_Un()
         {
-            Pop(AnyType);
-            Push(DoubleType);
-
             _logger?.Log(OpCodes.Conv_R_Un);
             _il.Emit(OpCodes.Conv_R_Un);
 
@@ -1035,9 +897,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_U()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_U);
             _il.Emit(OpCodes.Conv_U);
 
@@ -1050,9 +909,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_U1()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_U1);
             _il.Emit(OpCodes.Conv_U1);
 
@@ -1065,9 +921,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_U2()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_U2);
             _il.Emit(OpCodes.Conv_U2);
 
@@ -1080,9 +933,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_U4()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Conv_U4);
             _il.Emit(OpCodes.Conv_U4);
 
@@ -1095,9 +945,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Conv_U8()
         {
-            Pop(AnyType);
-            Push(LongType);
-
             _logger?.Log(OpCodes.Conv_U8);
             _il.Emit(OpCodes.Conv_U8);
 
@@ -1110,8 +957,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Cpblk()
         {
-            Pop(IntType, IntType, IntType);
-
             _logger?.Log(OpCodes.Cpblk);
             _il.Emit(OpCodes.Cpblk);
 
@@ -1124,8 +969,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Cpobj(in Type type)
         {
-            Pop(IntType, IntType);
-
             _logger?.Log(OpCodes.Cpobj, type);
             _il.Emit(OpCodes.Cpobj, type);
 
@@ -1138,9 +981,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Div()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Div);
             _il.Emit(OpCodes.Div);
 
@@ -1153,9 +993,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Div_Un()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Div_Un);
             _il.Emit(OpCodes.Div_Un);
 
@@ -1168,9 +1005,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Dup()
         {
-            Pop(AnyType);
-            Push(AnyType, AnyType);
-
             _logger?.Log(OpCodes.Dup);
             _il.Emit(OpCodes.Dup);
 
@@ -1183,8 +1017,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Endfilter()
         {
-            Pop(IntType);
-
             _logger?.Log(OpCodes.Endfilter);
             _il.Emit(OpCodes.Endfilter);
 
@@ -1197,7 +1029,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Endfinally()
         {
-
             _logger?.Log(OpCodes.Endfinally);
             _il.Emit(OpCodes.Endfinally);
 
@@ -1210,8 +1041,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Initblk()
         {
-            Pop(IntType, IntType, IntType);
-
             _logger?.Log(OpCodes.Initblk);
             _il.Emit(OpCodes.Initblk);
 
@@ -1224,8 +1053,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Initobj(in Type type)
         {
-            Pop(IntType);
-
             _logger?.Log(OpCodes.Initobj, type);
             _il.Emit(OpCodes.Initobj, type);
 
@@ -1238,9 +1065,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Isinst(in Type type)
         {
-            Pop(RefType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Isinst, type);
             _il.Emit(OpCodes.Isinst, type);
 
@@ -1253,7 +1077,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Jmp(in MethodInfo methodInfo)
         {
-
             _logger?.Log(OpCodes.Jmp, methodInfo);
             _il.Emit(OpCodes.Jmp, methodInfo);
 
@@ -1266,8 +1089,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldarg(in short value)
         {
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldarg, value);
             _il.Emit(OpCodes.Ldarg, value);
 
@@ -1280,8 +1101,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldarg_0()
         {
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldarg_0);
             _il.Emit(OpCodes.Ldarg_0);
 
@@ -1294,8 +1113,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldarg_1()
         {
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldarg_1);
             _il.Emit(OpCodes.Ldarg_1);
 
@@ -1308,8 +1125,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldarg_2()
         {
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldarg_2);
             _il.Emit(OpCodes.Ldarg_2);
 
@@ -1322,8 +1137,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldarg_3()
         {
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldarg_3);
             _il.Emit(OpCodes.Ldarg_3);
 
@@ -1336,8 +1149,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldarg_S(in byte value)
         {
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldarg_S, value);
             _il.Emit(OpCodes.Ldarg_S, value);
 
@@ -1350,8 +1161,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldarga(in short value)
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldarga, value);
             _il.Emit(OpCodes.Ldarga, value);
 
@@ -1364,8 +1173,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldarga_S(in byte value)
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldarga_S, value);
             _il.Emit(OpCodes.Ldarga_S, value);
 
@@ -1378,8 +1185,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_I4(in int value)
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldc_I4, value);
             _il.Emit(OpCodes.Ldc_I4, value);
 
@@ -1392,8 +1197,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_I4_0()
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldc_I4_0);
             _il.Emit(OpCodes.Ldc_I4_0);
 
@@ -1406,8 +1209,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_I4_1()
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldc_I4_1);
             _il.Emit(OpCodes.Ldc_I4_1);
 
@@ -1420,8 +1221,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_I4_2()
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldc_I4_2);
             _il.Emit(OpCodes.Ldc_I4_2);
 
@@ -1434,8 +1233,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_I4_3()
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldc_I4_3);
             _il.Emit(OpCodes.Ldc_I4_3);
 
@@ -1448,8 +1245,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_I4_4()
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldc_I4_4);
             _il.Emit(OpCodes.Ldc_I4_4);
 
@@ -1462,8 +1257,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_I4_5()
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldc_I4_5);
             _il.Emit(OpCodes.Ldc_I4_5);
 
@@ -1476,8 +1269,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_I4_6()
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldc_I4_6);
             _il.Emit(OpCodes.Ldc_I4_6);
 
@@ -1490,8 +1281,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_I4_7()
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldc_I4_7);
             _il.Emit(OpCodes.Ldc_I4_7);
 
@@ -1504,8 +1293,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_I4_8()
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldc_I4_8);
             _il.Emit(OpCodes.Ldc_I4_8);
 
@@ -1518,8 +1305,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_I4_M1()
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldc_I4_M1);
             _il.Emit(OpCodes.Ldc_I4_M1);
 
@@ -1532,8 +1317,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_I4_S(in byte value)
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldc_I4_S, value);
             _il.Emit(OpCodes.Ldc_I4_S, value);
 
@@ -1546,8 +1329,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_I4_S(in sbyte value)
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldc_I4_S, value);
             _il.Emit(OpCodes.Ldc_I4_S, value);
 
@@ -1560,8 +1341,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_I8(in long value)
         {
-            Push(LongType);
-
             _logger?.Log(OpCodes.Ldc_I8, value);
             _il.Emit(OpCodes.Ldc_I8, value);
 
@@ -1574,8 +1353,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_R4(in float value)
         {
-            Push(FloatType);
-
             _logger?.Log(OpCodes.Ldc_R4, value);
             _il.Emit(OpCodes.Ldc_R4, value);
 
@@ -1588,8 +1365,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldc_R8(in double value)
         {
-            Push(DoubleType);
-
             _logger?.Log(OpCodes.Ldc_R8, value);
             _il.Emit(OpCodes.Ldc_R8, value);
 
@@ -1602,9 +1377,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem(in Type type)
         {
-            Pop(IntType, RefType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldelem, type);
             _il.Emit(OpCodes.Ldelem, type);
 
@@ -1617,9 +1389,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_I()
         {
-            Pop(IntType, RefType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldelem_I);
             _il.Emit(OpCodes.Ldelem_I);
 
@@ -1632,9 +1401,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_I1()
         {
-            Pop(IntType, RefType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldelem_I1);
             _il.Emit(OpCodes.Ldelem_I1);
 
@@ -1647,9 +1413,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_I2()
         {
-            Pop(IntType, RefType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldelem_I2);
             _il.Emit(OpCodes.Ldelem_I2);
 
@@ -1662,9 +1425,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_I4()
         {
-            Pop(IntType, RefType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldelem_I4);
             _il.Emit(OpCodes.Ldelem_I4);
 
@@ -1677,9 +1437,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_I8()
         {
-            Pop(IntType, RefType);
-            Push(LongType);
-
             _logger?.Log(OpCodes.Ldelem_I8);
             _il.Emit(OpCodes.Ldelem_I8);
 
@@ -1692,9 +1449,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_R4()
         {
-            Pop(IntType, RefType);
-            Push(FloatType);
-
             _logger?.Log(OpCodes.Ldelem_R4);
             _il.Emit(OpCodes.Ldelem_R4);
 
@@ -1707,9 +1461,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_R8()
         {
-            Pop(IntType, RefType);
-            Push(DoubleType);
-
             _logger?.Log(OpCodes.Ldelem_R8);
             _il.Emit(OpCodes.Ldelem_R8);
 
@@ -1722,9 +1473,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_Ref()
         {
-            Pop(IntType, RefType);
-            Push(RefType);
-
             _logger?.Log(OpCodes.Ldelem_Ref);
             _il.Emit(OpCodes.Ldelem_Ref);
 
@@ -1737,9 +1485,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_U1()
         {
-            Pop(IntType, RefType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldelem_U1);
             _il.Emit(OpCodes.Ldelem_U1);
 
@@ -1752,9 +1497,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_U2()
         {
-            Pop(IntType, RefType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldelem_U2);
             _il.Emit(OpCodes.Ldelem_U2);
 
@@ -1767,9 +1509,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelem_U4()
         {
-            Pop(IntType, RefType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldelem_U4);
             _il.Emit(OpCodes.Ldelem_U4);
 
@@ -1782,9 +1521,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldelema(in Type type)
         {
-            Pop(IntType, RefType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldelema, type);
             _il.Emit(OpCodes.Ldelema, type);
 
@@ -1797,9 +1533,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldfld(in FieldInfo fieldInfo)
         {
-            Pop(RefType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldfld, fieldInfo);
             _il.Emit(OpCodes.Ldfld, fieldInfo);
 
@@ -1812,9 +1545,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldflda(in FieldInfo fieldInfo)
         {
-            Pop(RefType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldflda, fieldInfo);
             _il.Emit(OpCodes.Ldflda, fieldInfo);
 
@@ -1827,8 +1557,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldftn(in MethodInfo methodInfo)
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldftn, methodInfo);
             _il.Emit(OpCodes.Ldftn, methodInfo);
 
@@ -1841,9 +1569,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldind_I()
         {
-            Pop(IntType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldind_I);
             _il.Emit(OpCodes.Ldind_I);
 
@@ -1856,9 +1581,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldind_I1()
         {
-            Pop(IntType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldind_I1);
             _il.Emit(OpCodes.Ldind_I1);
 
@@ -1871,9 +1593,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldind_I2()
         {
-            Pop(IntType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldind_I2);
             _il.Emit(OpCodes.Ldind_I2);
 
@@ -1886,9 +1605,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldind_I4()
         {
-            Pop(IntType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldind_I4);
             _il.Emit(OpCodes.Ldind_I4);
 
@@ -1901,9 +1617,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldind_I8()
         {
-            Pop(IntType);
-            Push(LongType);
-
             _logger?.Log(OpCodes.Ldind_I8);
             _il.Emit(OpCodes.Ldind_I8);
 
@@ -1916,9 +1629,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldind_R4()
         {
-            Pop(IntType);
-            Push(FloatType);
-
             _logger?.Log(OpCodes.Ldind_R4);
             _il.Emit(OpCodes.Ldind_R4);
 
@@ -1931,9 +1641,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldind_R8()
         {
-            Pop(IntType);
-            Push(DoubleType);
-
             _logger?.Log(OpCodes.Ldind_R8);
             _il.Emit(OpCodes.Ldind_R8);
 
@@ -1946,9 +1653,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldind_Ref()
         {
-            Pop(IntType);
-            Push(RefType);
-
             _logger?.Log(OpCodes.Ldind_Ref);
             _il.Emit(OpCodes.Ldind_Ref);
 
@@ -1961,9 +1665,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldind_U1()
         {
-            Pop(IntType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldind_U1);
             _il.Emit(OpCodes.Ldind_U1);
 
@@ -1976,9 +1677,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldind_U2()
         {
-            Pop(IntType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldind_U2);
             _il.Emit(OpCodes.Ldind_U2);
 
@@ -1991,9 +1689,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldind_U4()
         {
-            Pop(IntType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldind_U4);
             _il.Emit(OpCodes.Ldind_U4);
 
@@ -2006,9 +1701,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldlen()
         {
-            Pop(RefType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldlen);
             _il.Emit(OpCodes.Ldlen);
 
@@ -2021,8 +1713,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldloc(in LocalBuilder localBuilder)
         {
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldloc, localBuilder);
             _il.Emit(OpCodes.Ldloc, localBuilder);
 
@@ -2035,8 +1725,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldloc(in short value)
         {
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldloc, value);
             _il.Emit(OpCodes.Ldloc, value);
 
@@ -2049,8 +1737,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldloc_0()
         {
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldloc_0);
             _il.Emit(OpCodes.Ldloc_0);
 
@@ -2063,8 +1749,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldloc_1()
         {
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldloc_1);
             _il.Emit(OpCodes.Ldloc_1);
 
@@ -2077,8 +1761,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldloc_2()
         {
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldloc_2);
             _il.Emit(OpCodes.Ldloc_2);
 
@@ -2091,8 +1773,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldloc_3()
         {
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldloc_3);
             _il.Emit(OpCodes.Ldloc_3);
 
@@ -2105,8 +1785,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldloc_S(in LocalBuilder localBuilder)
         {
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldloc_S, localBuilder);
             _il.Emit(OpCodes.Ldloc_S, localBuilder);
 
@@ -2119,8 +1797,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldloc_S(in short value)
         {
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldloc_S, value);
             _il.Emit(OpCodes.Ldloc_S, value);
 
@@ -2133,8 +1809,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldloca(in short value)
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldloca, value);
             _il.Emit(OpCodes.Ldloca, value);
 
@@ -2147,8 +1821,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldloca_S(in byte value)
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldloca_S, value);
             _il.Emit(OpCodes.Ldloca_S, value);
 
@@ -2161,8 +1833,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldnull()
         {
-            Push(RefType);
-
             _logger?.Log(OpCodes.Ldnull);
             _il.Emit(OpCodes.Ldnull);
 
@@ -2175,9 +1845,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldobj(in Type type)
         {
-            Pop(IntType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldobj, type);
             _il.Emit(OpCodes.Ldobj, type);
 
@@ -2190,8 +1857,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldsfld(in FieldInfo fieldInfo)
         {
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Ldsfld, fieldInfo);
             _il.Emit(OpCodes.Ldsfld, fieldInfo);
 
@@ -2204,8 +1869,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldsflda(in FieldInfo fieldInfo)
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldsflda, fieldInfo);
             _il.Emit(OpCodes.Ldsflda, fieldInfo);
 
@@ -2218,8 +1881,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldstr(in string value)
         {
-            Push(RefType);
-
             _logger?.Log(OpCodes.Ldstr, value);
             _il.Emit(OpCodes.Ldstr, value);
 
@@ -2232,8 +1893,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldtoken(in MethodInfo methodInfo)
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldtoken, methodInfo);
             _il.Emit(OpCodes.Ldtoken, methodInfo);
 
@@ -2246,8 +1905,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldtoken(in FieldInfo fieldInfo)
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldtoken, fieldInfo);
             _il.Emit(OpCodes.Ldtoken, fieldInfo);
 
@@ -2260,8 +1917,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldtoken(in Type type)
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldtoken, type);
             _il.Emit(OpCodes.Ldtoken, type);
 
@@ -2274,9 +1929,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Ldvirtftn(in MethodInfo methodInfo)
         {
-            Pop(RefType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Ldvirtftn, methodInfo);
             _il.Emit(OpCodes.Ldvirtftn, methodInfo);
 
@@ -2289,7 +1941,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Leave(in Label label)
         {
-
             _logger?.Log(OpCodes.Leave, label);
             _il.Emit(OpCodes.Leave, label);
 
@@ -2303,7 +1954,6 @@ namespace Illuminator
         public ILEmitter Leave_S(in Label label)
         {
             ValidateJump(label);
-
             _logger?.Log(OpCodes.Leave_S, label);
             _il.Emit(OpCodes.Leave_S, label);
 
@@ -2316,9 +1966,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Localloc()
         {
-            Pop(IntType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Localloc);
             _il.Emit(OpCodes.Localloc);
 
@@ -2331,9 +1978,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Mkrefany(in Type type)
         {
-            Pop(IntType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Mkrefany, type);
             _il.Emit(OpCodes.Mkrefany, type);
 
@@ -2346,9 +1990,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Mul()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Mul);
             _il.Emit(OpCodes.Mul);
 
@@ -2361,9 +2002,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Mul_Ovf()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Mul_Ovf);
             _il.Emit(OpCodes.Mul_Ovf);
 
@@ -2376,9 +2014,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Mul_Ovf_Un()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Mul_Ovf_Un);
             _il.Emit(OpCodes.Mul_Ovf_Un);
 
@@ -2391,9 +2026,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Neg()
         {
-            Pop(AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Neg);
             _il.Emit(OpCodes.Neg);
 
@@ -2406,11 +2038,20 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Newarr(in Type type)
         {
-            Pop(IntType);
-            Push(RefType);
-
             _logger?.Log(OpCodes.Newarr, type);
             _il.Emit(OpCodes.Newarr, type);
+
+            return this;
+        }
+
+        /// <summary>
+        ///     <para>Creates a new object or a new instance of a value type, pushing an object reference (type O) onto the evaluation stack.</para>
+        ///     <para>Varpop, Pushref.</para>
+        /// </summary>
+        public ILEmitter Newobj(in ConstructorInfo constructorInfo)
+        {
+            _logger?.Log(OpCodes.Newobj, constructorInfo);
+            _il.Emit(OpCodes.Newobj, constructorInfo);
 
             return this;
         }
@@ -2421,7 +2062,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Nop()
         {
-
             _logger?.Log(OpCodes.Nop);
             _il.Emit(OpCodes.Nop);
 
@@ -2434,9 +2074,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Not()
         {
-            Pop(AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Not);
             _il.Emit(OpCodes.Not);
 
@@ -2449,9 +2086,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Or()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Or);
             _il.Emit(OpCodes.Or);
 
@@ -2464,8 +2098,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Pop()
         {
-            Pop(AnyType);
-
             _logger?.Log(OpCodes.Pop);
             _il.Emit(OpCodes.Pop);
 
@@ -2478,7 +2110,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Prefix1()
         {
-
             _logger?.Log(OpCodes.Prefix1);
             _il.Emit(OpCodes.Prefix1);
 
@@ -2491,7 +2122,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Prefix2()
         {
-
             _logger?.Log(OpCodes.Prefix2);
             _il.Emit(OpCodes.Prefix2);
 
@@ -2504,7 +2134,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Prefix3()
         {
-
             _logger?.Log(OpCodes.Prefix3);
             _il.Emit(OpCodes.Prefix3);
 
@@ -2517,7 +2146,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Prefix4()
         {
-
             _logger?.Log(OpCodes.Prefix4);
             _il.Emit(OpCodes.Prefix4);
 
@@ -2530,7 +2158,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Prefix5()
         {
-
             _logger?.Log(OpCodes.Prefix5);
             _il.Emit(OpCodes.Prefix5);
 
@@ -2543,7 +2170,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Prefix6()
         {
-
             _logger?.Log(OpCodes.Prefix6);
             _il.Emit(OpCodes.Prefix6);
 
@@ -2556,7 +2182,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Prefix7()
         {
-
             _logger?.Log(OpCodes.Prefix7);
             _il.Emit(OpCodes.Prefix7);
 
@@ -2569,7 +2194,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Prefixref()
         {
-
             _logger?.Log(OpCodes.Prefixref);
             _il.Emit(OpCodes.Prefixref);
 
@@ -2582,7 +2206,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Readonly()
         {
-
             _logger?.Log(OpCodes.Readonly);
             _il.Emit(OpCodes.Readonly);
 
@@ -2595,9 +2218,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Refanytype()
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Refanytype);
             _il.Emit(OpCodes.Refanytype);
 
@@ -2610,9 +2230,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Refanyval(in Type type)
         {
-            Pop(AnyType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Refanyval, type);
             _il.Emit(OpCodes.Refanyval, type);
 
@@ -2625,9 +2242,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Rem()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Rem);
             _il.Emit(OpCodes.Rem);
 
@@ -2640,11 +2254,20 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Rem_Un()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Rem_Un);
             _il.Emit(OpCodes.Rem_Un);
+
+            return this;
+        }
+
+        /// <summary>
+        ///     <para>Returns from the current method, pushing a return value (if present) from the callee's evaluation stack onto the caller's evaluation stack.</para>
+        ///     <para>Varpop, Push0.</para>
+        /// </summary>
+        public ILEmitter Ret()
+        {
+            _logger?.Log(OpCodes.Ret);
+            _il.Emit(OpCodes.Ret);
 
             return this;
         }
@@ -2655,7 +2278,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Rethrow()
         {
-
             _logger?.Log(OpCodes.Rethrow);
             _il.Emit(OpCodes.Rethrow);
 
@@ -2668,9 +2290,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Shl()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Shl);
             _il.Emit(OpCodes.Shl);
 
@@ -2683,9 +2302,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Shr()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Shr);
             _il.Emit(OpCodes.Shr);
 
@@ -2698,9 +2314,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Shr_Un()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Shr_Un);
             _il.Emit(OpCodes.Shr_Un);
 
@@ -2713,8 +2326,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Sizeof(in Type type)
         {
-            Push(IntType);
-
             _logger?.Log(OpCodes.Sizeof, type);
             _il.Emit(OpCodes.Sizeof, type);
 
@@ -2727,8 +2338,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Starg(in short value)
         {
-            Pop(AnyType);
-
             _logger?.Log(OpCodes.Starg, value);
             _il.Emit(OpCodes.Starg, value);
 
@@ -2741,8 +2350,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Starg_S(in byte value)
         {
-            Pop(AnyType);
-
             _logger?.Log(OpCodes.Starg_S, value);
             _il.Emit(OpCodes.Starg_S, value);
 
@@ -2755,8 +2362,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem(in Type type)
         {
-            Pop(AnyType, IntType, RefType);
-
             _logger?.Log(OpCodes.Stelem, type);
             _il.Emit(OpCodes.Stelem, type);
 
@@ -2769,8 +2374,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem_I()
         {
-            Pop(IntType, IntType, RefType);
-
             _logger?.Log(OpCodes.Stelem_I);
             _il.Emit(OpCodes.Stelem_I);
 
@@ -2783,8 +2386,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem_I1()
         {
-            Pop(IntType, IntType, RefType);
-
             _logger?.Log(OpCodes.Stelem_I1);
             _il.Emit(OpCodes.Stelem_I1);
 
@@ -2797,8 +2398,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem_I2()
         {
-            Pop(IntType, IntType, RefType);
-
             _logger?.Log(OpCodes.Stelem_I2);
             _il.Emit(OpCodes.Stelem_I2);
 
@@ -2811,8 +2410,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem_I4()
         {
-            Pop(IntType, IntType, RefType);
-
             _logger?.Log(OpCodes.Stelem_I4);
             _il.Emit(OpCodes.Stelem_I4);
 
@@ -2825,8 +2422,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem_I8()
         {
-            Pop(LongType, IntType, RefType);
-
             _logger?.Log(OpCodes.Stelem_I8);
             _il.Emit(OpCodes.Stelem_I8);
 
@@ -2839,8 +2434,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem_R4()
         {
-            Pop(FloatType, IntType, RefType);
-
             _logger?.Log(OpCodes.Stelem_R4);
             _il.Emit(OpCodes.Stelem_R4);
 
@@ -2853,8 +2446,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem_R8()
         {
-            Pop(DoubleType, IntType, RefType);
-
             _logger?.Log(OpCodes.Stelem_R8);
             _il.Emit(OpCodes.Stelem_R8);
 
@@ -2867,8 +2458,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stelem_Ref()
         {
-            Pop(RefType, IntType, RefType);
-
             _logger?.Log(OpCodes.Stelem_Ref);
             _il.Emit(OpCodes.Stelem_Ref);
 
@@ -2881,8 +2470,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stfld(in FieldInfo fieldInfo)
         {
-            Pop(AnyType, RefType);
-
             _logger?.Log(OpCodes.Stfld, fieldInfo);
             _il.Emit(OpCodes.Stfld, fieldInfo);
 
@@ -2895,8 +2482,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stind_I()
         {
-            Pop(IntType, IntType);
-
             _logger?.Log(OpCodes.Stind_I);
             _il.Emit(OpCodes.Stind_I);
 
@@ -2909,8 +2494,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stind_I1()
         {
-            Pop(IntType, IntType);
-
             _logger?.Log(OpCodes.Stind_I1);
             _il.Emit(OpCodes.Stind_I1);
 
@@ -2923,8 +2506,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stind_I2()
         {
-            Pop(IntType, IntType);
-
             _logger?.Log(OpCodes.Stind_I2);
             _il.Emit(OpCodes.Stind_I2);
 
@@ -2937,8 +2518,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stind_I4()
         {
-            Pop(IntType, IntType);
-
             _logger?.Log(OpCodes.Stind_I4);
             _il.Emit(OpCodes.Stind_I4);
 
@@ -2951,8 +2530,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stind_I8()
         {
-            Pop(LongType, IntType);
-
             _logger?.Log(OpCodes.Stind_I8);
             _il.Emit(OpCodes.Stind_I8);
 
@@ -2965,8 +2542,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stind_R4()
         {
-            Pop(FloatType, IntType);
-
             _logger?.Log(OpCodes.Stind_R4);
             _il.Emit(OpCodes.Stind_R4);
 
@@ -2979,8 +2554,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stind_R8()
         {
-            Pop(DoubleType, IntType);
-
             _logger?.Log(OpCodes.Stind_R8);
             _il.Emit(OpCodes.Stind_R8);
 
@@ -2993,8 +2566,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stind_Ref()
         {
-            Pop(IntType, IntType);
-
             _logger?.Log(OpCodes.Stind_Ref);
             _il.Emit(OpCodes.Stind_Ref);
 
@@ -3007,8 +2578,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stloc(in LocalBuilder localBuilder)
         {
-            Pop(AnyType);
-
             _logger?.Log(OpCodes.Stloc, localBuilder);
             _il.Emit(OpCodes.Stloc, localBuilder);
 
@@ -3021,8 +2590,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stloc(in short value)
         {
-            Pop(AnyType);
-
             _logger?.Log(OpCodes.Stloc, value);
             _il.Emit(OpCodes.Stloc, value);
 
@@ -3035,8 +2602,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stloc_0()
         {
-            Pop(AnyType);
-
             _logger?.Log(OpCodes.Stloc_0);
             _il.Emit(OpCodes.Stloc_0);
 
@@ -3049,8 +2614,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stloc_1()
         {
-            Pop(AnyType);
-
             _logger?.Log(OpCodes.Stloc_1);
             _il.Emit(OpCodes.Stloc_1);
 
@@ -3063,8 +2626,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stloc_2()
         {
-            Pop(AnyType);
-
             _logger?.Log(OpCodes.Stloc_2);
             _il.Emit(OpCodes.Stloc_2);
 
@@ -3077,8 +2638,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stloc_3()
         {
-            Pop(AnyType);
-
             _logger?.Log(OpCodes.Stloc_3);
             _il.Emit(OpCodes.Stloc_3);
 
@@ -3091,8 +2650,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stloc_S(in LocalBuilder localBuilder)
         {
-            Pop(AnyType);
-
             _logger?.Log(OpCodes.Stloc_S, localBuilder);
             _il.Emit(OpCodes.Stloc_S, localBuilder);
 
@@ -3105,8 +2662,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stloc_S(in byte value)
         {
-            Pop(AnyType);
-
             _logger?.Log(OpCodes.Stloc_S, value);
             _il.Emit(OpCodes.Stloc_S, value);
 
@@ -3119,8 +2674,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stobj(in Type type)
         {
-            Pop(AnyType, IntType);
-
             _logger?.Log(OpCodes.Stobj, type);
             _il.Emit(OpCodes.Stobj, type);
 
@@ -3133,8 +2686,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Stsfld(in FieldInfo fieldInfo)
         {
-            Pop(AnyType);
-
             _logger?.Log(OpCodes.Stsfld, fieldInfo);
             _il.Emit(OpCodes.Stsfld, fieldInfo);
 
@@ -3147,9 +2698,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Sub()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Sub);
             _il.Emit(OpCodes.Sub);
 
@@ -3162,9 +2710,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Sub_Ovf()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Sub_Ovf);
             _il.Emit(OpCodes.Sub_Ovf);
 
@@ -3177,9 +2722,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Sub_Ovf_Un()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Sub_Ovf_Un);
             _il.Emit(OpCodes.Sub_Ovf_Un);
 
@@ -3192,8 +2734,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Switch(in Label[] label)
         {
-            Pop(IntType);
-
             _logger?.Log(OpCodes.Switch, label);
             _il.Emit(OpCodes.Switch, label);
 
@@ -3206,7 +2746,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Tailcall()
         {
-
             _logger?.Log(OpCodes.Tailcall);
             _il.Emit(OpCodes.Tailcall);
 
@@ -3219,8 +2758,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Throw()
         {
-            Pop(RefType);
-
             _logger?.Log(OpCodes.Throw);
             _il.Emit(OpCodes.Throw);
 
@@ -3233,7 +2770,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Unaligned(in byte value)
         {
-
             _logger?.Log(OpCodes.Unaligned, value);
             _il.Emit(OpCodes.Unaligned, value);
 
@@ -3246,7 +2782,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Unaligned(in Label label)
         {
-
             _logger?.Log(OpCodes.Unaligned, label);
             _il.Emit(OpCodes.Unaligned, label);
 
@@ -3259,9 +2794,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Unbox(in Type type)
         {
-            Pop(RefType);
-            Push(IntType);
-
             _logger?.Log(OpCodes.Unbox, type);
             _il.Emit(OpCodes.Unbox, type);
 
@@ -3274,9 +2806,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Unbox_Any(in Type type)
         {
-            Pop(RefType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Unbox_Any, type);
             _il.Emit(OpCodes.Unbox_Any, type);
 
@@ -3289,7 +2818,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Volatile()
         {
-
             _logger?.Log(OpCodes.Volatile);
             _il.Emit(OpCodes.Volatile);
 
@@ -3302,9 +2830,6 @@ namespace Illuminator
         /// </summary>
         public ILEmitter Xor()
         {
-            Pop(AnyType, AnyType);
-            Push(AnyType);
-
             _logger?.Log(OpCodes.Xor);
             _il.Emit(OpCodes.Xor);
 

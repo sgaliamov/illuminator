@@ -28,6 +28,33 @@ namespace Illuminator
         }
 
         /// <summary>
+        ///     Calls the method indicated on the evaluation stack (as a pointer to an entry point) with arguments described by a
+        ///     calling convention.
+        /// </summary>
+        public ILEmitter EmitCalli(
+            in CallingConventions callingConventions,
+            in Type? returnType = null,
+            in Type[]? parameterTypes = null,
+            in Type[]? optionalParameterTypes = null)
+        {
+            _il.EmitCalli(OpCodes.Calli, callingConventions, returnType, parameterTypes, optionalParameterTypes);
+            _logger?.Log(OpCodes.Calli, callingConventions, returnType, parameterTypes, optionalParameterTypes);
+
+            return this;
+        }
+
+        /// <summary>
+        ///     Wrapper over <see cref="ILGenerator.EmitCall(OpCode, MethodInfo, Type[])" />.
+        /// </summary>
+        public ILEmitter EmitCall(in OpCode opcode, in MethodInfo methodInfo, in Type[]? optionalParameterTypes = null)
+        {
+            _il.EmitCall(opcode, methodInfo, optionalParameterTypes);
+            _logger?.Log(nameof(EmitCall), opcode, methodInfo, optionalParameterTypes);
+
+            return this;
+        }
+
+        /// <summary>
         ///     Runs emit functions sequentially.
         /// </summary>
         public ILEmitter Emit(params ILEmitterFunc[] funcs) => funcs.Aggregate(this, (il, func) => func(il));
@@ -42,11 +69,15 @@ namespace Illuminator
             return (T)_methodBuilder.CreateDelegate(typeof(T));
         }
 
+        public int GetStackSize() =>
+            (int)typeof(ILGenerator)
+                 .GetField("m_maxMidStackCur", PrivateFieldBindingFlags)
+                 ?.GetValue(_il)!;
+
         public void Dispose()
         {
             _logger?.Flush();
             CloseScopes();
-            VerifyStackIsEmpty();
         }
     }
 }

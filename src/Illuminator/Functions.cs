@@ -4,7 +4,7 @@ using System.Reflection.Emit;
 
 namespace Illuminator
 {
-    // Manual functions for call methods.
+    // Manual functions.
     public static partial class Functions
     {
         public static ILEmitterFunc Emit(params ILEmitterFunc[] funcs) => (in ILEmitter il) => il.Emit(funcs);
@@ -12,72 +12,60 @@ namespace Illuminator
         public static ILEmitterFunc EmitCall(
             OpCode opcode,
             MethodInfo methodInfo,
-            Type[]? parametersTypes = null,
             Type[]? optionalParameterTypes = null,
-            params ILEmitterFunc[] parameters) =>
+            params ILEmitterFunc[] funcs) =>
             (in ILEmitter il) =>
                 il.EmitCall(
                     opcode,
                     methodInfo,
-                    parametersTypes,
                     optionalParameterTypes,
-                    parameters);
+                    funcs);
 
         public static ILEmitterFunc EmitCalli(
             CallingConventions callingConvention,
             Type? returnType = null,
             Type[]? parameterTypes = null,
             Type[]? optionalParameterTypes = null,
-            ILEmitterFunc? method = null,
-            params ILEmitterFunc[] parameters) =>
+            params ILEmitterFunc[] funcs) =>
             (in ILEmitter il) =>
                 il.EmitCalli(
                     callingConvention,
                     returnType,
                     parameterTypes,
                     optionalParameterTypes,
-                    method,
-                    parameters);
+                    funcs);
 
         public static ILEmitterFunc Newobj(
             ConstructorInfo constructorInfo,
-            Type[]? parametersTypes = null,
-            params ILEmitterFunc[] parameters) =>
+            params ILEmitterFunc[] funcs) =>
             (in ILEmitter il) =>
                 il.Newobj(
                     constructorInfo,
-                    parametersTypes,
-                    parameters);
+                    funcs);
 
         public static ILEmitterFunc Call(
             ConstructorInfo constructorInfo,
-            Type[]? parametersTypes = null,
-            params ILEmitterFunc[] parameters) =>
+            params ILEmitterFunc[] funcs) =>
             (in ILEmitter il) =>
                 il.Call(
                     constructorInfo,
-                    parametersTypes,
-                    parameters);
+                    funcs);
 
         public static ILEmitterFunc Call(
             MethodInfo methodInfo,
-            Type[]? parametersTypes = null,
-            params ILEmitterFunc[] parameters) =>
+            params ILEmitterFunc[] funcs) =>
             (in ILEmitter il) =>
                 il.Call(
                     methodInfo,
-                    parametersTypes,
-                    parameters);
+                    funcs);
 
         public static ILEmitterFunc Callvirt(
             MethodInfo methodInfo,
-            Type[]? parametersTypes = null,
-            params ILEmitterFunc[] parameters) =>
+            params ILEmitterFunc[] funcs) =>
             (in ILEmitter il) =>
                 il.Callvirt(
                     methodInfo,
-                    parametersTypes,
-                    parameters);
+                    funcs);
 
         public static ILEmitterFunc Ret(params ILEmitterFunc[] funcs) => (in ILEmitter il) => il.Ret(funcs);
 

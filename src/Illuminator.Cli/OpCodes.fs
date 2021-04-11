@@ -11,12 +11,7 @@ let private AllCodes =
     |> Seq.cache
 
 /// Codes with not standart behaviour
-let ManualCodes = [
-    OpCodes.Call.Name
-    OpCodes.Calli.Name
-    OpCodes.Callvirt.Name
-    OpCodes.Newobj.Name
-    OpCodes.Ret.Name ]
+let ManualCodes = [ OpCodes.Calli.Name ]
 
 /// Codes info
 type private OpCodesInfo = JsonProvider<"./opcodes.json">

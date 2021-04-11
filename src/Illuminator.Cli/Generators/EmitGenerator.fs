@@ -29,15 +29,9 @@ namespace Illuminator
         /// </summary>
         public ILEmitter {{ method.name }}({{ method.parameters | array.join "", "" }})
         {
-            {{~ if method.pops | !string.empty ~}}
-            Pop({{ method.pops }});
-            {{~ end ~}}
-            {{~ if method.validate_jump ~}}
+            {{- if method.validate_jump }}
             ValidateJump(label);
-            {{~ end ~}}
-            {{~ if method.pushes | !string.empty ~}}
-            Push({{ method.pushes }});
-            {{~ end ~}}
+            {{- end -}}
             {{- message = 'OpCodes.' + method.name }}
             _logger?.Log({{ method.arguments | array.insert_at 0 message | array.join "", "" }});
             _il.Emit(OpCodes.{{ method.arguments | array.insert_at 0 method.name | array.join "", "" }});
@@ -63,9 +57,7 @@ let generate () =
                 name = name
                 parameters = info.Args |> Seq.map (fun a -> $"in {a} {getArgumentName a}")
                 pop_behaviour = code.StackBehaviourPop.ToString()
-                pops = StackBehaviourMap.[code.StackBehaviourPop] |> Seq.rev |> join ", "
                 push_behaviour = code.StackBehaviourPush.ToString()
-                pushes = StackBehaviourMap.[code.StackBehaviourPush] |> join ", "
                 validate_jump = validate_jump
             |})
 

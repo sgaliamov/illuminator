@@ -84,7 +84,7 @@ namespace Illuminator.Tests
                         out var label)
                     .Ret(Ldc_I4_1()) // return 1
                     .MarkLabel(label)
-                    .Ret(Add(Ldarg_0(), Ldc_I4_3())) // return value + 
+                    .Ret(Add(Ldarg_0(), Ldc_I4_3())) // return value + 3
                     .CreateDelegate<Func<int, int>>();
 
             target(2).Should().Be(1);
@@ -97,7 +97,7 @@ namespace Illuminator.Tests
             var target =
                 new DynamicMethod("Foo", typeof(int), new[] { typeof(bool) })
                     .UseIlluminator(
-                        Ret(If(Ldarg_0(),
+                        Ret(If(Ldarg_0(), // return arg0 ? 1 : 0;
                                Ldc_I4_1(),
                                Ldc_I4_2())))
                     .CreateFunction<bool, int>();

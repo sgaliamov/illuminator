@@ -2,6 +2,7 @@ using System;
 using System.Reflection.Emit;
 using FluentAssertions;
 using Illuminator.Exceptions;
+using Illuminator.Extensions;
 using Xunit;
 using static Illuminator.Functions;
 
@@ -33,7 +34,6 @@ namespace Illuminator.Tests
         public void Set_value_to_array()
         {
             var target = new DynamicMethod("test", typeof(float[]), null)
-                         .GetILGenerator()
                          .UseIlluminator()
                          .DeclareLocal<float[]>(out var array)
                          .Stloc(Newarr(Ldc_I4_1(), typeof(float)), array)

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Reflection.Emit;
 using FluentAssertions;
+using Illuminator.Extensions;
 using Xunit;
 using static Illuminator.Functions;
+using static Illuminator.Extensions.Functions;
 
 namespace Illuminator.Tests
 {
@@ -87,6 +89,21 @@ namespace Illuminator.Tests
 
             target(2).Should().Be(1);
             target(1).Should().Be(4);
+        }
+
+        [Fact]
+        public void Sample4()
+        {
+            var target =
+                new DynamicMethod("Foo", typeof(int), new[] { typeof(bool) })
+                    .UseIlluminator(
+                        Ret(If(Ldarg_0(),
+                               Ldc_I4_1(),
+                               Ldc_I4_2())))
+                    .CreateFunction<bool, int>();
+
+            target(true).Should().Be(1);
+            target(false).Should().Be(2);
         }
     }
 }

@@ -7,12 +7,12 @@ namespace Illuminator.Extensions
         public static ILEmitterFunc If(
             ILEmitterFunc condition,
             ILEmitterFunc then,
-            ILEmitterFunc otherwise) => (in ILEmitter il) =>
-            il.Brfalse(condition, out var @else)
+            ILEmitterFunc @else) => (in ILEmitter il) =>
+            il.Brfalse(condition, out var otherwise)
               .Emit(then)
               .Br(out var end)
-              .MarkLabel(@else)
-              .Emit(otherwise)
+              .MarkLabel(otherwise)
+              .Emit(@else)
               .MarkLabel(end);
 
         public static ILEmitterFunc Ret<T>(T value) => (in ILEmitter il) =>
@@ -23,7 +23,8 @@ namespace Illuminator.Extensions
                 double val => il.Ldc_R8(val).Ret(),
                 byte val => il.Ldc_I4_S(val).Ret(),
                 sbyte val => il.Ldc_I4_S(val).Ret(),
-                _ => throw new NotSupportedException("Only numeric values are supported")
+                string val => il.Ldstr(val).Ret(),
+                _ => throw new NotSupportedException("Only strings and numeric values are supported.")
             };
     }
 }

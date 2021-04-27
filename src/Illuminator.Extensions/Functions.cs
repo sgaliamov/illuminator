@@ -4,15 +4,31 @@ namespace Illuminator.Extensions
 {
     public static class Functions
     {
+        /// <summary>
+        ///     Emit if statement.
+        ///     <example>
+        ///         <code>
+        /// if (condition) {
+        ///     then();
+        /// } else {
+        ///     otherwise();
+        /// }
+        ///         </code>
+        ///     </example>
+        /// </summary>
+        /// <param name="condition">Expression that emit </param>
+        /// <param name="then"></param>
+        /// <param name="otherwise"></param>
+        /// <returns>ILEmitterFunc</returns>
         public static ILEmitterFunc If(
             ILEmitterFunc condition,
             ILEmitterFunc then,
-            ILEmitterFunc @else) => (in ILEmitter il) =>
-            il.Brfalse(condition, out var otherwise)
+            ILEmitterFunc otherwise) => (in ILEmitter il) =>
+            il.Brfalse(condition, out var label)
               .Emit(then)
               .Br(out var end)
-              .MarkLabel(otherwise)
-              .Emit(@else)
+              .MarkLabel(label)
+              .Emit(otherwise)
               .MarkLabel(end);
 
         public static ILEmitterFunc Ret<T>(T value) => (in ILEmitter il) =>

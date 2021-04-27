@@ -17,8 +17,21 @@ namespace Illuminator
 
             public TraceLogger(ILEmitter owner) => _owner = owner;
 
-            public void Log(in string message, params object?[] args) =>
-                _log.AppendLine($"\t{message} {Join(args)}");
+            public void Log(in string message, params object?[] args)
+            {
+                switch (message) {
+                    case "DefineLabel":
+                        return;
+
+                    case "MarkLabel":
+                        _log.AppendLine($"\t{Join(args)}:");
+                        return;
+
+                    default:
+                        _log.AppendLine($"\t{message} {Join(args)}");
+                        return;
+                }
+            }
 
             public void Log(in OpCode code, params object?[] args)
             {

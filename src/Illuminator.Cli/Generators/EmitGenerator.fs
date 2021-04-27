@@ -33,8 +33,8 @@ namespace Illuminator
             ValidateJump(label);
             {{- end -}}
             {{- message = 'OpCodes.' + method.name }}
-            _logger?.Log({{ method.arguments | array.insert_at 0 message | array.join "", "" }});
             _il.Emit(OpCodes.{{ method.arguments | array.insert_at 0 method.name | array.join "", "" }});
+            _logger?.Log({{ method.arguments | array.insert_at 0 message | array.join "", "" }});
 
             return this;
         }

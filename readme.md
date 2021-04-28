@@ -213,7 +213,7 @@ It uses `System.Diagnostics.Trace` and outputs such result:
 
 ``` vb
 Int32 Foo(Int32)
-          1: .ldarg.0         | 1 # we can see resulting the stack size
+          1: .ldarg.0         | 1 # we can see stack size
           2: .ldc.i4.2        | 2
           4: .ceq             | 1
           9: .brfalse Label_0 | 0 # we can see where the branching instruction is pointing

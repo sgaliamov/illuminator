@@ -8,8 +8,11 @@ Illuminator is yet another wrapper around [`ILGenerator`](https://docs.microsoft
 1. [Fluent, convenient API](#fluent-api) with functional programming flavor.
 1. [Extensibility](#custom-extensions).
 1. [Tracing generated code](#tracing).
-1. [Scopes](#scopes) to optimize local variables usage.
+1. [Scopes](#scopes-for-local-variables) to optimize local variables usage.
 1. Based on `.netstandard2.0`.
+
+This library was emerged from another project, which I implemented using code emission, and was field tested in it.
+It's a [library](https://github.com/sgaliamov/il-lighten-comparer) which can generate comparers on runtime for any structure or class.
 
 ## Fluent API
 
@@ -152,6 +155,12 @@ As the result we get the fluent, convenient API with functional programming flav
 1. We can use output parameters to not break the fluent flow.
 1. A flow of instructions can be reused many times as it is a first class function now.
 
+## Who it is implemented
+
+Writing all those functional extensions and wrappers manually is really boring and takes a lot of time.
+
+To make things fun and make fewer mistakes I created a complementary [tool](./src/Illuminator.Cli) to generate most of the library's code using `F#`, `Scriban` library as a template engine, and reflection as a basic information.
+
 ## Custom extensions
 
 We can improve the readability of our code by creating our own extensions. Lets look at this one:
@@ -229,6 +238,4 @@ Int32 Foo(Int32)
 
 ## Scopes for local variables
 
-TBD
-
-I implemented another big [project](https://github.com/sgaliamov/il-lighten-comparer) using `illuminator`, so it passed the battle test.
+`MSIL` is not real assembler and allows us create local variables.

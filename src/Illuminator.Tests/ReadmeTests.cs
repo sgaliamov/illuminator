@@ -78,11 +78,11 @@ namespace Illuminator.Tests
                       .GetILGenerator()
                       .UseIlluminator()
                       .Brfalse_S( // if (value == 2)
-                          Ceq(Ldarg_0(), Ldc_I4_2()),
+                          Ceq(Ldarg_0, Ldc_I4_2()),
                           out var label)
                       .Ret(Ldc_I4_1()) // return 1
                       .MarkLabel(label)
-                      .Ret(Add(Ldarg_0(), Ldc_I4_3())) // return value + 3
+                      .Ret(Add(Ldarg_0, Ldc_I4_3())) // return value + 3
                       .CreateDelegate<Func<int, int>>();
 
             foo(2).Should().Be(1);
@@ -96,9 +96,9 @@ namespace Illuminator.Tests
                       .GetILGenerator()
                       .UseIlluminator(
                           true,
-                          Ret(If(Ceq(Ldarg_0(), Ldc_I4_2()),
+                          Ret(If(Ceq(Ldarg_0, Ldc_I4_2()),
                                  Ldc_I4_1(),
-                                 Add(Ldarg_0(), Ldc_I4_3()))))
+                                 Add(Ldarg_0, Ldc_I4_3()))))
                       .CreateDelegate<Func<int, int>>();
 
             foo(2).Should().Be(1);

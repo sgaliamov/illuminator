@@ -523,7 +523,7 @@ namespace Illuminator
         /// <summary>
         ///     Loads the argument at index 0 onto the evaluation stack.
         /// </summary>
-        public static ILEmitterFunc Ldarg_0() => (in ILEmitter il) => il.Ldarg_0();
+        public static ILEmitterFunc Ldarg_0 => (in ILEmitter il) => il.Ldarg_0();
 
         /// <summary>
         ///     Loads the argument at index 1 onto the evaluation stack.

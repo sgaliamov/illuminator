@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection.Emit;
 
 namespace Illuminator.Extensions
 {
@@ -30,6 +31,14 @@ namespace Illuminator.Extensions
               .MarkLabel(label)
               .Emit(otherwise)
               .MarkLabel(end);
+
+        public static ILEmitter Stloc<T>(this ILEmitter self, ILEmitterFunc value, out LocalBuilder local)
+        {
+            var il = self.DeclareLocal<T>(out var output);
+            local = output;
+
+            return il.Stloc(value, local);
+        }
 
         public static ILEmitterFunc Ret<T>(T value) => (in ILEmitter il) =>
             value switch {

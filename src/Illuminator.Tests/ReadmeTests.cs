@@ -104,22 +104,5 @@ namespace Illuminator.Tests
             foo(2).Should().Be(1);
             foo(1).Should().Be(4);
         }
-
-        [Fact]
-        public void Sample5()
-        {
-            using var il = new DynamicMethod("Foo", typeof(int), null)
-                           .GetILGenerator()
-                           .UseIlluminator();
-
-            using (il.LocalsScope()) {
-                il.Stloc<int>(Ldc_I4_1(), out var local);
-            }
-
-            var foo = il.CreateDelegate<Func<int, int>>();
-
-            foo(2).Should().Be(1);
-            foo(1).Should().Be(4);
-        }
     }
 }

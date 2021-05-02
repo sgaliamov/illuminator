@@ -95,11 +95,28 @@ namespace Illuminator.Tests
             var foo = new DynamicMethod("Foo", typeof(int), new[] { typeof(int) })
                       .GetILGenerator()
                       .UseIlluminator(
-                          enableTraceLogger: true,
+                          true,
                           Ret(If(Ceq(Ldarg_0(), Ldc_I4_2()),
                                  Ldc_I4_1(),
                                  Add(Ldarg_0(), Ldc_I4_3()))))
                       .CreateDelegate<Func<int, int>>();
+
+            foo(2).Should().Be(1);
+            foo(1).Should().Be(4);
+        }
+
+        [Fact]
+        public void Sample5()
+        {
+            using var il = new DynamicMethod("Foo", typeof(int), null)
+                           .GetILGenerator()
+                           .UseIlluminator();
+
+            using (il.LocalsScope()) {
+                il.Stloc<int>(Ldc_I4_1(), out var local);
+            }
+
+            var foo = il.CreateDelegate<Func<int, int>>();
 
             foo(2).Should().Be(1);
             foo(1).Should().Be(4);
